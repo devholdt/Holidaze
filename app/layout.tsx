@@ -2,6 +2,7 @@ import "@/app/ui/globals.css";
 import type { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
 import Header from "@/app/ui/header";
+import Footer from "@/app/ui/footer";
 
 export const metadata: Metadata = {
 	title: "Holidaze",
@@ -15,9 +16,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={robotoFlex.className}>
+			<body className={`${robotoFlex.className} antialiased bg-background`}>
 				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
