@@ -3,6 +3,7 @@ import beach from "@/public/background-beach.jpg";
 import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
 import VenueCard from "@/app/ui/venue-card";
+import Button from "@/app/ui/button";
 import { elMessiri } from "@/app/ui/fonts";
 
 export default function Home() {
@@ -57,7 +58,12 @@ export default function Home() {
 					<VenueCard />
 					<VenueCard />
 				</div>
-				<button className="mt-12">View all</button>
+				<Button
+					text={"View all"}
+					styles={
+						"bg-brown py-4 px-8 uppercase text-white mt-12 hover:bg-darkBrown"
+					}
+				/>
 			</div>
 		</main>
 	);
