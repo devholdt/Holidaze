@@ -1,16 +1,42 @@
-import backgroundBeach from "@/public/background-beach.jpg";
+import water from "@/public/texture-water-lighter.jpg";
+import beach from "@/public/background-beach.jpg";
+import Logo from "@/app/ui/holidaze-logo";
+import Subheading from "@/app/ui/subheading";
+import { elMessiri } from "@/app/ui/fonts";
 
 export default function Home() {
 	return (
-		<main className="flex flex-col m-auto min-h-screen flex-col max-w-7xl">
+		<main className="flex flex-col min-h-screen max-w-7xl m-auto">
 			<div
 				style={{
-					backgroundImage: `url(${backgroundBeach.src})`,
+					backgroundImage: `url(${water.src})`,
 					backgroundSize: "cover",
 				}}
-				className="flex items-center py-40"
+				className="flex items-center justify-center h-96"
 			>
-				<h1>Holidaze</h1>
+				<h1>
+					<Logo src={"/logo-white-subtitle.svg"} width={400} height={200} />
+				</h1>
+			</div>
+			<div
+				style={{
+					backgroundImage: `url(${beach.src})`,
+					backgroundSize: "cover",
+					backgroundPosition: "center",
+				}}
+				className="flex items-center h-80"
+			>
+				<div className="p-20 text-dark">
+					<Subheading text={"Welcome"} width={"w-24"} />
+					<h2 className={`${elMessiri.className} leading-none`}>
+						Serene Escapes
+					</h2>
+					<p className="max-w-80 font-light">
+						Explore our global collection of exquisite resorts, each offering a
+						unique sanctuary of peace and luxury. Dive into unparalleled comfort
+						and serene settings, where every stay promises a memorable escape.
+					</p>
+				</div>
 			</div>
 		</main>
 	);

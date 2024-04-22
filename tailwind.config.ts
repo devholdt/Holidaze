@@ -22,6 +22,10 @@ const config: Config = {
 			white: "#ffffff",
 			black: "#000000",
 		},
+		fontFamily: {
+			sans: ["Roboto Flex", "sans-serif"],
+			serif: ["El Messiri", "serif"],
+		},
 		extend: {
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
