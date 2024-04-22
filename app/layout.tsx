@@ -1,8 +1,6 @@
+import "@/app/ui/globals.css";
 import type { Metadata } from "next";
-import { Roboto_Flex } from "next/font/google";
-import "./globals.css";
-
-const robotoFlex = Roboto_Flex({ subsets: ["latin"] });
+import { robotoFlex } from "@/app/ui/fonts";
 
 export const metadata: Metadata = {
 	title: "Holidaze",
