@@ -53,7 +53,7 @@ export default function Home() {
 						right={"w-24 ms-2"}
 					/>
 				</div>
-				<div className="flex gap-12 mt-12">
+				<div className="flex flex-wrap justify-center px-12 gap-12 mt-12">
 					<VenueCard />
 					<VenueCard />
 					<VenueCard />
