@@ -1,6 +1,7 @@
 import "@/app/ui/globals.css";
 import type { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
+import Header from "@/app/ui/header";
 
 export const metadata: Metadata = {
 	title: "Holidaze",
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={robotoFlex.className}>{children}</body>
+			<body className={robotoFlex.className}>
+				<Header />
+				{children}
+			</body>
 		</html>
 	);
 }
