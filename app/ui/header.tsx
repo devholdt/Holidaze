@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "@/app/ui/holidaze-logo";
-import textureWaterSm from "../../public/texture-water-sm.jpg";
+import textureWaterSm from "@/public/texture-water-sm.jpg";
+import UserDropdown from "@/app/ui/user-dropdown";
 
 export default function Header() {
 	return (
@@ -14,7 +15,7 @@ export default function Header() {
 			<Link href="/">
 				<Logo src="/logo-white.svg" width={180} height={63} />
 			</Link>
-			<nav className="flex gap-8">
+			<nav className="flex gap-8 items-center">
 				<Link href="/" className="text-white uppercase">
 					Home
 				</Link>
@@ -24,7 +25,7 @@ export default function Header() {
 				<Link href="/" className="text-white uppercase">
 					Contact
 				</Link>
-				<div className="text-white uppercase">User</div>
+				<UserDropdown />
 			</nav>
 		</header>
 	);
