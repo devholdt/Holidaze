@@ -13,7 +13,7 @@ export default function Header() {
 			className="flex justify-between items-center py-8 px-10"
 		>
 			<Link href="/">
-				<Logo src="/logo-white.svg" width={180} height={63} />
+				<Logo src="/logo-white.svg" width={160} height={60} />
 			</Link>
 			<nav className="flex gap-8 items-center">
 				<Link href="/" className="text-white uppercase">
