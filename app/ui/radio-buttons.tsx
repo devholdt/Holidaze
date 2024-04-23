@@ -57,6 +57,7 @@ class RadioButton extends Component<RadioButtonProps, RadioButtonState> {
 export default function RadioButtons() {
 	return (
 		<fieldset>
+			<legend className="text-blue mb-1">Filter venues by:</legend>
 			<div className="w-fit bg-white rounded-full">
 				<RadioButton
 					name="venueType"
