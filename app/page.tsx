@@ -8,7 +8,7 @@ import { elMessiri } from "@/app/ui/fonts";
 
 export default function Home() {
 	return (
-		<main className="flex flex-col min-h-screen max-w-7xl m-auto">
+		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
 			<div
 				style={{
 					backgroundImage: `url(${water.src})`,

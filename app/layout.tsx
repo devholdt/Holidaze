@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${robotoFlex.className} antialiased bg-background`}>
+			<body className={`${robotoFlex.className} antialiased bg-lighterGrey`}>
 				<Header />
 				{children}
 				<Footer />
