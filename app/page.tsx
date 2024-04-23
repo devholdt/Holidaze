@@ -43,7 +43,7 @@ export default function Home() {
 			</div>
 
 			<div className="flex flex-col items-center my-36">
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center text-center mb-12">
 					<h3 className={`${elMessiri.className} leading-tight`}>
 						Bookings & Venues
 					</h3>
@@ -53,7 +53,7 @@ export default function Home() {
 						right={"w-24 ms-2"}
 					/>
 				</div>
-				<div className="flex flex-wrap justify-center px-12 gap-12 mt-12">
+				<div className="flex flex-wrap md:flex-nowrap gap-8 w-full px-4 md:px-14 xl:px-32">
 					<VenueCard />
 					<VenueCard />
 					<VenueCard />
@@ -61,7 +61,7 @@ export default function Home() {
 				<Button
 					text={"View all"}
 					styles={
-						"bg-brown py-4 px-8 uppercase text-white mt-12 hover:bg-darkBrown"
+						"bg-brown py-3 px-6 uppercase text-white mt-12 hover:bg-darkBrown font-extralight text-lg"
 					}
 				/>
 			</div>
