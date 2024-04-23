@@ -2,18 +2,18 @@
 
 import React, { Component } from "react";
 
-type RadioButtonsProps = {
+type RadioButtonProps = {
 	name: string;
 	options: string[];
 	defaultOption: string;
 };
 
-type RadioButtonsState = {
+type RadioButtonState = {
 	selectedOption: string;
 };
 
-class RadioButtons extends Component<RadioButtonsProps, RadioButtonsState> {
-	constructor(props: RadioButtonsProps) {
+class RadioButton extends Component<RadioButtonProps, RadioButtonState> {
+	constructor(props: RadioButtonProps) {
 		super(props);
 		this.state = {
 			selectedOption: this.props.defaultOption,
@@ -54,4 +54,16 @@ class RadioButtons extends Component<RadioButtonsProps, RadioButtonsState> {
 	}
 }
 
-export default RadioButtons;
+export default function RadioButtons() {
+	return (
+		<fieldset>
+			<div className="w-fit bg-white rounded-full">
+				<RadioButton
+					name="venueType"
+					options={["Latest", "Popular", "Featured"]}
+					defaultOption="Latest"
+				/>
+			</div>
+		</fieldset>
+	);
+}
