@@ -51,7 +51,7 @@ const UserDropdown: FC<Props> = () => {
 
 			<div
 				ref={dropdownRef}
-				className={`absolute top-0 right-0 rounded-3xl z-30 w-60 flex flex-col bg-white text-dark shadow-md ${
+				className={`absolute top-0 right-0 rounded-3xl z-30 w-52 flex flex-col bg-white text-dark shadow-md ${
 					isOpen ? "flex" : "hidden"
 				}`}
 			>
