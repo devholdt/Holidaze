@@ -19,10 +19,10 @@ export default function Header() {
 					<Link href="/" className="text-white uppercase">
 						Home
 					</Link>
-					<Link href="/" className="text-white uppercase">
+					<Link href="/venues" className="text-white uppercase">
 						Venues
 					</Link>
-					<Link href="/" className="text-white uppercase">
+					<Link href="/contact" className="text-white uppercase">
 						Contact
 					</Link>
 					<UserDropdown />
