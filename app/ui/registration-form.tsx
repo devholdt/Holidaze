@@ -11,7 +11,7 @@ export default function RegistrationForm() {
 	};
 
 	return (
-		<form>
+		<form className="w-full max-w-[320px]">
 			<div className="mb-4">
 				<label className="text-dark" htmlFor="name">
 					Name
