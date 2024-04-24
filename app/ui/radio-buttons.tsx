@@ -43,7 +43,7 @@ class RadioButton extends Component<RadioButtonProps, RadioButtonState> {
 								name={this.props.name.toLowerCase()}
 								id={id}
 								className="checked:border-yellow position:fixed opacity-0 pointer-events-none"
-								checked={option === this.state.selectedOption}
+								// checked={option === this.state.selectedOption}
 							/>{" "}
 							{option}
 						</label>

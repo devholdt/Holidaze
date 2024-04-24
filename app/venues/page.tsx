@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/radio-buttons";
-import DatePick from "@/app/ui/date-picker";
+import DateRange from "@/app/ui/date-picker";
 import Search from "@/app/ui/search";
 import VenueCard from "@/app/ui/venue-card";
 import Button from "@/app/ui/button";
@@ -17,7 +17,7 @@ export default function Page() {
 
 			<div className="flex justify-between gap-20 mx-12 mt-28 mb-12">
 				<RadioButtons />
-				<DatePick />
+				<DateRange />
 				<Search />
 			</div>
 

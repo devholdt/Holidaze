@@ -1,65 +1,58 @@
 "use client";
 
-import React, { useState, useEffect, FC, useMemo } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-type DateInputProps = {
-	selectedDate: Date | null;
-	minDate: Date;
-	setSelectedDate: (date: Date | null) => void;
-};
-
-const DateInput: FC<DateInputProps> = ({
-	selectedDate,
-	minDate,
-	setSelectedDate,
-}) => (
-	<DatePicker
-		selected={selectedDate}
-		onChange={setSelectedDate}
-		dateFormat="dd/MM/yy"
-		minDate={minDate}
-		className="bg-yellow py-2 text-center rounded-full w-24 hover:cursor-pointer"
-	/>
-);
-
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
+type DateRange = [Date | null, Date | null];
 
 export default function DatePick() {
-	const [checkInDate, setCheckInDate] = useState<Date | null>(new Date());
-	const [checkOutDate, setCheckOutDate] = useState<Date | null>(tomorrow);
+	const getTomorrowDate = () => {
+		const tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		return tomorrow;
+	};
 
-	useEffect(() => {
-		if (checkInDate && checkOutDate && checkInDate >= checkOutDate) {
-			const newCheckOutDate = new Date(
-				checkInDate.getTime() + 24 * 60 * 60 * 1000
+	const [dateRange, setDateRange] = useState<DateRange>([
+		new Date(),
+		getTomorrowDate(),
+	]);
+	const [startDate, endDate] = dateRange;
+
+	const CustomInput = React.forwardRef(
+		(
+			{ value, onClick }: { value?: string; onClick?: () => void },
+			ref: React.Ref<HTMLButtonElement>
+		) => {
+			const formattedValue = value ? value.replace(" - ", " to ") : undefined;
+
+			return (
+				<button
+					className="bg-yellow py-2 px-4 rounded-full w-fit text-center text-blue cursor-pointer text-nowrap"
+					onClick={onClick}
+					ref={ref}
+					style={{ border: "none" }}
+				>
+					{formattedValue}
+				</button>
 			);
-			setCheckOutDate(newCheckOutDate);
 		}
-	}, [checkInDate, checkOutDate]);
-
-	const minCheckOutDate = useMemo(() => {
-		return checkInDate
-			? new Date(checkInDate.getTime() + 24 * 60 * 60 * 1000)
-			: tomorrow;
-	}, [checkInDate]);
+	);
 
 	return (
 		<fieldset>
 			<legend className="text-blue mb-1">Pick dates:</legend>
-			<div className="flex items-center w-fit text-blue bg-white rounded-full">
-				<DateInput
-					selectedDate={checkInDate}
+			<div>
+				<DatePicker
+					selectsRange={true}
+					startDate={startDate}
+					endDate={endDate}
+					onChange={(update: DateRange) => setDateRange(update)}
+					monthsShown={2}
+					dateFormat="dd/MM/yyyy"
 					minDate={new Date()}
-					setSelectedDate={setCheckInDate}
-				/>
-				<p className="mx-4">to</p>
-				<DateInput
-					selectedDate={checkOutDate}
-					minDate={minCheckOutDate}
-					setSelectedDate={setCheckOutDate}
+					withPortal={true}
+					customInput={<CustomInput />}
 				/>
 			</div>
 		</fieldset>
