@@ -49,7 +49,7 @@ export default function DatePick() {
 					endDate={endDate}
 					onChange={(update: DateRange) => setDateRange(update)}
 					monthsShown={2}
-					dateFormat="dd/MM/yyyy"
+					dateFormat="dd/MM/yy"
 					minDate={new Date()}
 					withPortal={true}
 					customInput={<CustomInput />}
