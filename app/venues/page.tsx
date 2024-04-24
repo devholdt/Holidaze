@@ -29,9 +29,7 @@ export default function Page() {
 				</div>
 				<Button
 					text={"Show more"}
-					styles={
-						"bg-brown py-3 px-6 uppercase text-white mt-12 hover:bg-darkBrown font-extralight text-lg"
-					}
+					styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}
 				/>
 			</div>
 		</main>

@@ -6,7 +6,13 @@ type ButtonProps = {
 };
 
 const Button: FC<ButtonProps> = ({ text, styles }) => {
-	return <button className={`${styles}`}>{text}</button>;
+	return (
+		<button
+			className={`uppercase py-3 px-6 text-lg font-extralight tracking-widest ${styles}`}
+		>
+			{text}
+		</button>
+	);
 };
 
 export default Button;

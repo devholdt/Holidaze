@@ -4,16 +4,12 @@ import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import React, { useState, useEffect, useRef, FC } from "react";
 import Link from "next/link";
 
-interface MenuItem {
+interface MenuItemProps {
 	route: string;
 	title: string;
 }
 
-interface Props {
-	item: string;
-}
-
-const UserDropdown: FC<Props> = () => {
+const UserDropdown = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +29,7 @@ const UserDropdown: FC<Props> = () => {
 		return () => document.removeEventListener("mousedown", handleClickOutside);
 	}, []);
 
-	const menuItems: MenuItem[] = [
+	const menuItems: MenuItemProps[] = [
 		{ title: "Register", route: "/user/register" },
 		{ title: "Log in", route: "/user/login" },
 		{ title: "Contact us", route: "/contact" },
