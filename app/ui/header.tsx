@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "@/app/ui/holidaze-logo";
 import textureWaterSm from "@/public/texture-water-sm.jpg";
-import UserDropdown from "@/app/ui/user-dropdown";
+import UserDropdown from "@/app/ui/user/user-dropdown";
 
 export default function Header() {
 	return (

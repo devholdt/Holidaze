@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import Hero from "@/app/ui/hero";
-import RadioButtons from "@/app/ui/radio-buttons";
-import DateRange from "@/app/ui/date-picker";
-import Search from "@/app/ui/search";
+import RadioButtons from "@/app/ui/venues/radio-buttons";
+import DateRange from "@/app/ui/venues/date-picker";
+import Search from "@/app/ui/venues/search";
 import VenueCard from "@/app/ui/venue-card";
 import Button from "@/app/ui/button";
 

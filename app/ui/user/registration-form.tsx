@@ -1,11 +1,33 @@
 "use client";
 
-import Button from "./button";
+import { useState } from "react";
+import Button from "../button";
 import Link from "next/link";
 
-export default function LoginForm() {
+export default function RegistrationForm() {
+	const [isChecked, setIsChecked] = useState(false);
+
+	const handleChange = () => {
+		setIsChecked(!isChecked);
+	};
+
 	return (
 		<form className="w-full max-w-[320px]">
+			<div className="mb-4">
+				<label className="text-dark" htmlFor="name">
+					Name
+				</label>
+				<div className="relative">
+					<input
+						className="bg-background py-3 px-4 w-full rounded outline-green placeholder:text-grey"
+						id="name"
+						type="name"
+						name="name"
+						placeholder="Enter name"
+						required
+					/>
+				</div>
+			</div>
 			<div className="mb-4">
 				<label className="text-dark" htmlFor="email">
 					Email
@@ -21,7 +43,7 @@ export default function LoginForm() {
 					/>
 				</div>
 			</div>
-			<div className="mb-8">
+			<div className="mb-4">
 				<label className="text-dark" htmlFor="password">
 					Password
 				</label>
@@ -37,14 +59,25 @@ export default function LoginForm() {
 					/>
 				</div>
 			</div>
+			<div className="checkbox-wrapper mb-8">
+				<label className="flex items-center">
+					<input
+						type="checkbox"
+						checked={isChecked}
+						onChange={handleChange}
+						className={isChecked ? "checked" : ""}
+					/>
+					<span className="ms-1">Register as Venue Manager</span>
+				</label>
+			</div>
 			<Button
-				text="Login"
+				text="Create account"
 				styles="bg-green text-white w-full hover:bg-lightGreen"
 			/>
 			<div className="mt-4 font-extralight tracking-wider w-full">
-				Don't have an account? Register{" "}
+				Already have an account? Login{" "}
 				<Link
-					href="/user/register"
+					href="/user/login"
 					className="text-blue underline hover:font-medium"
 				>
 					here

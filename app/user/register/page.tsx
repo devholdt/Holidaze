@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Logo from "@/app/ui/holidaze-logo";
-import RegistrationForm from "@/app/ui/registration-form";
+import RegistrationForm from "@/app/ui/user/registration-form";
 
 export const metadata: Metadata = {
 	title: "Register",
