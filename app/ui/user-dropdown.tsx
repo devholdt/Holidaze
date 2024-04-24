@@ -34,9 +34,9 @@ const UserDropdown: FC<Props> = () => {
 	}, []);
 
 	const menuItems: MenuItem[] = [
-		{ title: "Register", route: "/" },
-		{ title: "Log in", route: "/" },
-		{ title: "Contact us", route: "/" },
+		{ title: "Register", route: "/user/register" },
+		{ title: "Log in", route: "/user/login" },
+		{ title: "Contact us", route: "/contact" },
 	];
 
 	return (
