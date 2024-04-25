@@ -22,14 +22,18 @@ export default function VenueCard() {
 
 	return (
 		<div className="grid grid-cols-3 gap-8 w-full">
-			{data?.slice(0, 100).map((venue) => (
+			{data?.map((venue) => (
 				<div
 					key={venue.id}
 					className="relative text-white flex flex-col justify-end h-96 p-2"
 				>
 					<Image
-						src={venue.media[0].url || "./background-reflection.jpg"}
+						src={venue.media[0].url}
 						alt={venue.media[0].alt || venue.name}
+						onError={(event) => {
+							const target = event.target as HTMLImageElement;
+							target.src = "./background-reflection.jpg";
+						}}
 						fill
 						unoptimized
 						className="object-cover object-center z-1 border border-brown"

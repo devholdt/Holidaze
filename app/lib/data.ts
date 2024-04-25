@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
-
-interface Venue {
-	id: string;
-	name: string;
-	price: number;
-	media: { url: string; alt?: string }[];
-}
+import { Venue } from "@/app/lib/definitions";
 
 export function useFetch(url: string): {
 	data: Venue[] | null;
@@ -13,16 +7,21 @@ export function useFetch(url: string): {
 	error: Error | null;
 } {
 	const [data, setData] = useState<Venue[] | null>(null);
-	const [loading, setLoading] = useState<boolean>(true);
+	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<Error | null>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+				setLoading(true);
+				setError(null);
+
 				const response = await fetch(url);
+
 				if (!response.ok) {
-					throw new Error("Network response was not ok");
+					throw new Error(`HTTP error! status: ${response.status}`);
 				}
+
 				const json = await response.json();
 
 				setData(json.data);
