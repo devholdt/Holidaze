@@ -22,9 +22,7 @@ export default function Page() {
 			</div>
 
 			<div className="flex flex-col items-center mb-36">
-				<div className="grid grid-cols-3 gap-8 w-full px-4 md:px-14 xl:px-32">
-					<VenueCard />
-					<VenueCard />
+				<div className="w-full px-4 md:px-14 xl:px-32">
 					<VenueCard />
 				</div>
 				<Button

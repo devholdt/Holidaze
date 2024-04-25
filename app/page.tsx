@@ -1,5 +1,3 @@
-import water from "@/public/texture-water-lighter.jpg";
-import beach from "@/public/background-beach.jpg";
 import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
 import VenueCard from "@/app/ui/venue-card";
@@ -11,7 +9,7 @@ export default function Home() {
 		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
 			<div
 				style={{
-					backgroundImage: `url(${water.src})`,
+					backgroundImage: `url(./texture-water-lighter.jpg)`,
 					backgroundSize: "cover",
 				}}
 				className="flex items-center justify-center h-96"
@@ -23,7 +21,7 @@ export default function Home() {
 
 			<div
 				style={{
-					backgroundImage: `url(${beach.src})`,
+					backgroundImage: `url(./background-beach.jpg)`,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 				}}
