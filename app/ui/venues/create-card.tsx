@@ -2,6 +2,7 @@ import Image from "next/image";
 import { elMessiri } from "@/app/ui/fonts";
 import { Venue } from "@/app/lib/definitions";
 import { formatNumber } from "@/app/lib/utils";
+import { motion } from "framer-motion";
 
 interface CreateCardProps {
 	venue: Venue;
@@ -9,7 +10,11 @@ interface CreateCardProps {
 
 export function CreateCard({ venue }: CreateCardProps) {
 	return (
-		<div className="relative text-white flex flex-col justify-end h-96 p-2">
+		<motion.div
+			className="relative text-white flex flex-col justify-end h-96 p-2 hover:cursor-pointer"
+			whileHover={{ scale: 1.05 }}
+			whileTap={{ scale: 1.02 }}
+		>
 			<Image
 				src={venue.media[0].url}
 				alt={venue.media[0].alt || venue.name}
@@ -19,7 +24,7 @@ export function CreateCard({ venue }: CreateCardProps) {
 				}}
 				fill
 				unoptimized
-				className="object-cover object-center z-1 drop-shadow-md brightness-90 hover:brightness-100 hover:cursor-pointer hover:scale-105"
+				className="object-cover object-center z-1 drop-shadow-md"
 			/>
 
 			<div className="flex flex-col gap-1 z-10 px-4 py-2 bg-darkBrown border border-brown">
@@ -29,6 +34,6 @@ export function CreateCard({ venue }: CreateCardProps) {
 				</p>
 				<h4 className={`${elMessiri.className} truncate`}>{venue.name}</h4>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

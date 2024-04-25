@@ -56,7 +56,7 @@ export default function Home() {
 				<VenueList listLimit={3} />
 				<Link
 					href="/venues"
-					className="bg-brown hover:bg-darkBrown uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
+					className="bg-brown hover:bg-darkBrown transition uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
 				>
 					View all
 				</Link>

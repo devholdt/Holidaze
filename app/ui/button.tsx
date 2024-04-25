@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 type ButtonProps = {
 	text: string;
@@ -8,12 +9,12 @@ type ButtonProps = {
 
 const Button: FC<ButtonProps> = ({ text, styles, onClick }) => {
 	return (
-		<button
-			className={`uppercase py-3 px-6 text-lg font-extralight tracking-widest ${styles}`}
+		<motion.button
+			className={`uppercase py-3 px-6 text-lg font-extralight tracking-widest transition ${styles}`}
 			onClick={onClick}
 		>
 			{text}
-		</button>
+		</motion.button>
 	);
 };
 

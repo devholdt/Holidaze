@@ -37,7 +37,7 @@ export default function VenueList({
 			{showMoreButton && data && limit < data.length && (
 				<Button
 					text={"Show more"}
-					styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}
+					styles={"bg-brown hover:bg-darkBrown text-white mt-12"}
 					onClick={() => setLimit(limit + INITIAL_LIMIT)}
 				/>
 			)}
