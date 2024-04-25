@@ -22,13 +22,13 @@ export default function Page() {
 			</div>
 
 			<div className="flex flex-col items-center mb-36">
-				<div className="w-full px-4 md:px-14 xl:px-32">
+				<div className="flex flex-col items-center w-full px-4 md:px-14 xl:px-32">
 					<VenueCard />
+					<Button
+						text={"Show more"}
+						styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}
+					/>
 				</div>
-				<Button
-					text={"Show more"}
-					styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}
-				/>
 			</div>
 		</main>
 	);

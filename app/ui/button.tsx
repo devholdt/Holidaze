@@ -2,7 +2,7 @@ import { FC } from "react";
 
 type ButtonProps = {
 	text: string;
-	styles: string;
+	styles?: string;
 };
 
 const Button: FC<ButtonProps> = ({ text, styles }) => {

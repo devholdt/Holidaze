@@ -3,7 +3,7 @@
 import { useFetch } from "@/app/lib/data";
 import { elMessiri } from "@/app/ui/fonts";
 import Image from "next/image";
-import { formatNumber, formatPrice } from "@/app/lib/utils";
+import { formatNumber } from "@/app/lib/utils";
 
 const url = "https://v2.api.noroff.dev/holidaze/venues";
 
@@ -21,8 +21,8 @@ export default function VenueCard() {
 	}
 
 	return (
-		<div className="venues-container grid grid-cols-3 gap-8">
-			{data?.map((venue) => (
+		<div className="grid grid-cols-3 gap-8 w-full">
+			{data?.slice(0, 100).map((venue) => (
 				<div
 					key={venue.id}
 					className="relative text-white flex flex-col justify-end h-96 p-2"
@@ -36,15 +36,10 @@ export default function VenueCard() {
 					/>
 
 					<div className="flex flex-col gap-1 z-10 px-4 py-2 bg-darkBrown border border-brown">
-						{/* temporary(?) price formatting */}
-						<p className="font-light uppercase">
-							<span className="break-all">£{formatPrice(venue.price)}</span> /
-							night
+						<p className="font-light">
+							<span className="break-all">£{formatNumber(venue.price)}</span>{" "}
+							<span className="uppercase">/ night</span>
 						</p>
-						{/* <p className="font-light uppercase">
-							<span className="break-all">${formatNumber(venue.price, 1)}</span>{" "}
-							/ night
-						</p> */}
 						<h4 className={`${elMessiri.className}`}>{venue.name}</h4>
 					</div>
 				</div>

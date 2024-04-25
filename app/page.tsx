@@ -1,7 +1,7 @@
 import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
 import VenueCard from "@/app/ui/venue-card";
-import Button from "@/app/ui/button";
+import Link from "next/link";
 import { elMessiri } from "@/app/ui/fonts";
 
 export default function Home() {
@@ -40,7 +40,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center my-36">
+			<div className="flex flex-col items-center mt-36">
 				<div className="flex flex-col items-center text-center mb-12">
 					<h3 className={`${elMessiri.className} leading-tight`}>
 						Bookings & Venues
@@ -51,17 +51,17 @@ export default function Home() {
 						right={"w-24 ms-2"}
 					/>
 				</div>
-				<div className="grid grid-cols-3 gap-8 w-full px-4 md:px-14 xl:px-32">
+			</div>
+			<div className="flex flex-col items-center mb-36">
+				<div className="flex flex-col items-center w-full px-4 md:px-14 xl:px-32">
 					<VenueCard />
-					<VenueCard />
-					<VenueCard />
+					<Link
+						href="/venues"
+						className="bg-brown hover:bg-darkBrown uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
+					>
+						View all
+					</Link>
 				</div>
-				<Button
-					text={"View all"}
-					styles={
-						"bg-brown py-3 px-6 uppercase text-white mt-12 hover:bg-darkBrown font-extralight text-lg"
-					}
-				/>
 			</div>
 		</main>
 	);
