@@ -1,4 +1,3 @@
-import beach from "@/public/background-beach.jpg";
 import { elMessiri } from "@/app/ui/fonts";
 import { FC, createElement } from "react";
 import Subheading from "@/app/ui/subheading";
@@ -27,7 +26,7 @@ const Hero: FC<HeroProps> = ({
 	return (
 		<div
 			style={{
-				backgroundImage: `url(${beach.src})`,
+				backgroundImage: `url(./background-beach.jpg)`,
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 			}}

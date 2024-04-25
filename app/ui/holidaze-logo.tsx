@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 
@@ -7,7 +9,7 @@ type LogoProps = {
 	height?: number;
 };
 
-const Logo: FC<LogoProps> = ({ src, width = 200, height = 200 }) => {
+const Logo: FC<LogoProps> = ({ src, width, height }) => {
 	return <Image src={src} width={width} height={height} alt="Holidaze logo" />;
 };
 

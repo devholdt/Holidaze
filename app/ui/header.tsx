@@ -1,19 +1,18 @@
 import Link from "next/link";
 import Logo from "@/app/ui/holidaze-logo";
-import textureWaterSm from "@/public/texture-water-sm.jpg";
 import UserDropdown from "@/app/ui/user/user-dropdown";
 
 export default function Header() {
 	return (
 		<header
 			style={{
-				backgroundImage: `url(${textureWaterSm.src})`,
+				backgroundImage: `url(./texture-water-sm.jpg)`,
 				backgroundSize: "cover",
 			}}
 		>
 			<div className="flex justify-between items-center py-8 px-10 max-w-7xl m-auto">
 				<Link href="/">
-					<Logo src="/logo-white.svg" width={160} height={60} />
+					<Logo src="./logo-white.svg" width={160} height={80} />
 				</Link>
 				<nav className="flex gap-8 items-center">
 					<Link href="/" className="text-white uppercase">

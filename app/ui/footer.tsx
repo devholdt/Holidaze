@@ -5,7 +5,7 @@ export default function Footer() {
 		<footer className="flex flex-col bg-darkBrown">
 			<div className="flex justify-around items-center p-12">
 				<div>
-					<Logo src="/logo-white.svg" width={240} height={60} />
+					<Logo src="/logo-white.svg" width={200} height={60} />
 				</div>
 				<div>
 					<p className="text-lightBrown max-w-96">
