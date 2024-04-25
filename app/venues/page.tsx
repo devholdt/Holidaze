@@ -3,7 +3,7 @@ import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
 import DateRange from "@/app/ui/venues/date-picker";
 import Search from "@/app/ui/venues/search";
-import VenueCard from "@/app/ui/venue-card";
+import VenueList from "@/app/ui/venues/venue-list";
 import Button from "@/app/ui/button";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function Page() {
 
 			<div className="flex flex-col items-center mb-36">
 				<div className="flex flex-col items-center w-full px-4 md:px-14 xl:px-32">
-					<VenueCard />
+					<VenueList />
 					<Button
 						text={"Show more"}
 						styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}

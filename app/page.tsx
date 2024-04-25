@@ -1,6 +1,6 @@
 import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
-import VenueCard from "@/app/ui/venue-card";
+import VenueList from "@/app/ui/venues/venue-list";
 import Link from "next/link";
 import { elMessiri } from "@/app/ui/fonts";
 
@@ -54,7 +54,7 @@ export default function Home() {
 			</div>
 			<div className="flex flex-col items-center mb-36">
 				<div className="flex flex-col items-center w-full px-4 md:px-14 xl:px-32">
-					<VenueCard />
+					<VenueList />
 					<Link
 						href="/venues"
 						className="bg-brown hover:bg-darkBrown uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
