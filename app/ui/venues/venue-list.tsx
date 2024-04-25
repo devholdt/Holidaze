@@ -5,13 +5,18 @@ import { useFetch } from "@/app/lib/data";
 import { CreateCard } from "@/app/ui/venues/create-card";
 import Button from "@/app/ui/button";
 
-export default function VenueList() {
+interface VenueListProps {
+	listLimit?: number;
+	showMoreButton?: boolean;
+}
+
+export default function VenueList({
+	listLimit = 9,
+	showMoreButton = false,
+}: VenueListProps) {
 	const url = "https://v2.api.noroff.dev/holidaze/venues";
 	const { data, loading, error } = useFetch(url);
-
-	// console.log(data);
-
-	const INITIAL_LIMIT = 9;
+	const INITIAL_LIMIT = listLimit;
 	const [limit, setLimit] = useState(INITIAL_LIMIT);
 
 	if (loading) {
@@ -29,14 +34,13 @@ export default function VenueList() {
 					<CreateCard key={venue.id} venue={venue} />
 				))}
 			</div>
-			{data &&
-				limit < data.length && ( // Ensure data is not undefined before comparing length
-					<Button
-						text={"Show more"}
-						styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}
-						onClick={() => setLimit(limit + INITIAL_LIMIT)}
-					/>
-				)}
+			{showMoreButton && data && limit < data.length && (
+				<Button
+					text={"Show more"}
+					styles={"bg-brown text-white mt-12 hover:bg-darkBrown"}
+					onClick={() => setLimit(limit + INITIAL_LIMIT)}
+				/>
+			)}
 		</div>
 	);
 }

@@ -27,7 +27,7 @@ export function CreateCard({ venue }: CreateCardProps) {
 					<span className="break-all">£{formatNumber(venue.price)}</span>{" "}
 					<span className="uppercase">/ night</span>
 				</p>
-				<h4 className={`${elMessiri.className}`}>{venue.name}</h4>
+				<h4 className={`${elMessiri.className} truncate`}>{venue.name}</h4>
 			</div>
 		</div>
 	);

@@ -22,7 +22,7 @@ export default function Page() {
 
 			<div className="flex flex-col items-center mb-36">
 				<div className="venues-container"></div>
-				<VenueList />
+				<VenueList showMoreButton={true} />
 			</div>
 		</main>
 	);

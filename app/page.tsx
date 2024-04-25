@@ -53,7 +53,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="flex flex-col items-center mb-36">
-				<VenueList />
+				<VenueList listLimit={3} />
 				<Link
 					href="/venues"
 					className="bg-brown hover:bg-darkBrown uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
