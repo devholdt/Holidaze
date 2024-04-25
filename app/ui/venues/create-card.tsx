@@ -19,7 +19,7 @@ export function CreateCard({ venue }: CreateCardProps) {
 				}}
 				fill
 				unoptimized
-				className="object-cover object-center z-1 border border-brown"
+				className="object-cover object-center z-1 drop-shadow-md brightness-90 hover:brightness-100 hover:cursor-pointer hover:scale-105"
 			/>
 
 			<div className="flex flex-col gap-1 z-10 px-4 py-2 bg-darkBrown border border-brown">
