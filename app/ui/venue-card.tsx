@@ -1,6 +1,13 @@
+"use client";
+
+import { useFetch } from "@/app/lib/data";
 import { elMessiri } from "@/app/ui/fonts";
 
+const url = "https://v2.api.noroff.dev/holidaze/venues";
+
 export default function VenueCard() {
+	const { data, loading, error } = useFetch(url);
+
 	return (
 		<div className="flex flex-col bg-white h-96 w-full min-w-48">
 			<div className="bg-transparent flex-1"></div>

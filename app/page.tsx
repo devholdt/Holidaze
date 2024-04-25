@@ -53,7 +53,7 @@ export default function Home() {
 						right={"w-24 ms-2"}
 					/>
 				</div>
-				<div className="flex flex-wrap md:flex-nowrap gap-8 w-full px-4 md:px-14 xl:px-32">
+				<div className="grid grid-cols-3 gap-8 w-full px-4 md:px-14 xl:px-32">
 					<VenueCard />
 					<VenueCard />
 					<VenueCard />
