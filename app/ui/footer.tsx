@@ -1,11 +1,12 @@
 import Logo from "@/app/ui/holidaze-logo";
+import logoWhite from "@/public/logo-white.svg";
 
 export default function Footer() {
 	return (
 		<footer className="flex flex-col bg-darkBrown">
 			<div className="flex justify-around items-center p-12">
 				<div>
-					<Logo src="/logo-white.svg" width={200} height={60} />
+					<Logo src={logoWhite} width={200} height={60} />
 				</div>
 				<div>
 					<p className="text-lightBrown max-w-96">

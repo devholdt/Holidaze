@@ -3,25 +3,28 @@ import Subheading from "@/app/ui/subheading";
 import VenueList from "@/app/ui/venues/venue-list";
 import Link from "next/link";
 import { elMessiri } from "@/app/ui/fonts";
+import waterImg from "@/public/texture-water-lighter.jpg";
+import beachImg from "@/public/background-beach.jpg";
+import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 
 export default function Home() {
 	return (
 		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
 			<div
 				style={{
-					backgroundImage: `url(./texture-water-lighter.jpg)`,
+					backgroundImage: `url(${waterImg.src})`,
 					backgroundSize: "cover",
 				}}
 				className="flex items-center justify-center h-96"
 			>
 				<h1>
-					<Logo src={"/logo-white-subtitle.svg"} width={400} height={200} />
+					<Logo src={logoWhiteSubtitle} width={400} height={200} />
 				</h1>
 			</div>
 
 			<div
 				style={{
-					backgroundImage: `url(./background-beach.jpg)`,
+					backgroundImage: `url(${beachImg.src})`,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 				}}
