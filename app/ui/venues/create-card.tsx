@@ -9,6 +9,9 @@ interface CreateCardProps {
 }
 
 export function CreateCard({ venue }: CreateCardProps) {
+	const imageUrl = venue.media[0]?.url ?? "./background-reflection.jpg";
+	const imageAlt = venue.media[0]?.alt ?? venue.name;
+
 	return (
 		<motion.div
 			className="relative text-white flex flex-col justify-end h-96 p-2 hover:cursor-pointer"
@@ -16,8 +19,8 @@ export function CreateCard({ venue }: CreateCardProps) {
 			whileTap={{ scale: 1.02 }}
 		>
 			<Image
-				src={venue.media[0].url}
-				alt={venue.media[0].alt || venue.name}
+				src={imageUrl}
+				alt={imageAlt}
 				onError={(event) => {
 					const target = event.target as HTMLImageElement;
 					target.src = "./background-reflection.jpg";

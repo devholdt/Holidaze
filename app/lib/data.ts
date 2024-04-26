@@ -1,39 +1,12 @@
-import { useState, useEffect } from "react";
-import { Venue } from "@/app/lib/definitions";
+export async function getVenues() {
+	try {
+		const data = await fetch("https://v2.api.noroff.dev/holidaze/venues", {
+			next: { revalidate: 10 },
+		});
 
-export function useFetch(url: string): {
-	data: Venue[] | null;
-	loading: boolean;
-	error: Error | null;
-} {
-	const [data, setData] = useState<Venue[] | null>(null);
-	const [loading, setLoading] = useState<boolean>(false);
-	const [error, setError] = useState<Error | null>(null);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setLoading(true);
-				setError(null);
-
-				const response = await fetch(url);
-
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-
-				const json = await response.json();
-
-				setData(json.data);
-			} catch (err) {
-				setError(err as Error);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchData();
-	}, [url]);
-
-	return { data, loading, error };
+		return data.json();
+	} catch (error) {
+		console.error("An error occured while fetching venues data: ", error);
+		throw new Error("Failed to fetch venues data.");
+	}
 }

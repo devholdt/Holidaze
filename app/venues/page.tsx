@@ -3,13 +3,16 @@ import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
 import DateRange from "@/app/ui/venues/date-picker";
 import Search from "@/app/ui/venues/search";
+import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/venue-list";
 
 export const metadata: Metadata = {
 	title: "Venues",
 };
 
-export default function Page() {
+export default async function Page() {
+	const { data } = await getVenues();
+
 	return (
 		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
 			<Hero heading="Venues" headingLevel={1} />
@@ -22,7 +25,7 @@ export default function Page() {
 
 			<div className="flex flex-col items-center mb-36">
 				<div className="venues-container"></div>
-				<VenueList showMoreButton={true} />
+				<VenueList venues={data} showMoreButton={true} />
 			</div>
 		</main>
 	);

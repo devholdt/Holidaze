@@ -1,13 +1,16 @@
 import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
-import VenueList from "@/app/ui/venues/venue-list";
 import Link from "next/link";
 import { elMessiri } from "@/app/ui/fonts";
 import waterImg from "@/public/texture-water-lighter.jpg";
 import beachImg from "@/public/background-beach.jpg";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
+import { getVenues } from "@/app/lib/data";
+import VenueList from "@/app/ui/venues/venue-list";
 
-export default function Home() {
+export default async function Home() {
+	const { data } = await getVenues();
+
 	return (
 		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
 			<div
@@ -56,7 +59,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="flex flex-col items-center mb-36">
-				<VenueList listLimit={3} />
+				<VenueList venues={data} listLimit={3} />
 				<Link
 					href="/venues"
 					className="bg-brown hover:bg-darkBrown transition uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
