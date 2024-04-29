@@ -23,14 +23,16 @@ const VenueList: FC<{
 				{venues.slice(0, limit).map((venue) => (
 					<motion.div
 						key={venue.id}
-						className="relative text-white flex flex-col justify-end h-96 p-2 hover:cursor-pointer"
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 1.02 }}
 					>
-						<Link href={`/venues/${venue.id}`}>
+						<Link
+							href={`/venues/${venue.id}`}
+							className="relative text-white flex flex-col justify-end h-96 p-2 hover:cursor-pointer"
+						>
 							<Image
-								src={venue.media[0]?.url}
-								alt={venue.media[0]?.alt}
+								src={venue.media[0]?.url ?? "./background-reflection.jpg"}
+								alt={venue.media[0]?.alt ?? `${venue.name}`}
 								onError={(event) => {
 									const target = event.target as HTMLImageElement;
 									target.src = "./background-reflection.jpg";

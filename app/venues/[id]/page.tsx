@@ -6,9 +6,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
-	const venuee = await getVenueById(params.id);
-
-	const venue = venuee.data;
+	const fetchVenue = await getVenueById(params.id);
+	const venue = fetchVenue.data;
 
 	return (
 		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
