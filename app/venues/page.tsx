@@ -5,6 +5,7 @@ import DateRange from "@/app/ui/venues/date-picker";
 import Search from "@/app/ui/venues/search";
 import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/venue-list";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
 	title: "Venues",
@@ -25,7 +26,9 @@ export default async function Page() {
 
 			<div className="flex flex-col items-center mb-36">
 				<div className="venues-container"></div>
-				<VenueList venues={data} showMoreButton={true} />
+				<Suspense fallback={<p>Loading...</p>}>
+					<VenueList venues={data} showMoreButton={true} />
+				</Suspense>
 			</div>
 		</main>
 	);

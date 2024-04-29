@@ -7,6 +7,7 @@ import beachImg from "@/public/background-beach.jpg";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/venue-list";
+import { Suspense } from "react";
 
 export default async function Home() {
 	const { data } = await getVenues();
@@ -59,7 +60,9 @@ export default async function Home() {
 				</div>
 			</div>
 			<div className="flex flex-col items-center mb-36">
-				<VenueList venues={data} listLimit={3} />
+				<Suspense fallback={<p>Loading...</p>}>
+					<VenueList venues={data} listLimit={3} />
+				</Suspense>
 				<Link
 					href="/venues"
 					className="bg-brown hover:bg-darkBrown transition uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
