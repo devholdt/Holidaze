@@ -17,6 +17,7 @@ export default function DatePick() {
 		new Date(),
 		getTomorrowDate(),
 	]);
+
 	const [startDate, endDate] = dateRange;
 
 	const CustomInput = React.forwardRef(

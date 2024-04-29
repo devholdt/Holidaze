@@ -4,4 +4,12 @@ export interface Venue {
 	description: string;
 	price: number;
 	media: { url: string; alt: string }[];
+	maxGuests: number;
 }
+
+export type CreateBooking = {
+	dateFrom: string;
+	dateTo: string;
+	guests: number;
+	venueId: string;
+};

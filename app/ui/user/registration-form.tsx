@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../button";
+import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
 
 export default function RegistrationForm() {

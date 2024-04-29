@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/app/ui/button";
+import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
 import { FC, useState } from "react";
 import { Venue } from "@/app/lib/definitions";

@@ -18,4 +18,4 @@ const Button: FC<ButtonProps> = ({ text, styles, onClick }) => {
 	);
 };
 
-export default Button;
+export { Button };
