@@ -2,6 +2,7 @@
 
 import Button from "@/app/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { FC, useState } from "react";
 import { Venue } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
@@ -26,27 +27,31 @@ const VenueList: FC<{
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 1.02 }}
 					>
-						<Image
-							src={venue.media[0]?.url}
-							alt={venue.media[0]?.alt}
-							onError={(event) => {
-								const target = event.target as HTMLImageElement;
-								target.src = "./background-reflection.jpg";
-							}}
-							fill
-							unoptimized
-							className="object-cover object-center z-1 drop-shadow-md"
-						/>
+						<Link href={`/venues/${venue.id}`}>
+							<Image
+								src={venue.media[0]?.url}
+								alt={venue.media[0]?.alt}
+								onError={(event) => {
+									const target = event.target as HTMLImageElement;
+									target.src = "./background-reflection.jpg";
+								}}
+								fill
+								unoptimized
+								className="object-cover object-center z-1 drop-shadow-md"
+							/>
 
-						<div className="flex flex-col gap-1 z-10 px-4 py-2 bg-darkBrown border border-brown">
-							<p className="font-light">
-								<span className="break-all">£{formatNumber(venue.price)}</span>{" "}
-								<span className="uppercase">/ night</span>
-							</p>
-							<h4 className={`${elMessiri.className} truncate`}>
-								{venue.name}
-							</h4>
-						</div>
+							<div className="flex flex-col gap-1 z-10 px-4 py-2 bg-darkBrown border border-brown">
+								<p className="font-light">
+									<span className="break-all">
+										£{formatNumber(venue.price)}
+									</span>{" "}
+									<span className="uppercase">/ night</span>
+								</p>
+								<h4 className={`${elMessiri.className} truncate`}>
+									{venue.name}
+								</h4>
+							</div>
+						</Link>
 					</motion.div>
 				))}
 			</div>
