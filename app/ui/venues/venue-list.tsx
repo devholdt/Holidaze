@@ -1,13 +1,14 @@
 "use client";
 
 import Button from "@/app/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
 import { Venue } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import { motion } from "framer-motion";
+
+import VenueImage from "@/app/ui/venues/venue-image";
 
 const VenueList: FC<{
 	venues: Venue[];
@@ -30,17 +31,7 @@ const VenueList: FC<{
 							href={`/venues/${venue.id}`}
 							className="relative text-white flex flex-col justify-end h-96 p-2 hover:cursor-pointer"
 						>
-							<Image
-								src={venue.media[0]?.url ?? "./background-reflection.jpg"}
-								alt={venue.media[0]?.alt ?? `${venue.name}`}
-								onError={(event) => {
-									const target = event.target as HTMLImageElement;
-									target.src = "./background-reflection.jpg";
-								}}
-								fill
-								unoptimized
-								className="object-cover object-center z-1 drop-shadow-md"
-							/>
+							<VenueImage venue={venue} />
 
 							<div className="flex flex-col gap-1 z-10 px-4 py-2 bg-darkBrown border border-brown">
 								<p className="font-light">
