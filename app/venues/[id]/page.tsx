@@ -36,7 +36,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 					<VenueImage venue={venue} />
 				</div>
 
-				<h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
+				<h1
+					className={`${elMessiri.className} text-6xl tracking-wide mt-8 mb-2`}
+				>
 					{venue.name}
 				</h1>
 
@@ -94,7 +96,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 							</p>
 						</div>
 					</div>
-					<div className="bg-white p-4">
+					<div className="bg-white px-10 py-8">
 						<h3 className={`${elMessiri.className} text-3xl`}>
 							Book this venue
 						</h3>
