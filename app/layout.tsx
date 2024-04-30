@@ -5,22 +5,22 @@ import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
 
 export const metadata: Metadata = {
-	title: "Holidaze",
-	description: "Find your next holiday destination",
+   title: "Holidaze",
+   description: "Find your next holiday destination",
 };
 
 export default function RootLayout({
-	children,
+   children,
 }: Readonly<{
-	children: React.ReactNode;
+   children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en">
-			<body className={`${robotoFlex.className} antialiased bg-lighterGrey`}>
-				<Header />
-				{children}
-				<Footer />
-			</body>
-		</html>
-	);
+   return (
+      <html lang="en">
+         <body className={`${robotoFlex.className} bg-lighterGrey antialiased`}>
+            <Header />
+            {children}
+            <Footer />
+         </body>
+      </html>
+   );
 }

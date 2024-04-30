@@ -3,75 +3,75 @@
 @tailwind utilities;
 
 :root {
-	--dark: #333333;
-	--brown: #615655;
-	--green: #28443d;
-	--lightGreen: #30544b;
-	--lightBrown: #aa9e9d;
-	--darkBrown: #3a3231;
-	--darkerBrown: #251f1f;
-	--yellow: #f2b138;
-	--blue: #011640;
-	--grey: #aaaaaa;
-	--lightGrey: #e5e5e5;
-	--lighterGrey: #eeeeee;
-	--darkGrey: #383840;
-	--background: #f1f3f5;
-	--white: #ffffff;
-	--black: #000000;
+   --dark: #333333;
+   --brown: #615655;
+   --green: #28443d;
+   --lightGreen: #30544b;
+   --lightBrown: #aa9e9d;
+   --darkBrown: #3a3231;
+   --darkerBrown: #251f1f;
+   --yellow: #f2b138;
+   --blue: #011640;
+   --grey: #aaaaaa;
+   --lightGrey: #e5e5e5;
+   --lighterGrey: #eeeeee;
+   --darkGrey: #383840;
+   --background: #f1f3f5;
+   --white: #ffffff;
+   --black: #000000;
 }
 
 h1 {
-	font-size: 5em;
-	text-transform: uppercase;
+   font-size: 5em;
+   text-transform: uppercase;
 }
 
 h2 {
-	font-size: 3.5em;
+   font-size: 3.5em;
 }
 
 h3 {
-	font-size: 3em;
-	font-weight: 500;
+   font-size: 3em;
+   font-weight: 500;
 }
 
 h4 {
-	font-size: 1.5em;
-	font-weight: 500;
+   font-size: 1.5em;
+   font-weight: 500;
 }
 
 .checkbox-wrapper input[type="checkbox"] {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 1.2em;
-	height: 1.2em;
-	cursor: pointer;
-	border: 1px solid var(--grey);
-	border-radius: 0.15em;
-	position: relative;
-	background: #fff;
-	background-color: var(--background);
+   -webkit-appearance: none;
+   appearance: none;
+   width: 1.2em;
+   height: 1.2em;
+   cursor: pointer;
+   border: 1px solid var(--grey);
+   border-radius: 0.15em;
+   position: relative;
+   background: #fff;
+   background-color: var(--background);
 }
 
 .checkbox-wrapper input[type="checkbox"]:focus {
-	outline: 1px solid var(--green);
+   outline: 1px solid var(--green);
 }
 
 .checkbox-wrapper input[type="checkbox"]:checked {
-	background-color: var(--green);
-	border-color: transparent;
+   background-color: var(--green);
+   border-color: transparent;
 }
 
 .checkbox-wrapper input[type="checkbox"]:checked::before {
-	content: "✔";
-	color: var(--white);
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 0.9em;
+   content: "✔";
+   color: var(--white);
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   font-size: 0.9em;
 }
 
 .checkbox-wrapper label:hover {
-	color: var(--green);
+   color: var(--green);
 }

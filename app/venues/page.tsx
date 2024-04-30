@@ -8,28 +8,28 @@ import VenueList from "@/app/ui/venues/venue-list";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-	title: "Venues",
+   title: "Venues",
 };
 
 export default async function Page() {
-	const { data } = await getVenues();
+   const { data } = await getVenues();
 
-	return (
-		<main className="flex flex-col min-h-screen max-w-7xl m-auto border-x border-lightGrey bg-background">
-			<Hero heading="Venues" headingLevel={1} />
+   return (
+      <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
+         <Hero heading="Venues" headingLevel={1} />
 
-			<div className="flex justify-between gap-20 mx-12 mt-28 mb-12">
-				<RadioButtons />
-				<DateRange />
-				<Search />
-			</div>
+         <div className="mx-12 mb-12 mt-28 flex justify-between gap-20">
+            <RadioButtons />
+            <DateRange />
+            <Search />
+         </div>
 
-			<div className="flex flex-col items-center mb-36">
-				<div className="venues-container"></div>
-				<Suspense fallback={<p>Loading...</p>}>
-					<VenueList venues={data} showMoreButton={true} />
-				</Suspense>
-			</div>
-		</main>
-	);
+         <div className="mb-36 flex flex-col items-center">
+            <div className="venues-container"></div>
+            <Suspense fallback={<p>Loading...</p>}>
+               <VenueList venues={data} showMoreButton={true} />
+            </Suspense>
+         </div>
+      </main>
+   );
 }

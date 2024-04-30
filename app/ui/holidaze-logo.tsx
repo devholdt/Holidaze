@@ -4,13 +4,13 @@ import Image from "next/image";
 import { FC } from "react";
 
 type LogoProps = {
-	src: string;
-	width?: number;
-	height?: number;
+   src: string;
+   width?: number;
+   height?: number;
 };
 
 const Logo: FC<LogoProps> = ({ src, width, height }) => {
-	return <Image src={src} width={width} height={height} alt="Holidaze logo" />;
+   return <Image src={src} width={width} height={height} alt="Holidaze logo" />;
 };
 
 export default Logo;
