@@ -12,18 +12,18 @@ export default function Header() {
         backgroundSize: "cover",
       }}
     >
-      <div className="flex justify-between items-center py-8 px-10 max-w-7xl m-auto">
+      <div className="m-auto flex max-w-7xl items-center justify-between px-10 py-8">
         <Link href="/">
           <Logo src={logoWhite} width={160} height={80} />
         </Link>
-        <nav className="flex gap-8 items-center">
-          <Link href="/" className="text-white uppercase">
+        <nav className="flex items-center gap-8">
+          <Link href="/" className="uppercase text-white">
             Home
           </Link>
-          <Link href="/venues" className="text-white uppercase">
+          <Link href="/venues" className="uppercase text-white">
             Venues
           </Link>
-          <Link href="/contact" className="text-white uppercase">
+          <Link href="/contact" className="uppercase text-white">
             Contact
           </Link>
           <UserDropdown />
