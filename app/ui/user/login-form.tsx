@@ -37,10 +37,7 @@ export default function LoginForm() {
 					/>
 				</div>
 			</div>
-			<Button
-				text="Login"
-				styles="bg-green text-white w-full hover:bg-lightGreen"
-			/>
+			<Button text="Login" styles="w-full" primary={false} />
 			<div className="mt-4 font-extralight tracking-wider w-full">
 				Don't have an account? Register{" "}
 				<Link

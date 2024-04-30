@@ -1,6 +1,5 @@
 import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
-import Link from "next/link";
 import { elMessiri } from "@/app/ui/fonts";
 import waterImg from "@/public/texture-water-lighter.jpg";
 import beachImg from "@/public/background-beach.jpg";
@@ -8,6 +7,7 @@ import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/venue-list";
 import { Suspense } from "react";
+import { LinkButton } from "@/app/ui/buttons";
 
 export default async function Home() {
 	const { data } = await getVenues();
@@ -63,12 +63,7 @@ export default async function Home() {
 				<Suspense fallback={<p>Loading...</p>}>
 					<VenueList venues={data} listLimit={3} />
 				</Suspense>
-				<Link
-					href="/venues"
-					className="bg-brown hover:bg-darkBrown transition uppercase text-white mt-12 font-extralight text-lg uppercase py-3 px-6 text-lg font-extralight tracking-widest"
-				>
-					View all
-				</Link>
+				<LinkButton targetHref="/venues" text="View all" styles="mt-12" />
 			</div>
 		</main>
 	);

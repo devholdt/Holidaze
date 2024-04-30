@@ -6,9 +6,8 @@ import { FC, useState } from "react";
 import { Venue } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
-import { motion } from "framer-motion";
-
 import VenueImage from "@/app/ui/venues/venue-image";
+import { MotionDiv } from "@/app/lib/motion";
 
 const VenueList: FC<{
 	venues: Venue[];
@@ -22,7 +21,7 @@ const VenueList: FC<{
 		<>
 			<div className="grid grid-cols-3 gap-8 w-full px-4 md:px-14 xl:px-32">
 				{venues.slice(0, limit).map((venue) => (
-					<motion.div
+					<MotionDiv
 						key={venue.id}
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 1.02 }}
@@ -45,13 +44,13 @@ const VenueList: FC<{
 								</h4>
 							</div>
 						</Link>
-					</motion.div>
+					</MotionDiv>
 				))}
 			</div>
 			{showMoreButton && venues && limit < venues.length && (
 				<Button
 					text={"Show more"}
-					styles={"bg-brown hover:bg-darkBrown text-white mt-12"}
+					styles={"mt-12"}
 					onClick={() => setLimit(limit + INITIAL_LIMIT)}
 				/>
 			)}

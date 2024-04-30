@@ -70,10 +70,7 @@ export default function RegistrationForm() {
 					<span className="ms-1">Register as Venue Manager</span>
 				</label>
 			</div>
-			<Button
-				text="Create account"
-				styles="bg-green text-white w-full hover:bg-lightGreen"
-			/>
+			<Button text="Create account" styles="w-full" primary={false} />
 			<div className="mt-4 font-extralight tracking-wider w-full">
 				Already have an account? Login{" "}
 				<Link
