@@ -1,20 +1,3 @@
-node_modules/
-/.next/
-/out/
-/build
-/coverage
-
-.vercel
-.env*
-.git/
-.cache/
-.d.ts
-
-tailfind.config.ts
-postcss.config.mjs
-next.config.mjs
-tsconfig.json
-*.tsbuildinfo
-next-env.d.ts
-
-public/
+# Ignore artifacts:
+build
+coverage
