@@ -1,6 +1,7 @@
 import React from "react";
 import { API_PATH } from "@/app/lib/constants";
 import { FormAction } from "@/app/lib/definitions";
+import { setItem } from "@/app/lib/storage";
 
 export async function createBooking(request: Request) {
    event?.preventDefault();
@@ -41,10 +42,14 @@ export const handleSubmit = async (
          throw new Error(`Failed to ${action}: ${errorText}`);
       }
 
-      const data = await response.json();
+      const user = await response.json();
 
-      console.log(`User ${action} successfully: `, data);
-      return data;
+      if (action === FormAction.Login) {
+         setItem({ key: "user", value: user.data });
+      }
+
+      console.log(`User ${action} successfully: `, user.data);
+      return user;
    } catch (error) {
       console.error(
          `An error occurred while submitting user ${action} form: `,

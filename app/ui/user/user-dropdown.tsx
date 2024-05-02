@@ -4,6 +4,8 @@ import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
+import { getItem } from "@/app/lib/storage";
+
 interface MenuItemProps {
    route: string;
    title: string;
@@ -36,6 +38,24 @@ const UserDropdown = () => {
       { title: "Contact us", route: "/contact" },
    ];
 
+   const user = getItem("user");
+
+   const userDetails = () => {
+      return (
+         <>
+            <div className="m-auto mb-4 flex gap-3">
+               <img
+                  src={user.avatar.url}
+                  alt={user.avatar.alt}
+                  className="h-6 w-6 rounded-full"
+               />
+               <p>{user.name}</p>
+            </div>
+            <hr className="text-lightGrey" />
+         </>
+      );
+   };
+
    return (
       <div className="relative">
          <button
@@ -58,6 +78,7 @@ const UserDropdown = () => {
             >
                &#x2715;
             </button>
+            {user ? userDetails() : null}
             <div className="flex flex-col pb-6 pt-4">
                {menuItems.map((menuItem, index) => (
                   <React.Fragment key={menuItem.route}>
