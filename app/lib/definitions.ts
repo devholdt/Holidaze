@@ -2,9 +2,11 @@ export interface Venue {
    id: string;
    name: string;
    description: string;
-   price: number;
    media: { url: string; alt: string }[];
+   // media: Array<object>;
+   price: number;
    maxGuests: number;
+   rating: number;
 }
 
 export type CreateBooking = {
