@@ -23,7 +23,7 @@
    ```bash
    git clone https://github.com/devholdt/holidaze-pe2.git
 
-   cd bidify
+   cd holidaze-pe2
    ```
 
 2. **Install dependencies**
