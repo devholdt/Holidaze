@@ -1,6 +1,8 @@
+import { API_URLS } from "@/app/lib/constants";
+
 export async function getVenues() {
    try {
-      const data = await fetch("https://v2.api.noroff.dev/holidaze/venues", {
+      const data = await fetch(API_URLS.VENUES, {
          next: { revalidate: 10 },
       });
 
@@ -13,12 +15,9 @@ export async function getVenues() {
 
 export async function getVenueById(id: string) {
    try {
-      const data = await fetch(
-         `https://v2.api.noroff.dev/holidaze/venues/${id}`,
-         {
-            next: { revalidate: 10 },
-         }
-      );
+      const data = await fetch(`${API_URLS.VENUES}/${id}`, {
+         next: { revalidate: 10 },
+      });
 
       return data.json();
    } catch (error) {
