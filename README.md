@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./public/logo-white.svg" alt="holidaze logo" width="450">
+    <img src="./public/logo-white-subtitle.svg" alt="holidaze logo" width="450">
 </div>
 
 ## About Holidaze
