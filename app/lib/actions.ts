@@ -1,4 +1,6 @@
-import { API_URLS } from "@/app/lib/constants";
+import React from "react";
+import { API_PATH } from "@/app/lib/constants";
+import { FormAction } from "@/app/lib/definitions";
 
 export async function createBooking(request: Request) {
    event?.preventDefault();
@@ -13,31 +15,41 @@ export async function createBooking(request: Request) {
 
 export const handleSubmit = async (
    event: React.FormEvent<HTMLFormElement>,
-   isChecked: boolean
+   action: FormAction,
+   isChecked?: boolean
 ) => {
    event.preventDefault();
 
    const formData = new FormData(event.currentTarget);
-   const formValues: { [key: string]: FormDataEntryValue | boolean } =
+
+   let formValues: { [key: string]: FormDataEntryValue | boolean } =
       Object.fromEntries(formData.entries());
-   formValues.venueManager = isChecked;
+
+   if (action === FormAction.Register) {
+      formValues.venueManager = isChecked as boolean;
+   }
 
    try {
-      const response = await fetch(API_URLS.REGISTER, {
+      const response = await fetch(`${API_PATH}/auth/${[action]}`, {
          method: "POST",
+         headers: { "Content-Type": "application/json" },
          body: JSON.stringify(formValues),
-         headers: {
-            "Content-Type": "application/json",
-         },
       });
 
       if (!response.ok) {
-         throw new Error("Failed to submit the form.");
+         const errorText = await response.text();
+         throw new Error(`Failed to ${action}: ${errorText}`);
       }
 
       const data = await response.json();
+
+      console.log(`User ${action} successfully: `, data);
       return data;
    } catch (error) {
-      console.error("An error occurred while submitting the form: ", error);
+      console.error(
+         `An error occurred while submitting user ${action} form: `,
+         error
+      );
+      throw error;
    }
 };

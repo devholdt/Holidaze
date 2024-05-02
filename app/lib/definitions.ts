@@ -15,3 +15,8 @@ export type CreateBooking = {
    guests: number;
    venueId: string;
 };
+
+export enum FormAction {
+   Register = "register",
+   Login = "login",
+}
