@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
+import { handleSubmit } from "@/app/lib/actions";
 
 export default function RegistrationForm() {
    const [isChecked, setIsChecked] = useState(false);
@@ -10,16 +11,19 @@ export default function RegistrationForm() {
       setIsChecked(!isChecked);
    };
 
-   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-      const formValues = Object.fromEntries(formData.entries());
-      formValues.venueManager = isChecked.toString();
-      console.log(formValues);
-   };
+   // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+   //    event.preventDefault();
+   //    const formData = new FormData(event.currentTarget);
+   //    const formValues = Object.fromEntries(formData.entries());
+   //    formValues.venueManager = isChecked.toString();
+   //    console.log(formValues);
+   // };
 
    return (
-      <form className="w-full max-w-[320px]" onSubmit={handleSubmit}>
+      <form
+         className="w-full max-w-[320px]"
+         onSubmit={(event) => handleSubmit(event, isChecked)}
+      >
          <div className="mb-4">
             <label className="text-dark" htmlFor="name">
                Name
