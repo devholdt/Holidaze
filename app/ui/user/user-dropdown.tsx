@@ -48,6 +48,10 @@ const UserDropdown = () => {
          setIsModalOpen(true);
       },
       hide: () => setIsModalOpen(false),
+      logout: () => {
+         localStorage.removeItem("user");
+         location.reload();
+      },
    };
 
    const userDetails = () => {
@@ -167,7 +171,7 @@ const UserDropdown = () => {
                         </button>
                         <button
                            onClick={() => {
-                              modalActions.hide();
+                              modalActions.logout();
                            }}
                            className="mt-4 bg-dark px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white shadow-md transition hover:bg-black"
                         >

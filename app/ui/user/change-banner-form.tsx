@@ -1,13 +1,13 @@
 "use client";
 
 import { Button } from "@/app/ui/buttons";
-import { handleChangeBanner } from "@/app/lib/actions";
-// import { FormAction } from "@/app/lib/definitions";
+import { handleEditProfileMedia } from "@/app/lib/actions";
+import { FormAction } from "@/app/lib/definitions";
 
 export default function ChangeBannerForm() {
    return (
       <form
-         onSubmit={(event) => handleChangeBanner(event)}
+         onSubmit={(event) => handleEditProfileMedia(event, FormAction.Banner)}
          className="flex w-[320px] flex-col justify-center"
       >
          <div className="mb-4">

@@ -1,13 +1,13 @@
 "use client";
 
 import { Button } from "@/app/ui/buttons";
-import { handleChangeAvatar } from "@/app/lib/actions";
-// import { FormAction } from "@/app/lib/definitions";
+import { handleEditProfileMedia } from "@/app/lib/actions";
+import { FormAction } from "@/app/lib/definitions";
 
 export default function ChangeAvatarForm() {
    return (
       <form
-         onSubmit={(event) => handleChangeAvatar(event)}
+         onSubmit={(event) => handleEditProfileMedia(event, FormAction.Avatar)}
          className="flex w-[320px] flex-col justify-center"
       >
          <div className="mb-4">

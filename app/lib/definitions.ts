@@ -19,4 +19,6 @@ export type CreateBooking = {
 export enum FormAction {
    Register = "register",
    Login = "login",
+   Avatar = "avatar",
+   Banner = "banner",
 }
