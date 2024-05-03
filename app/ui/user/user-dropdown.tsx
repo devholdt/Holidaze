@@ -1,9 +1,9 @@
 "use client";
 
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
+import { elMessiri } from "@/app/ui/fonts";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-
 import { getItem } from "@/app/lib/storage";
 
 interface MenuItemProps {
@@ -38,29 +38,72 @@ const UserDropdown = () => {
       setUser(storedUser);
    }, []);
 
-   const menuItems: MenuItemProps[] = [
-      { title: "Register", route: "/user/register" },
-      { title: "Log in", route: "/user/login" },
-      { title: "Contact us", route: "/contact" },
-   ];
-
    const userDetails = () => {
       if (user && user.avatar) {
          return (
             <>
-               <div className="m-auto mb-4 flex gap-3">
+               <div className="m-auto mx-6 mb-6 flex items-center gap-2">
                   <img
                      src={user.avatar.url}
                      alt={user.avatar.alt}
-                     className="h-6 w-6 rounded-full"
+                     className="h-12 w-12 rounded-full border border-grey"
                   />
-                  <p>{user.name}</p>
+                  <div className="flex flex-col">
+                     <p
+                        className={`${elMessiri.className} text-2xl font-medium`}
+                     >
+                        {user.name}
+                     </p>
+                     <p className="font-thin text-dark">{user.email}</p>
+                  </div>
                </div>
                <hr className="text-lightGrey" />
             </>
          );
       }
       return null;
+   };
+
+   const menuItems: MenuItemProps[] = [
+      { title: "Register", route: "/user/register" },
+      { title: "Log in", route: "/user/login" },
+      { title: "Contact us", route: "/contact" },
+   ];
+
+   const loggedInMenuItems: MenuItemProps[] = [
+      { title: "Bookings", route: "/user/bookings" },
+      { title: "Venues", route: "/user/venues" },
+      { title: "Change avatar", route: "/user/avatar" },
+      { title: "Change banner", route: "/user/banner" },
+      { title: "Log out", route: "/user/logout" },
+      { title: "Contact us", route: "/contact" },
+   ];
+
+   const renderMenuItems = () => {
+      const itemsToDisplay = user ? loggedInMenuItems : menuItems;
+      return itemsToDisplay.map((menuItem, index) => (
+         <React.Fragment key={menuItem.route}>
+            <Link
+               href={menuItem.route}
+               className="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey"
+            >
+               {menuItem.title}
+            </Link>
+            {(!user && index === menuItems.length - 2) ||
+            (user &&
+               index ===
+                  loggedInMenuItems.findIndex(
+                     (item) => item.title === "Venues"
+                  )) ||
+            (user &&
+               index ===
+                  loggedInMenuItems.findIndex(
+                     (item) => item.title === "Log out"
+                  )) ? (
+               <hr className="text-lightGrey" />
+            ) : null}
+         </React.Fragment>
+      ));
    };
 
    return (
@@ -75,7 +118,7 @@ const UserDropdown = () => {
 
          <div
             ref={dropdownRef}
-            className={`absolute right-0 top-0 z-30 flex w-52 flex-col rounded-3xl bg-white text-dark shadow-md ${
+            className={`absolute right-0 top-0 z-30 flex w-max flex-col rounded-3xl bg-white text-dark shadow-md ${
                isOpen ? "flex" : "hidden"
             }`}
          >
@@ -86,22 +129,7 @@ const UserDropdown = () => {
                &#x2715;
             </button>
             {user ? userDetails() : null}
-            <div className="flex flex-col pb-6 pt-4">
-               {menuItems.map((menuItem, index) => (
-                  <React.Fragment key={menuItem.route}>
-                     <Link
-                        href={menuItem.route}
-                        className="px-6 py-4 hover:bg-lighterGrey hover:text-dark"
-                        onClick={() => setIsOpen(false)}
-                     >
-                        {menuItem.title}
-                     </Link>
-                     {index === menuItems.length - 2 && (
-                        <hr className="text-lightGrey" />
-                     )}
-                  </React.Fragment>
-               ))}
-            </div>
+            <div className="flex flex-col pb-6">{renderMenuItems()}</div>
          </div>
       </div>
    );
