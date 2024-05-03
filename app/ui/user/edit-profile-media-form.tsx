@@ -2,41 +2,43 @@
 
 import { Button } from "@/app/ui/buttons";
 import { handleEditProfileMedia } from "@/app/lib/actions";
-import { FormAction } from "@/app/lib/definitions";
+import { FormAction, EditProfileMediaFormProps } from "@/app/lib/definitions";
 
-export default function ChangeAvatarForm() {
+const EditProfileMediaForm: React.FC<EditProfileMediaFormProps> = ({
+   type,
+}) => {
    return (
       <form
          onSubmit={(event) => handleEditProfileMedia(event, FormAction.Avatar)}
          className="flex w-[320px] flex-col justify-center"
       >
          <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
-            Change avatar
+            Change {type}
          </h4>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="avatarUrl">
-               Avatar URL
+            <label className="text-dark" htmlFor={`${type}Url`}>
+               {type} URL
             </label>
             <div className="relative">
                <input
                   className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  id="avatarUrl"
+                  id={`${type}Url`}
                   type="text"
-                  name="avatarUrl"
+                  name={`${type}Url`}
                   placeholder="Enter URL"
                />
             </div>
          </div>
          <div className="mb-8">
-            <label className="text-dark" htmlFor="avatarAlt">
+            <label className="text-dark" htmlFor={`${type}Alt`}>
                Alt text
             </label>
             <div className="relative">
                <input
                   className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  id="avatarAlt"
+                  id={`${type}Alt`}
                   type="text"
-                  name="avatarAlt"
+                  name={`${type}Alt`}
                   placeholder="Enter alt text"
                />
             </div>
@@ -45,4 +47,6 @@ export default function ChangeAvatarForm() {
          <div className="alert-container"></div>
       </form>
    );
-}
+};
+
+export default EditProfileMediaForm;

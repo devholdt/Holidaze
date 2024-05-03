@@ -2,8 +2,7 @@
 
 import React, { useEffect } from "react";
 import { ModalsProps } from "@/app/lib/definitions";
-import ChangeAvatarForm from "@/app/ui/user/change-avatar-form";
-import ChangeBannerForm from "@/app/ui/user/change-banner-form";
+import EditProfileMediaForm from "@/app/ui/user/edit-profile-media-form";
 
 const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
    const modalRef = React.useRef<HTMLDivElement>(null);
@@ -26,9 +25,9 @@ const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
    const getContent = () => {
       switch (modalContent) {
          case "Change avatar":
-            return <ChangeAvatarForm />;
+            return <EditProfileMediaForm type="avatar" />;
          case "Change banner":
-            return <ChangeBannerForm />;
+            return <EditProfileMediaForm type="banner" />;
          case "Log out":
             return (
                <>

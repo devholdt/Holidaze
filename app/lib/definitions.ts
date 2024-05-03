@@ -19,6 +19,10 @@ export interface ModalsProps {
    logout: () => void;
 }
 
+export interface EditProfileMediaFormProps {
+   type: string;
+}
+
 export type CreateBooking = {
    dateFrom: string;
    dateTo: string;
