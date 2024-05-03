@@ -10,6 +10,9 @@ export default function ChangeAvatarForm() {
          onSubmit={(event) => handleEditProfileMedia(event, FormAction.Avatar)}
          className="flex w-[320px] flex-col justify-center"
       >
+         <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
+            Change avatar
+         </h4>
          <div className="mb-4">
             <label className="text-dark" htmlFor="avatarUrl">
                Avatar URL

@@ -1,3 +1,5 @@
+import { MenuItemProps } from "@/app/lib/definitions";
+
 export const API_PATH = "https://v2.api.noroff.dev";
 
 export const API_URLS = {
@@ -7,3 +9,18 @@ export const API_URLS = {
    VENUES: `${API_PATH}/holidaze/venues`,
    BOOKINGS: `${API_PATH}/holidaze/bookings`,
 };
+
+export const menuItems: MenuItemProps[] = [
+   { title: "Register", route: "/user/register" },
+   { title: "Log in", route: "/user/login" },
+   { title: "Contact us", route: "/contact" },
+];
+
+export const loggedInMenuItems: MenuItemProps[] = [
+   { title: "Bookings", route: "/user/bookings" },
+   { title: "Venues", route: "/user/venues" },
+   { title: "Change avatar", route: "/user/avatar" },
+   { title: "Change banner", route: "/user/banner" },
+   { title: "Log out", route: "/user/logout" },
+   { title: "Contact us", route: "/contact" },
+];
