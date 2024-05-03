@@ -14,6 +14,8 @@ interface MenuItemProps {
 const UserDropdown = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const [user, setUser] = useState<any>(null);
+   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+   const [modalContent, setModalContent] = useState<string>("");
    const dropdownRef = useRef<HTMLDivElement>(null);
 
    const toggle = () => setIsOpen(!isOpen);
@@ -37,6 +39,14 @@ const UserDropdown = () => {
       const storedUser = getItem("user");
       setUser(storedUser);
    }, []);
+
+   const modalActions = {
+      show: (content: string) => {
+         setModalContent(content);
+         setIsModalOpen(true);
+      },
+      hide: () => setIsModalOpen(false),
+   };
 
    const userDetails = () => {
       if (user && user.avatar) {
@@ -83,12 +93,27 @@ const UserDropdown = () => {
       const itemsToDisplay = user ? loggedInMenuItems : menuItems;
       return itemsToDisplay.map((menuItem, index) => (
          <React.Fragment key={menuItem.route}>
-            <Link
-               href={menuItem.route}
-               className="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey"
-            >
-               {menuItem.title}
-            </Link>
+            {["Change avatar", "Change banner", "Log out"].includes(
+               menuItem.title
+            ) ? (
+               <button
+                  onClick={() => {
+                     modalActions.show(menuItem.title);
+                     setIsOpen(false);
+                  }}
+                  className="px-4 py-3 text-left font-extralight text-dark hover:bg-lighterGrey"
+               >
+                  {menuItem.title}
+               </button>
+            ) : (
+               <Link
+                  href={menuItem.route}
+                  onClick={() => setIsOpen(false)}
+                  className="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey"
+               >
+                  {menuItem.title}
+               </Link>
+            )}
             {(!user && index === menuItems.length - 2) ||
             (user &&
                index ===
@@ -106,6 +131,69 @@ const UserDropdown = () => {
       ));
    };
 
+   const Modal = () => {
+      const getContent = () => {
+         switch (modalContent) {
+            case "Change avatar":
+               return (
+                  <>
+                     <h4>Change Your Avatar</h4>
+                     <p>Here you can update your avatar image.</p>
+                  </>
+               );
+            case "Change banner":
+               return (
+                  <>
+                     <h4>Change Your Banner</h4>
+                     <p>Here you can update your banner image.</p>
+                  </>
+               );
+            case "Log out":
+               return (
+                  <>
+                     <h4>Are you sure you want to log out?</h4>
+                     <div className="flex justify-around">
+                        <button
+                           onClick={modalActions.hide}
+                           className="hover:bg-darkYellow mt-4 bg-yellow px-10 py-3 text-lg font-extralight uppercase tracking-widest text-blue shadow-md transition"
+                        >
+                           Go Back
+                        </button>
+                        <button
+                           onClick={() => {
+                              console.log("Handle logout logic here.");
+                              modalActions.hide();
+                           }}
+                           className="mt-4 bg-dark px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white shadow-md transition hover:bg-black"
+                        >
+                           Logout
+                        </button>
+                     </div>
+                  </>
+               );
+            default:
+               return <p>No content available.</p>;
+         }
+      };
+
+      return (
+         <div
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+         >
+            <div className="relative bg-white p-5">
+               <button
+                  onClick={modalActions.hide}
+                  className="absolute right-0 top-0 m-1 px-2 py-1 text-xl font-bold text-dark hover:text-black"
+               >
+                  &#x2715;
+               </button>
+               <div className="px-6 py-10">{getContent()}</div>
+            </div>
+         </div>
+      );
+   };
+
    return (
       <div className="relative">
          <button
@@ -118,9 +206,7 @@ const UserDropdown = () => {
 
          <div
             ref={dropdownRef}
-            className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${
-               isOpen ? "flex" : "hidden"
-            }`}
+            className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${isOpen ? "flex" : "hidden"}`}
          >
             <button
                onClick={() => setIsOpen(false)}
@@ -131,8 +217,64 @@ const UserDropdown = () => {
             {user ? userDetails() : null}
             <div className="flex flex-col pb-6">{renderMenuItems()}</div>
          </div>
+         {isModalOpen && <Modal />}
       </div>
    );
+
+   // const renderMenuItems = () => {
+   //    const itemsToDisplay = user ? loggedInMenuItems : menuItems;
+   //    return itemsToDisplay.map((menuItem, index) => (
+   //       <React.Fragment key={menuItem.route}>
+   //          <Link
+   //             href={menuItem.route}
+   //             className="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey"
+   //          >
+   //             {menuItem.title}
+   //          </Link>
+   //          {(!user && index === menuItems.length - 2) ||
+   //          (user &&
+   //             index ===
+   //                loggedInMenuItems.findIndex(
+   //                   (item) => item.title === "Venues"
+   //                )) ||
+   //          (user &&
+   //             index ===
+   //                loggedInMenuItems.findIndex(
+   //                   (item) => item.title === "Log out"
+   //                )) ? (
+   //             <hr className="text-lightGrey" />
+   //          ) : null}
+   //       </React.Fragment>
+   //    ));
+   // };
+
+   // return (
+   //    <div className="relative">
+   //       <button
+   //          className="flex items-center gap-2 rounded-full bg-white p-2 text-dark"
+   //          onClick={toggle}
+   //       >
+   //          <Bars3Icon className="h-6 w-8" />
+   //          <UserCircleIcon className="h-6 w-6" />
+   //       </button>
+
+   //       <div
+   //          ref={dropdownRef}
+   //          className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${
+   //             isOpen ? "flex" : "hidden"
+   //          }`}
+   //       >
+   //          <button
+   //             onClick={() => setIsOpen(false)}
+   //             className="self-end px-3 py-2 text-lg font-bold"
+   //          >
+   //             &#x2715;
+   //          </button>
+   //          {user ? userDetails() : null}
+   //          <div className="flex flex-col pb-6">{renderMenuItems()}</div>
+   //       </div>
+   //    </div>
+   // );
 };
 
 export default UserDropdown;
