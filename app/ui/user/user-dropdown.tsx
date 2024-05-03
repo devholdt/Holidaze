@@ -118,7 +118,7 @@ const UserDropdown = () => {
 
          <div
             ref={dropdownRef}
-            className={`absolute right-0 top-0 z-30 flex w-max flex-col rounded-3xl bg-white text-dark shadow-md ${
+            className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${
                isOpen ? "flex" : "hidden"
             }`}
          >
