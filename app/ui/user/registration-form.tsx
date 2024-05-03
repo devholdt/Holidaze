@@ -86,6 +86,7 @@ export default function RegistrationForm() {
                here
             </Link>
          </div>
+         <div className="alert-container"></div>
       </form>
    );
 }

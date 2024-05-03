@@ -52,6 +52,7 @@ export default function LoginForm() {
                here
             </Link>
          </div>
+         <div className="alert-container"></div>
       </form>
    );
 }
