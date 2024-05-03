@@ -13,6 +13,7 @@ interface MenuItemProps {
 
 const UserDropdown = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
+   const [user, setUser] = useState<any>(null);
    const dropdownRef = useRef<HTMLDivElement>(null);
 
    const toggle = () => setIsOpen(!isOpen);
@@ -32,28 +33,34 @@ const UserDropdown = () => {
          document.removeEventListener("mousedown", handleClickOutside);
    }, []);
 
+   useEffect(() => {
+      const storedUser = getItem("user");
+      setUser(storedUser);
+   }, []);
+
    const menuItems: MenuItemProps[] = [
       { title: "Register", route: "/user/register" },
       { title: "Log in", route: "/user/login" },
       { title: "Contact us", route: "/contact" },
    ];
 
-   const user = getItem("user");
-
    const userDetails = () => {
-      return (
-         <>
-            <div className="m-auto mb-4 flex gap-3">
-               <img
-                  src={user.avatar.url}
-                  alt={user.avatar.alt}
-                  className="h-6 w-6 rounded-full"
-               />
-               <p>{user.name}</p>
-            </div>
-            <hr className="text-lightGrey" />
-         </>
-      );
+      if (user && user.avatar) {
+         return (
+            <>
+               <div className="m-auto mb-4 flex gap-3">
+                  <img
+                     src={user.avatar.url}
+                     alt={user.avatar.alt}
+                     className="h-6 w-6 rounded-full"
+                  />
+                  <p>{user.name}</p>
+               </div>
+               <hr className="text-lightGrey" />
+            </>
+         );
+      }
+      return null;
    };
 
    return (
