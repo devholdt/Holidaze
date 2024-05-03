@@ -1,3 +1,5 @@
+import { iconCheck, iconXmark } from "@/public/icons";
+
 export const formatDate = (dateString: string, locale: string = "no-NO") => {
    const date = new Date(dateString);
    const options: Intl.DateTimeFormatOptions = {
@@ -17,8 +19,7 @@ export const formatNumber = (number: number, locale: string = "en-GB") => {
 export const alert = (
    type: "success" | "error",
    message: string,
-   target: string,
-   icon: string
+   target: string
 ) => {
    const element = document.querySelector(target);
 
@@ -29,12 +30,15 @@ export const alert = (
    const wrapper = document.createElement("div");
 
    let styles;
+   let icon;
 
    if (type === "success") {
+      icon = iconCheck;
       styles = "border-lightGreen border text-green";
    }
 
    if (type === "error") {
+      icon = iconXmark;
       styles = "border-red border text-red";
    }
 

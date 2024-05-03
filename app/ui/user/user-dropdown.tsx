@@ -1,13 +1,14 @@
 "use client";
 
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import { elMessiri } from "@/app/ui/fonts";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { getItem } from "@/app/lib/storage";
 import { menuItems, loggedInMenuItems } from "@/app/lib/constants";
-
 import Modals from "@/app/ui/modals";
+import UserDetails from "@/app/ui/user/user-details";
+
+console.log(UserDetails);
 
 const UserDropdown = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,62 +19,35 @@ const UserDropdown = () => {
 
    const toggle = () => setIsOpen(!isOpen);
 
-   useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-         if (
-            dropdownRef.current &&
-            !dropdownRef.current.contains(event.target as Node)
-         ) {
-            setIsOpen(false);
-         }
-      };
+   const handleClickOutside = useCallback((event: MouseEvent) => {
+      if (
+         dropdownRef.current &&
+         !dropdownRef.current.contains(event.target as Node)
+      ) {
+         setIsOpen(false);
+      }
+   }, []);
 
+   useEffect(() => {
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
          document.removeEventListener("mousedown", handleClickOutside);
-   }, []);
+   }, [handleClickOutside]);
 
    useEffect(() => {
-      const storedUser = getItem("user");
-      setUser(storedUser);
+      setUser(getItem("user"));
    }, []);
 
    const modalActions = {
-      show: (content: string) => {
+      show: useCallback((content: string) => {
          setModalContent(content);
          setIsModalOpen(true);
-      },
-      hide: () => setIsModalOpen(false),
-      logout: () => {
+      }, []),
+      hide: useCallback(() => setIsModalOpen(false), []),
+      logout: useCallback(() => {
          localStorage.removeItem("user");
          location.reload();
-      },
-   };
-
-   const userDetails = () => {
-      if (user && user.avatar) {
-         return (
-            <>
-               <div className="m-auto mx-6 mb-6 flex items-center gap-2">
-                  <img
-                     src={user.avatar.url}
-                     alt={user.avatar.alt}
-                     className="h-12 w-12 rounded-full border border-grey"
-                  />
-                  <div className="flex flex-col">
-                     <p
-                        className={`${elMessiri.className} text-2xl font-medium`}
-                     >
-                        {user.name}
-                     </p>
-                     <p className="font-thin text-dark">{user.email}</p>
-                  </div>
-               </div>
-               <hr className="text-lightGrey" />
-            </>
-         );
-      }
-      return null;
+      }, []),
    };
 
    const renderMenuItems = () => {
@@ -137,7 +111,7 @@ const UserDropdown = () => {
             >
                &#x2715;
             </button>
-            {user ? userDetails() : null}
+            {user ? <UserDetails /> : null}
             <div className="flex flex-col pb-6">{renderMenuItems()}</div>
          </div>
          {isModalOpen && (

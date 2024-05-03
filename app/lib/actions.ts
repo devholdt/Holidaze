@@ -3,7 +3,7 @@ import { API_PATH } from "@/app/lib/constants";
 import { FormAction } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
 import { alert } from "@/app/lib/utils";
-import { iconCheck, iconXmark } from "@/public/icons";
+// import { iconCheck, iconXmark } from "@/public/icons";
 
 export async function createBooking(request: Request) {
    event?.preventDefault();
@@ -44,8 +44,7 @@ export const handleSubmit = async (
          alert(
             "error",
             `An error occured (${response.status})`,
-            ".alert-container",
-            iconXmark
+            ".alert-container"
          );
          throw new Error(`Failed to ${action}: ${errorText}`);
       }
@@ -54,7 +53,7 @@ export const handleSubmit = async (
 
       if (action === FormAction.Login) {
          setItem({ key: "user", value: user.data });
-         alert("success", "Login successful!", ".alert-container", iconCheck);
+         alert("success", "Login successful!", ".alert-container");
 
          setTimeout(() => {
             window.location.href = "/";
@@ -81,8 +80,7 @@ export const handleEditProfileMedia = async (
       return alert(
          "success",
          "Avatar successfully changed",
-         ".alert-container",
-         iconCheck
+         ".alert-container"
       );
    }
 
@@ -90,8 +88,7 @@ export const handleEditProfileMedia = async (
       return alert(
          "success",
          "Banner successfully changed",
-         ".alert-container",
-         iconCheck
+         ".alert-container"
       );
    }
 };
