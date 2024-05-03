@@ -1,0 +1,46 @@
+"use client";
+
+import { Button } from "@/app/ui/buttons";
+import { handleChangeBanner } from "@/app/lib/actions";
+// import { FormAction } from "@/app/lib/definitions";
+
+export default function ChangeBannerForm() {
+   return (
+      <form
+         onSubmit={(event) => handleChangeBanner(event)}
+         className="flex w-[320px] flex-col justify-center"
+      >
+         <div className="mb-4">
+            <label className="text-dark" htmlFor="bannerUrl">
+               Banner URL
+            </label>
+            <div className="relative">
+               <input
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  id="bannerUrl"
+                  type="text"
+                  name="bannerUrl"
+                  placeholder="Enter URL"
+                  required
+               />
+            </div>
+         </div>
+         <div className="mb-8">
+            <label className="text-dark" htmlFor="bannerAlt">
+               Alt text
+            </label>
+            <div className="relative">
+               <input
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  id="bannerAlt"
+                  type="text"
+                  name="bannerAlt"
+                  placeholder="Enter alt text"
+                  required
+               />
+            </div>
+         </div>
+         <Button text="Confirm" styles="w-[150px] mx-auto" primary={false} />
+      </form>
+   );
+}

@@ -5,6 +5,8 @@ import { elMessiri } from "@/app/ui/fonts";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { getItem } from "@/app/lib/storage";
+import ChangeAvatarForm from "@/app/ui/user/change-avatar-form";
+import ChangeBannerForm from "@/app/ui/user/change-banner-form";
 
 interface MenuItemProps {
    route: string;
@@ -137,22 +139,26 @@ const UserDropdown = () => {
             case "Change avatar":
                return (
                   <>
-                     <h4>Change Your Avatar</h4>
-                     <p>Here you can update your avatar image.</p>
+                     <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
+                        Change avatar
+                     </h4>
+                     <ChangeAvatarForm />
                   </>
                );
             case "Change banner":
                return (
                   <>
-                     <h4>Change Your Banner</h4>
-                     <p>Here you can update your banner image.</p>
+                     <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
+                        Change banner
+                     </h4>
+                     <ChangeBannerForm />
                   </>
                );
             case "Log out":
                return (
                   <>
                      <h4>Are you sure you want to log out?</h4>
-                     <div className="flex justify-around">
+                     <div className="flex justify-evenly gap-2">
                         <button
                            onClick={modalActions.hide}
                            className="hover:bg-darkYellow mt-4 bg-yellow px-10 py-3 text-lg font-extralight uppercase tracking-widest text-blue shadow-md transition"
@@ -161,7 +167,6 @@ const UserDropdown = () => {
                         </button>
                         <button
                            onClick={() => {
-                              console.log("Handle logout logic here.");
                               modalActions.hide();
                            }}
                            className="mt-4 bg-dark px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white shadow-md transition hover:bg-black"
@@ -210,7 +215,7 @@ const UserDropdown = () => {
          >
             <button
                onClick={() => setIsOpen(false)}
-               className="self-end px-3 py-2 text-lg font-bold"
+               className="self-end px-3 py-2 text-xl font-bold hover:text-black"
             >
                &#x2715;
             </button>

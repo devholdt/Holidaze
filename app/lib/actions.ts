@@ -58,3 +58,73 @@ export const handleSubmit = async (
       throw error;
    }
 };
+
+export const handleChangeAvatar = async (
+   event: React.FormEvent<HTMLFormElement>
+   // action: FormAction
+) => {
+   event.preventDefault();
+
+   console.log("Avatar change form submitted");
+
+   // const formData = new FormData(event.currentTarget);
+
+   // try {
+   //    const response = await fetch(`${API_PATH}/auth/${[action]}`, {
+   //       method: "POST",
+   //       headers: { "Content-Type": "application/json" },
+   //       body: JSON.stringify(Object.fromEntries(formData.entries())),
+   //    });
+
+   //    if (!response.ok) {
+   //       const errorText = await response.text();
+   //       throw new Error(`Failed to ${action}: ${errorText}`);
+   //    }
+
+   //    const user = await response.json();
+
+   //    console.log(`User ${action} successfully: `, user.data);
+   //    return user;
+   // } catch (error) {
+   //    console.error(
+   //       `An error occurred while submitting user ${action} form: `,
+   //       error
+   //    );
+   //    throw error;
+   // }
+};
+
+export const handleChangeBanner = async (
+   event: React.FormEvent<HTMLFormElement>
+   // action: FormAction
+) => {
+   event.preventDefault();
+
+   console.log("Banner change form submitted");
+
+   // const formData = new FormData(event.currentTarget);
+
+   // try {
+   //    const response = await fetch(`${API_PATH}/auth/${[action]}`, {
+   //       method: "POST",
+   //       headers: { "Content-Type": "application/json" },
+   //       body: JSON.stringify(Object.fromEntries(formData.entries())),
+   //    });
+
+   //    if (!response.ok) {
+   //       const errorText = await response.text();
+   //       throw new Error(`Failed to ${action}: ${errorText}`);
+   //    }
+
+   //    const user = await response.json();
+
+   //    console.log(`User ${action} successfully: `, user.data);
+   //    return user;
+   // } catch (error) {
+   //    console.error(
+   //       `An error occurred while submitting user ${action} form: `,
+   //       error
+   //    );
+   //    throw error;
+   // }
+};
