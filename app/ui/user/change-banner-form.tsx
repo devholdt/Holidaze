@@ -41,6 +41,7 @@ export default function ChangeBannerForm() {
             </div>
          </div>
          <Button text="Confirm" styles="w-[150px] mx-auto" primary={false} />
+         <div className="alert-container"></div>
       </form>
    );
 }

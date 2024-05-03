@@ -21,7 +21,6 @@ export default function ChangeAvatarForm() {
                   type="text"
                   name="avatarUrl"
                   placeholder="Enter URL"
-                  required
                />
             </div>
          </div>
@@ -36,11 +35,11 @@ export default function ChangeAvatarForm() {
                   type="text"
                   name="avatarAlt"
                   placeholder="Enter alt text"
-                  required
                />
             </div>
          </div>
          <Button text="Confirm" styles="w-[150px] mx-auto" primary={false} />
+         <div className="alert-container"></div>
       </form>
    );
 }

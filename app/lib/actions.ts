@@ -2,6 +2,8 @@ import React from "react";
 import { API_PATH } from "@/app/lib/constants";
 import { FormAction } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
+import { alert } from "@/app/lib/utils";
+import { iconCheck, iconXmark } from "@/public/icons";
 
 export async function createBooking(request: Request) {
    event?.preventDefault();
@@ -39,6 +41,12 @@ export const handleSubmit = async (
 
       if (!response.ok) {
          const errorText = await response.text();
+         alert(
+            "error",
+            `An error occured (${response.status})`,
+            ".alert-container",
+            iconXmark
+         );
          throw new Error(`Failed to ${action}: ${errorText}`);
       }
 
@@ -46,9 +54,13 @@ export const handleSubmit = async (
 
       if (action === FormAction.Login) {
          setItem({ key: "user", value: user.data });
+         alert("success", "Login successful!", ".alert-container", iconCheck);
+
+         setTimeout(() => {
+            window.location.href = "/";
+         }, 2000);
       }
 
-      console.log(`User ${action} successfully: `, user.data);
       return user;
    } catch (error) {
       console.error(
@@ -66,10 +78,20 @@ export const handleEditProfileMedia = async (
    event.preventDefault();
 
    if (action === FormAction.Avatar) {
-      return console.log("Avatar updated successfully");
+      return alert(
+         "success",
+         "Avatar successfully changed",
+         ".alert-container",
+         iconCheck
+      );
    }
 
    if (action === FormAction.Banner) {
-      return console.log("Banner updated successfully");
+      return alert(
+         "success",
+         "Banner successfully changed",
+         ".alert-container",
+         iconCheck
+      );
    }
 };
