@@ -188,7 +188,7 @@ const UserDropdown = () => {
       return (
          <div
             className="fixed inset-0 z-50 flex items-center justify-center"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
          >
             <div className="relative bg-white p-5">
                <button
@@ -229,61 +229,6 @@ const UserDropdown = () => {
          {isModalOpen && <Modal />}
       </div>
    );
-
-   // const renderMenuItems = () => {
-   //    const itemsToDisplay = user ? loggedInMenuItems : menuItems;
-   //    return itemsToDisplay.map((menuItem, index) => (
-   //       <React.Fragment key={menuItem.route}>
-   //          <Link
-   //             href={menuItem.route}
-   //             className="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey"
-   //          >
-   //             {menuItem.title}
-   //          </Link>
-   //          {(!user && index === menuItems.length - 2) ||
-   //          (user &&
-   //             index ===
-   //                loggedInMenuItems.findIndex(
-   //                   (item) => item.title === "Venues"
-   //                )) ||
-   //          (user &&
-   //             index ===
-   //                loggedInMenuItems.findIndex(
-   //                   (item) => item.title === "Log out"
-   //                )) ? (
-   //             <hr className="text-lightGrey" />
-   //          ) : null}
-   //       </React.Fragment>
-   //    ));
-   // };
-
-   // return (
-   //    <div className="relative">
-   //       <button
-   //          className="flex items-center gap-2 rounded-full bg-white p-2 text-dark"
-   //          onClick={toggle}
-   //       >
-   //          <Bars3Icon className="h-6 w-8" />
-   //          <UserCircleIcon className="h-6 w-6" />
-   //       </button>
-
-   //       <div
-   //          ref={dropdownRef}
-   //          className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${
-   //             isOpen ? "flex" : "hidden"
-   //          }`}
-   //       >
-   //          <button
-   //             onClick={() => setIsOpen(false)}
-   //             className="self-end px-3 py-2 text-lg font-bold"
-   //          >
-   //             &#x2715;
-   //          </button>
-   //          {user ? userDetails() : null}
-   //          <div className="flex flex-col pb-6">{renderMenuItems()}</div>
-   //       </div>
-   //    </div>
-   // );
 };
 
 export default UserDropdown;
