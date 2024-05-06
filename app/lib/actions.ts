@@ -53,16 +53,17 @@ export const handleSubmit = async (
          throw new Error(`Failed to ${action}: ${errorText}`);
       }
 
-      const user = await response.json();
+      const json = await response.json();
+      const user = json.data;
 
       if (action === FormAction.Login) {
-         setItem({ key: "user", value: user.data });
-         setItem({ key: "name", value: user.data.name });
-         setItem({ key: "token", value: user.data.accessToken });
+         setItem({ key: "user", value: user });
+         setItem({ key: "name", value: user.name });
+         setItem({ key: "token", value: user.accessToken });
 
          alert(
             "success",
-            `Login successful! <br /> Welcome back, <strong>${user.data.name}</strong>`,
+            `Login successful! <br /> Welcome back, <strong>${user.name}</strong>`,
             ".alert-container"
          );
       } else if (action === FormAction.Register) {
@@ -89,12 +90,12 @@ export const handleSubmit = async (
             const user = await loginResponse.json();
 
             setItem({ key: "user", value: user.data });
-            setItem({ key: "name", value: user.data.name });
-            setItem({ key: "token", value: user.data.accessToken });
+            setItem({ key: "name", value: user.name });
+            setItem({ key: "token", value: user.accessToken });
 
             alert(
                "success",
-               `Registration successfull! <br /> Welcome, <strong>${user.data.name}</strong>`,
+               `Registration successfull! <br /> Welcome, <strong>${user.name}</strong>`,
                ".alert-container"
             );
          } catch (error) {

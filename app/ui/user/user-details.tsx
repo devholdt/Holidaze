@@ -3,8 +3,6 @@
 import { getItem } from "@/app/lib/storage";
 import { elMessiri } from "@/app/ui/fonts";
 import React, { useState, useEffect } from "react";
-import { iconCheck } from "@/public/icons";
-
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 const UserDetails = () => {

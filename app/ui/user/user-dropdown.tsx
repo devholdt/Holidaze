@@ -7,6 +7,7 @@ import { getItem } from "@/app/lib/storage";
 import { menuItems, loggedInMenuItems } from "@/app/lib/constants";
 import Modals from "@/app/ui/modals";
 import UserDetails from "@/app/ui/user/user-details";
+import { getLoggedInUser } from "@/app/lib/data";
 
 const UserDropdown = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -33,7 +34,9 @@ const UserDropdown = () => {
    }, [handleClickOutside]);
 
    useEffect(() => {
-      setUser(getItem("user"));
+      if (getItem("user")) {
+         setUser(getLoggedInUser());
+      }
    }, []);
 
    const modalActions = {
@@ -44,6 +47,8 @@ const UserDropdown = () => {
       hide: useCallback(() => setIsModalOpen(false), []),
       logout: useCallback(() => {
          localStorage.removeItem("user");
+         localStorage.removeItem("token");
+         localStorage.removeItem("name");
          location.reload();
       }, []),
    };
