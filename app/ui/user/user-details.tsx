@@ -3,6 +3,9 @@
 import { getItem } from "@/app/lib/storage";
 import { elMessiri } from "@/app/ui/fonts";
 import React, { useState, useEffect } from "react";
+import { iconCheck } from "@/public/icons";
+
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 const UserDetails = () => {
    const [user, setUser] = useState<any>(null);
@@ -25,8 +28,17 @@ const UserDetails = () => {
                className="h-12 w-12 rounded-full border border-grey"
             />
             <div className="flex flex-col">
-               <p className={`${elMessiri.className} text-2xl font-medium`}>
-                  {user.name}
+               <p
+                  className={`${elMessiri.className} flex items-start text-3xl font-medium`}
+               >
+                  <span className="flex h-[44px] flex-col justify-end">
+                     {user.name}
+                  </span>
+                  {user.venueManager && (
+                     <>
+                        <CheckCircleIcon className="w-[22px] text-yellow" />
+                     </>
+                  )}
                </p>
                <p className="font-thin text-dark">{user.email}</p>
             </div>

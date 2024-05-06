@@ -8,8 +8,6 @@ import { menuItems, loggedInMenuItems } from "@/app/lib/constants";
 import Modals from "@/app/ui/modals";
 import UserDetails from "@/app/ui/user/user-details";
 
-console.log(UserDetails);
-
 const UserDropdown = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const [user, setUser] = useState<any>(null);

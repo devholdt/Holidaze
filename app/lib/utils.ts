@@ -1,5 +1,20 @@
 import { iconCheck, iconXmark } from "@/public/icons";
 
+export const headers = (contentType: string) => {
+   const token = localStorage.getItem("token");
+   const headers: { [key: string]: string } = {};
+
+   if (contentType) {
+      headers["Content-Type"] = contentType;
+   }
+
+   if (token) {
+      headers.Authorization = `Bearer ${token}`;
+   }
+
+   return headers;
+};
+
 export const formatDate = (dateString: string, locale: string = "no-NO") => {
    const date = new Date(dateString);
    const options: Intl.DateTimeFormatOptions = {
