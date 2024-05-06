@@ -3,7 +3,6 @@ import { API_PATH } from "@/app/lib/constants";
 import { FormAction } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
 import { alert } from "@/app/lib/utils";
-// import { iconCheck, iconXmark } from "@/public/icons";
 
 export async function createBooking(request: Request) {
    event?.preventDefault();
@@ -51,14 +50,25 @@ export const handleSubmit = async (
 
       const user = await response.json();
 
-      if (action === FormAction.Login) {
-         setItem({ key: "user", value: user.data });
-         alert("success", "Login successful!", ".alert-container");
+      setItem({ key: "user", value: user.data });
 
-         setTimeout(() => {
-            window.location.href = "/";
-         }, 2000);
+      if (action === FormAction.Login) {
+         alert(
+            "success",
+            `Login successful! <br /> Welcome back, <strong>${user.data.name}</strong>`,
+            ".alert-container"
+         );
+      } else if (action === FormAction.Register) {
+         alert(
+            "success",
+            `Registration successfull! <br /> Welcome, <strong>${user.data.name}</strong>`,
+            ".alert-container"
+         );
       }
+
+      setTimeout(() => {
+         window.location.href = "/";
+      }, 2000);
 
       return user;
    } catch (error) {
