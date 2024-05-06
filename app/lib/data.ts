@@ -1,4 +1,6 @@
-import { API_URLS } from "@/app/lib/constants";
+import { API_PATH, API_URLS } from "@/app/lib/constants";
+import { getItem } from "@/app/lib/storage";
+import { headers } from "@/app/lib/utils";
 
 export async function getVenues() {
    try {
@@ -23,5 +25,26 @@ export async function getVenueById(id: string) {
    } catch (error) {
       console.error("An error occured while fetching venue data: ", error);
       throw new Error("Failed to fetch venue data.");
+   }
+}
+
+export async function getLoggedInUser() {
+   const url = `${API_PATH}/holidaze/profiles/${getItem("name")}`;
+   const options = {
+      method: "GET",
+      headers: headers("application/json"),
+   };
+
+   try {
+      const response = await fetch(url, options);
+      const json = await response.json();
+      const data = json.data;
+
+      return data;
+   } catch (error) {
+      console.log(
+         "An error occured when fetching logged in user data: ",
+         error
+      );
    }
 }

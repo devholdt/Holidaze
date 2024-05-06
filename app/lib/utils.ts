@@ -1,4 +1,6 @@
 import { iconCheck, iconXmark } from "@/public/icons";
+import { API_KEY } from "@/app/lib/constants";
+import { getItem } from "@/app/lib/storage";
 
 export const formatDate = (dateString: string, locale: string = "no-NO") => {
    const date = new Date(dateString);
@@ -57,4 +59,20 @@ export const alert = (
    if (element) {
       element.append(wrapper);
    }
+};
+
+export const headers = (contentType: string) => {
+   const token = getItem("token");
+   const headers: { [key: string]: string } = {};
+
+   if (contentType) {
+      headers["Content-Type"] = contentType;
+   }
+
+   if (token) {
+      headers.Authorization = `Bearer ${token}`;
+      headers["X-Noroff-API-Key"] = API_KEY;
+   }
+
+   return headers;
 };
