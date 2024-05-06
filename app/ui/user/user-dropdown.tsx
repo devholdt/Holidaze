@@ -35,7 +35,11 @@ const UserDropdown = () => {
 
    useEffect(() => {
       if (getItem("user")) {
-         setUser(getLoggedInUser());
+         const fetchUser = async () => {
+            setUser(await getLoggedInUser());
+         };
+
+         fetchUser();
       }
    }, []);
 
