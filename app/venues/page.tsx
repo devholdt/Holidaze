@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-   const { data } = await getVenues();
+   const venues = await getVenues();
 
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
@@ -25,9 +25,8 @@ export default async function Page() {
          </div>
 
          <div className="mb-36 flex flex-col items-center">
-            <div className="venues-container"></div>
             <Suspense fallback={<p>Loading...</p>}>
-               <VenueList venues={data} showMoreButton={true} />
+               <VenueList venues={venues} showMoreButton={true} />
             </Suspense>
          </div>
       </main>

@@ -2,14 +2,14 @@
 
 import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { VenueProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import VenueImage from "@/app/ui/venues/venue-image";
 import { MotionDiv } from "@/app/lib/motion";
 
-const VenueList: FC<{
+const VenueList: React.FC<{
    venues: VenueProps[];
    listLimit?: number;
    showMoreButton?: boolean;

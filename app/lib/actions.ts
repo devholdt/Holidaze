@@ -34,7 +34,7 @@ export const createBooking = async (
 
       alert(
          "success",
-         `Booking successful! <br /> <span class="font-light">Click <a href="/bookings" class="underline font-medium">here</a> to view your bookings.</span>`,
+         `Booking successful! <br /> <span class="font-light">Click <a href="/user/bookings" class="underline font-medium">here</a> to view your bookings.</span>`,
          ".alert-container"
       );
 

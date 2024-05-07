@@ -15,6 +15,7 @@ export interface BookingProps {
    dateFrom: string;
    dateTo: string;
    guests: number;
+   venue: VenueProps;
 }
 export interface VenueMetaProps {
    wifi: boolean;

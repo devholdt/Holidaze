@@ -2,7 +2,6 @@ import Logo from "@/app/ui/holidaze-logo";
 import Subheading from "@/app/ui/subheading";
 import { elMessiri } from "@/app/ui/fonts";
 import waterImg from "@/public/texture-water-lighter.jpg";
-import beachImg from "@/public/background-beach.jpg";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/venue-list";
@@ -12,7 +11,7 @@ import { LinkButton } from "@/app/ui/buttons";
 import Hero from "@/app/ui/hero";
 
 export default async function Home() {
-   const { data } = await getVenues();
+   const venues = await getVenues();
 
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
@@ -52,7 +51,7 @@ export default async function Home() {
          </div>
          <div className="mb-36 flex flex-col items-center">
             <Suspense fallback={<p>Loading...</p>}>
-               <VenueList venues={data} listLimit={3} />
+               <VenueList venues={venues} listLimit={3} />
             </Suspense>
             <LinkButton targetHref="/venues" text="View all" styles="mt-12" />
          </div>
