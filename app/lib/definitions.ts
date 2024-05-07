@@ -23,6 +23,10 @@ export interface EditProfileMediaFormProps {
    type: string;
 }
 
+export interface BookingFormProps {
+   [key: string]: FormDataEntryValue | number;
+}
+
 export type CreateBooking = {
    dateFrom: string;
    dateTo: string;

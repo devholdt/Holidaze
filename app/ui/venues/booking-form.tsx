@@ -4,9 +4,16 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "@heroicons/react/24/outline";
-// import { createBooking } from "@/app/lib/actions";
+import { createBooking } from "@/app/lib/actions";
+import { Button } from "@/app/ui/buttons";
 
-export default function Form({ maxGuests }: { maxGuests: number }) {
+export default function Form({
+   maxGuests,
+   venueId,
+}: {
+   maxGuests: number;
+   venueId: string;
+}) {
    const [startDate, setStartDate] = useState(new Date());
    const [endDate, setEndDate] = useState(new Date());
 
@@ -30,7 +37,8 @@ export default function Form({ maxGuests }: { maxGuests: number }) {
    );
 
    return (
-      <form>
+      <form onSubmit={(event) => createBooking(event)}>
+         <input type="hidden" name="venueId" value={venueId} />
          <div className="mt-4 flex flex-col">
             <label htmlFor="dateFrom">Start Date</label>
             <DatePicker
@@ -38,10 +46,15 @@ export default function Form({ maxGuests }: { maxGuests: number }) {
                onChange={(date) => setStartDate(date || new Date())}
                customInput={
                   <CustomInput
-                     value={startDate.toString()}
+                     value={startDate.toDateString()}
                      onClick={() => {}}
                   />
                }
+            />
+            <input
+               type="hidden"
+               name="dateFrom"
+               value={startDate.toISOString()}
             />
          </div>
          <div className="mt-4 flex flex-col">
@@ -51,11 +64,12 @@ export default function Form({ maxGuests }: { maxGuests: number }) {
                onChange={(date) => setEndDate(date || new Date())}
                customInput={
                   <CustomInput
-                     value={startDate.toString()}
+                     value={endDate.toDateString()}
                      onClick={() => {}}
                   />
                }
             />
+            <input type="hidden" name="dateTo" value={endDate.toISOString()} />
          </div>
          <div className="mt-4 flex flex-col">
             <label htmlFor="guests">Guests</label>
@@ -72,15 +86,8 @@ export default function Form({ maxGuests }: { maxGuests: number }) {
                <span className="ms-2 text-red">max {maxGuests}</span>
             </div>
          </div>
-         <button
-            type="submit"
-            className="mt-4 w-28 bg-brown p-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-               e.preventDefault();
-            }}
-         >
-            Book
-         </button>
+         <Button text="Book" styles="mt-4" />
+         <div className="alert-container"></div>
       </form>
    );
 }

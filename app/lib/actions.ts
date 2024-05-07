@@ -1,21 +1,57 @@
 import React from "react";
 import { API_PATH } from "@/app/lib/constants";
-import { FormAction } from "@/app/lib/definitions";
+import { FormAction, BookingFormProps } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
-import { alert } from "@/app/lib/utils";
+import { alert, headers } from "@/app/lib/utils";
 
-import { headers } from "@/app/lib/utils";
+export const createBooking = async (
+   event: React.FormEvent<HTMLFormElement>
+) => {
+   event.preventDefault();
 
-// export async function createBooking(request: Request) {
-//    event?.preventDefault();
+   const formData = new FormData(event.currentTarget);
+   const formValues: BookingFormProps = Object.fromEntries(formData.entries());
+   formValues.guests = Number(formValues.guests);
 
-//    const formData = await request.formData();
-//    const dateFrom = formData.get("dateFrom");
-//    const dateTo = formData.get("dateTo");
-//    const guests = formData.get("guests");
+   try {
+      const response = await fetch(`${API_PATH}/holidaze/bookings`, {
+         method: "POST",
+         headers: headers("application/json"),
+         body: JSON.stringify(formValues),
+      });
 
-//    return Response.json({ dateFrom, dateTo, guests });
-// }
+      console.log("Response: ", response);
+
+      if (!response.ok) {
+         const errorText = await response.text();
+         alert(
+            "error",
+            `An error occured (${response.status})`,
+            ".alert-container"
+         );
+         throw new Error(`Failed to create booking: ${errorText}`);
+      }
+
+      const json = await response.json();
+
+      console.log("JSON: ", json);
+
+      const booking = json.data;
+
+      console.log("Booking: ", booking);
+
+      alert(
+         "success",
+         `Booking successful! <br /> <span class="font-light">Click <a href="/bookings" class="underline font-medium">here</a> to view your bookings.</span>`,
+         ".alert-container"
+      );
+
+      return booking;
+   } catch (error) {
+      console.error("An error occurred while creating a booking: ", error);
+      throw error;
+   }
+};
 
 export const handleSubmit = async (
    event: React.FormEvent<HTMLFormElement>,

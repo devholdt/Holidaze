@@ -9,7 +9,6 @@ import {
    FaceSmileIcon,
    FaceFrownIcon,
 } from "@heroicons/react/24/outline";
-
 import Form from "@/app/ui/venues/booking-form";
 
 export const metadata: Metadata = {
@@ -105,7 +104,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                   <h3 className={`${elMessiri.className} text-3xl`}>
                      Book this venue
                   </h3>
-                  <Form maxGuests={venue.maxGuests} />
+                  <Form maxGuests={venue.maxGuests} venueId={venue.id} />
                </div>
             </div>
          </div>
