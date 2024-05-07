@@ -9,6 +9,8 @@ import VenueList from "@/app/ui/venues/venue-list";
 import { Suspense } from "react";
 import { LinkButton } from "@/app/ui/buttons";
 
+import Hero from "@/app/ui/hero";
+
 export default async function Home() {
    const { data } = await getVenues();
 
@@ -26,27 +28,15 @@ export default async function Home() {
             </h1>
          </div>
 
-         <div
-            style={{
-               backgroundImage: `url(${beachImg.src})`,
-               backgroundSize: "cover",
-               backgroundPosition: "center",
-            }}
-            className="flex h-80 items-center"
-         >
-            <div className="p-20 text-dark">
-               <Subheading text={"Welcome"} left={""} right={"w-24 ms-2"} />
-               <h2 className={`${elMessiri.className} leading-tight`}>
-                  Serene Escapes
-               </h2>
-               <p className="max-w-80 font-light">
-                  Explore our global collection of exquisite resorts, each
+         <Hero
+            heading="Serene Escapes"
+            headingLevel={2}
+            subheading="Welcome"
+            text="Explore our global collection of exquisite resorts, each
                   offering a unique sanctuary of peace and luxury. Dive into
                   unparalleled comfort and serene settings, where every stay
-                  promises a memorable escape.
-               </p>
-            </div>
-         </div>
+                  promises a memorable escape."
+         />
 
          <div className="mt-36 flex flex-col items-center">
             <div className="mb-12 flex flex-col items-center text-center">

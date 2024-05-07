@@ -16,7 +16,7 @@ const Subheading: FC<SubheadingProps> = ({
          <div
             className={`${left} to-transparent h-px bg-gradient-to-l from-dark`}
          ></div>
-         <p className="font-extralight uppercase tracking-widest">{text}</p>
+         <p className="font-light uppercase tracking-widest">{text}</p>
          <div
             className={`${right} to-transparent h-px bg-gradient-to-r from-dark`}
          ></div>
