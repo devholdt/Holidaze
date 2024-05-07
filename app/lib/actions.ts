@@ -1,6 +1,6 @@
 import React from "react";
 import { API_PATH } from "@/app/lib/constants";
-import { FormAction, BookingFormProps } from "@/app/lib/definitions";
+import { FormAction, CreateBookingProps } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
 
@@ -10,7 +10,9 @@ export const createBooking = async (
    event.preventDefault();
 
    const formData = new FormData(event.currentTarget);
-   const formValues: BookingFormProps = Object.fromEntries(formData.entries());
+   const formValues: CreateBookingProps = Object.fromEntries(
+      formData.entries()
+   );
    formValues.guests = Number(formValues.guests);
 
    try {
@@ -19,8 +21,6 @@ export const createBooking = async (
          headers: headers("application/json"),
          body: JSON.stringify(formValues),
       });
-
-      console.log("Response: ", response);
 
       if (!response.ok) {
          const errorText = await response.text();
@@ -32,19 +32,14 @@ export const createBooking = async (
          throw new Error(`Failed to create booking: ${errorText}`);
       }
 
-      const json = await response.json();
-
-      console.log("JSON: ", json);
-
-      const booking = json.data;
-
-      console.log("Booking: ", booking);
-
       alert(
          "success",
          `Booking successful! <br /> <span class="font-light">Click <a href="/bookings" class="underline font-medium">here</a> to view your bookings.</span>`,
          ".alert-container"
       );
+
+      const json = await response.json();
+      const booking = json.data;
 
       return booking;
    } catch (error) {

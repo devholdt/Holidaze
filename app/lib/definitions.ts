@@ -1,16 +1,45 @@
-export interface Venue {
+export interface VenueProps {
    id: string;
    name: string;
    description: string;
    media: { url: string; alt: string }[];
    price: number;
-   maxGuests: number;
    rating: number;
+   maxGuests: number;
+   bookings: BookingProps[];
+   meta: VenueMetaProps[];
+}
+
+export interface BookingProps {
+   id: string;
+   dateFrom: string;
+   dateTo: string;
+   guests: number;
+}
+export interface VenueMetaProps {
+   wifi: boolean;
+   parking: boolean;
+   breakfast: boolean;
+   pets: boolean;
+}
+
+export interface VenueOwnerProps {
+   name: string;
+   email: string;
+   bio: string;
+   avatar: { url: string; alt: string };
+   banner: { url: string; alt: string };
 }
 
 export interface MenuItemProps {
    route: string;
    title: string;
+}
+
+export interface BookingFormProps {
+   venueId: string;
+   maxGuests: number;
+   bookedDates: { dateFrom: string; dateTo: string }[];
 }
 
 export interface ModalsProps {
@@ -23,16 +52,9 @@ export interface EditProfileMediaFormProps {
    type: string;
 }
 
-export interface BookingFormProps {
+export interface CreateBookingProps {
    [key: string]: FormDataEntryValue | number;
 }
-
-export type CreateBooking = {
-   dateFrom: string;
-   dateTo: string;
-   guests: number;
-   venueId: string;
-};
 
 export enum FormAction {
    Register = "register",

@@ -6,35 +6,52 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { createBooking } from "@/app/lib/actions";
 import { Button } from "@/app/ui/buttons";
+import { BookingFormProps } from "@/app/lib/definitions";
 
 export default function Form({
-   maxGuests,
    venueId,
-}: {
-   maxGuests: number;
-   venueId: string;
-}) {
+   maxGuests,
+   bookedDates,
+}: BookingFormProps) {
    const [startDate, setStartDate] = useState(new Date());
    const [endDate, setEndDate] = useState(new Date());
 
-   const CustomInput = React.forwardRef(
-      (
-         { value, onClick }: { value: string; onClick: () => void },
-         ref: React.Ref<HTMLButtonElement>
-      ) => (
-         <div className="flex items-center gap-2">
-            <button
-               type="button"
-               className="flex w-full max-w-44 rounded border border-lightGrey bg-background px-4 py-2 hover:border-grey"
-               onClick={onClick}
-               ref={ref}
-            >
-               {value}
-            </button>
-            <CalendarIcon className="h-6 w-6 text-dark" />
-         </div>
-      )
+   const getDatesInRange = (startDate: Date, endDate: Date): Date[] => {
+      const date = new Date(startDate.getTime());
+      const dates = [];
+
+      while (date <= endDate) {
+         dates.push(new Date(date));
+         date.setDate(date.getDate() + 1);
+      }
+
+      return dates;
+   };
+
+   const disabledDates = bookedDates.flatMap((range) =>
+      getDatesInRange(new Date(range.dateFrom), new Date(range.dateTo))
    );
+
+   const CustomInput = React.forwardRef<
+      HTMLButtonElement,
+      { value: string; onClick: () => void }
+   >(({ value, onClick }, ref) => (
+      <div className="flex items-center gap-2">
+         <button
+            type="button"
+            className="flex w-full max-w-44 rounded border border-lightGrey bg-background px-4 py-2 hover:border-grey"
+            onClick={onClick}
+            ref={ref}
+         >
+            {value}
+         </button>
+         <CalendarIcon className="h-6 w-6 text-dark" />
+      </div>
+   ));
+
+   const minEndDate = startDate > new Date() ? startDate : new Date();
+   const today = new Date();
+   today.setHours(0, 0, 0, 0);
 
    return (
       <form onSubmit={(event) => createBooking(event)}>
@@ -43,13 +60,20 @@ export default function Form({
             <label htmlFor="dateFrom">Start Date</label>
             <DatePicker
                selected={startDate}
-               onChange={(date) => setStartDate(date || new Date())}
+               onChange={(date) => {
+                  setStartDate(date || new Date());
+                  if (endDate && date && endDate < date) {
+                     setEndDate(date);
+                  }
+               }}
                customInput={
                   <CustomInput
                      value={startDate.toDateString()}
                      onClick={() => {}}
                   />
                }
+               excludeDates={disabledDates}
+               minDate={new Date()}
             />
             <input
                type="hidden"
@@ -68,6 +92,8 @@ export default function Form({
                      onClick={() => {}}
                   />
                }
+               excludeDates={disabledDates}
+               minDate={minEndDate}
             />
             <input type="hidden" name="dateTo" value={endDate.toISOString()} />
          </div>

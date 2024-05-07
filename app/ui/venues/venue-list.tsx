@@ -3,14 +3,14 @@
 import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
 import { FC, useState } from "react";
-import { Venue } from "@/app/lib/definitions";
+import { VenueProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import VenueImage from "@/app/ui/venues/venue-image";
 import { MotionDiv } from "@/app/lib/motion";
 
 const VenueList: FC<{
-   venues: Venue[];
+   venues: VenueProps[];
    listLimit?: number;
    showMoreButton?: boolean;
 }> = ({ venues, listLimit = 9, showMoreButton = false }) => {

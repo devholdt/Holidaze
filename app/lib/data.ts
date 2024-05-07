@@ -17,11 +17,17 @@ export async function getVenues() {
 
 export async function getVenueById(id: string) {
    try {
-      const data = await fetch(`${API_URLS.VENUES}/${id}`, {
-         next: { revalidate: 10 },
-      });
+      const response = await fetch(
+         `${API_URLS.VENUES}/${id}?_owner=true&_bookings=true`,
+         {
+            next: { revalidate: 10 },
+         }
+      );
 
-      return data.json();
+      const json = await response.json();
+      const data = json.data;
+
+      return data;
    } catch (error) {
       console.error("An error occured while fetching venue data: ", error);
       throw new Error("Failed to fetch venue data.");
