@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { getProfileBookings } from "@/app/lib/data";
 import { BookingProps } from "@/app/lib/definitions";
-import Booking from "@/app/ui/user/booking";
+import Booking from "@/app/ui/user/UserBooking";
 
 const BookingsList: React.FC = () => {
    const [bookings, setBookings] = useState<BookingProps[]>([]);
@@ -11,7 +11,12 @@ const BookingsList: React.FC = () => {
 
    useEffect(() => {
       const fetchBookings = async () => {
-         setBookings(await getProfileBookings());
+         try {
+            const fetchedBookings = await getProfileBookings();
+            setBookings(fetchedBookings);
+         } catch (error) {
+            console.error("Error fetching bookings:", error);
+         }
          setLoading(false);
       };
 
@@ -19,6 +24,14 @@ const BookingsList: React.FC = () => {
    }, []);
 
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
+
+   if (bookings.length === 0) {
+      return (
+         <div className="flex justify-center">
+            <p className="mt-8">No bookings found.</p>
+         </div>
+      );
+   }
 
    return (
       <div className="grid w-full grid-cols-2 gap-6 p-6">
