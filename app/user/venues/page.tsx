@@ -13,7 +13,9 @@ export default async function Page() {
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
          <Hero heading="Venues" headingLevel={1} subheading="Your" />
 
-         <CreateVenueButton />
+         <div className="mt-8 flex justify-center">
+            <CreateVenueButton />
+         </div>
 
          <ManagerVenueList />
       </main>

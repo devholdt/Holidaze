@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Modals from "@/app/ui/modals";
+import { Button } from "@/app/ui/buttons";
 
 const CreateVenueButton = () => {
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -33,9 +34,10 @@ const CreateVenueButton = () => {
 
    return (
       <>
-         <button onClick={() => modalActions.show("Create venue")}>
-            Create venue
-         </button>
+         <Button
+            text="Create venue"
+            onClick={() => modalActions.show("Create venue")}
+         />
          {isModalOpen && (
             <Modals modalContent={modalContent} hideModal={modalActions.hide} />
          )}
