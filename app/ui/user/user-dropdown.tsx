@@ -53,7 +53,7 @@ const UserDropdown = () => {
          localStorage.removeItem("user");
          localStorage.removeItem("token");
          localStorage.removeItem("name");
-         location.reload();
+         window.location.href = "/";
       }, []),
    };
 
