@@ -1,5 +1,4 @@
 import { iconCheck, iconXmark } from "@/public/icons";
-import { API_KEY } from "@/app/lib/constants";
 import { getItem } from "@/app/lib/storage";
 
 export const formatDate = (dateString: string, locale: string = "no-NO") => {
@@ -71,7 +70,7 @@ export const headers = (contentType: string) => {
 
    if (token) {
       headers.Authorization = `Bearer ${token}`;
-      headers["X-Noroff-API-Key"] = API_KEY;
+      headers["X-Noroff-API-Key"] = process.env.NEXT_PUBLIC_API_KEY as string;
    }
 
    return headers;
