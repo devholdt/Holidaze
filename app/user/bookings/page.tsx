@@ -1,5 +1,5 @@
-import Hero from "@/app/ui/hero";
 import { Metadata } from "next";
+import Hero from "@/app/ui/hero";
 import BookingsList from "@/app/ui/user/bookings-list";
 
 export const metadata: Metadata = {

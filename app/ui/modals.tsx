@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { ModalsProps } from "@/app/lib/definitions";
 import EditProfileMediaForm from "@/app/ui/user/edit-profile-media-form";
+import CreateVenueForm from "@/app/ui/user/CreateVenueForm";
 
 const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
    const modalRef = React.useRef<HTMLDivElement>(null);
@@ -28,6 +29,8 @@ const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
             return <EditProfileMediaForm type="avatar" />;
          case "Change banner":
             return <EditProfileMediaForm type="banner" />;
+         case "Create venue":
+            return <CreateVenueForm />;
          case "Log out":
             return (
                <>
@@ -35,7 +38,7 @@ const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
                   <div className="flex justify-evenly gap-2">
                      <button
                         onClick={hideModal}
-                        className="hover:bg-darkYellow mt-4 bg-yellow px-10 py-3 text-lg font-extralight uppercase tracking-widest text-blue shadow-md transition"
+                        className="mt-4 bg-yellow px-10 py-3 text-lg font-extralight uppercase tracking-widest text-blue shadow-md transition hover:bg-darkYellow"
                      >
                         Go Back
                      </button>

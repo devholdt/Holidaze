@@ -19,7 +19,7 @@ const Hero: FC<HeroProps> = ({
    const Heading = createElement(
       `h${headingLevel}` as keyof JSX.IntrinsicElements,
       {
-         className: `${elMessiri.className} leading-tight`,
+         className: `${elMessiri.className} leading-none`,
          children: heading,
       }
    );

@@ -48,6 +48,12 @@ export const createBooking = async (
    }
 };
 
+export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
+   event.preventDefault();
+
+   console.log("Venue created!");
+};
+
 export const handleSubmit = async (
    event: React.FormEvent<HTMLFormElement>,
    action: FormAction,

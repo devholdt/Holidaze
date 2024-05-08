@@ -65,6 +65,7 @@ export async function getProfileBookings() {
    try {
       const response = await fetch(url, options);
       const json = await response.json();
+
       return json.data || [];
    } catch (error) {
       console.error(
@@ -72,5 +73,23 @@ export async function getProfileBookings() {
          error
       );
       throw new Error("Failed to fetch profile bookings.");
+   }
+}
+
+export async function getManagerVenues() {
+   const url = `${API_URLS.PROFILES}/${getItem("name")}/venues?_bookings=true&_owner=true`;
+   const options = {
+      method: "GET",
+      headers: headers("application/json"),
+   };
+
+   try {
+      const response = await fetch(url, options);
+      const json = await response.json();
+
+      return json.data || [];
+   } catch (error) {
+      console.error("An error occured while fetching manager venues: ", error);
+      throw new Error("Failed to fetch manager venues.");
    }
 }

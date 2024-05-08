@@ -46,7 +46,7 @@ export interface BookingFormProps {
 export interface ModalsProps {
    modalContent: string;
    hideModal: () => void;
-   logout: () => void;
+   logout?: () => void;
 }
 
 export interface EditProfileMediaFormProps {
