@@ -5,7 +5,10 @@ import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
 
 export const metadata: Metadata = {
-   title: "Holidaze",
+   title: {
+      template: "%s | Holidaze Resorts",
+      default: "Holidaze Resorts",
+   },
    description: "Find your next holiday destination",
 };
 

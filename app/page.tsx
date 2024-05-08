@@ -7,7 +7,6 @@ import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/venue-list";
 import { Suspense } from "react";
 import { LinkButton } from "@/app/ui/buttons";
-
 import Hero from "@/app/ui/hero";
 
 export default async function Home() {
