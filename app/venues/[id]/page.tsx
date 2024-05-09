@@ -10,7 +10,7 @@ import {
    FaceSmileIcon,
    FaceFrownIcon,
 } from "@heroicons/react/24/outline";
-import Form from "@/app/ui/venues/booking-form";
+import Form from "@/app/ui/venues/BookingForm";
 
 export const metadata: Metadata = {
    title: "Venue",

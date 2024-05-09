@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LoginForm from "@/app/ui/user/login-form";
+import LoginForm from "@/app/ui/user/login/LoginForm";
 import Logo from "@/app/ui/holidaze-logo";
 import logoBlack from "@/public/logo-black.svg";
 
