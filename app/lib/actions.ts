@@ -1,5 +1,5 @@
 import React from "react";
-import { API_PATH } from "@/app/lib/constants";
+import { API_PATH, API_URLS } from "@/app/lib/constants";
 import {
    FormAction,
    CreateBookingProps,
@@ -35,14 +35,14 @@ export const createBooking = async (
          throw new Error(`Failed to create booking: ${errorText}`);
       }
 
-      alert(
-         "success",
-         `Booking successful! <br /> <span class="font-light">Click <a href="/user/bookings" class="underline font-medium">here</a> to view your bookings.</span>`,
-         ".alert-container"
-      );
-
       const json = await response.json();
       const booking = json.data;
+
+      alert(
+         "success",
+         `Booking successful! <br /> <span class="font-light">Click <a href="/user/bookings/${booking.id}" class="underline font-medium">here</a> to view.</span>`,
+         ".alert-container"
+      );
 
       return booking;
    } catch (error) {
@@ -55,35 +55,56 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    event.preventDefault();
 
    const data = new FormData(event.currentTarget);
-
    const formValues: CreateVenueProps = {
-      name: "",
-      description: "",
-      media: [{ url: "", alt: "" }],
-      price: 0,
-      maxGuests: 0,
-      rating: 0,
+      name: data.get("name") as string,
+      description: data.get("description") as string,
+      media: [
+         {
+            url: (data.get("url") as string) || "",
+            alt: (data.get("alt") as string) || "",
+         },
+      ],
+      price: Number(data.get("price")),
+      maxGuests: Number(data.get("maxGuests")),
+      rating: Number(data.get("rating") || 0),
       meta: {
-         wifi: false,
-         parking: false,
-         breakfast: false,
-         pets: false,
+         wifi: data.get("wifi") === "wifi",
+         parking: data.get("parking") === "parking",
+         breakfast: data.get("breakfast") === "breakfast",
+         pets: data.get("pets") === "pets",
       },
    };
 
-   formValues.name = data.get("name") as string;
-   formValues.description = data.get("description") as string;
-   formValues.media[0].url = data.get("url") as string;
-   formValues.media[0].alt = data.get("alt") as string;
-   formValues.price = Number(data.get("price"));
-   formValues.maxGuests = Number(data.get("maxGuests"));
-   formValues.rating = Number(data.get("rating"));
-   formValues.meta.wifi = Boolean(data.get("wifi"));
-   formValues.meta.parking = Boolean(data.get("parking"));
-   formValues.meta.breakfast = Boolean(data.get("breakfast"));
-   formValues.meta.pets = Boolean(data.get("pets"));
+   try {
+      const response = await fetch(API_URLS.VENUES, {
+         method: "POST",
+         headers: headers("application/json"),
+         body: JSON.stringify(formValues),
+      });
 
-   console.log(formValues);
+      if (!response.ok) {
+         const errorText = await response.text();
+         alert(
+            "error",
+            `An error occured (${response.status})`,
+            ".alert-container"
+         );
+         throw new Error(`Failed to create venue: ${errorText}`);
+      }
+
+      const json = await response.json();
+      const venue = json.data;
+
+      alert(
+         "success",
+         `Venue successfully created! <br /> <span class="font-light">Click <a href="/user/venues/${venue.id}" class="underline font-medium">here</a> to view.</span>`,
+         ".alert-container"
+      );
+
+      return venue;
+   } catch (error) {
+      console.error("An error occurred while creating a venue: ", error);
+   }
 };
 
 export const handleSubmit = async (

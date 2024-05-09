@@ -60,10 +60,10 @@ export interface CreateBookingProps {
 export interface CreateVenueProps {
    name: string;
    description: string;
-   media: { url: string; alt: string }[];
+   media?: [{ url: string; alt: string }];
    price: number;
    maxGuests: number;
-   rating: number;
+   rating?: number;
    meta: {
       wifi: boolean;
       parking: boolean;
@@ -71,6 +71,7 @@ export interface CreateVenueProps {
       pets: boolean;
    };
 }
+
 export enum FormAction {
    Register = "register",
    Login = "login",
