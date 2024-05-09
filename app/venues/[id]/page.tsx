@@ -37,12 +37,12 @@ export default async function Page({ params }: { params: { id: string } }) {
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
          <div className="m-8">
-            <div className="relative mb-4 h-80">
+            <div className="relative mb-8 h-80">
                <VenueImage venue={venue} />
             </div>
 
             <h1
-               className={`${elMessiri.className} mb-2 mt-8 text-6xl tracking-wide`}
+               className={`${elMessiri.className} mb-2 text-6xl tracking-wide`}
             >
                {venue.name}
             </h1>
