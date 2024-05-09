@@ -32,7 +32,7 @@ const Booking = ({ booking }: { booking: BookingProps }) => {
             width={800}
             height={600}
             unoptimized
-            className="max-h-[320px] rounded-t-xl object-cover object-center"
+            className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
          />
          <div className="px-6 pb-2">
             <h2 className={`${elMessiri.className} my-3 text-5xl font-medium`}>

@@ -1,13 +1,14 @@
 import { Metadata } from "next";
+import BookingDetails from "@/app/ui/user/bookings/BookingDetails";
 
 export const metadata: Metadata = {
-   title: "Single Booking",
+   title: "Booking",
 };
 
-export default async function Page() {
+export default async function Page({ params }: { params: { id: string } }) {
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
-         <h1>Single Booking</h1>
+         <BookingDetails id={params.id} />
       </main>
    );
 }

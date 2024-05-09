@@ -43,10 +43,17 @@ export async function getLoggedInUser() {
       headers: headers("application/json"),
    };
 
+   // console.log(url);
+
    try {
       const response = await fetch(url, options);
+
+      // console.log(response);
+
       const json = await response.json();
       const data = json.data;
+
+      // console.log(data);
 
       return data;
    } catch (error) {
@@ -73,6 +80,28 @@ export async function getProfileBookings() {
          error
       );
       throw new Error("Failed to fetch profile bookings.");
+   }
+}
+
+export async function getBookingById(id: string) {
+   const url = `${API_URLS.BOOKINGS}/${id}?_customer=true&_venue=true`;
+   const options = {
+      method: "GET",
+      headers: headers("application/json"),
+   };
+
+   try {
+      const response = await fetch(url, options);
+
+      // console.log(response);
+
+      const json = await response.json();
+      const data = json.data;
+
+      return data;
+   } catch (error) {
+      console.error("An error occured while fetching booking data: ", error);
+      throw new Error("Failed to fetch booking data.");
    }
 }
 
