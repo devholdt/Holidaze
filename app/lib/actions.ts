@@ -1,6 +1,10 @@
 import React from "react";
 import { API_PATH } from "@/app/lib/constants";
-import { FormAction, CreateBookingProps } from "@/app/lib/definitions";
+import {
+   FormAction,
+   CreateBookingProps,
+   CreateVenueProps,
+} from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
 
@@ -9,10 +13,9 @@ export const createBooking = async (
 ) => {
    event.preventDefault();
 
-   const formData = new FormData(event.currentTarget);
-   const formValues: CreateBookingProps = Object.fromEntries(
-      formData.entries()
-   );
+   const data = new FormData(event.currentTarget);
+   const formValues: CreateBookingProps = Object.fromEntries(data.entries());
+
    formValues.guests = Number(formValues.guests);
 
    try {
@@ -51,7 +54,36 @@ export const createBooking = async (
 export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    event.preventDefault();
 
-   console.log("Venue created!");
+   const data = new FormData(event.currentTarget);
+
+   const formValues: CreateVenueProps = {
+      name: "",
+      description: "",
+      media: [{ url: "", alt: "" }],
+      price: 0,
+      maxGuests: 0,
+      rating: 0,
+      meta: {
+         wifi: false,
+         parking: false,
+         breakfast: false,
+         pets: false,
+      },
+   };
+
+   formValues.name = data.get("name") as string;
+   formValues.description = data.get("description") as string;
+   formValues.media[0].url = data.get("url") as string;
+   formValues.media[0].alt = data.get("alt") as string;
+   formValues.price = Number(data.get("price"));
+   formValues.maxGuests = Number(data.get("maxGuests"));
+   formValues.rating = Number(data.get("rating"));
+   formValues.meta.wifi = Boolean(data.get("wifi"));
+   formValues.meta.parking = Boolean(data.get("parking"));
+   formValues.meta.breakfast = Boolean(data.get("breakfast"));
+   formValues.meta.pets = Boolean(data.get("pets"));
+
+   console.log(formValues);
 };
 
 export const handleSubmit = async (

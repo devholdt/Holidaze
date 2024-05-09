@@ -57,6 +57,20 @@ export interface CreateBookingProps {
    [key: string]: FormDataEntryValue | number;
 }
 
+export interface CreateVenueProps {
+   name: string;
+   description: string;
+   media: { url: string; alt: string }[];
+   price: number;
+   maxGuests: number;
+   rating: number;
+   meta: {
+      wifi: boolean;
+      parking: boolean;
+      breakfast: boolean;
+      pets: boolean;
+   };
+}
 export enum FormAction {
    Register = "register",
    Login = "login",
