@@ -13,7 +13,9 @@ import {
    CakeIcon,
    FaceSmileIcon,
    FaceFrownIcon,
+   PencilSquareIcon,
 } from "@heroicons/react/24/outline";
+import Modal from "@/app/ui/Modal";
 
 const BookingDetails = ({ id }: { id: string }) => {
    const [booking, setBooking] = useState<any>(null);
@@ -55,28 +57,40 @@ const BookingDetails = ({ id }: { id: string }) => {
          </div>
 
          <div className="w-6/12">
-            <div className="flex flex-col">
-               <Subheading text="Your destination" left="" right="w-14 ms-2" />
-               <h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
-                  {booking.venue.name}
-               </h1>
-               <p className="font-extralight">
-                  <span className="font-normal">
-                     {formatDate(booking.dateFrom, {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "2-digit",
-                     })}
-                  </span>
-                  {" - "}
-                  <span className="font-normal">
-                     {formatDate(booking.dateTo, {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "2-digit",
-                     })}
-                  </span>
-               </p>
+            <div className="flex items-start justify-between">
+               <div className="flex flex-col">
+                  <Subheading
+                     text="Your destination"
+                     left=""
+                     right="w-14 ms-2"
+                  />
+                  <h1
+                     className={`${elMessiri.className} text-6xl tracking-wide`}
+                  >
+                     {booking.venue.name}
+                  </h1>
+                  <p className="font-extralight">
+                     <span className="font-normal">
+                        {formatDate(booking.dateFrom, {
+                           day: "2-digit",
+                           month: "2-digit",
+                           year: "2-digit",
+                        })}
+                     </span>
+                     {" - "}
+                     <span className="font-normal">
+                        {formatDate(booking.dateTo, {
+                           day: "2-digit",
+                           month: "2-digit",
+                           year: "2-digit",
+                        })}
+                     </span>
+                  </p>
+               </div>
+               <Modal
+                  modal="Edit booking"
+                  textContent={<PencilSquareIcon className="w-6" />}
+               />
             </div>
 
             <hr className="my-4" />

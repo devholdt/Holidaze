@@ -86,7 +86,7 @@ export default function DateRange({
 
    return (
       <fieldset>
-         <legend className="mb-1 text-blue">Pick dates:</legend>
+         <legend className="mb-1 text-blue">Pick dates</legend>
          <div className="flex items-center gap-2">
             <DatePicker
                selectsRange={true}

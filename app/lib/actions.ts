@@ -95,6 +95,36 @@ export const editBooking = async (
    }
 };
 
+export const deleteBooking = async (id: string) => {
+   if (confirm("Are you sure you want to delete this booking?") === true) {
+      try {
+         const response = await fetch(`${API_PATH}/holidaze/bookings/${id}`, {
+            method: "DELETE",
+            headers: headers("application/json"),
+         });
+
+         if (!response.ok) {
+            const errorText = await response.text();
+            alert(
+               "error",
+               `An error occured (${response.status})`,
+               ".alert-container"
+            );
+            throw new Error(`Failed to delete booking: ${errorText}`);
+         }
+
+         alert("success", `Booking successfully deleted!`, ".alert-container");
+
+         setTimeout(() => {
+            window.location.href = "/";
+         }, 2000);
+      } catch (error) {
+         console.error("An error occurred while deleting a booking: ", error);
+         throw error;
+      }
+   }
+};
+
 export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    event.preventDefault();
 

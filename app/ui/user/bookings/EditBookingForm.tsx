@@ -7,7 +7,7 @@ import { formatDateISO } from "@/app/lib/utils";
 import { getBookingById, getVenueById } from "@/app/lib/data";
 import { usePathname } from "next/navigation";
 import { BookingProps } from "@/app/lib/definitions";
-import { editBooking } from "@/app/lib/actions";
+import { editBooking, deleteBooking } from "@/app/lib/actions";
 
 export default function Form() {
    const pathname = usePathname();
@@ -50,25 +50,31 @@ export default function Form() {
    return (
       <form
          onSubmit={(event) => editBooking(event, bookingId)}
-         className="flex max-w-[480px] flex-col justify-center"
+         className="flex min-w-[240px] max-w-[480px] flex-col justify-center"
       >
          <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
             Edit booking
          </h4>
 
-         <input
-            type="hidden"
-            name="dateFrom"
-            value={formatDateValue(startDate)}
-         />
-         <input type="hidden" name="dateTo" value={formatDateValue(endDate)} />
-         <DateRange
-            dateRange={dateRange}
-            setDateRange={setDateRange}
-            bookedDates={bookedDates}
-         />
+         <div className="mb-4 flex flex-col">
+            <input
+               type="hidden"
+               name="dateFrom"
+               value={formatDateValue(startDate)}
+            />
+            <input
+               type="hidden"
+               name="dateTo"
+               value={formatDateValue(endDate)}
+            />
+            <DateRange
+               dateRange={dateRange}
+               setDateRange={setDateRange}
+               bookedDates={bookedDates}
+            />
+         </div>
 
-         <div className="mt-4 flex flex-col">
+         <div className="mb-4 flex flex-col">
             <label htmlFor="guests">Guests</label>
             <div>
                <input
@@ -79,13 +85,21 @@ export default function Form() {
                   max={booking.venue.maxGuests}
                   placeholder={`1 - ${booking.venue.maxGuests.toString()}`}
                   className="w-20 rounded border border-lightGrey bg-background p-2 text-center hover:border-grey"
+                  required
                />
                <span className="ms-2 text-red">
                   max {booking.venue.maxGuests}
                </span>
             </div>
          </div>
-         <Button text="Book" styles="mt-4" />
+         <Button text="Confirm" styles="mb-4" primary={false} />
+         <button
+            onClick={() => deleteBooking(bookingId)}
+            className="mx-auto w-fit lowercase underline"
+            type="button"
+         >
+            Delete booking
+         </button>
          <div className="alert-container"></div>
       </form>
    );
