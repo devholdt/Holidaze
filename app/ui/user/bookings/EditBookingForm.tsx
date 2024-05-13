@@ -95,7 +95,7 @@ export default function Form() {
          <Button text="Confirm" styles="mb-4" primary={false} />
          <button
             onClick={() => deleteBooking(bookingId)}
-            className="mx-auto w-fit lowercase underline"
+            className="mx-auto w-fit font-light lowercase underline"
             type="button"
          >
             Delete booking
