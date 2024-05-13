@@ -38,11 +38,6 @@ export default function Form() {
       return <div>Loading...</div>;
    }
 
-   if (booking !== null && venue !== null) {
-      console.log("Booking: ", booking);
-      console.log("Venue: ", venue);
-   }
-
    const formatDateValue = (date: Date | null) => {
       return date ? formatDateISO(date).toString() : "";
    };
