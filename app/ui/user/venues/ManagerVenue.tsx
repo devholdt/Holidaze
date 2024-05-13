@@ -38,6 +38,7 @@ const ManagerVenue = ({ venue }: { venue: VenueProps }) => {
             <h2 className={`${elMessiri.className} my-3 text-5xl font-medium`}>
                {venue.name}
             </h2>
+
             <p className="font-light">{description}</p>
             <hr className="my-2 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">

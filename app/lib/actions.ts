@@ -7,6 +7,7 @@ import {
 } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
+import backgroundReflection from "@/public/background-reflection.jpg";
 
 export const createBooking = async (
    event: React.FormEvent<HTMLFormElement>
@@ -149,6 +150,13 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
       },
    };
 
+   if (formValues.media && formValues.media.length > 0) {
+      if (formValues.media[0].url === "") {
+         formValues.media[0].url =
+            "https://images.unsplash.com/photo-1714659046842-7dcf4ab2a58f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+      }
+   }
+
    try {
       const response = await fetch(API_URLS.VENUES, {
          method: "POST",
@@ -238,6 +246,36 @@ export const editVenue = async (
    } catch (error) {
       console.error("An error occurred while editing a venue: ", error);
       throw error;
+   }
+};
+
+export const deleteVenue = async (id: string) => {
+   if (confirm("Are you sure you want to delete this venue?") === true) {
+      try {
+         const response = await fetch(`${API_URLS.VENUES}/${id}`, {
+            method: "DELETE",
+            headers: headers("application/json"),
+         });
+
+         if (!response.ok) {
+            const errorText = await response.text();
+            alert(
+               "error",
+               `An error occured (${response.status})`,
+               ".alert-container"
+            );
+            throw new Error(`Failed to delete venue: ${errorText}`);
+         }
+
+         alert("success", `Venue successfully deleted!`, ".alert-container");
+
+         setTimeout(() => {
+            window.location.href = "/user/venues";
+         }, 2000);
+      } catch (error) {
+         console.error("An error occurred while deleting a venue: ", error);
+         throw error;
+      }
    }
 };
 

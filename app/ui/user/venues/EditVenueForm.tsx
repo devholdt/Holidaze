@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { getVenueById } from "@/app/lib/data";
 import { Button } from "@/app/ui/buttons";
-import { editVenue } from "@/app/lib/actions";
+import { editVenue, deleteVenue } from "@/app/lib/actions";
 
 export default function Form() {
    const pathname = usePathname();
@@ -48,7 +48,10 @@ export default function Form() {
 
       setVenue((prevVenue: any) => ({
          ...prevVenue,
-         [name]: checked,
+         meta: {
+            ...prevVenue.meta,
+            [name]: checked,
+         },
       }));
    };
 
@@ -75,7 +78,7 @@ export default function Form() {
                id="name"
                name="name"
                placeholder="Enter venue name"
-               value={venue?.name || ""}
+               value={venue.name || ""}
                onChange={handleChange}
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />
@@ -90,7 +93,7 @@ export default function Form() {
                   id="description"
                   name="description"
                   placeholder="Enter description"
-                  value={venue?.description || ""}
+                  value={venue.description || ""}
                   onChange={handleChange}
                   className="h-full w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
@@ -106,7 +109,7 @@ export default function Form() {
                      id="price"
                      name="price"
                      placeholder="£0.00"
-                     value={venue?.price || 0}
+                     value={venue.price || 0}
                      onChange={handleChange}
                      className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                   />
@@ -122,7 +125,7 @@ export default function Form() {
                      name="maxGuests"
                      min="1"
                      placeholder="1"
-                     value={venue?.maxGuests || 0}
+                     value={venue.maxGuests || 0}
                      onChange={handleChange}
                      className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                   />
@@ -156,7 +159,7 @@ export default function Form() {
                      id="wifi"
                      name="wifi"
                      value="wifi"
-                     checked={venue?.wifi || false}
+                     checked={venue?.meta.wifi || false}
                      onChange={handleCheckboxChange}
                   />
                   <label className="text-dark" htmlFor="wifi">
@@ -169,7 +172,7 @@ export default function Form() {
                      id="parking"
                      name="parking"
                      value="parking"
-                     checked={venue?.parking || false}
+                     checked={venue?.meta.parking || false}
                      onChange={handleCheckboxChange}
                   />
                   <label className="text-dark" htmlFor="parking">
@@ -182,7 +185,7 @@ export default function Form() {
                      id="breakfast"
                      name="breakfast"
                      value="breakfast"
-                     checked={venue?.breakfast || false}
+                     checked={venue?.meta.breakfast || false}
                      onChange={handleCheckboxChange}
                   />
                   <label className="text-dark" htmlFor="breakfast">
@@ -195,7 +198,7 @@ export default function Form() {
                      id="pets"
                      name="pets"
                      value="pets"
-                     checked={venue?.pets || false}
+                     checked={venue?.meta.pets || false}
                      onChange={handleCheckboxChange}
                   />
                   <label className="text-dark" htmlFor="pets">
@@ -214,7 +217,7 @@ export default function Form() {
                id="url"
                name="url"
                placeholder="Enter URL"
-               value={venue?.media[0].url || ""}
+               //    value={venue.media[0].url || ""}
                onChange={handleChange}
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />
@@ -228,13 +231,21 @@ export default function Form() {
                id="alt"
                name="alt"
                placeholder="Enter alt text"
-               value={venue?.media[0].alt || ""}
+               //    value={venue.media[0].alt || ""}
                onChange={handleChange}
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />
          </div>
 
-         <Button text="Confirm" styles="w-[150px] mx-auto" primary={false} />
+         <Button text="Confirm" styles="mb-4" primary={false} />
+
+         <button
+            onClick={() => deleteVenue(venueId)}
+            className="mx-auto w-fit font-light lowercase underline"
+            type="button"
+         >
+            Delete venue
+         </button>
 
          <div className="alert-container"></div>
       </form>
