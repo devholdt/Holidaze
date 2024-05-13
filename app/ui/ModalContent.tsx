@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { ModalContentProps } from "@/app/lib/definitions";
 import EditProfileMediaForm from "@/app/ui/user/EditProfileMediaForm";
 import CreateVenueForm from "@/app/ui/user/venues/CreateVenueForm";
+import EditVenueForm from "@/app/ui/user/venues/EditVenueForm";
 import EditBookingForm from "@/app/ui/user/bookings/EditBookingForm";
 import LogoutModal from "@/app/ui/user/LogoutModal";
 
@@ -37,6 +38,8 @@ const ModalContent: React.FC<ModalContentProps> = ({
             return <EditProfileMediaForm type="banner" />;
          case "Create venue":
             return <CreateVenueForm />;
+         case "Edit venue":
+            return <EditVenueForm />;
          case "Edit booking":
             return <EditBookingForm />;
          case "Log out":

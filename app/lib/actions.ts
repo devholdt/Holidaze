@@ -82,11 +82,11 @@ export const editBooking = async (
       const json = await response.json();
       const booking = json.data;
 
-      alert(
-         "success",
-         `Booking successfully edited! <br /> <span class="font-light">Click <a href="/user/bookings/${booking.id}" class="underline font-medium">here</a> to view.</span>`,
-         ".alert-container"
-      );
+      alert("success", `Booking successfully edited!`, ".alert-container");
+
+      setTimeout(() => {
+         window.location.href = `/user/bookings/${booking.id}`;
+      }, 2000);
 
       return booking;
    } catch (error) {
@@ -178,6 +178,66 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
       return venue;
    } catch (error) {
       console.error("An error occurred while creating a venue: ", error);
+   }
+};
+
+export const editVenue = async (
+   event: React.FormEvent<HTMLFormElement>,
+   id: string
+) => {
+   event.preventDefault();
+
+   const data = new FormData(event.currentTarget);
+   const formValues: CreateVenueProps = {
+      name: data.get("name") as string,
+      description: data.get("description") as string,
+      media: [
+         {
+            url: (data.get("url") as string) || "",
+            alt: (data.get("alt") as string) || "",
+         },
+      ],
+      price: Number(data.get("price")),
+      maxGuests: Number(data.get("maxGuests")),
+      rating: Number(data.get("rating") || 0),
+      meta: {
+         wifi: data.get("wifi") === "wifi",
+         parking: data.get("parking") === "parking",
+         breakfast: data.get("breakfast") === "breakfast",
+         pets: data.get("pets") === "pets",
+      },
+   };
+
+   try {
+      const response = await fetch(`${API_URLS.VENUES}/${id}`, {
+         method: "PUT",
+         headers: headers("application/json"),
+         body: JSON.stringify(formValues),
+      });
+
+      if (!response.ok) {
+         const errorText = await response.text();
+         alert(
+            "error",
+            `An error occured (${response.status})`,
+            ".alert-container"
+         );
+         throw new Error(`Failed to edit venue: ${errorText}`);
+      }
+
+      const json = await response.json();
+      const venue = json.data;
+
+      alert("success", `Venue successfully edited!`, ".alert-container");
+
+      setTimeout(() => {
+         window.location.href = `/user/venues/${venue.id}`;
+      }, 2000);
+
+      return venue;
+   } catch (error) {
+      console.error("An error occurred while editing a venue: ", error);
+      throw error;
    }
 };
 
