@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Button } from "@/app/ui/buttons";
+import DatePick from "@/app/ui/venues/date-picker";
 
 const EditBookingForm = () => {
    return (
@@ -13,15 +14,7 @@ const EditBookingForm = () => {
             Edit booking
          </h4>
 
-         <div className="mb-4 flex flex-col">
-            <label htmlFor="dateFrom">Start Date</label>
-            <input type="date" id="dateFrom" name="dateFrom" />
-         </div>
-
-         <div className="mb-4 flex flex-col">
-            <label htmlFor="dateTo">End Date</label>
-            <input type="date" id="dateTo" name="dateTo" />
-         </div>
+         <DatePick />
 
          <div className="mb-4 flex flex-col">
             <label htmlFor="guests">Guests</label>
