@@ -116,7 +116,7 @@ export const deleteBooking = async (id: string) => {
          alert("success", `Booking successfully deleted!`, ".alert-container");
 
          setTimeout(() => {
-            window.location.href = "/";
+            window.location.href = "/user/bookings";
          }, 2000);
       } catch (error) {
          console.error("An error occurred while deleting a booking: ", error);
