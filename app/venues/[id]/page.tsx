@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getVenueById } from "@/app/lib/data";
-import VenueImage from "@/app/ui/venues/venue-image";
+import VenueImage from "@/app/ui/venues/VenueImage";
 import { elMessiri } from "@/app/ui/fonts";
 import { BookingProps } from "@/app/lib/definitions";
 import {

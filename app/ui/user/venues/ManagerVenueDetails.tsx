@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { elMessiri } from "@/app/ui/fonts";
-import { formatDate } from "@/app/lib/utils";
-import { getBookingById } from "@/app/lib/data";
+import { getVenueById } from "@/app/lib/data";
 import Image, { StaticImageData } from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Subheading from "@/app/ui/subheading";
@@ -17,25 +16,25 @@ import {
 } from "@heroicons/react/24/outline";
 import Modal from "@/app/ui/Modal";
 
-const BookingDetails = ({ id }: { id: string }) => {
-   const [booking, setBooking] = useState<any>(null);
+const ManagerVenueDetails = ({ id }: { id: string }) => {
+   const [venue, setVenue] = useState<any>(null);
    const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
-      booking?.venue.media?.[0].url || backgroundReflection
+      venue?.media?.[0].url || backgroundReflection
    );
 
    useEffect(() => {
-      const fetchBooking = async () => {
-         setBooking(await getBookingById(id));
+      const fetchVenue = async () => {
+         setVenue(await getVenueById(id));
       };
 
-      fetchBooking();
+      fetchVenue();
    }, [id]);
 
    useEffect(() => {
-      setImgSrc(booking?.venue?.media?.[0]?.url || backgroundReflection);
-   }, [booking]);
+      setImgSrc(venue?.media?.[0].url || backgroundReflection);
+   }, [venue]);
 
-   if (!booking) {
+   if (!venue) {
       return (
          <div className="mt-12 flex flex-col items-center justify-center text-center">
             <p>Loading...</p>
@@ -48,7 +47,7 @@ const BookingDetails = ({ id }: { id: string }) => {
          <div className="relative w-6/12">
             <Image
                src={imgSrc}
-               alt={booking?.venue?.media?.[0]?.alt || "Venue image"}
+               alt={venue?.media?.[0]?.alt || "Venue image"}
                onError={() => setImgSrc(backgroundReflection)}
                fill
                unoptimized
@@ -59,36 +58,15 @@ const BookingDetails = ({ id }: { id: string }) => {
          <div className="w-6/12">
             <div className="flex items-start justify-between">
                <div className="flex flex-col">
-                  <Subheading
-                     text="Your destination"
-                     left=""
-                     right="w-14 ms-2"
-                  />
+                  <Subheading text="Your venue" left="" right="w-14 ms-2" />
                   <h1
-                     className={`${elMessiri.className} text-6xl tracking-wide`}
+                     className={`${elMessiri.className} text-5xl tracking-wide`}
                   >
-                     {booking.venue.name}
+                     {venue.name}
                   </h1>
-                  <p className="font-extralight">
-                     <span className="font-normal">
-                        {formatDate(booking.dateFrom, {
-                           day: "2-digit",
-                           month: "2-digit",
-                           year: "2-digit",
-                        })}
-                     </span>
-                     {" - "}
-                     <span className="font-normal">
-                        {formatDate(booking.dateTo, {
-                           day: "2-digit",
-                           month: "2-digit",
-                           year: "2-digit",
-                        })}
-                     </span>
-                  </p>
                </div>
                <Modal
-                  modal="Edit booking"
+                  modal="Edit venue"
                   textContent={<PencilSquareIcon className="w-6" />}
                />
             </div>
@@ -97,17 +75,17 @@ const BookingDetails = ({ id }: { id: string }) => {
 
             <div className="mb-4 flex gap-2 font-extralight">
                <p>
-                  <span className="font-normal">£{booking.venue.price}</span> /
-                  night
+                  <span className="font-normal">£{venue.price}</span> / night
                </p>
                |
                <p>
-                  <span className="font-normal">{booking.guests}</span> guests
+                  <span className="font-normal">{venue.maxGuests}</span> max
+                  guests
                </p>
             </div>
 
             <p className="font-extralight">
-               {booking.venue.description || "No description available"}
+               {venue.description || "No description available"}
             </p>
 
             <hr className="my-4" />
@@ -117,7 +95,7 @@ const BookingDetails = ({ id }: { id: string }) => {
             </h2>
             <div className="flex flex-col gap-4">
                <p className="flex gap-2">
-                  {booking.venue.meta.wifi ? (
+                  {venue.meta.wifi ? (
                      <>
                         <WifiIcon className="w-6" /> Wifi
                      </>
@@ -128,7 +106,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   )}
                </p>
                <p className="flex gap-2">
-                  {booking.venue.meta.parking ? (
+                  {venue.meta.parking ? (
                      <>
                         <TruckIcon className="w-6" /> Parking
                      </>
@@ -139,7 +117,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   )}
                </p>
                <p className="flex gap-2">
-                  {booking.venue.meta.breakfast ? (
+                  {venue.meta.breakfast ? (
                      <>
                         <CakeIcon className="w-6" /> Breakfast
                      </>
@@ -150,7 +128,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   )}
                </p>
                <p className="flex gap-2">
-                  {booking.venue.meta.pets ? (
+                  {venue.meta.pets ? (
                      <>
                         <FaceSmileIcon className="w-6" /> Pets allowed
                      </>
@@ -166,4 +144,4 @@ const BookingDetails = ({ id }: { id: string }) => {
    );
 };
 
-export default BookingDetails;
+export default ManagerVenueDetails;

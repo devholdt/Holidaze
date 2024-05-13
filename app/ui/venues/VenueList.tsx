@@ -6,7 +6,7 @@ import { useState } from "react";
 import { VenueProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
-import VenueImage from "@/app/ui/venues/venue-image";
+import VenueImage from "@/app/ui/venues/VenueImage";
 import { MotionDiv } from "@/app/lib/motion";
 
 const VenueList: React.FC<{

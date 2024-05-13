@@ -2,8 +2,8 @@
 
 import React, { useEffect } from "react";
 import { ModalContentProps } from "@/app/lib/definitions";
-import EditProfileMediaForm from "@/app/ui/user/edit-profile-media-form";
-import CreateVenueForm from "@/app/ui/user/CreateVenueForm";
+import EditProfileMediaForm from "@/app/ui/user/EditProfileMediaForm";
+import CreateVenueForm from "@/app/ui/user/venues/CreateVenueForm";
 import EditBookingForm from "@/app/ui/user/bookings/EditBookingForm";
 import LogoutModal from "@/app/ui/user/LogoutModal";
 

@@ -3,7 +3,7 @@ import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
 import Search from "@/app/ui/venues/search";
 import { getVenues } from "@/app/lib/data";
-import VenueList from "@/app/ui/venues/venue-list";
+import VenueList from "@/app/ui/venues/VenueList";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {

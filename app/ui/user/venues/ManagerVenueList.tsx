@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { getManagerVenues } from "@/app/lib/data";
 import { VenueProps } from "@/app/lib/definitions";
-import ManagerVenue from "@/app/ui/user/ManagerVenue";
+import ManagerVenue from "@/app/ui/user/venues/ManagerVenue";
 
 const ManagerVenueList: React.FC = () => {
    const [venues, setVenues] = useState<VenueProps[]>([]);

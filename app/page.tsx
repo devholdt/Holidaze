@@ -4,7 +4,7 @@ import { elMessiri } from "@/app/ui/fonts";
 import waterImg from "@/public/texture-water-lighter.jpg";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import { getVenues } from "@/app/lib/data";
-import VenueList from "@/app/ui/venues/venue-list";
+import VenueList from "@/app/ui/venues/VenueList";
 import { Suspense } from "react";
 import { LinkButton } from "@/app/ui/buttons";
 import Hero from "@/app/ui/hero";
