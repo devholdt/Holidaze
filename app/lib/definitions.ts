@@ -43,10 +43,19 @@ export interface BookingFormProps {
    bookedDates: { dateFrom: string; dateTo: string }[];
 }
 
-export interface ModalsProps {
+export interface ModalContentProps {
    modalContent: string;
    hideModal: () => void;
    logout?: () => void;
+}
+
+export interface ModalProps {
+   modal: string;
+   textContent: string;
+}
+
+export interface LogoutProps {
+   hideModal: () => void;
 }
 
 export interface EditProfileMediaFormProps {

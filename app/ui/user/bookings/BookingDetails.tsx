@@ -6,6 +6,7 @@ import { formatDate } from "@/app/lib/utils";
 import { getBookingById } from "@/app/lib/data";
 import Image, { StaticImageData } from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
+import Subheading from "@/app/ui/subheading";
 import {
    WifiIcon,
    TruckIcon,
@@ -14,8 +15,7 @@ import {
    FaceFrownIcon,
    PencilSquareIcon,
 } from "@heroicons/react/24/outline";
-
-import Subheading from "@/app/ui/subheading";
+import Modal from "@/app/ui/Modal";
 
 const BookingDetails = ({ id }: { id: string }) => {
    const [booking, setBooking] = useState<any>(null);
@@ -88,9 +88,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
                <div>
-                  <button>
-                     <PencilSquareIcon className="w-6" />
-                  </button>
+                  <Modal modal="Edit booking" textContent="Edit booking" />
                </div>
             </div>
 

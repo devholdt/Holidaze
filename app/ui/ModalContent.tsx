@@ -1,11 +1,16 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { ModalsProps } from "@/app/lib/definitions";
+import { ModalContentProps } from "@/app/lib/definitions";
 import EditProfileMediaForm from "@/app/ui/user/edit-profile-media-form";
 import CreateVenueForm from "@/app/ui/user/CreateVenueForm";
+import EditBookingForm from "@/app/ui/user/bookings/EditBookingForm";
+import LogoutModal from "@/app/ui/user/LogoutModal";
 
-const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
+const ModalContent: React.FC<ModalContentProps> = ({
+   modalContent,
+   hideModal,
+}) => {
    const modalRef = React.useRef<HTMLDivElement>(null);
 
    useEffect(() => {
@@ -31,26 +36,10 @@ const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
             return <EditProfileMediaForm type="banner" />;
          case "Create venue":
             return <CreateVenueForm />;
+         case "Edit booking":
+            return <EditBookingForm />;
          case "Log out":
-            return (
-               <>
-                  <h4>Are you sure you want to log out?</h4>
-                  <div className="flex justify-evenly gap-2">
-                     <button
-                        onClick={hideModal}
-                        className="mt-4 bg-yellow px-10 py-3 text-lg font-extralight uppercase tracking-widest text-blue shadow-md transition hover:bg-darkYellow"
-                     >
-                        Go Back
-                     </button>
-                     <button
-                        onClick={logout}
-                        className="mt-4 bg-dark px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white shadow-md transition hover:bg-black"
-                     >
-                        Logout
-                     </button>
-                  </div>
-               </>
-            );
+            return <LogoutModal hideModal={hideModal} />;
          default:
             return <p>No content available.</p>;
       }
@@ -74,4 +63,4 @@ const Modals: React.FC<ModalsProps> = ({ modalContent, hideModal, logout }) => {
    );
 };
 
-export default Modals;
+export default ModalContent;

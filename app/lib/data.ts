@@ -43,17 +43,11 @@ export async function getLoggedInUser() {
       headers: headers("application/json"),
    };
 
-   // console.log(url);
-
    try {
       const response = await fetch(url, options);
 
-      // console.log(response);
-
       const json = await response.json();
       const data = json.data;
-
-      // console.log(data);
 
       return data;
    } catch (error) {
@@ -92,8 +86,6 @@ export async function getBookingById(id: string) {
 
    try {
       const response = await fetch(url, options);
-
-      // console.log(response);
 
       const json = await response.json();
       const data = json.data;

@@ -5,15 +5,13 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { getItem } from "@/app/lib/storage";
 import { menuItems, loggedInMenuItems } from "@/app/lib/constants";
-import Modals from "@/app/ui/modals";
 import UserDetails from "@/app/ui/user/user-details";
 import { getLoggedInUser } from "@/app/lib/data";
+import Modal from "@/app/ui/Modal";
 
 const UserDropdown = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const [user, setUser] = useState<any>(null);
-   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-   const [modalContent, setModalContent] = useState<string>("");
    const dropdownRef = useRef<HTMLDivElement>(null);
 
    const toggle = () => setIsOpen(!isOpen);
@@ -43,20 +41,6 @@ const UserDropdown = () => {
       }
    }, []);
 
-   const modalActions = {
-      show: useCallback((content: string) => {
-         setModalContent(content);
-         setIsModalOpen(true);
-      }, []),
-      hide: useCallback(() => setIsModalOpen(false), []),
-      logout: useCallback(() => {
-         localStorage.removeItem("user");
-         localStorage.removeItem("token");
-         localStorage.removeItem("name");
-         window.location.href = "/";
-      }, []),
-   };
-
    const renderMenuItems = () => {
       const itemsToDisplay = user ? loggedInMenuItems : menuItems;
       return itemsToDisplay.map((menuItem, index) => (
@@ -64,15 +48,7 @@ const UserDropdown = () => {
             {["Change avatar", "Change banner", "Log out"].includes(
                menuItem.title
             ) ? (
-               <button
-                  onClick={() => {
-                     modalActions.show(menuItem.title);
-                     setIsOpen(false);
-                  }}
-                  className="px-4 py-3 text-left font-extralight text-dark hover:bg-lighterGrey"
-               >
-                  {menuItem.title}
-               </button>
+               <Modal modal={menuItem.title} textContent={menuItem.title} />
             ) : (
                <Link
                   href={menuItem.route}
@@ -121,13 +97,6 @@ const UserDropdown = () => {
             {user ? <UserDetails /> : null}
             <div className="flex flex-col pb-6">{renderMenuItems()}</div>
          </div>
-         {isModalOpen && (
-            <Modals
-               modalContent={modalContent}
-               hideModal={modalActions.hide}
-               logout={modalActions.logout}
-            />
-         )}
       </div>
    );
 };

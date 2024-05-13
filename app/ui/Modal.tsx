@@ -1,18 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import Modals from "@/app/ui/modals";
+import ModalContent from "@/app/ui/ModalContent";
 import { Button } from "@/app/ui/buttons";
+import { ModalProps } from "@/app/lib/definitions";
 
-const CreateVenueButton = () => {
+const Modal: React.FC<ModalProps> = ({ modal, textContent }) => {
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
    const [modalContent, setModalContent] = useState<string>("");
-   const dropdownRef = useRef<HTMLDivElement>(null);
+   const modalRef = useRef<HTMLDivElement>(null);
 
    const handleClickOutside = useCallback((event: MouseEvent) => {
       if (
-         dropdownRef.current &&
-         !dropdownRef.current.contains(event.target as Node)
+         modalRef.current &&
+         !modalRef.current.contains(event.target as Node)
       ) {
          setIsModalOpen(false);
       }
@@ -34,15 +35,15 @@ const CreateVenueButton = () => {
 
    return (
       <>
-         <Button
-            text="Create venue"
-            onClick={() => modalActions.show("Create venue")}
-         />
+         <Button text={textContent} onClick={() => modalActions.show(modal)} />
          {isModalOpen && (
-            <Modals modalContent={modalContent} hideModal={modalActions.hide} />
+            <ModalContent
+               modalContent={modalContent}
+               hideModal={modalActions.hide}
+            />
          )}
       </>
    );
 };
 
-export default CreateVenueButton;
+export default Modal;
