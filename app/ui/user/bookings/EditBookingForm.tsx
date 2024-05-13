@@ -35,7 +35,7 @@ export default function Form() {
    }, [bookingId]);
 
    if (!booking || !venue) {
-      return <div>Loading...</div>;
+      return <p>Loading...</p>;
    }
 
    const formatDateValue = (date: Date | null) => {

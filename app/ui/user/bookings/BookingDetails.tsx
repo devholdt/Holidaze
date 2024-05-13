@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate } from "@/app/lib/utils";
 import { getBookingById } from "@/app/lib/data";
@@ -38,7 +38,7 @@ const BookingDetails = ({ id }: { id: string }) => {
    if (!booking) {
       return (
          <div className="mt-12 flex flex-col items-center justify-center text-center">
-            <p>Booking not found</p>
+            <p>Loading...</p>
          </div>
       );
    }
