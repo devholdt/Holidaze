@@ -51,6 +51,50 @@ export const createBooking = async (
    }
 };
 
+export const editBooking = async (
+   event: React.FormEvent<HTMLFormElement>,
+   id: string
+) => {
+   event.preventDefault();
+
+   const data = new FormData(event.currentTarget);
+   const formValues: CreateBookingProps = Object.fromEntries(data.entries());
+
+   formValues.guests = Number(formValues.guests);
+
+   try {
+      const response = await fetch(`${API_PATH}/holidaze/bookings/${id}`, {
+         method: "PUT",
+         headers: headers("application/json"),
+         body: JSON.stringify(formValues),
+      });
+
+      if (!response.ok) {
+         const errorText = await response.text();
+         alert(
+            "error",
+            `An error occured (${response.status})`,
+            ".alert-container"
+         );
+         throw new Error(`Failed to edit booking: ${errorText}`);
+      }
+
+      const json = await response.json();
+      const booking = json.data;
+
+      alert(
+         "success",
+         `Booking successfully edited! <br /> <span class="font-light">Click <a href="/user/bookings/${booking.id}" class="underline font-medium">here</a> to view.</span>`,
+         ".alert-container"
+      );
+
+      return booking;
+   } catch (error) {
+      console.error("An error occurred while editing a booking: ", error);
+      throw error;
+   }
+};
+
 export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    event.preventDefault();
 

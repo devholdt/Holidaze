@@ -15,13 +15,25 @@ export const formatDate = (
    return formatter.format(date);
 };
 
+export const formatDateISO = (date: Date | null) => {
+   if (!date) return "";
+   const localDate = new Date(date);
+   return localDate;
+};
+
 export const formatNumber = (number: number, locale: string = "en-GB") => {
    const formatter = new Intl.NumberFormat(locale);
    return formatter.format(number);
 };
 
+export const getTomorrowDate = () => {
+   const tomorrow = new Date();
+   tomorrow.setDate(tomorrow.getDate() + 1);
+   return tomorrow;
+};
+
 export const alert = (
-   type: "success" | "error",
+   type: "success" | "error" | "hidden",
    message: string,
    target: string
 ) => {
@@ -33,17 +45,20 @@ export const alert = (
 
    const wrapper = document.createElement("div");
 
+   let textContent;
    let styles;
    let icon;
 
    if (type === "success") {
+      textContent = message;
       icon = iconCheck;
-      styles = "border-lightGreen border text-green";
+      styles = "inline-block border-lightGreen border text-green";
    }
 
    if (type === "error") {
+      textContent = message;
       icon = iconXmark;
-      styles = "border-red border text-red";
+      styles = "inline-block border-red border text-red";
    }
 
    if (wrapper) {
@@ -53,7 +68,7 @@ export const alert = (
                ${icon}
             </p>
             <p class="text-wrap truncate">
-               ${message}
+               ${textContent}
             </p>
          </div>`;
    }

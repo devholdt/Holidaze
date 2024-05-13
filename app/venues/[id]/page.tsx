@@ -107,7 +107,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                   </div>
                </div>
                <div className="bg-white px-10 py-8">
-                  <h3 className={`${elMessiri.className} text-3xl`}>
+                  <h3 className={`${elMessiri.className} mb-4 text-3xl`}>
                      Book this venue
                   </h3>
                   <Form

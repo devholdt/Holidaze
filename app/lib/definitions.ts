@@ -46,7 +46,7 @@ export interface BookingFormProps {
 export interface ModalContentProps {
    modalContent: string;
    hideModal: () => void;
-   logout?: () => void;
+   id?: string;
 }
 
 export interface ModalProps {
@@ -81,6 +81,12 @@ export interface CreateVenueProps {
       pets: boolean;
    };
 }
+
+export type DateRangeProps = {
+   dateRange: [Date | null, Date | null];
+   setDateRange: (update: [Date | null, Date | null]) => void;
+   bookedDates?: { dateFrom: string; dateTo: string }[];
+};
 
 export enum FormAction {
    Register = "register",

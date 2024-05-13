@@ -10,6 +10,7 @@ import LogoutModal from "@/app/ui/user/LogoutModal";
 const ModalContent: React.FC<ModalContentProps> = ({
    modalContent,
    hideModal,
+   id,
 }) => {
    const modalRef = React.useRef<HTMLDivElement>(null);
 
