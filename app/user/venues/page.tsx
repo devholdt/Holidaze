@@ -13,7 +13,11 @@ export default function Page() {
          <Hero heading="Venues" headingLevel={1} subheading="Your" />
 
          <div className="mt-8 flex justify-center">
-            <Modal modal="Create venue" textContent="Create venue" />
+            <Modal
+               modal="Create venue"
+               textContent="Create venue"
+               buttonStyles="px-6 py-3 text-lg font-extralight uppercase tracking-widest transition bg-brown text-white hover:bg-darkBrown"
+            />
          </div>
 
          <ManagerVenueList />

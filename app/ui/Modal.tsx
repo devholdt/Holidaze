@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import ModalContent from "@/app/ui/ModalContent";
-import { Button } from "@/app/ui/buttons";
 import { ModalProps } from "@/app/lib/definitions";
 
-const Modal: React.FC<ModalProps> = ({ modal, textContent }) => {
+const Modal: React.FC<ModalProps> = ({ modal, textContent, buttonStyles }) => {
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
    const [modalContent, setModalContent] = useState<string>("");
    const modalRef = useRef<HTMLDivElement>(null);
@@ -35,7 +34,12 @@ const Modal: React.FC<ModalProps> = ({ modal, textContent }) => {
 
    return (
       <>
-         <Button text={textContent} onClick={() => modalActions.show(modal)} />
+         <button
+            onClick={() => modalActions.show(modal)}
+            className={buttonStyles}
+         >
+            {textContent}
+         </button>
          {isModalOpen && (
             <ModalContent
                modalContent={modalContent}

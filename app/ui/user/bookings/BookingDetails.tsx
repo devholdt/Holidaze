@@ -88,7 +88,10 @@ const BookingDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
                <div>
-                  <Modal modal="Edit booking" textContent="Edit booking" />
+                  <Modal
+                     modal="Edit booking"
+                     textContent={<PencilSquareIcon className="w-6" />}
+                  />
                </div>
             </div>
 

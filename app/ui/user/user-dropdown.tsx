@@ -48,7 +48,11 @@ const UserDropdown = () => {
             {["Change avatar", "Change banner", "Log out"].includes(
                menuItem.title
             ) ? (
-               <Modal modal={menuItem.title} textContent={menuItem.title} />
+               <Modal
+                  modal={menuItem.title}
+                  textContent={menuItem.title}
+                  buttonStyles="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey text-left"
+               />
             ) : (
                <Link
                   href={menuItem.route}

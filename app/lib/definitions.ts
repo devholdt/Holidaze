@@ -51,7 +51,8 @@ export interface ModalContentProps {
 
 export interface ModalProps {
    modal: string;
-   textContent: string;
+   textContent: React.ReactNode;
+   buttonStyles?: string;
 }
 
 export interface LogoutProps {
