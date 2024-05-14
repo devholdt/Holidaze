@@ -33,8 +33,12 @@ export interface VenueOwnerProps {
 }
 
 export interface MenuItemProps {
-   route: string;
    title: string;
+   route?: string;
+}
+
+export interface UserProps {
+   venueManager: boolean;
 }
 
 export interface BookingFormProps {

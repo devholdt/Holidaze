@@ -1,4 +1,4 @@
-import Logo from "@/app/ui/holidaze-logo";
+import Logo from "@/app/ui/Logo";
 import Subheading from "@/app/ui/subheading";
 import { elMessiri } from "@/app/ui/fonts";
 import waterImg from "@/public/texture-water-lighter.jpg";
@@ -22,7 +22,7 @@ export default async function Home() {
             className="flex h-96 items-center justify-center"
          >
             <h1>
-               <Logo src={logoWhiteSubtitle} width={400} height={200} />
+               <Logo src={logoWhiteSubtitle} styles="max-w-[560px]" />
             </h1>
          </div>
 

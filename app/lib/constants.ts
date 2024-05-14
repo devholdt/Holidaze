@@ -10,17 +10,25 @@ export const API_URLS = {
    BOOKINGS: `${API_PATH}/holidaze/bookings`,
 };
 
-export const menuItems: MenuItemProps[] = [
+export const loggedOutMenuItems: MenuItemProps[] = [
    { title: "Register", route: "/user/register" },
    { title: "Log in", route: "/user/login" },
    { title: "Contact us", route: "/contact" },
 ];
 
-export const loggedInMenuItems: MenuItemProps[] = [
+export const customerMenuItems: MenuItemProps[] = [
    { title: "Bookings", route: "/user/bookings" },
-   { title: "Venues", route: "/user/venues" },
-   { title: "Change avatar", route: "/user/avatar" },
-   { title: "Change banner", route: "/user/banner" },
-   { title: "Log out", route: "/user/logout" },
+   { title: "Change Avatar" },
+   { title: "Change Banner" },
+   { title: "Log out" },
+   { title: "Contact us", route: "/contact" },
+];
+
+export const managerMenuItems: MenuItemProps[] = [
+   { title: "Bookings", route: "/user/bookings" },
+   { title: "Your Venues", route: "/user/venues" },
+   { title: "Change Avatar" },
+   { title: "Change Banner" },
+   { title: "Log out" },
    { title: "Contact us", route: "/contact" },
 ];

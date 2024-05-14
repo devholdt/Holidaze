@@ -24,23 +24,6 @@ export default function Form() {
       return <p>Loading...</p>;
    }
 
-   //    const handleChange = (
-   //       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-   //    ) => {
-   //       const { name, value, type } = event.target as
-   //          | HTMLInputElement
-   //          | HTMLTextAreaElement;
-   //       const checked =
-   //          type === "checkbox"
-   //             ? (event.target as HTMLInputElement).checked
-   //             : undefined;
-
-   //       setVenue((prevVenue: any) => ({
-   //          ...prevVenue,
-   //          [name]: type === "checkbox" ? checked : value,
-   //       }));
-   //    };
-
    const handleChange = (
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
    ) => {

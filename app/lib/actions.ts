@@ -7,7 +7,6 @@ import {
 } from "@/app/lib/definitions";
 import { setItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
-import backgroundReflection from "@/public/background-reflection.jpg";
 
 export const createBooking = async (
    event: React.FormEvent<HTMLFormElement>
@@ -149,13 +148,6 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
          pets: data.get("pets") === "pets",
       },
    };
-
-   if (formValues.media && formValues.media.length > 0) {
-      if (formValues.media[0].url === "") {
-         formValues.media[0].url =
-            "https://images.unsplash.com/photo-1714659046842-7dcf4ab2a58f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-      }
-   }
 
    try {
       const response = await fetch(API_URLS.VENUES, {

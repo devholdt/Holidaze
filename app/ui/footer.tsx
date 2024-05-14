@@ -1,4 +1,4 @@
-import Logo from "@/app/ui/holidaze-logo";
+import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
 
 export default function Footer() {
@@ -6,7 +6,7 @@ export default function Footer() {
       <footer className="flex flex-col bg-darkBrown">
          <div className="flex items-center justify-around p-12">
             <div>
-               <Logo src={logoWhite} width={200} height={60} />
+               <Logo src={logoWhite} styles="max-w-[200px]" />
             </div>
             <div>
                <p className="max-w-96 text-lightBrown">

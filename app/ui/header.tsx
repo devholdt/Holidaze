@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Logo from "@/app/ui/holidaze-logo";
+import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
-import UserDropdown from "@/app/ui/user/user-dropdown";
+import UserDropdown from "@/app/ui/user/UserDropdown";
 import waterImg from "@/public/texture-water-sm.jpg";
 
 export default function Header() {
@@ -14,7 +14,7 @@ export default function Header() {
       >
          <div className="m-auto flex max-w-7xl items-center justify-between px-10 py-8">
             <Link href="/">
-               <Logo src={logoWhite} width={160} height={80} />
+               <Logo src={logoWhite} styles="max-w-[160px]" />
             </Link>
             <nav className="flex items-center gap-8">
                <Link href="/" className="uppercase text-white">
