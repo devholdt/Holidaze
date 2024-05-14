@@ -60,7 +60,7 @@ export async function getLoggedInUser() {
 }
 
 export async function getProfileBookings() {
-   const url = `${API_URLS.PROFILES}/${getItem("name")}/bookings?_venue=true`;
+   const url = `${API_URLS.PROFILES}/${getItem("name")}/bookings?_venue=true&sort=dateFrom&sortOrder=asc`;
    const options = {
       method: "GET",
       headers: headers("application/json"),
