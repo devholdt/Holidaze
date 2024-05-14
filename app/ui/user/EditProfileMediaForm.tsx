@@ -2,44 +2,47 @@
 
 import { Button } from "@/app/ui/buttons";
 import { handleEditProfileMedia } from "@/app/lib/actions";
-import { FormAction, EditProfileMediaFormProps } from "@/app/lib/definitions";
+import { EditProfileMediaFormProps } from "@/app/lib/definitions";
 
 const EditProfileMediaForm: React.FC<EditProfileMediaFormProps> = ({
    type,
+   action,
 }) => {
    return (
       <form
-         onSubmit={(event) => handleEditProfileMedia(event, FormAction.Avatar)}
+         onSubmit={(event) => handleEditProfileMedia(event, action)}
          className="flex w-[320px] flex-col justify-center"
       >
          <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
             Change {type}
          </h4>
          <div className="mb-4">
-            <label className="text-dark" htmlFor={`${type}Url`}>
+            <label className="text-dark" htmlFor={`url`}>
                {type} URL
             </label>
             <div className="relative">
                <input
                   className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  id={`${type}Url`}
+                  id={`url`}
                   type="text"
-                  name={`${type}Url`}
+                  name={`url`}
                   placeholder="Enter URL"
+                  required
                />
             </div>
          </div>
          <div className="mb-8">
-            <label className="text-dark" htmlFor={`${type}Alt`}>
+            <label className="text-dark" htmlFor={`alt`}>
                Alt text
             </label>
             <div className="relative">
                <input
                   className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  id={`${type}Alt`}
+                  id={`alt`}
                   type="text"
-                  name={`${type}Alt`}
+                  name={`alt`}
                   placeholder="Enter alt text"
+                  required
                />
             </div>
          </div>

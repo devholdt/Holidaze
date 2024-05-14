@@ -58,7 +58,7 @@ const UserDropdown: React.FC = () => {
    }, [user]);
 
    const MenuItem: React.FC<{ item: MenuItemProps }> = ({ item }) => {
-      if (["Change Avatar", "Change Banner", "Log out"].includes(item.title)) {
+      if (["Change avatar", "Change banner", "Log out"].includes(item.title)) {
          return (
             <>
                {item.title === "Log out" && <hr className="text-lightGrey" />}

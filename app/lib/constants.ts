@@ -18,17 +18,17 @@ export const loggedOutMenuItems: MenuItemProps[] = [
 
 export const customerMenuItems: MenuItemProps[] = [
    { title: "Bookings", route: "/user/bookings" },
-   { title: "Change Avatar" },
-   { title: "Change Banner" },
+   { title: "Change avatar" },
+   { title: "Change banner" },
    { title: "Log out" },
    { title: "Contact us", route: "/contact" },
 ];
 
 export const managerMenuItems: MenuItemProps[] = [
+   { title: "Your venues", route: "/user/venues" },
    { title: "Bookings", route: "/user/bookings" },
-   { title: "Your Venues", route: "/user/venues" },
-   { title: "Change Avatar" },
-   { title: "Change Banner" },
+   { title: "Change avatar" },
+   { title: "Change banner" },
    { title: "Log out" },
    { title: "Contact us", route: "/contact" },
 ];

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { ModalContentProps } from "@/app/lib/definitions";
+import { ModalContentProps, FormAction } from "@/app/lib/definitions";
 import EditProfileMediaForm from "@/app/ui/user/EditProfileMediaForm";
 import CreateVenueForm from "@/app/ui/user/venues/CreateVenueForm";
 import EditVenueForm from "@/app/ui/user/venues/EditVenueForm";
@@ -11,7 +11,6 @@ import LogoutModal from "@/app/ui/user/LogoutModal";
 const ModalContent: React.FC<ModalContentProps> = ({
    modalContent,
    hideModal,
-   id,
 }) => {
    const modalRef = React.useRef<HTMLDivElement>(null);
 
@@ -33,9 +32,13 @@ const ModalContent: React.FC<ModalContentProps> = ({
    const getContent = () => {
       switch (modalContent) {
          case "Change avatar":
-            return <EditProfileMediaForm type="avatar" />;
+            return (
+               <EditProfileMediaForm type="Avatar" action={FormAction.Avatar} />
+            );
          case "Change banner":
-            return <EditProfileMediaForm type="banner" />;
+            return (
+               <EditProfileMediaForm type="Banner" action={FormAction.Banner} />
+            );
          case "Create venue":
             return <CreateVenueForm />;
          case "Edit venue":

@@ -65,6 +65,7 @@ export interface LogoutProps {
 
 export interface EditProfileMediaFormProps {
    type: string;
+   action: FormAction;
 }
 
 export interface CreateBookingProps {
@@ -83,6 +84,17 @@ export interface CreateVenueProps {
       parking: boolean;
       breakfast: boolean;
       pets: boolean;
+   };
+}
+
+export interface EditProfileProps {
+   avatar?: {
+      url: string;
+      alt: string;
+   };
+   banner?: {
+      url: string;
+      alt: string;
    };
 }
 

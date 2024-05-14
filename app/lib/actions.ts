@@ -4,8 +4,9 @@ import {
    FormAction,
    CreateBookingProps,
    CreateVenueProps,
+   EditProfileProps,
 } from "@/app/lib/definitions";
-import { setItem } from "@/app/lib/storage";
+import { setItem, getItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
 
 export const createBooking = async (
@@ -381,19 +382,99 @@ export const handleEditProfileMedia = async (
 ) => {
    event.preventDefault();
 
+   const data = new FormData(event.currentTarget);
+
    if (action === FormAction.Avatar) {
-      return alert(
-         "success",
-         "Avatar successfully changed",
-         ".alert-container"
-      );
+      const formValues: EditProfileProps = {
+         avatar: {
+            url: data.get("url") as string,
+            alt: data.get("alt") as string,
+         },
+      };
+
+      try {
+         const response = await fetch(
+            `${API_URLS.PROFILES}/${getItem("name")}`,
+            {
+               method: "PUT",
+               headers: headers("application/json"),
+               body: JSON.stringify(formValues),
+            }
+         );
+
+         if (!response.ok) {
+            const errorText = await response.text();
+            alert(
+               "error",
+               `An error occured (${response.status})`,
+               ".alert-container"
+            );
+            throw new Error(`Failed to change avatar image: ${errorText}`);
+         }
+
+         const json = await response.json();
+         const profile = json.data;
+
+         alert(
+            "success",
+            "Avatar image successfully changed",
+            ".alert-container"
+         );
+
+         return profile;
+      } catch (error) {
+         console.error(
+            "An error occurred while changing avatar image: ",
+            error
+         );
+         throw error;
+      }
    }
 
    if (action === FormAction.Banner) {
-      return alert(
-         "success",
-         "Banner successfully changed",
-         ".alert-container"
-      );
+      const formValues: EditProfileProps = {
+         banner: {
+            url: data.get("url") as string,
+            alt: data.get("alt") as string,
+         },
+      };
+
+      try {
+         const response = await fetch(
+            `${API_URLS.PROFILES}/${getItem("name")}`,
+            {
+               method: "PUT",
+               headers: headers("application/json"),
+               body: JSON.stringify(formValues),
+            }
+         );
+
+         if (!response.ok) {
+            const errorText = await response.text();
+            alert(
+               "error",
+               `An error occured (${response.status})`,
+               ".alert-container"
+            );
+            throw new Error(`Failed to change banner image: ${errorText}`);
+         }
+
+         const json = await response.json();
+         const profile = json.data;
+
+         alert(
+            "success",
+            "Banner image successfully changed",
+            ".alert-container"
+         );
+
+         return profile;
+      } catch (error) {
+         console.error(
+            "An error occurred while changing banner image: ",
+            error
+         );
+         throw error;
+      }
    }
 };
