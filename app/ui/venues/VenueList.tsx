@@ -26,7 +26,7 @@ const VenueList: React.FC<{
             const fetchedVenues = await getVenues();
             setVenues(fetchedVenues);
          } catch (error) {
-            console.error("Error fetching bookings:", error);
+            console.error("Error fetching venues:", error);
          }
          setLoading(false);
       };

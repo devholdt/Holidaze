@@ -11,6 +11,7 @@ import {
    FaceFrownIcon,
 } from "@heroicons/react/24/outline";
 import Form from "@/app/ui/venues/BookingForm";
+import { formatDate } from "@/app/lib/utils";
 
 export const metadata: Metadata = {
    title: "Venue",
@@ -41,11 +42,13 @@ export default async function Page({ params }: { params: { id: string } }) {
                <VenueImage venue={venue} />
             </div>
 
-            <h1
-               className={`${elMessiri.className} mb-2 text-6xl tracking-wide`}
-            >
+            <h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
                {venue.name}
             </h1>
+
+            <p className="mb-4 mt-0 text-sm font-light italic">
+               Created {formatDate(venue.created)}
+            </p>
 
             <div className="grid grid-cols-2 gap-4">
                <div>
