@@ -421,6 +421,10 @@ export const handleEditProfileMedia = async (
             ".alert-container"
          );
 
+         setTimeout(() => {
+            window.location.href = "/";
+         }, 2000);
+
          return profile;
       } catch (error) {
          console.error(
@@ -467,6 +471,10 @@ export const handleEditProfileMedia = async (
             "Banner image successfully changed",
             ".alert-container"
          );
+
+         setTimeout(() => {
+            window.location.href = "/";
+         }, 2000);
 
          return profile;
       } catch (error) {
