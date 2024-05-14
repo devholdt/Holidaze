@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { getProfileBookings } from "@/app/lib/data";
 import { BookingProps } from "@/app/lib/definitions";
 import BookingCard from "@/app/ui/user/bookings/BookingCard";
+import Link from "next/link";
 
 const BookingsList: React.FC = () => {
    const [bookings, setBookings] = useState<BookingProps[]>([]);
@@ -27,8 +28,15 @@ const BookingsList: React.FC = () => {
 
    if (bookings.length === 0) {
       return (
-         <div className="flex justify-center">
-            <p className="mt-8">No bookings found.</p>
+         <div className="flex flex-col items-center justify-center font-light">
+            <p className="mb-4 mt-8">No bookings found.</p>
+            <p>
+               Click{" "}
+               <Link href="/venues" className="font-normal underline">
+                  here
+               </Link>{" "}
+               to look for your next adventure!
+            </p>
          </div>
       );
    }
