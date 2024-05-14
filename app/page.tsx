@@ -3,15 +3,12 @@ import Subheading from "@/app/ui/subheading";
 import { elMessiri } from "@/app/ui/fonts";
 import waterImg from "@/public/texture-water-lighter.jpg";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
-import { getVenues } from "@/app/lib/data";
 import VenueList from "@/app/ui/venues/VenueList";
 import { Suspense } from "react";
 import { LinkButton } from "@/app/ui/buttons";
 import Hero from "@/app/ui/hero";
 
-export default async function Home() {
-   const venues = await getVenues();
-
+export default function Home() {
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
          <div
@@ -50,7 +47,7 @@ export default async function Home() {
          </div>
          <div className="mb-36 flex flex-col items-center">
             <Suspense fallback={<p>Loading...</p>}>
-               <VenueList venues={venues} listLimit={3} />
+               <VenueList listLimit={3} />
             </Suspense>
             <LinkButton targetHref="/venues" text="View all" styles="mt-12" />
          </div>
