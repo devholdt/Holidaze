@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { getManagerVenues } from "@/app/lib/data";
 import { VenueProps } from "@/app/lib/definitions";
-import ManagerVenue from "@/app/ui/user/venues/ManagerVenue";
+import ManagerVenueCard from "@/app/ui/user/venues/ManagerVenueCard";
 
 const ManagerVenueList: React.FC = () => {
    const [venues, setVenues] = useState<VenueProps[]>([]);
@@ -34,9 +34,9 @@ const ManagerVenueList: React.FC = () => {
    }
 
    return (
-      <div className="grid w-full grid-cols-2 gap-6 p-6">
+      <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
          {venues.map((venue) => (
-            <ManagerVenue key={venue.id} venue={venue} />
+            <ManagerVenueCard key={venue.id} venue={venue} />
          ))}
       </div>
    );

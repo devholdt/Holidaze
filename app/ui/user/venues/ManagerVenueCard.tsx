@@ -7,7 +7,7 @@ import { elMessiri } from "@/app/ui/fonts";
 import { useState } from "react";
 import Link from "next/link";
 
-const ManagerVenue = ({ venue }: { venue: VenueProps }) => {
+const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
    const [imgSrc, setImgSrc] = useState(
       venue.media?.[0].url || backgroundReflection
    );
@@ -34,13 +34,15 @@ const ManagerVenue = ({ venue }: { venue: VenueProps }) => {
             unoptimized
             className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
          />
-         <div className="px-6 pb-2">
-            <h2 className={`${elMessiri.className} my-3 text-5xl font-medium`}>
+         <div className="px-6 pb-2 text-center">
+            <h2
+               className={`${elMessiri.className} my-4 text-4xl font-medium md:text-5xl`}
+            >
                {venue.name}
             </h2>
 
             <p className="font-light">{description}</p>
-            <hr className="my-2 border-[1px] text-grey" />
+            <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
                <p>
                   <span className="font-normal">£{venue.price}</span> / night
@@ -58,4 +60,4 @@ const ManagerVenue = ({ venue }: { venue: VenueProps }) => {
    );
 };
 
-export default ManagerVenue;
+export default ManagerVenueCard;

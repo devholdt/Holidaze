@@ -43,8 +43,6 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
       );
    }
 
-   console.log(venue);
-
    return (
       <div className="m-8">
          <div className="flex gap-4">

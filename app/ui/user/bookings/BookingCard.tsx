@@ -36,7 +36,9 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
             className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
          />
          <div className="px-6 pb-2 text-center">
-            <h2 className={`${elMessiri.className} mt-4 text-5xl font-medium`}>
+            <h2
+               className={`${elMessiri.className} mt-4 text-3xl font-medium md:text-4xl`}
+            >
                {booking.venue.name}
             </h2>
             <div className="mb-4 font-extralight">
@@ -47,7 +49,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
                <span className="font-normal">{formatDate(booking.dateTo)}</span>
             </div>
             <p className="font-light">{description}</p>
-            <hr className="my-2 border-[1px] text-grey" />
+            <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
                <p>
                   <span className="font-normal">£{booking.venue.price}</span> /
