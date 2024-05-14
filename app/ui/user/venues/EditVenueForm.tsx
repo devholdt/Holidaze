@@ -24,21 +24,46 @@ export default function Form() {
       return <p>Loading...</p>;
    }
 
+   //    const handleChange = (
+   //       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+   //    ) => {
+   //       const { name, value, type } = event.target as
+   //          | HTMLInputElement
+   //          | HTMLTextAreaElement;
+   //       const checked =
+   //          type === "checkbox"
+   //             ? (event.target as HTMLInputElement).checked
+   //             : undefined;
+
+   //       setVenue((prevVenue: any) => ({
+   //          ...prevVenue,
+   //          [name]: type === "checkbox" ? checked : value,
+   //       }));
+   //    };
+
    const handleChange = (
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
    ) => {
-      const { name, value, type } = event.target as
-         | HTMLInputElement
-         | HTMLTextAreaElement;
-      const checked =
-         type === "checkbox"
-            ? (event.target as HTMLInputElement).checked
-            : undefined;
+      const { name, value } = event.target;
 
-      setVenue((prevVenue: any) => ({
-         ...prevVenue,
-         [name]: type === "checkbox" ? checked : value,
-      }));
+      setVenue((prevVenue: any) => {
+         if (name === "url" || name === "alt") {
+            const updatedMedia = [...prevVenue.media];
+            updatedMedia[0] = {
+               ...updatedMedia[0],
+               [name]: value,
+            };
+            return {
+               ...prevVenue,
+               media: updatedMedia,
+            };
+         }
+
+         return {
+            ...prevVenue,
+            [name]: value,
+         };
+      });
    };
 
    const handleCheckboxChange = (
@@ -217,7 +242,7 @@ export default function Form() {
                id="url"
                name="url"
                placeholder="Enter URL"
-               //    value={venue.media[0].url || ""}
+               value={venue.media[0].url || ""}
                onChange={handleChange}
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />
@@ -231,7 +256,7 @@ export default function Form() {
                id="alt"
                name="alt"
                placeholder="Enter alt text"
-               //    value={venue.media[0].alt || ""}
+               value={venue.media[0].alt || ""}
                onChange={handleChange}
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />
