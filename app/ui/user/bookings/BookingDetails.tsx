@@ -71,19 +71,11 @@ const BookingDetails = ({ id }: { id: string }) => {
                   </h1>
                   <p className="font-extralight">
                      <span className="font-normal">
-                        {formatDate(booking.dateFrom, {
-                           day: "2-digit",
-                           month: "2-digit",
-                           year: "2-digit",
-                        })}
+                        {formatDate(booking.dateFrom)}
                      </span>
-                     {" - "}
+                     {" to "}
                      <span className="font-normal">
-                        {formatDate(booking.dateTo, {
-                           day: "2-digit",
-                           month: "2-digit",
-                           year: "2-digit",
-                        })}
+                        {formatDate(booking.dateTo)}
                      </span>
                   </p>
                </div>

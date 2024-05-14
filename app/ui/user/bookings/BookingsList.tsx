@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { getProfileBookings } from "@/app/lib/data";
 import { BookingProps } from "@/app/lib/definitions";
-import Booking from "@/app/ui/user/bookings/UserBooking";
+import BookingCard from "@/app/ui/user/bookings/BookingCard";
 
 const BookingsList: React.FC = () => {
    const [bookings, setBookings] = useState<BookingProps[]>([]);
@@ -36,7 +36,7 @@ const BookingsList: React.FC = () => {
    return (
       <div className="grid w-full grid-cols-3 gap-6 p-6">
          {bookings.map((booking) => (
-            <Booking key={booking.id} booking={booking} />
+            <BookingCard key={booking.id} booking={booking} />
          ))}
       </div>
    );

@@ -6,8 +6,9 @@ import { BookingProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { useState } from "react";
 import Link from "next/link";
+import { formatDate } from "@/app/lib/utils";
 
-const Booking = ({ booking }: { booking: BookingProps }) => {
+const BookingCard = ({ booking }: { booking: BookingProps }) => {
    const [imgSrc, setImgSrc] = useState(
       booking.venue.media?.[0].url || backgroundReflection
    );
@@ -34,10 +35,17 @@ const Booking = ({ booking }: { booking: BookingProps }) => {
             unoptimized
             className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
          />
-         <div className="px-6 pb-2">
-            <h2 className={`${elMessiri.className} my-3 text-5xl font-medium`}>
+         <div className="px-6 pb-2 text-center">
+            <h2 className={`${elMessiri.className} mt-4 text-5xl font-medium`}>
                {booking.venue.name}
             </h2>
+            <div className="mb-4 font-extralight">
+               <span className="font-normal">
+                  {formatDate(booking.dateFrom)}
+               </span>
+               {" to "}
+               <span className="font-normal">{formatDate(booking.dateTo)}</span>
+            </div>
             <p className="font-light">{description}</p>
             <hr className="my-2 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
@@ -47,9 +55,7 @@ const Booking = ({ booking }: { booking: BookingProps }) => {
                </p>
                |
                <p>
-                  max{" "}
-                  <span className="font-normal">{booking.venue.maxGuests}</span>{" "}
-                  guests
+                  <span className="font-normal">{booking.guests}</span> guest(s)
                </p>
                |
                <p>
@@ -62,4 +68,4 @@ const Booking = ({ booking }: { booking: BookingProps }) => {
    );
 };
 
-export default Booking;
+export default BookingCard;
