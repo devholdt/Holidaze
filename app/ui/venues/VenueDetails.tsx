@@ -48,8 +48,6 @@ const VenueDetails = ({ id }: { id: string }) => {
       dateTo: booking.dateTo,
    }));
 
-   console.log(venue);
-
    return (
       <div className="m-8">
          <div className="relative mb-4 h-80">
@@ -59,12 +57,12 @@ const VenueDetails = ({ id }: { id: string }) => {
                onError={() => setImgSrc(backgroundReflection)}
                fill
                unoptimized
-               className="z-1 object-cover object-center drop-shadow-md"
+               className="z-1 object-cover object-center drop-shadow"
             />
          </div>
 
          <div className="flex gap-4">
-            <div>
+            <div className="grow">
                <h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
                   {venue.name}
                </h1>
@@ -88,7 +86,11 @@ const VenueDetails = ({ id }: { id: string }) => {
                </div>
                <p className="font-extralight">{venue.description}</p>
                <hr className="my-4" />
-               <h3 className={`${elMessiri.className} text-3xl`}>Amenities</h3>
+               <h3
+                  className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
+               >
+                  Amenities
+               </h3>
                <div className="mt-4 flex flex-col gap-2">
                   <p className="flex gap-2">
                      {venue.meta.wifi && (
@@ -125,7 +127,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                </div>
             </div>
             <div className="flex min-w-[400px] flex-col gap-4">
-               <div>
+               <div className="drop-shadow">
                   <div
                      className="flex h-[80px] items-center justify-center"
                      style={{
@@ -165,7 +167,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                      </div>
                   </div>
                </div>
-               <div className="bg-white p-6">
+               <div className="bg-white p-6 drop-shadow">
                   <h4 className={`${elMessiri.className} mb-4 text-3xl`}>
                      Book this venue
                   </h4>
