@@ -16,9 +16,10 @@ import {
 } from "@heroicons/react/24/outline";
 import Modal from "@/app/ui/Modal";
 import { formatDate } from "@/app/lib/utils";
+import { VenueProps, BookingProps } from "@/app/lib/definitions";
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
-   const [venue, setVenue] = useState<any>(null);
+   const [venue, setVenue] = useState<VenueProps | null>(null);
    const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
       venue?.media?.[0].url || backgroundReflection
    );
@@ -42,6 +43,11 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
          </div>
       );
    }
+
+   const sortedBookings = [...venue.bookings].sort(
+      (a: BookingProps, b: BookingProps) =>
+         new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime()
+   );
 
    return (
       <div className="m-8">
@@ -149,40 +155,44 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                Bookings for this venue
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-2">
-               {venue.bookings.map((booking: any) => (
-                  <div
-                     key={booking.id}
-                     className="m-4 flex flex-col items-center gap-4 rounded bg-white p-4 text-center font-extralight shadow-md sm:flex-row sm:text-left"
-                  >
-                     <Image
-                        src={booking.customer.avatar.url}
-                        alt={booking.customer.avatar.alt}
-                        width={400}
-                        height={400}
-                        className="h-full max-h-[100px] w-full max-w-[100px] rounded-full border border-lightGrey object-cover object-center"
-                     />
-                     <div>
-                        <h4 className="text-xl">{booking.customer.name}</h4>
-                        <hr className="my-2 text-lightGrey" />
-                        <p>
-                           <span className="font-medium">
-                              {booking.guests} guests
-                           </span>{" "}
-                           from{" "}
-                           <span className="font-medium">
-                              {formatDate(booking.dateFrom)}
-                           </span>{" "}
-                           to{" "}
-                           <span className="font-medium">
-                              {formatDate(booking.dateTo)}
-                           </span>
-                        </p>
-                        <p className="italic">
-                           Booked on {formatDate(booking.created)}
-                        </p>
+               {sortedBookings.length === 0 ? (
+                  <p>No bookings for this venue yet</p>
+               ) : (
+                  sortedBookings.map((booking: BookingProps) => (
+                     <div
+                        key={booking.id}
+                        className="m-4 flex flex-col items-center gap-4 rounded bg-white p-4 text-center font-extralight shadow-md sm:flex-row sm:text-left"
+                     >
+                        <Image
+                           src={booking.customer.avatar.url}
+                           alt={booking.customer.avatar.alt}
+                           width={400}
+                           height={400}
+                           className="h-full max-h-[100px] w-full max-w-[100px] rounded-full border border-lightGrey object-cover object-center"
+                        />
+                        <div>
+                           <h4 className="text-xl">{booking.customer.name}</h4>
+                           <hr className="my-2 text-lightGrey" />
+                           <p>
+                              <span className="font-medium">
+                                 {booking.guests} guests
+                              </span>{" "}
+                              from{" "}
+                              <span className="font-medium">
+                                 {formatDate(booking.dateFrom)}
+                              </span>{" "}
+                              to{" "}
+                              <span className="font-medium">
+                                 {formatDate(booking.dateTo)}
+                              </span>
+                           </p>
+                           <p className="italic">
+                              Booked on {formatDate(booking.created)}
+                           </p>
+                        </div>
                      </div>
-                  </div>
-               ))}
+                  ))
+               )}
             </div>
          </div>
       </div>

@@ -127,7 +127,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                </div>
             </div>
             <div className="flex min-w-[400px] flex-col gap-4">
-               <div className="drop-shadow">
+               <div className="shadow">
                   <div
                      className="flex h-[80px] items-center justify-center"
                      style={{
@@ -167,7 +167,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                      </div>
                   </div>
                </div>
-               <div className="bg-white p-6 drop-shadow">
+               <div className="bg-white p-6 shadow">
                   <h4 className={`${elMessiri.className} mb-4 text-3xl`}>
                      Book this venue
                   </h4>

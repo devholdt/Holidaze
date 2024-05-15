@@ -21,7 +21,7 @@ import Link from "next/link";
 const BookingDetails = ({ id }: { id: string }) => {
    const [booking, setBooking] = useState<any>(null);
    const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
-      booking?.venue.media?.[0].url || backgroundReflection
+      booking?.media?.[0].url || backgroundReflection
    );
 
    useEffect(() => {

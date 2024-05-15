@@ -33,7 +33,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
             width={800}
             height={600}
             unoptimized
-            className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
+            className="h-[200px] max-h-[240px] rounded-t-xl object-cover object-center"
          />
          <div className="px-6 pb-2 text-center">
             <h2
@@ -48,7 +48,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
                {" to "}
                <span className="font-normal">{formatDate(booking.dateTo)}</span>
             </div>
-            <p className="font-light">{description}</p>
+            <p className="truncate font-light">{description}</p>
             <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
                <p>

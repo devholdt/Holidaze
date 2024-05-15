@@ -7,21 +7,33 @@ export interface VenueProps {
    rating: number;
    maxGuests: number;
    bookings: BookingProps[];
-   meta: VenueMetaProps[];
+   meta: {
+      wifi: boolean;
+      parking: boolean;
+      breakfast: boolean;
+      pets: boolean;
+   };
 }
 
 export interface BookingProps {
    id: string;
    dateFrom: string;
    dateTo: string;
+   created: string;
    guests: number;
    venue: VenueProps;
-}
-export interface VenueMetaProps {
-   wifi: boolean;
-   parking: boolean;
-   breakfast: boolean;
-   pets: boolean;
+   customer: {
+      avatar: {
+         url: string;
+         alt: string;
+      };
+      banner: {
+         url: string;
+         alt: string;
+      };
+      name: string;
+      email: string;
+   };
 }
 
 export interface VenueOwnerProps {
