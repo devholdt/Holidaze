@@ -14,6 +14,10 @@ export interface VenueProps {
       pets: boolean;
    };
    owner: VenueOwnerProps;
+   location: {
+      city: string;
+      country: string;
+   };
 }
 
 export interface BookingProps {
