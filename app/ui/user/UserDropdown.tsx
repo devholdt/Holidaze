@@ -11,7 +11,7 @@ import React, {
 import Link from "next/link";
 import { getItem } from "@/app/lib/storage";
 import UserDetails from "@/app/ui/user/UserDetails";
-import { getLoggedInUser } from "@/app/lib/data";
+import { getUserByName } from "@/app/lib/data";
 import Modal from "@/app/ui/Modal";
 import {
    loggedOutMenuItems,
@@ -45,7 +45,7 @@ const UserDropdown: React.FC = () => {
    useEffect(() => {
       if (getItem("user")) {
          const fetchUser = async () => {
-            const loggedInUser = await getLoggedInUser();
+            const loggedInUser = await getUserByName(getItem("name"));
             setUser(loggedInUser);
          };
          fetchUser();

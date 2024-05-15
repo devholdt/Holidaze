@@ -39,6 +39,26 @@ export async function getVenueById(id: string) {
    }
 }
 
+export async function getUserByName(name: string) {
+   const url = `${API_URLS.PROFILES}/${name}`;
+   const options = {
+      method: "GET",
+      headers: headers("application/json"),
+   };
+
+   try {
+      const response = await fetch(url, options);
+
+      const json = await response.json();
+      const data = json.data;
+
+      return data;
+   } catch (error) {
+      console.error("An error occured while fetching logged in user: ", error);
+      throw new Error("Failed to fetch logged in user.");
+   }
+}
+
 export async function getLoggedInUser() {
    const url = `${API_URLS.PROFILES}/${getItem("name")}`;
    const options = {
@@ -100,8 +120,8 @@ export async function getBookingById(id: string) {
    }
 }
 
-export async function getManagerVenues() {
-   const url = `${API_URLS.PROFILES}/${getItem("name")}/venues?_bookings=true&_owner=true`;
+export async function getManagerVenues(name: string) {
+   const url = `${API_URLS.PROFILES}/${name}/venues?_bookings=true&_owner=true`;
    const options = {
       method: "GET",
       headers: headers("application/json"),

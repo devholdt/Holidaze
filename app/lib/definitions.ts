@@ -13,6 +13,7 @@ export interface VenueProps {
       breakfast: boolean;
       pets: boolean;
    };
+   owner: VenueOwnerProps;
 }
 
 export interface BookingProps {

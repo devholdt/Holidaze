@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import ManagerVenueDetails from "@/app/ui/user/venues/ManagerVenueDetails";
 
 export const metadata: Metadata = {
-   title: "Booking",
+   title: "Venue",
 };
 
 export default function Page({ params }: { params: { id: string } }) {

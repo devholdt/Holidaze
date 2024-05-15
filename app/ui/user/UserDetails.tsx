@@ -3,14 +3,15 @@
 import { elMessiri } from "@/app/ui/fonts";
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
-import { getLoggedInUser } from "@/app/lib/data";
+import { getUserByName } from "@/app/lib/data";
+import { getItem } from "@/app/lib/storage";
 
 const UserDetails = () => {
    const [user, setUser] = useState<any>(null);
 
    useEffect(() => {
       const fetchUser = async () => {
-         setUser(await getLoggedInUser());
+         setUser(await getUserByName(getItem("name")));
       };
 
       fetchUser();

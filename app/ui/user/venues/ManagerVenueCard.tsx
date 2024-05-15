@@ -4,13 +4,23 @@ import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import { VenueProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getLoggedInUser } from "@/app/lib/data";
 
 const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
+   const [user, setUser] = useState<any>(null);
    const [imgSrc, setImgSrc] = useState(
       venue.media?.[0].url || backgroundReflection
    );
+
+   useEffect(() => {
+      const fetchUser = async () => {
+         setUser(await getLoggedInUser());
+      };
+
+      fetchUser();
+   }, []);
 
    let description;
 
@@ -22,7 +32,11 @@ const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
 
    return (
       <Link
-         href={`/user/venues/${venue.id}`}
+         href={
+            user?.name === venue.owner.name
+               ? `/user/venues/${venue.id}`
+               : `/venues/${venue.id}`
+         }
          className="relative flex flex-col rounded-xl border border-white bg-white shadow transition duration-75 hover:border-grey"
       >
          <Image
