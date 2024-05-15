@@ -48,6 +48,8 @@ const VenueDetails = ({ id }: { id: string }) => {
       dateTo: booking.dateTo,
    }));
 
+   console.log(venue);
+
    return (
       <div className="m-8">
          <div className="relative mb-4 h-80">
@@ -61,7 +63,7 @@ const VenueDetails = ({ id }: { id: string }) => {
             />
          </div>
 
-         <div className="grid grid-cols-2 gap-4">
+         <div className="flex gap-4">
             <div>
                <h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
                   {venue.name}
@@ -122,36 +124,48 @@ const VenueDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
             </div>
-            <div className="flex flex-col gap-4">
-               <div className="bg-white px-10 py-6">
-                  <h2
-                     className={`${elMessiri.className} mb-4 text-3xl tracking-wide`}
-                  >
-                     Your host
-                  </h2>
-                  <div className="flex gap-4">
-                     <Image
-                        src={venue.owner.avatar.url}
-                        alt={venue.owner.avatar.alt}
-                        width={200}
-                        height={200}
-                        className="h-24 w-24 rounded-full object-cover object-center drop-shadow-md"
-                     />
-                     <div className="flex flex-col">
-                        <p className="text-xl">{venue.owner.name}</p>
-                        <p className="font-extralight italic">
-                           {venue.owner.email}
-                        </p>
-                        <Link
-                           href={`/user/${venue.owner.name}`}
-                           className="mt-2 w-fit border px-4 py-1"
-                        >
-                           visit
-                        </Link>
+            <div className="flex min-w-[400px] flex-col gap-4">
+               <div>
+                  <div
+                     className="flex h-[80px] items-center justify-center"
+                     style={{
+                        backgroundImage: `url(${venue.owner.banner.url})`,
+                     }}
+                  ></div>
+                  <div className="bg-white p-6">
+                     <h2
+                        className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
+                     >
+                        Venue host
+                     </h2>
+                     <div className="flex items-center gap-4">
+                        <Image
+                           src={venue.owner.avatar.url}
+                           alt={venue.owner.avatar.alt}
+                           width={200}
+                           height={200}
+                           className="h-full max-h-[100px] w-full max-w-[100px] rounded-full border border-lightGrey object-cover object-cover drop-shadow-md"
+                        />
+
+                        <div className="flex flex-col">
+                           <div>
+                              <p className="text-xl">{venue.owner.name}</p>
+                              <p className="font-extralight italic">
+                                 {venue.owner.email}
+                              </p>
+                           </div>
+                           <hr className="my-2" />
+                           <Link
+                              href={`/user/${venue.owner.name}`}
+                              className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
+                           >
+                              profile
+                           </Link>
+                        </div>
                      </div>
                   </div>
                </div>
-               <div className="bg-white px-10 py-6">
+               <div className="bg-white p-6">
                   <h4 className={`${elMessiri.className} mb-4 text-3xl`}>
                      Book this venue
                   </h4>
