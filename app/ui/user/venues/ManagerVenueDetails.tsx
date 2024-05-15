@@ -18,6 +18,7 @@ import Modal from "@/app/ui/Modal";
 import { formatDate } from "@/app/lib/utils";
 import { VenueProps, BookingProps } from "@/app/lib/definitions";
 import { getLoggedInUser } from "@/app/lib/data";
+import Link from "next/link";
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
    const [venue, setVenue] = useState<VenueProps | null>(null);
@@ -169,26 +170,35 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
                      Bookings for this venue
                   </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                      {sortedBookings.length === 0 ? (
                         <p>No bookings for this venue yet</p>
                      ) : (
                         sortedBookings.map((booking: BookingProps) => (
                            <div
                               key={booking.id}
-                              className="m-4 flex flex-col items-center gap-4 rounded bg-white p-4 text-center font-extralight shadow-md sm:flex-row sm:text-left"
+                              className="flex flex-col items-center justify-center gap-4 rounded bg-white p-4 text-center font-extralight shadow-md sm:flex-row sm:text-left"
                            >
                               <Image
                                  src={booking.customer.avatar.url}
                                  alt={booking.customer.avatar.alt}
                                  width={400}
                                  height={400}
-                                 className="h-full max-h-[100px] w-full max-w-[100px] rounded-full border border-lightGrey object-cover object-center"
+                                 className="h-[100px] w-[100px] rounded-full border border-lightGrey object-cover object-center"
+                                 priority={true}
                               />
-                              <div>
-                                 <h4 className="text-xl">
-                                    {booking.customer.name}
-                                 </h4>
+                              <div className="w-full">
+                                 <div className="flex items-center justify-between gap-2">
+                                    <h4 className="text-xl">
+                                       {booking.customer.name}
+                                    </h4>
+                                    <Link
+                                       href={`/user/${booking.customer.name}`}
+                                       className="bg-brown px-2 py-1 font-light uppercase tracking-widest text-white transition hover:bg-darkBrown"
+                                    >
+                                       visit
+                                    </Link>
+                                 </div>
                                  <hr className="my-2 text-lightGrey" />
                                  <p>
                                     <span className="font-medium">

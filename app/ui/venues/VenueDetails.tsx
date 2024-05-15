@@ -144,9 +144,10 @@ const VenueDetails = ({ id }: { id: string }) => {
                         <Image
                            src={venue.owner.avatar.url}
                            alt={venue.owner.avatar.alt}
-                           width={200}
-                           height={200}
-                           className="h-full max-h-[100px] w-full max-w-[100px] rounded-full border border-lightGrey object-cover object-cover drop-shadow-md"
+                           width={400}
+                           height={400}
+                           className="h-[100px] w-[100px] rounded-full border border-lightGrey object-cover object-center"
+                           priority={true}
                         />
 
                         <div className="flex flex-col">

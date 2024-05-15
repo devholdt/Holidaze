@@ -55,6 +55,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   fill
                   unoptimized
                   className="object-cover object-center"
+                  priority={true}
                />
             </div>
 
