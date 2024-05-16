@@ -1,34 +1,17 @@
 "use client";
 
 import { Button } from "@/app/ui/buttons";
-import React, { useState, useEffect } from "react";
-import { VenueProps } from "@/app/lib/definitions";
-import { getVenues } from "@/app/lib/data";
-
+import React, { useState } from "react";
 import VenueCard from "@/app/ui/venues/VenueCard";
+import useFetchVenues from "@/app/lib/hooks/useFetchVenues";
 
 const VenueList: React.FC<{
    listLimit?: number;
    showMoreButton?: boolean;
 }> = ({ listLimit = 9, showMoreButton = false }) => {
-   const [venues, setVenues] = useState<VenueProps[]>([]);
-   const [loading, setLoading] = useState(true);
+   const { venues, loading } = useFetchVenues();
    const INITIAL_LIMIT = listLimit;
    const [limit, setLimit] = useState(INITIAL_LIMIT);
-
-   useEffect(() => {
-      const fetchVenues = async () => {
-         try {
-            const fetchedVenues = await getVenues();
-            setVenues(fetchedVenues);
-         } catch (error) {
-            console.error("Error fetching venues:", error);
-         }
-         setLoading(false);
-      };
-
-      fetchVenues();
-   }, []);
 
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
 
