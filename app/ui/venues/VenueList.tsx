@@ -18,7 +18,7 @@ const VenueList: React.FC<VenueListProps> = ({
 
    return (
       <>
-         <div className="grid w-full grid-cols-3 gap-8 px-4 md:px-14 xl:px-32">
+         <div className="grid w-full grid-cols-1 gap-8 px-4 md:grid-cols-2 md:px-14 lg:grid-cols-3 xl:px-32">
             {venues.slice(0, limit).map((venue: any) => (
                <VenueCard venue={venue} key={venue.id} />
             ))}
