@@ -19,7 +19,7 @@ export default function Home() {
             className="flex h-96 items-center justify-center"
          >
             <h1>
-               <Logo src={logoWhiteSubtitle} styles="max-w-[560px]" />
+               <Logo src={logoWhiteSubtitle} styles="w-[480px] px-4" />
             </h1>
          </div>
 
