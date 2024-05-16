@@ -2,7 +2,7 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-const Search = () => {
+const Searchbar = () => {
    const searchParams = useSearchParams();
    const pathname = usePathname();
    const { replace } = useRouter();
@@ -33,4 +33,4 @@ const Search = () => {
    );
 };
 
-export default Search;
+export default Searchbar;

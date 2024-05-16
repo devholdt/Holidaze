@@ -2,7 +2,7 @@ import "@/app/ui/globals.css";
 import { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
 import Footer from "@/app/ui/footer";
-import Header from "@/app/ui/Header";
+import HeaderComponent from "@/app/ui/HeaderComponent";
 
 export const metadata: Metadata = {
    title: {
@@ -20,7 +20,7 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body className={`${robotoFlex.className} bg-lighterGrey antialiased`}>
-            <Header />
+            <HeaderComponent />
             {children}
             <Footer />
          </body>
