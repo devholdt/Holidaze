@@ -7,9 +7,13 @@ const useFetchUser = (username: string): UserProps | null => {
 
    useEffect(() => {
       const fetchUser = async () => {
-         if (username) {
-            const loggedInUser = await getUserByName(username);
-            setUser(loggedInUser);
+         try {
+            if (username) {
+               const loggedInUser = await getUserByName(username);
+               setUser(loggedInUser);
+            }
+         } catch (error) {
+            console.error("Error fetching user:", error);
          }
       };
       fetchUser();

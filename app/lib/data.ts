@@ -97,7 +97,7 @@ export async function getLoggedInUser() {
    }
 }
 
-export async function getProfileBookings() {
+export async function getBookingsByUser() {
    const url = `${API_URLS.PROFILES}/${getItem("name")}/bookings?_venue=true&sort=dateFrom&sortOrder=asc`;
    const options = {
       method: "GET",

@@ -7,8 +7,12 @@ const useFetchBooking = (id: string): BookingProps | null => {
 
    useEffect(() => {
       const fetchBooking = async () => {
-         const bookingData = await getBookingById(id);
-         setBooking(bookingData);
+         try {
+            const bookingData = await getBookingById(id);
+            setBooking(bookingData);
+         } catch (error) {
+            console.error("Error fetching booking:", error);
+         }
       };
 
       fetchBooking();

@@ -1,28 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { getProfileBookings } from "@/app/lib/data";
-import { BookingProps } from "@/app/lib/definitions";
 import BookingCard from "@/app/ui/user/bookings/BookingCard";
 import Link from "next/link";
+import useFetchBookingsByUser from "@/app/lib/hooks/useFetchBookingsByUser";
 
 const BookingsList: React.FC = () => {
-   const [bookings, setBookings] = useState<BookingProps[]>([]);
-   const [loading, setLoading] = useState(true);
-
-   useEffect(() => {
-      const fetchBookings = async () => {
-         try {
-            const fetchedBookings = await getProfileBookings();
-            setBookings(fetchedBookings);
-         } catch (error) {
-            console.error("Error fetching bookings:", error);
-         }
-         setLoading(false);
-      };
-
-      fetchBookings();
-   }, []);
+   const { bookings, loading } = useFetchBookingsByUser();
 
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
 
