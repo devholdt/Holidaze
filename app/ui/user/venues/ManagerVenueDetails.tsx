@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { elMessiri } from "@/app/ui/fonts";
-import { getVenueById } from "@/app/lib/data";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Subheading from "@/app/ui/subheading";
 import {
@@ -16,29 +14,16 @@ import {
 } from "@heroicons/react/24/outline";
 import Modal from "@/app/ui/Modal";
 import { formatDate } from "@/app/lib/utils";
-import { VenueProps, BookingProps } from "@/app/lib/definitions";
-import { getLoggedInUser } from "@/app/lib/data";
+import { BookingProps } from "@/app/lib/definitions";
 import Link from "next/link";
+import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
+import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
-   const [venue, setVenue] = useState<VenueProps | null>(null);
-   const [user, setUser] = useState<any>(null);
-   const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
-      venue?.media?.[0].url || backgroundReflection
-   );
-
-   useEffect(() => {
-      const fetchData = async () => {
-         setUser(await getLoggedInUser());
-         setVenue(await getVenueById(id));
-      };
-
-      fetchData();
-   }, [id]);
-
-   useEffect(() => {
-      setImgSrc(venue?.media?.[0].url || backgroundReflection);
-   }, [venue]);
+   const venue = useFetchVenue(id);
+   const user = useFetchLoggedInUser();
+   const [imgSrc, setImgSrc] = useImageSource(venue);
 
    if (!venue) {
       return (
@@ -64,6 +49,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   fill
                   unoptimized
                   className="object-cover object-center"
+                  priority={true}
                />
             </div>
 

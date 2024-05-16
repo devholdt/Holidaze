@@ -39,6 +39,24 @@ export async function getVenueById(id: string) {
    }
 }
 
+export async function getVenuesByUser(name: string) {
+   const url = `${API_URLS.PROFILES}/${name}/venues?_bookings=true&_owner=true`;
+   const options = {
+      method: "GET",
+      headers: headers("application/json"),
+   };
+
+   try {
+      const response = await fetch(url, options);
+      const json = await response.json();
+
+      return json.data || [];
+   } catch (error) {
+      console.error("An error occured while fetching manager venues: ", error);
+      throw new Error("Failed to fetch manager venues.");
+   }
+}
+
 export async function getUserByName(name: string) {
    const url = `${API_URLS.PROFILES}/${name}`;
    const options = {
@@ -117,23 +135,5 @@ export async function getBookingById(id: string) {
    } catch (error) {
       console.error("An error occured while fetching booking data: ", error);
       throw new Error("Failed to fetch booking data.");
-   }
-}
-
-export async function getManagerVenues(name: string) {
-   const url = `${API_URLS.PROFILES}/${name}/venues?_bookings=true&_owner=true`;
-   const options = {
-      method: "GET",
-      headers: headers("application/json"),
-   };
-
-   try {
-      const response = await fetch(url, options);
-      const json = await response.json();
-
-      return json.data || [];
-   } catch (error) {
-      console.error("An error occured while fetching manager venues: ", error);
-      throw new Error("Failed to fetch manager venues.");
    }
 }
