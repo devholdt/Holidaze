@@ -4,7 +4,7 @@ import RadioButtons from "@/app/ui/venues/radio-buttons";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 
-const Search = dynamic(() => import("@/app/ui/venues/Search"), {
+const Search = dynamic(() => import("@/app/ui/venues/Searchbar"), {
    ssr: false,
    loading: () => <div>Loading...</div>,
 });
