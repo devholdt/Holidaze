@@ -14,7 +14,7 @@ const VenueCard = ({ venue }: { venue: VenueProps }) => {
    return (
       <Link
          href={`/venues/${venue.id}`}
-         className="relative flex flex-col justify-end rounded-xl"
+         className="relative flex flex-col rounded-xl border border-white bg-white shadow transition duration-75 hover:border-grey"
       >
          <Image
             src={imgSrc}
