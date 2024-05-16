@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useCallback, useMemo, Suspense, lazy } from "react";
 import { DateRangeProps } from "@/app/lib/definitions";
 import { CalendarIcon } from "@heroicons/react/24/outline";
+
+const DatePicker = lazy(() => import("react-datepicker"));
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateRange({
    dateRange,
@@ -107,18 +108,20 @@ export default function DateRange({
       <fieldset>
          <legend className="mb-1 text-blue">Pick dates</legend>
          <div className="flex items-center gap-2">
-            <DatePicker
-               selectsRange={true}
-               startDate={startDate}
-               endDate={endDate}
-               onChange={handleDateChange}
-               monthsShown={2}
-               dateFormat="dd/MM/yy"
-               minDate={new Date()}
-               excludeDates={disabledDates}
-               customInput={<CustomInput />}
-               withPortal
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+               <DatePicker
+                  selectsRange={true}
+                  startDate={startDate}
+                  endDate={endDate}
+                  onChange={handleDateChange}
+                  monthsShown={2}
+                  dateFormat="dd/MM/yy"
+                  minDate={new Date()}
+                  excludeDates={disabledDates}
+                  customInput={<CustomInput />}
+                  withPortal
+               />
+            </Suspense>
             <div className="alert-daterange"></div>
          </div>
       </fieldset>
