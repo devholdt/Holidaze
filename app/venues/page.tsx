@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
-import Search from "@/app/ui/venues/search";
+import Search from "@/app/ui/venues/Search";
 import VenueList from "@/app/ui/venues/VenueList";
 import { Suspense } from "react";
 
