@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { elMessiri } from "@/app/ui/fonts";
-import { getVenueById } from "@/app/lib/data";
-import { BookingProps } from "@/app/lib/definitions";
 import {
    WifiIcon,
    TruckIcon,
@@ -11,29 +9,17 @@ import {
    FaceSmileIcon,
    FaceFrownIcon,
 } from "@heroicons/react/24/outline";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Form from "@/app/ui/venues/BookingForm";
 import { formatDate } from "@/app/lib/utils";
 import Link from "next/link";
+import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const VenueDetails = ({ id }: { id: string }) => {
-   const [venue, setVenue] = useState<any>(null);
-   const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
-      venue?.media?.[0].url || backgroundReflection
-   );
-
-   useEffect(() => {
-      const fetchVenue = async () => {
-         setVenue(await getVenueById(id));
-      };
-
-      fetchVenue();
-   }, [id]);
-
-   useEffect(() => {
-      setImgSrc(venue?.media?.[0].url || backgroundReflection);
-   }, [venue]);
+   const venue = useFetchVenue(id);
+   const [imgSrc, setImgSrc] = useImageSource(venue);
 
    if (!venue) {
       return (
@@ -43,7 +29,7 @@ const VenueDetails = ({ id }: { id: string }) => {
       );
    }
 
-   const bookedDates = venue.bookings.map((booking: BookingProps) => ({
+   const bookedDates = venue.bookings.map((booking) => ({
       dateFrom: booking.dateFrom,
       dateTo: booking.dateTo,
    }));

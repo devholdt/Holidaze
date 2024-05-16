@@ -7,12 +7,11 @@ import { elMessiri } from "@/app/ui/fonts";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getLoggedInUser } from "@/app/lib/data";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
    const [user, setUser] = useState<any>(null);
-   const [imgSrc, setImgSrc] = useState(
-      venue.media?.[0].url || backgroundReflection
-   );
+   const [imgSrc, setImgSrc] = useImageSource(venue);
 
    useEffect(() => {
       const fetchUser = async () => {
@@ -41,7 +40,7 @@ const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
       >
          <Image
             src={imgSrc}
-            alt={venue.media?.[0].alt || "Venue image"}
+            alt={venue.media?.[0]?.alt || "Venue image"}
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
