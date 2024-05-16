@@ -1,18 +1,17 @@
 import { Metadata } from "next";
 import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
-// import Search from "@/app/ui/venues/Search";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 
 const Search = dynamic(() => import("@/app/ui/venues/Search"), {
    ssr: false,
-   loading: () => <p>Loading...</p>,
+   loading: () => <div>Loading...</div>,
 });
 
 const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
-   loading: () => <p>Loading...</p>,
+   loading: () => <div>Loading...</div>,
 });
 
 export const metadata: Metadata = {

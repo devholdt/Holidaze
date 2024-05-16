@@ -6,10 +6,9 @@ import logoWhite from "@/public/logo-white.svg";
 import waterImg from "@/public/texture-water-sm.jpg";
 import dynamic from "next/dynamic";
 
-export const UserDropdown = dynamic(
-   () => import("@/app/ui/user/UserDropdown"),
-   { ssr: false }
-);
+const UserDropdown = dynamic(() => import("@/app/ui/user/UserDropdown"), {
+   ssr: false,
+});
 
 export default function Header() {
    return (
