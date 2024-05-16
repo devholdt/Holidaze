@@ -1,11 +1,18 @@
 import { Metadata } from "next";
 import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
-import Search from "@/app/ui/venues/Search";
+// import Search from "@/app/ui/venues/Search";
 import dynamic from "next/dynamic";
+import React, { Suspense } from "react";
 
-export const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
+const Search = dynamic(() => import("@/app/ui/venues/Search"), {
    ssr: false,
+   loading: () => <p>Loading...</p>,
+});
+
+const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
+   ssr: false,
+   loading: () => <p>Loading...</p>,
 });
 
 export const metadata: Metadata = {
@@ -19,7 +26,9 @@ export default function Page() {
 
          <div className="mx-12 mb-12 mt-28 flex justify-between gap-20">
             <RadioButtons />
-            <Search />
+            <Suspense fallback={<p>Loading...</p>}>
+               <Search />
+            </Suspense>
          </div>
 
          <div className="mb-36 flex flex-col items-center">

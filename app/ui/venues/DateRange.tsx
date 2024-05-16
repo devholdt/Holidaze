@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useMemo, Suspense, lazy } from "react";
 import { DateRangeProps } from "@/app/lib/definitions";
 import { CalendarIcon } from "@heroicons/react/24/outline";

@@ -1,9 +1,8 @@
 "use client";
 
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import { useState, useRef, useMemo, lazy, Suspense } from "react";
+import { useState, useRef, useMemo } from "react";
 import Link from "next/link";
-import UserDetails from "@/app/ui/user/UserDetails";
 import {
    loggedOutMenuItems,
    customerMenuItems,
@@ -12,10 +11,12 @@ import {
 import { MenuItemProps } from "@/app/lib/definitions";
 import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
+import dynamic from "next/dynamic";
 
-const Modal = lazy(() => import("@/app/ui/Modal"));
+const Modal = dynamic(() => import("@/app/ui/Modal"));
+const UserDetails = dynamic(() => import("@/app/ui/user/UserDetails"));
 
-const UserDropdown: React.FC = () => {
+const UserDropdown = () => {
    const user = useFetchLoggedInUser();
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const dropdownRef = useRef<HTMLDivElement>(null);
@@ -36,13 +37,11 @@ const UserDropdown: React.FC = () => {
       return isSpecialItem ? (
          <>
             {item.title === "Log out" && <hr className="text-lightGrey" />}
-            <Suspense fallback={<div>Loading modal...</div>}>
-               <Modal
-                  modal={item.title}
-                  textContent={item.title}
-                  buttonStyles="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey text-left"
-               />
-            </Suspense>
+            <Modal
+               modal={item.title}
+               textContent={item.title}
+               buttonStyles="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey text-left"
+            />
          </>
       ) : (
          <>
@@ -79,7 +78,7 @@ const UserDropdown: React.FC = () => {
             >
                &#x2715;
             </button>
-            {/* {user && <UserDetails user={user} />} */}
+            {user && <UserDetails user={user} />}
             <div className="flex flex-col pb-6">
                {menuItems.map((item, index) => (
                   <MenuItem key={index} item={item} />

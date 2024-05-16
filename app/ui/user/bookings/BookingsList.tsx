@@ -1,10 +1,12 @@
 "use client";
 
-import BookingCard from "@/app/ui/user/bookings/BookingCard";
 import Link from "next/link";
 import useFetchBookingsByUser from "@/app/lib/hooks/useFetchBookingsByUser";
+import dynamic from "next/dynamic";
 
-const BookingsList: React.FC = () => {
+const BookingCard = dynamic(() => import("@/app/ui/user/bookings/BookingCard"));
+
+const BookingsList = () => {
    const { bookings, loading } = useFetchBookingsByUser();
 
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
@@ -26,9 +28,9 @@ const BookingsList: React.FC = () => {
 
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
-         {/* {bookings.map((booking) => (
+         {bookings.map((booking) => (
             <BookingCard key={booking.id} booking={booking} />
-         ))} */}
+         ))}
       </div>
    );
 };

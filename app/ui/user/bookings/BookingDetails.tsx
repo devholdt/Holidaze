@@ -17,8 +17,9 @@ import {
 import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+import dynamic from "next/dynamic";
 
-const Modal = lazy(() => import("@/app/ui/Modal"));
+const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const BookingDetails = ({ id }: { id: string }) => {
    const booking = useFetchBooking(id);

@@ -19,8 +19,9 @@ import Link from "next/link";
 import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+import dynamic from "next/dynamic";
 
-const Modal = lazy(() => import("@/app/ui/Modal"));
+const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
    const venue = useFetchVenue(id);

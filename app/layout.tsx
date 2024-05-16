@@ -1,10 +1,8 @@
 import "@/app/ui/globals.css";
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
 import Footer from "@/app/ui/footer";
-import dynamic from "next/dynamic";
-
-export const Header = dynamic(() => import("@/app/ui/Header"), { ssr: false });
+import Header from "@/app/ui/Header";
 
 export const metadata: Metadata = {
    title: {

@@ -1,12 +1,6 @@
-import { FC } from "react";
+import { SubheadingProps } from "@/app/lib/definitions";
 
-type SubheadingProps = {
-   text: string;
-   left?: string;
-   right?: string;
-};
-
-const Subheading: FC<SubheadingProps> = ({
+const Subheading: React.FC<SubheadingProps> = ({
    text,
    left = "w-20 me-2",
    right = "w-20 ms-2",

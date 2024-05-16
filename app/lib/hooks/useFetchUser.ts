@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { getUserByName } from "@/app/lib/data";
 import { UserProps } from "@/app/lib/definitions";

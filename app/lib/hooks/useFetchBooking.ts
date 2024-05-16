@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { getBookingById } from "@/app/lib/data";
 import { BookingProps } from "@/app/lib/definitions";

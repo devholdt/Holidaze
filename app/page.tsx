@@ -6,12 +6,14 @@ import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import { LinkButton } from "@/app/ui/buttons";
 import Hero from "@/app/ui/hero";
 import dynamic from "next/dynamic";
+import React from "react";
 
-export const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
+const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
+   loading: () => <p>Loading...</p>,
 });
 
-export default function Home() {
+const Page: React.FC = () => {
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
          <div
@@ -49,11 +51,11 @@ export default function Home() {
             </div>
          </div>
          <div className="mb-36 flex flex-col items-center">
-            {/* <Suspense fallback={<p>Loading...</p>}>
-               <VenueList listLimit={3} />
-            </Suspense> */}
+            <VenueList listLimit={3} />
             <LinkButton targetHref="/venues" text="View all" styles="mt-12" />
          </div>
       </main>
    );
-}
+};
+
+export default Page;

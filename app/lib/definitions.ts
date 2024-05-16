@@ -1,3 +1,5 @@
+"use client";
+
 import { StaticImageData } from "next/image";
 
 export interface VenueProps {
@@ -59,6 +61,11 @@ export interface ManagerVenueCardProps {
 
 export interface ManagerVenueListProps {
    name?: string;
+}
+
+export interface VenueListProps {
+   listLimit?: number;
+   showMoreButton?: boolean;
 }
 
 export interface MenuItemProps {
@@ -134,6 +141,12 @@ export interface EditProfileProps {
       alt: string;
    };
 }
+
+export type SubheadingProps = {
+   text: string;
+   left?: string;
+   right?: string;
+};
 
 export type ImageSourceProps<T> = (
    entity: T | null

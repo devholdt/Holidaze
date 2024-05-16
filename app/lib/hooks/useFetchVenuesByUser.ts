@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { getVenuesByUser } from "@/app/lib/data";
 import { VenueProps } from "@/app/lib/definitions";

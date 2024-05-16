@@ -1,4 +1,3 @@
-import { FC } from "react";
 import Link from "next/link";
 
 type ButtonProps = {
@@ -8,7 +7,12 @@ type ButtonProps = {
    onClick?: () => void;
 };
 
-const Button: FC<ButtonProps> = ({ text, styles, primary = true, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+   text,
+   styles,
+   primary = true,
+   onClick,
+}) => {
    return (
       <button
          className={`px-6 py-3 text-lg font-extralight uppercase tracking-widest transition ${styles} ${
@@ -30,7 +34,7 @@ type LinkButtonProps = {
    targetHref: string;
 };
 
-const LinkButton: FC<LinkButtonProps> = ({
+const LinkButton: React.FC<LinkButtonProps> = ({
    text,
    styles,
    primary = true,

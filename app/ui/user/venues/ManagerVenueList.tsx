@@ -1,10 +1,14 @@
 "use client";
 
 import { ManagerVenueListProps } from "@/app/lib/definitions";
-import ManagerVenueCard from "@/app/ui/user/venues/ManagerVenueCard";
 import { getItem } from "@/app/lib/storage";
 import useFetchUser from "@/app/lib/hooks/useFetchUser";
 import useFetchVenuesByUser from "@/app/lib/hooks/useFetchVenuesByUser";
+import dynamic from "next/dynamic";
+
+const ManagerVenueCard = dynamic(
+   () => import("@/app/ui/user/venues/ManagerVenueCard")
+);
 
 const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
    const managerName = name || getItem("name");
@@ -23,9 +27,9 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
 
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
-         {/* {venues.map((venue) => (
+         {venues.map((venue) => (
             <ManagerVenueCard key={venue.id} venue={venue} manager={manager} />
-         ))} */}
+         ))}
       </div>
    );
 };

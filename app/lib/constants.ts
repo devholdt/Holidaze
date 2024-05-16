@@ -1,3 +1,5 @@
+"use client";
+
 import { MenuItemProps } from "@/app/lib/definitions";
 
 export const API_PATH = "https://v2.api.noroff.dev";

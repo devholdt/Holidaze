@@ -1,10 +1,10 @@
 import { elMessiri } from "@/app/ui/fonts";
-import { FC, createElement } from "react";
+import { createElement } from "react";
 import Subheading from "@/app/ui/subheading";
 import backgroundImage from "@/public/background-beach.jpg";
 import { HeroProps } from "@/app/lib/definitions";
 
-const Hero: FC<HeroProps> = ({
+const Hero: React.FC<HeroProps> = ({
    heading,
    headingLevel,
    subheading = "",

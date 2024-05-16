@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import { StaticImageData } from "next/image";

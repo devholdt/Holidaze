@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
