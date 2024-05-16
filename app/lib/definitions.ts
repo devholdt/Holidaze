@@ -55,7 +55,15 @@ export interface MenuItemProps {
 }
 
 export interface UserProps {
+   name: string;
+   email: string;
+   avatar?: { url: string; alt: string };
+   banner?: { url: string; alt: string };
    venueManager: boolean;
+}
+
+export interface UserDetailsProps {
+   user: UserProps;
 }
 
 export interface BookingFormProps {

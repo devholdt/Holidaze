@@ -1,23 +1,11 @@
 "use client";
 
-import { elMessiri } from "@/app/ui/fonts";
-import React, { useState, useEffect } from "react";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
-import { getUserByName } from "@/app/lib/data";
-import { getItem } from "@/app/lib/storage";
+import React from "react";
 import Image from "next/image";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { UserDetailsProps } from "@/app/lib/definitions";
 
-const UserDetails = () => {
-   const [user, setUser] = useState<any>(null);
-
-   useEffect(() => {
-      const fetchUser = async () => {
-         setUser(await getUserByName(getItem("name")));
-      };
-
-      fetchUser();
-   }, []);
-
+const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
    if (!user || !user.avatar) {
       return null;
    }
@@ -33,16 +21,12 @@ const UserDetails = () => {
                className="h-12 w-12 rounded-full border border-grey"
             />
             <div className="flex flex-col">
-               <p
-                  className={`${elMessiri.className} flex items-start text-3xl font-medium`}
-               >
-                  <span className="flex h-[44px] flex-col justify-end">
+               <p className="flex items-start text-3xl font-medium">
+                  <span className="flex h-[44px] flex-col justify-end text-blue">
                      {user.name}
                   </span>
                   {user.venueManager && (
-                     <>
-                        <CheckCircleIcon className="w-[22px] text-yellow" />
-                     </>
+                     <CheckCircleIcon className="w-[22px] text-yellow" />
                   )}
                </p>
                <p className="font-thin text-dark">{user.email}</p>
