@@ -1,7 +1,7 @@
 "use client";
 
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import UserDetails from "@/app/ui/user/UserDetails";
 import Modal from "@/app/ui/Modal";
@@ -11,11 +11,11 @@ import {
    managerMenuItems,
 } from "@/app/lib/constants";
 import { MenuItemProps } from "@/app/lib/definitions";
-import useFetchUser from "@/app/lib/hooks/useFetchUser";
 import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
+import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 
 const UserDropdown: React.FC = () => {
-   const user = useFetchUser();
+   const user = useFetchLoggedInUser();
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const dropdownRef = useRef<HTMLDivElement>(null);
 

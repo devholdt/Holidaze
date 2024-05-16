@@ -2,37 +2,24 @@
 
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
-import { VenueProps } from "@/app/lib/definitions";
+import { ManagerVenueCardProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getLoggedInUser } from "@/app/lib/data";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+import { getItem } from "@/app/lib/storage";
 
-const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
-   const [user, setUser] = useState<any>(null);
+const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({
+   venue,
+   manager,
+}) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
-   useEffect(() => {
-      const fetchUser = async () => {
-         setUser(await getLoggedInUser());
-      };
-
-      fetchUser();
-   }, []);
-
-   let description;
-
-   if (!venue.description) {
-      description = `No description available`;
-   } else {
-      description = venue.description;
-   }
+   let description = venue.description || `No description available`;
 
    return (
       <Link
          href={
-            user?.name === venue.owner.name
+            manager?.name === getItem("name")
                ? `/user/venues/${venue.id}`
                : `/venues/${venue.id}`
          }
@@ -53,7 +40,6 @@ const ManagerVenueCard = ({ venue }: { venue: VenueProps }) => {
             >
                {venue.name}
             </h2>
-
             <p className="font-light">{description}</p>
             <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">

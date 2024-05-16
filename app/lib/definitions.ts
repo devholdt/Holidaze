@@ -50,6 +50,15 @@ export interface VenueOwnerProps {
    banner: { url: string; alt: string };
 }
 
+export interface ManagerVenueCardProps {
+   venue: VenueProps;
+   manager: UserProps | null;
+}
+
+export interface ManagerVenueListProps {
+   name?: string;
+}
+
 export interface MenuItemProps {
    title: string;
    route?: string;

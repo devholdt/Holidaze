@@ -2,19 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { getManagerVenues } from "@/app/lib/data";
-import { VenueProps } from "@/app/lib/definitions";
+import { VenueProps, ManagerVenueListProps } from "@/app/lib/definitions";
 import ManagerVenueCard from "@/app/ui/user/venues/ManagerVenueCard";
 import { getItem } from "@/app/lib/storage";
-
-interface ManagerVenueListProps {
-   name?: string;
-}
+import useFetchUser from "@/app/lib/hooks/useFetchUser";
 
 const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
+   const managerName = name || getItem("name");
+   const manager = useFetchUser(managerName);
+
    const [venues, setVenues] = useState<VenueProps[]>([]);
    const [loading, setLoading] = useState(true);
-
-   const managerName = name || getItem("name");
 
    useEffect(() => {
       const fetchVenues = async () => {
@@ -45,7 +43,7 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
          {venues.map((venue) => (
-            <ManagerVenueCard key={venue.id} venue={venue} />
+            <ManagerVenueCard key={venue.id} venue={venue} manager={manager} />
          ))}
       </div>
    );
