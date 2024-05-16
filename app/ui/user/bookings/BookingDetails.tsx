@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate } from "@/app/lib/utils";
-import { getBookingById } from "@/app/lib/data";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Subheading from "@/app/ui/subheading";
 import {
@@ -17,24 +15,12 @@ import {
 } from "@heroicons/react/24/outline";
 import Modal from "@/app/ui/Modal";
 import Link from "next/link";
+import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const BookingDetails = ({ id }: { id: string }) => {
-   const [booking, setBooking] = useState<any>(null);
-   const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
-      booking?.media?.[0].url || backgroundReflection
-   );
-
-   useEffect(() => {
-      const fetchBooking = async () => {
-         setBooking(await getBookingById(id));
-      };
-
-      fetchBooking();
-   }, [id]);
-
-   useEffect(() => {
-      setImgSrc(booking?.venue?.media?.[0]?.url || backgroundReflection);
-   }, [booking]);
+   const booking = useFetchBooking(id);
+   const [imgSrc, setImgSrc] = useImageSource(booking);
 
    if (!booking) {
       return (

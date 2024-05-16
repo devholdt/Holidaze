@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface VenueProps {
    id: string;
    name: string;
@@ -132,6 +134,10 @@ export interface EditProfileProps {
       alt: string;
    };
 }
+
+export type ImageSourceProps<T> = (
+   entity: T | null
+) => string | StaticImageData;
 
 export type DateRangeProps = {
    dateRange: [Date | null, Date | null];
