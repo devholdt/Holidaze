@@ -20,20 +20,22 @@ export default function Header() {
             <Link href="/">
                <Logo src={logoWhite} styles="max-w-[160px]" />
             </Link>
-            <nav className="flex items-center gap-8">
-               <Link href="/" className="uppercase text-white">
-                  Home
-               </Link>
-               <Link href="/venues" className="uppercase text-white">
-                  Venues
-               </Link>
-               <Link href="/contact" className="uppercase text-white">
-                  Contact
-               </Link>
+            <div className="flex items-center gap-4">
+               <nav className="flex items-center gap-8">
+                  <Link href="/" className="uppercase text-white">
+                     Home
+                  </Link>
+                  <Link href="/venues" className="uppercase text-white">
+                     Venues
+                  </Link>
+                  <Link href="/contact" className="uppercase text-white">
+                     Contact
+                  </Link>
+               </nav>
                <Suspense fallback={<p>Loading...</p>}>
                   <UserDropdown />
                </Suspense>
-            </nav>
+            </div>
          </div>
       </header>
    );

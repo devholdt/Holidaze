@@ -13,7 +13,7 @@ const useOutsideClick = (
    useEffect(() => {
       document.addEventListener("mousedown", handleClick);
       return () => document.removeEventListener("mousedown", handleClick);
-   }, []);
+   }, [handleClick]);
 };
 
 export default useOutsideClick;

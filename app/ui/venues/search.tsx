@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import React, { Suspense } from "react";
 
 const Search = () => {
    const searchParams = useSearchParams();
@@ -21,14 +22,16 @@ const Search = () => {
    return (
       <div className="flex w-full flex-col text-blue">
          <label htmlFor="search">Search:</label>
-         <input
-            className="placeholder:text-gray-500 rounded-full border border-2 border-yellow py-2 pl-4"
-            placeholder="Search venues..."
-            onChange={(e) => {
-               handleSearch(e.target.value);
-            }}
-            defaultValue={searchParams.get("query")?.toString()}
-         />
+         <Suspense fallback={<p>Loading...</p>}>
+            <input
+               className="placeholder:text-gray-500 rounded-full border border-2 border-yellow py-2 pl-4"
+               placeholder="Search venues..."
+               onChange={(e) => {
+                  handleSearch(e.target.value);
+               }}
+               defaultValue={searchParams.get("query")?.toString()}
+            />
+         </Suspense>
       </div>
    );
 };
