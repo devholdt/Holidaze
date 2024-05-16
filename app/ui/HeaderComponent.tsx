@@ -10,7 +10,7 @@ const UserDropdown = dynamic(() => import("@/app/ui/user/UserDropdown"), {
    ssr: false,
 });
 
-export default function Header() {
+export default function HeaderComponent() {
    return (
       <header
          style={{

@@ -133,7 +133,6 @@ const VenueDetails = ({ id }: { id: string }) => {
                            width={400}
                            height={400}
                            className="h-[100px] w-[100px] rounded-full border border-lightGrey object-cover object-center"
-                           priority={true}
                         />
 
                         <div className="flex flex-col">

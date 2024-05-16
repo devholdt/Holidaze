@@ -4,18 +4,34 @@ import React from "react";
 import Image from "next/image";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { UserDetailsProps } from "@/app/lib/definitions";
+import BackgroundReflection from "@/public/background-reflection.jpg";
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
-   if (!user || !user.avatar) {
-      return null;
+   if (!user) {
+      return (
+         <div className="mt-12 flex flex-col items-center justify-center text-center">
+            <p>Loading...</p>
+         </div>
+      );
+   }
+
+   let userAvatar;
+   let userAlt;
+
+   if (!user.avatar) {
+      userAvatar = BackgroundReflection.src;
+      userAlt = "User avatar";
+   } else {
+      userAvatar = user.avatar.url;
+      userAlt = user.avatar.alt;
    }
 
    return (
       <>
          <div className="m-auto mx-6 mb-6 flex items-center gap-2">
             <Image
-               src={user.avatar.url}
-               alt={user.avatar.alt}
+               src={userAvatar}
+               alt={userAlt}
                width={200}
                height={200}
                className="h-12 w-12 rounded-full border border-grey"
