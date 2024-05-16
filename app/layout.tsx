@@ -1,12 +1,10 @@
 import "@/app/ui/globals.css";
 import type { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
-// import Header from "@/app/ui/Header";
 import Footer from "@/app/ui/footer";
+import dynamic from "next/dynamic";
 
-// import React, { lazy, Suspense } from "react";
-
-// const Header = lazy(() => import("@/app/ui/Header"));
+export const Header = dynamic(() => import("@/app/ui/Header"), { ssr: false });
 
 export const metadata: Metadata = {
    title: {
@@ -24,9 +22,7 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body className={`${robotoFlex.className} bg-lighterGrey antialiased`}>
-            {/* <Suspense fallback={<p>Loading...</p>}>
-               <Header />
-            </Suspense> */}
+            <Header />
             {children}
             <Footer />
          </body>

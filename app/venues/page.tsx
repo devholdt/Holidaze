@@ -2,8 +2,11 @@ import { Metadata } from "next";
 import Hero from "@/app/ui/hero";
 import RadioButtons from "@/app/ui/venues/radio-buttons";
 import Search from "@/app/ui/venues/Search";
-import VenueList from "@/app/ui/venues/VenueList";
-import { Suspense } from "react";
+import dynamic from "next/dynamic";
+
+export const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
+   ssr: false,
+});
 
 export const metadata: Metadata = {
    title: "Venues",
@@ -20,9 +23,7 @@ export default function Page() {
          </div>
 
          <div className="mb-36 flex flex-col items-center">
-            <Suspense fallback={<p>Loading...</p>}>
-               <VenueList showMoreButton={true} />
-            </Suspense>
+            <VenueList showMoreButton={true} />
          </div>
       </main>
    );

@@ -23,9 +23,9 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
 
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
-         {venues.map((venue) => (
+         {/* {venues.map((venue) => (
             <ManagerVenueCard key={venue.id} venue={venue} manager={manager} />
-         ))}
+         ))} */}
       </div>
    );
 };

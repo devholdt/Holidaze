@@ -18,9 +18,9 @@ const VenueList: React.FC<{
    return (
       <>
          <div className="grid w-full grid-cols-3 gap-8 px-4 md:px-14 xl:px-32">
-            {venues.slice(0, limit).map((venue: any) => (
+            {/* {venues.slice(0, limit).map((venue: any) => (
                <VenueCard venue={venue} key={venue.id} />
-            ))}
+            ))} */}
          </div>
          {showMoreButton && venues && limit < venues.length && (
             <Button

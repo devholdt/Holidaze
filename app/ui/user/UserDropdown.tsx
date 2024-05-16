@@ -79,7 +79,7 @@ const UserDropdown: React.FC = () => {
             >
                &#x2715;
             </button>
-            {user && <UserDetails user={user} />}
+            {/* {user && <UserDetails user={user} />} */}
             <div className="flex flex-col pb-6">
                {menuItems.map((item, index) => (
                   <MenuItem key={index} item={item} />

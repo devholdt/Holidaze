@@ -26,9 +26,9 @@ const BookingsList: React.FC = () => {
 
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
-         {bookings.map((booking) => (
+         {/* {bookings.map((booking) => (
             <BookingCard key={booking.id} booking={booking} />
-         ))}
+         ))} */}
       </div>
    );
 };

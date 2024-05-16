@@ -1,12 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
 import waterImg from "@/public/texture-water-sm.jpg";
-import React, { lazy, Suspense } from "react";
+import dynamic from "next/dynamic";
 
-const UserDropdown = lazy(() => import("@/app/ui/user/UserDropdown"));
+export const UserDropdown = dynamic(
+   () => import("@/app/ui/user/UserDropdown"),
+   { ssr: false }
+);
 
 export default function Header() {
    return (
@@ -32,9 +33,7 @@ export default function Header() {
                      Contact
                   </Link>
                </nav>
-               <Suspense fallback={<p>Loading...</p>}>
-                  <UserDropdown />
-               </Suspense>
+               <UserDropdown />
             </div>
          </div>
       </header>
