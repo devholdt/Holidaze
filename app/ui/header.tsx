@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
 import waterImg from "@/public/texture-water-sm.jpg";
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 
 const UserDropdown = lazy(() => import("@/app/ui/user/UserDropdown"));
 
@@ -28,7 +28,9 @@ export default function Header() {
                <Link href="/contact" className="uppercase text-white">
                   Contact
                </Link>
-               <UserDropdown />
+               <Suspense fallback={<p>Loading...</p>}>
+                  <UserDropdown />
+               </Suspense>
             </nav>
          </div>
       </header>

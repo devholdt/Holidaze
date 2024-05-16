@@ -1,7 +1,7 @@
 "use client";
 
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import { useState, useRef, useMemo, lazy } from "react";
+import { useState, useRef, useMemo, lazy, Suspense } from "react";
 import Link from "next/link";
 import UserDetails from "@/app/ui/user/UserDetails";
 import {
@@ -36,11 +36,13 @@ const UserDropdown: React.FC = () => {
       return isSpecialItem ? (
          <>
             {item.title === "Log out" && <hr className="text-lightGrey" />}
-            <Modal
-               modal={item.title}
-               textContent={item.title}
-               buttonStyles="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey text-left"
-            />
+            <Suspense fallback={<div>Loading modal...</div>}>
+               <Modal
+                  modal={item.title}
+                  textContent={item.title}
+                  buttonStyles="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey text-left"
+               />
+            </Suspense>
          </>
       ) : (
          <>
