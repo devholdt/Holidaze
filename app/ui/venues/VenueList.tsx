@@ -3,13 +3,13 @@
 import { Button } from "@/app/ui/buttons";
 import React, { useState } from "react";
 import VenueCard from "@/app/ui/venues/VenueCard";
-import useFetchVenues from "@/app/lib/hooks/useFetchVenues";
+import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 
 const VenueList: React.FC<{
    listLimit?: number;
    showMoreButton?: boolean;
 }> = ({ listLimit = 9, showMoreButton = false }) => {
-   const { venues, loading } = useFetchVenues();
+   const { venues, loading } = useFetchAllVenues();
    const INITIAL_LIMIT = listLimit;
    const [limit, setLimit] = useState(INITIAL_LIMIT);
 

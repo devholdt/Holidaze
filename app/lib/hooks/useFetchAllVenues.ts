@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getVenues } from "@/app/lib/data";
 import { VenueProps } from "@/app/lib/definitions";
 
-const useFetchVenues = () => {
+const useFetchAllVenues = () => {
    const [venues, setVenues] = useState<VenueProps[]>([]);
    const [loading, setLoading] = useState(true);
 
@@ -23,4 +23,4 @@ const useFetchVenues = () => {
    return { venues, loading };
 };
 
-export default useFetchVenues;
+export default useFetchAllVenues;
