@@ -2,6 +2,7 @@ import { iconCheck, iconXmark } from "@/public/icons";
 import { getItem } from "@/app/lib/storage";
 import { StaticImageData } from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
+import { BookingProps, VenueProps } from "@/app/lib/definitions";
 
 export const formatDate = (
    dateString: string,
@@ -96,6 +97,16 @@ export const headers = (contentType: string) => {
    return headers;
 };
 
-export const defaultImgSrc = (entity: any): string | StaticImageData => {
-   return entity?.media?.[0]?.url || backgroundReflection;
+export const defaultImgSrc = (
+   entity: BookingProps | VenueProps | null
+): string | StaticImageData => {
+   if (!entity) {
+      return backgroundReflection;
+   }
+
+   if ("venue" in entity) {
+      return entity.venue.media?.[0]?.url || backgroundReflection;
+   } else {
+      return entity.media?.[0]?.url || backgroundReflection;
+   }
 };

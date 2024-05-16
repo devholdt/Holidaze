@@ -8,13 +8,16 @@ import { MotionDiv } from "@/app/lib/motion";
 import { VenueProps } from "@/app/lib/definitions";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const VenueCard = ({ venue }: { venue: VenueProps }) => {
-   const [imgSrc, setImgSrc] = useState(
-      venue.media && venue.media.length > 0
-         ? venue.media[0].url
-         : backgroundReflection
-   );
+   // const [imgSrc, setImgSrc] = useState(
+   //    venue.media && venue.media.length > 0
+   //       ? venue.media[0].url
+   //       : backgroundReflection
+   // );
+
+   const [imgSrc, setImgSrc] = useImageSource(venue);
 
    return (
       <MotionDiv

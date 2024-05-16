@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { DateRangeProps } from "@/app/lib/definitions";
@@ -11,55 +11,71 @@ export default function DateRange({
 }: DateRangeProps) {
    const [startDate, endDate] = dateRange;
 
-   const calculateMaxEndDate = (start: Date): Date | null => {
-      if (!start || !bookedDates) return null;
-      const bookedRanges = bookedDates
-         .map((range) => ({
-            start: new Date(range.dateFrom),
-            end: new Date(range.dateTo),
-         }))
-         .sort((a, b) => a.start.getTime() - b.start.getTime());
+   const calculateMaxEndDate = useCallback(
+      (start: Date): Date | null => {
+         if (!start || !bookedDates) return null;
+         const bookedRanges = bookedDates
+            .map((range) => ({
+               start: new Date(range.dateFrom),
+               end: new Date(range.dateTo),
+            }))
+            .sort((a, b) => a.start.getTime() - b.start.getTime());
 
-      for (const range of bookedRanges) {
-         if (range.start > start) {
-            const dayBefore = new Date(range.start);
-            dayBefore.setDate(dayBefore.getDate() - 1);
-            return dayBefore;
+         for (const range of bookedRanges) {
+            if (range.start > start) {
+               const dayBefore = new Date(range.start);
+               dayBefore.setDate(dayBefore.getDate() - 1);
+               return dayBefore;
+            }
          }
-      }
 
-      return null;
-   };
+         return null;
+      },
+      [bookedDates]
+   );
 
-   const getDatesInRange = (startDate: Date, endDate: Date): Date[] => {
-      const dates = [];
-      let currentDate = new Date(startDate.getTime());
-      while (currentDate <= endDate) {
-         dates.push(new Date(currentDate));
-         currentDate.setDate(currentDate.getDate() + 1);
-      }
-      return dates;
-   };
+   const getDatesInRange = useCallback(
+      (startDate: Date, endDate: Date): Date[] => {
+         const dates = [];
+         let currentDate = new Date(startDate.getTime());
+         while (currentDate <= endDate) {
+            dates.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+         }
+         return dates;
+      },
+      []
+   );
 
-   const disabledDates = bookedDates
-      ? bookedDates.flatMap((range) =>
-           getDatesInRange(new Date(range.dateFrom), new Date(range.dateTo))
-        )
-      : [];
+   const disabledDates = useMemo(
+      () =>
+         bookedDates
+            ? bookedDates.flatMap((range) =>
+                 getDatesInRange(
+                    new Date(range.dateFrom),
+                    new Date(range.dateTo)
+                 )
+              )
+            : [],
+      [bookedDates, getDatesInRange]
+   );
 
-   const handleDateChange = (dates: [Date | null, Date | null]) => {
-      const [start, end] = dates;
-      if (start) {
-         const maxEndDate = calculateMaxEndDate(start);
-         if (end && maxEndDate && end > maxEndDate) {
-            setDateRange([start, maxEndDate]);
+   const handleDateChange = useCallback(
+      (dates: [Date | null, Date | null]) => {
+         const [start, end] = dates;
+         if (start) {
+            const maxEndDate = calculateMaxEndDate(start);
+            if (end && maxEndDate && end > maxEndDate) {
+               setDateRange([start, maxEndDate]);
+            } else {
+               setDateRange(dates);
+            }
          } else {
-            setDateRange(dates);
+            setDateRange([start, null]);
          }
-      } else {
-         setDateRange([start, null]);
-      }
-   };
+      },
+      [calculateMaxEndDate, setDateRange]
+   );
 
    const CustomInput = React.forwardRef<
       HTMLButtonElement,
@@ -76,6 +92,7 @@ export default function DateRange({
                onClick={onClick}
                ref={ref}
                type="button"
+               aria-label="Pick a date range"
             >
                {displayValue}
             </button>

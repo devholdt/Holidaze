@@ -29,7 +29,6 @@ export interface BookingProps {
    dateTo: string;
    created: string;
    guests: number;
-   venue: VenueProps;
    customer: {
       avatar: {
          url: string;
@@ -42,6 +41,7 @@ export interface BookingProps {
       name: string;
       email: string;
    };
+   venue: VenueProps;
 }
 
 export interface VenueOwnerProps {

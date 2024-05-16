@@ -4,14 +4,12 @@ import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import { BookingProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
-import { useState } from "react";
 import Link from "next/link";
 import { formatDate } from "@/app/lib/utils";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const BookingCard = ({ booking }: { booking: BookingProps }) => {
-   const [imgSrc, setImgSrc] = useState(
-      booking.venue.media?.[0].url || backgroundReflection
-   );
+   const [imgSrc, setImgSrc] = useImageSource(booking);
 
    let description;
 
