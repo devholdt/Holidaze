@@ -11,7 +11,9 @@ import backgroundReflection from "@/public/background-reflection.jpg";
 
 const VenueCard = ({ venue }: { venue: VenueProps }) => {
    const [imgSrc, setImgSrc] = useState(
-      venue.media?.[0].url || backgroundReflection
+      venue.media && venue.media.length > 0
+         ? venue.media[0].url
+         : backgroundReflection
    );
 
    return (
@@ -26,7 +28,11 @@ const VenueCard = ({ venue }: { venue: VenueProps }) => {
          >
             <Image
                src={imgSrc}
-               alt={venue.media?.[0].alt || "Venue image"}
+               alt={
+                  venue.media && venue.media.length > 0
+                     ? venue.media[0].alt
+                     : "Venue image"
+               }
                onError={() => setImgSrc(backgroundReflection)}
                width={800}
                height={600}
