@@ -28,6 +28,7 @@
       "eslint": "^8",
       "eslint-config-next": "^14.2.3",
       "eslint-config-prettier": "^9.1.0",
+      "netlify-cli": "^17.23.5",
       "postcss": "^8",
       "prettier": "^3.2.5",
       "prettier-plugin-tailwindcss": "^0.5.14",
