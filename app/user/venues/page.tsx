@@ -1,7 +1,9 @@
 import { Metadata } from "next";
+import React, { lazy } from "react";
 import Hero from "@/app/ui/hero";
 import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
-import Modal from "@/app/ui/Modal";
+
+const Modal = lazy(() => import("@/app/ui/Modal"));
 
 export const metadata: Metadata = {
    title: "Your Venues",

@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
-import UserDropdown from "@/app/ui/user/UserDropdown";
 import waterImg from "@/public/texture-water-sm.jpg";
+import React, { lazy } from "react";
+
+const UserDropdown = lazy(() => import("@/app/ui/user/UserDropdown"));
 
 export default function Header() {
    return (

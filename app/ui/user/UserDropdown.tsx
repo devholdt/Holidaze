@@ -1,10 +1,9 @@
 "use client";
 
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, lazy } from "react";
 import Link from "next/link";
 import UserDetails from "@/app/ui/user/UserDetails";
-import Modal from "@/app/ui/Modal";
 import {
    loggedOutMenuItems,
    customerMenuItems,
@@ -13,6 +12,8 @@ import {
 import { MenuItemProps } from "@/app/lib/definitions";
 import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
+
+const Modal = lazy(() => import("@/app/ui/Modal"));
 
 const UserDropdown: React.FC = () => {
    const user = useFetchLoggedInUser();

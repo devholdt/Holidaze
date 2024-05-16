@@ -5,10 +5,7 @@ import { headers } from "@/app/lib/utils";
 export async function getVenues() {
    try {
       const response = await fetch(
-         `${API_URLS.VENUES}?_owner=true&_bookings=true&sort=created`,
-         {
-            next: { revalidate: 10 },
-         }
+         `${API_URLS.VENUES}?_owner=true&_bookings=true&sort=created`
       );
 
       const json = await response.json();
@@ -22,12 +19,10 @@ export async function getVenues() {
 }
 
 export async function getVenueById(id: string) {
-   const url = `${API_URLS.VENUES}/${id}?_owner=true&_bookings=true`;
-
    try {
-      const response = await fetch(url, {
-         next: { revalidate: 10 },
-      });
+      const response = await fetch(
+         `${API_URLS.VENUES}/${id}?_owner=true&_bookings=true`
+      );
 
       const json = await response.json();
       const data = json.data;

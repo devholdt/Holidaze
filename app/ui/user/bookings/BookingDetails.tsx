@@ -1,5 +1,6 @@
 "use client";
 
+import { lazy } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate } from "@/app/lib/utils";
 import Image from "next/image";
@@ -13,10 +14,11 @@ import {
    FaceFrownIcon,
    PencilSquareIcon,
 } from "@heroicons/react/24/outline";
-import Modal from "@/app/ui/Modal";
 import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+
+const Modal = lazy(() => import("@/app/ui/Modal"));
 
 const BookingDetails = ({ id }: { id: string }) => {
    const booking = useFetchBooking(id);
