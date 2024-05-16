@@ -121,6 +121,13 @@ export type DateRangeProps = {
    bookedDates?: { dateFrom: string; dateTo: string }[];
 };
 
+export type HeroProps = {
+   heading: string;
+   headingLevel: number;
+   subheading?: string;
+   text?: string;
+};
+
 export enum FormAction {
    Register = "register",
    Login = "login",

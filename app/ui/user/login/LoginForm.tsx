@@ -44,7 +44,7 @@ export default function LoginForm() {
          </div>
          <Button text="Login" styles="w-full" primary={false} />
          <div className="mt-4 w-full font-extralight tracking-wider">
-            Don't have an account? Register{" "}
+            Don&apos;t have an account? Register{" "}
             <Link
                href="/user/register"
                className="text-blue underline hover:font-medium"

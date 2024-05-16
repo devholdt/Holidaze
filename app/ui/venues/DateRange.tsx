@@ -84,6 +84,8 @@ export default function DateRange({
       );
    });
 
+   CustomInput.displayName = "CustomInput";
+
    return (
       <fieldset>
          <legend className="mb-1 text-blue">Pick dates</legend>

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { getUserByName } from "@/app/lib/data";
 import { getItem } from "@/app/lib/storage";
+import Image from "next/image";
 
 const UserDetails = () => {
    const [user, setUser] = useState<any>(null);
@@ -24,9 +25,11 @@ const UserDetails = () => {
    return (
       <>
          <div className="m-auto mx-6 mb-6 flex items-center gap-2">
-            <img
+            <Image
                src={user.avatar.url}
                alt={user.avatar.alt}
+               width={200}
+               height={200}
                className="h-12 w-12 rounded-full border border-grey"
             />
             <div className="flex flex-col">

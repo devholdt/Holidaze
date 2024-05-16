@@ -35,7 +35,9 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
    if (venues.length === 0) {
       return (
          <div className="flex justify-center">
-            <p className="mt-8">{managerName} haven't created any venues.</p>
+            <p className="mt-8">
+               {managerName} haven&apos;t created any venues.
+            </p>
          </div>
       );
    }
