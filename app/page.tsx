@@ -36,6 +36,7 @@ const Page: React.FC = () => {
                   offering a unique sanctuary of peace and luxury. Dive into
                   unparalleled comfort and serene settings, where every stay
                   promises a memorable escape."
+            styles="hidden sm:flex"
          />
 
          <div className="mt-36 flex flex-col items-center">
@@ -51,7 +52,7 @@ const Page: React.FC = () => {
             </div>
          </div>
          <div className="mb-36 flex flex-col items-center">
-            <VenueList listLimit={3} />
+            <VenueList listLimit={4} />
             <LinkButton targetHref="/venues" text="View all" styles="mt-8" />
          </div>
       </main>

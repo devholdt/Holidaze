@@ -55,13 +55,13 @@ const Searchbar: React.FC<SearchbarProps> = ({ venues, setFilteredVenues }) => {
                id="searchbar"
                aria-label="Search venues"
                placeholder="Search venues..."
-               className="placeholder:text-gray-500 h-12 w-full max-w-[640px] rounded-full border-2 border-yellow py-2 pl-4"
+               className="placeholder:text-gray-500 h-12 w-full rounded-full border-2 border-yellow py-2 pl-4"
                onChange={handleChange}
                onKeyDown={handleOnKeyDown}
             />
             <button
                onClick={handleButtonClick}
-               className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow text-blue"
+               className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-yellow p-3 text-blue"
             >
                <MagnifyingGlassIcon className="h-6 w-6" />
             </button>

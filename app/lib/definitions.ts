@@ -161,6 +161,7 @@ export type HeroProps = {
    headingLevel: number;
    subheading?: string;
    text?: string;
+   styles?: string;
 };
 
 export enum FormAction {

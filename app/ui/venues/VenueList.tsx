@@ -14,7 +14,7 @@ const Searchbar = dynamic(() => import("@/app/ui/venues/Searchbar"), {
 });
 
 const VenueList: React.FC<VenueListProps> = ({
-   listLimit = 9,
+   listLimit = 12,
    venuePage = false,
 }) => {
    const { venues, loading } = useFetchAllVenues();
@@ -25,20 +25,32 @@ const VenueList: React.FC<VenueListProps> = ({
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
 
    return (
-      <div className="w-full px-8">
+      <div className="w-full px-2 md:px-8">
          {venuePage && (
-            <div className="my-8 flex w-full justify-between gap-20">
+            <div className="xs:flex-row my-8 flex w-full flex-col gap-4 sm:gap-8">
                <Suspense fallback={<p>Loading...</p>}>
                   <Searchbar
                      venues={venues}
                      setFilteredVenues={setFilteredVenues}
                   />
-                  <RadioButtons />
+                  {/* <RadioButtons /> */}
+                  <div className="flex max-w-[200px] flex-col">
+                     <label htmlFor="filter">Filter by:</label>
+                     <select
+                        name="filter"
+                        id="filter"
+                        className="h-12 rounded-full border-2 border-yellow px-4 text-blue hover:cursor-pointer"
+                     >
+                        <option value="Latest">Latest</option>
+                        <option value="Popular">Popular</option>
+                        <option value="Featured">Featured</option>
+                     </select>
+                  </div>
                </Suspense>
             </div>
          )}
          <div className="mb-8 flex flex-col items-center">
-            <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                {venuePage
                   ? filteredVenues
                        .slice(0, limit)

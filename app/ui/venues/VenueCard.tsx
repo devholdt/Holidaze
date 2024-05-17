@@ -27,13 +27,13 @@ const VenueCard = ({ venue }: { venue: VenueProps }) => {
             width={800}
             height={600}
             unoptimized
-            className="h-[320px] rounded-t-xl object-cover object-center"
+            className="h-[240px] rounded-t-xl object-cover object-center"
          />
 
          <div className="rounded-b-xl bg-white px-6 py-4">
             <h4 className={`${elMessiri.className} truncate`}>{venue.name}</h4>
             <hr className="mb-2 mt-1" />
-            <div className="flex justify-between gap-4">
+            <div className="flex flex-col justify-between">
                <p className="text-nowrap font-light">
                   <span className="font-normal">
                      £{formatNumber(venue.price)}

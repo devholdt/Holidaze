@@ -9,6 +9,7 @@ const Hero: React.FC<HeroProps> = ({
    headingLevel,
    subheading = "",
    text = "",
+   styles = "",
 }) => {
    const Heading = createElement(
       `h${headingLevel}` as keyof JSX.IntrinsicElements,
@@ -25,11 +26,15 @@ const Hero: React.FC<HeroProps> = ({
             backgroundSize: "cover",
             backgroundPosition: "center",
          }}
-         className="flex h-80 flex-col justify-center p-28 text-dark"
+         className={`xs:p-12 flex h-64 flex-col justify-center p-0 text-dark md:h-80 md:p-28 ${styles}`}
       >
-         {subheading && <Subheading text={subheading} left={""} />}
-         {Heading}
-         {text && <p className="max-w-80 font-light">{text}</p>}
+         <div className="xs:items-start flex flex-col items-center">
+            <div>
+               {subheading && <Subheading text={subheading} left={""} />}
+               {Heading}
+               {text && <p className="max-w-80 font-light">{text}</p>}
+            </div>
+         </div>
       </div>
    );
 };

@@ -101,15 +101,10 @@ const BurgerMenu = () => {
             Home
          </Link>
 
-         <hr className="text-lightGrey" />
-
          <div>
             <div className="flex flex-col">
                {menuItems.map((item, index) => (
-                  <>
-                     <MenuItem key={index} item={item} />
-                     <hr className="text-lightGrey" />
-                  </>
+                  <MenuItem key={index} item={item} />
                ))}
             </div>
          </div>
