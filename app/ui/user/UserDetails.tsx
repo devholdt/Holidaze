@@ -28,13 +28,13 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
 
    return (
       <>
-         <div className="m-auto mx-6 mb-6 flex items-center gap-2">
+         <div className="m-auto mx-6 mb-6 flex flex items-center justify-center gap-2">
             <Image
                src={userAvatar}
                alt={userAlt}
                width={200}
                height={200}
-               className="h-12 w-12 rounded-full border border-grey"
+               className="h-[72px] w-[72px] rounded-full border border-grey"
             />
             <div className="flex flex-col">
                <p className="flex items-start text-3xl font-medium">

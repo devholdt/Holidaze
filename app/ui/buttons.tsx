@@ -32,6 +32,7 @@ type LinkButtonProps = {
    styles?: string;
    primary?: boolean;
    targetHref: string;
+   onClick?: () => void;
 };
 
 const LinkButton: React.FC<LinkButtonProps> = ({
@@ -39,9 +40,11 @@ const LinkButton: React.FC<LinkButtonProps> = ({
    styles,
    primary = true,
    targetHref,
+   onClick,
 }) => {
    return (
       <Link
+         onClick={onClick}
          href={targetHref}
          className={`px-6 py-3 text-lg font-extralight uppercase tracking-widest transition ${styles} ${
             primary
