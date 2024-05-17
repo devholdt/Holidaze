@@ -79,3 +79,31 @@ textarea {
 .checkbox-wrapper label:hover {
    color: var(--green);
 }
+
+.bm-burger-button {
+   position: relative;
+   width: 48px;
+}
+
+@media (max-width: 330px) {
+   .bm-burger-button {
+      width: 40px;
+   }
+}
+
+.bm-menu-wrap {
+   position: fixed;
+   top: 0;
+}
+
+.bm-menu {
+   background: var(--white);
+   font-size: 1.15em;
+   padding: 2em 1em 0;
+}
+
+@media (max-width: 768px) {
+   .react-burger-menu {
+      display: block;
+   }
+}

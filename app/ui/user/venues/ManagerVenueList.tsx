@@ -19,7 +19,7 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
 
    if (venues.length === 0) {
       return (
-         <div className="flex justify-center">
+         <div className="flex flex-col items-center justify-center font-light">
             <p className="mt-8">No venues created yet.</p>
          </div>
       );
