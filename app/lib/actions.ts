@@ -272,9 +272,8 @@ export const deleteVenue = async (id: string) => {
    }
 };
 
-export const handleSubmit = async (
+export const handleUserRegistration = async (
    event: React.FormEvent<HTMLFormElement>,
-   action: FormAction,
    isChecked?: boolean
 ) => {
    event.preventDefault();
@@ -284,19 +283,14 @@ export const handleSubmit = async (
    let formValues: { [key: string]: FormDataEntryValue | boolean } =
       Object.fromEntries(formData.entries());
 
-   if (action === FormAction.Register) {
-      formValues.venueManager = isChecked as boolean;
-   }
+   formValues.venueManager = isChecked as boolean;
 
    try {
-      const response = await fetch(
-         `${API_PATH}/auth/${[action]}?_holidaze=true`,
-         {
-            method: "POST",
-            headers: headers("application/json"),
-            body: JSON.stringify(formValues),
-         }
-      );
+      const response = await fetch(`${API_PATH}/auth/register`, {
+         method: "POST",
+         headers: headers("application/json"),
+         body: JSON.stringify(formValues),
+      });
 
       if (!response.ok) {
          const errorText = await response.text();
@@ -305,62 +299,114 @@ export const handleSubmit = async (
             `An error occured (${response.status})`,
             ".alert-container"
          );
-         throw new Error(`Failed to ${action}: ${errorText}`);
+         throw new Error(`Failed to register user: ${errorText}`);
       }
 
       const json = await response.json();
       const user = json.data;
 
-      if (action === FormAction.Login) {
-         setItem({ key: "user", value: user });
-         setItem({ key: "name", value: user.name });
-         setItem({ key: "token", value: user.accessToken });
+      alert(
+         "success",
+         `Registration successfull! <br /> Welcome, <strong>${user.name}</strong>`,
+         ".alert-container"
+      );
 
-         alert(
-            "success",
-            `Login successful! <br /> Welcome back, <strong>${user.name}</strong>`,
-            ".alert-container"
-         );
-      } else if (action === FormAction.Register) {
-         try {
-            const loginResponse = await fetch(
-               `${API_PATH}/auth/login?_holidaze=true`,
-               {
-                  method: "POST",
-                  headers: headers("application/json"),
-                  body: JSON.stringify(formValues),
-               }
-            );
-
-            if (!loginResponse.ok) {
-               const errorText = await loginResponse.text();
-               alert(
-                  "error",
-                  `An error occured (${loginResponse.status})`,
-                  ".alert-container"
-               );
-               throw new Error(`Failed to automatically log in: ${errorText}`);
+      try {
+         const loginResponse = await fetch(
+            `${API_PATH}/auth/login?_holidaze=true`,
+            {
+               method: "POST",
+               headers: headers("application/json"),
+               body: JSON.stringify({
+                  email: formValues.email,
+                  password: formValues.password,
+               }),
             }
+         );
 
-            const user = await loginResponse.json();
-
-            setItem({ key: "user", value: user.data });
-            setItem({ key: "name", value: user.name });
-            setItem({ key: "token", value: user.accessToken });
-
-            alert(
-               "success",
-               `Registration successfull! <br /> Welcome, <strong>${user.name}</strong>`,
-               ".alert-container"
-            );
-         } catch (error) {
+         if (!loginResponse.ok) {
+            const errorText = await loginResponse.text();
             alert(
                "error",
-               `An error occured when attempting to automatically log in. Please log in manually.`,
+               `An error occured (${loginResponse.status})`,
                ".alert-container"
             );
+            throw new Error(`Failed to automatically log in: ${errorText}`);
          }
+
+         const loginJson = await loginResponse.json();
+         const loginUser = loginJson.data;
+
+         setItem({ key: "user", value: loginUser });
+         setItem({ key: "name", value: loginUser.name });
+         setItem({ key: "token", value: loginUser.accessToken });
+
+         setTimeout(() => {
+            window.location.href = "/";
+         }, 2000);
+      } catch (error) {
+         alert(
+            "error",
+            `An error occured when attempting to automatically log in. Please log in manually.`,
+            ".alert-container"
+         );
+         throw new Error(
+            `An error occured when attempting to automatically log in: ${error}`
+         );
       }
+
+      return user;
+   } catch (error) {
+      alert(
+         "error",
+         "An error occured when attempting user registration",
+         "alert-container"
+      );
+      throw new Error(
+         `An error occured when attempting user registration: ${error}`
+      );
+   }
+};
+
+export const handleLoginUser = async (
+   event: React.FormEvent<HTMLFormElement>
+) => {
+   event.preventDefault();
+
+   const formData = new FormData(event.currentTarget);
+
+   let formValues: { [key: string]: FormDataEntryValue | boolean } =
+      Object.fromEntries(formData.entries());
+
+   try {
+      const response = await fetch(`${API_PATH}/auth/login?_holidaze=true`, {
+         method: "POST",
+         headers: headers("application/json"),
+         body: JSON.stringify(formValues),
+      });
+
+      if (!response.ok) {
+         const errorText = await response.text();
+         alert(
+            "error",
+            `An error occured (${response.status})`,
+            ".alert-container"
+         );
+         throw new Error(`Failed to login: ${errorText}`);
+      }
+
+      const json = await response.json();
+      const user = json.data;
+
+      setItem({ key: "user", value: user });
+      setItem({ key: "name", value: user.name });
+      setItem({ key: "token", value: user.accessToken });
+
+      alert(
+         "success",
+         `Login successful! <br /> Welcome back, <strong>${user.name}</strong>`,
+         ".alert-container"
+      );
 
       setTimeout(() => {
          window.location.href = "/";
@@ -368,13 +414,118 @@ export const handleSubmit = async (
 
       return user;
    } catch (error) {
-      console.error(
-         `An error occurred while submitting user ${action} form: `,
-         error
+      alert(
+         "error",
+         `An error occured while submitting user login form: ${error}`,
+         ".alert-container"
       );
       throw error;
    }
 };
+
+// export const handleSubmit = async (
+//    event: React.FormEvent<HTMLFormElement>,
+//    action: FormAction,
+//    isChecked?: boolean
+// ) => {
+//    event.preventDefault();
+
+//    const formData = new FormData(event.currentTarget);
+
+//    let formValues: { [key: string]: FormDataEntryValue | boolean } =
+//       Object.fromEntries(formData.entries());
+
+//    if (action === FormAction.Register) {
+//       formValues.venueManager = isChecked as boolean;
+//    }
+
+//    try {
+//       const response = await fetch(
+//          `${API_PATH}/auth/${[action]}?_holidaze=true`,
+//          {
+//             method: "POST",
+//             headers: headers("application/json"),
+//             body: JSON.stringify(formValues),
+//          }
+//       );
+
+//       if (!response.ok) {
+//          const errorText = await response.text();
+//          alert(
+//             "error",
+//             `An error occured (${response.status})`,
+//             ".alert-container"
+//          );
+//          throw new Error(`Failed to ${action}: ${errorText}`);
+//       }
+
+//       const json = await response.json();
+//       const user = json.data;
+
+//       if (action === FormAction.Login) {
+//          setItem({ key: "user", value: user });
+//          setItem({ key: "name", value: user.name });
+//          setItem({ key: "token", value: user.accessToken });
+
+//          alert(
+//             "success",
+//             `Login successful! <br /> Welcome back, <strong>${user.name}</strong>`,
+//             ".alert-container"
+//          );
+//       } else if (action === FormAction.Register) {
+//          try {
+//             const loginResponse = await fetch(
+//                `${API_PATH}/auth/login?_holidaze=true`,
+//                {
+//                   method: "POST",
+//                   headers: headers("application/json"),
+//                   body: JSON.stringify(formValues),
+//                }
+//             );
+
+//             if (!loginResponse.ok) {
+//                const errorText = await loginResponse.text();
+//                alert(
+//                   "error",
+//                   `An error occured (${loginResponse.status})`,
+//                   ".alert-container"
+//                );
+//                throw new Error(`Failed to automatically log in: ${errorText}`);
+//             }
+
+//             const user = await loginResponse.json();
+
+//             setItem({ key: "user", value: user.data });
+//             setItem({ key: "name", value: user.name });
+//             setItem({ key: "token", value: user.accessToken });
+
+//             alert(
+//                "success",
+//                `Registration successfull! <br /> Welcome, <strong>${user.name}</strong>`,
+//                ".alert-container"
+//             );
+//          } catch (error) {
+//             alert(
+//                "error",
+//                `An error occured when attempting to automatically log in. Please log in manually.`,
+//                ".alert-container"
+//             );
+//          }
+//       }
+
+//       setTimeout(() => {
+//          window.location.href = "/";
+//       }, 2000);
+
+//       return user;
+//    } catch (error) {
+//       console.error(
+//          `An error occurred while submitting user ${action} form: `,
+//          error
+//       );
+//       throw error;
+//    }
+// };
 
 export const handleEditProfileMedia = async (
    event: React.FormEvent<HTMLFormElement>,

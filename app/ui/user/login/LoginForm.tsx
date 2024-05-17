@@ -2,14 +2,13 @@
 
 import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
-import { handleSubmit } from "@/app/lib/actions";
-import { FormAction } from "@/app/lib/definitions";
+import { handleLoginUser } from "@/app/lib/actions";
 
 export default function LoginForm() {
    return (
       <form
          className="w-full max-w-[320px]"
-         onSubmit={(event) => handleSubmit(event, FormAction.Login)}
+         onSubmit={(event) => handleLoginUser(event)}
       >
          <div className="mb-4">
             <label className="text-dark" htmlFor="email">
