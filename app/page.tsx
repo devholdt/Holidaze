@@ -52,7 +52,7 @@ const Page: React.FC = () => {
          </div>
          <div className="mb-36 flex flex-col items-center">
             <VenueList listLimit={3} />
-            <LinkButton targetHref="/venues" text="View all" styles="mt-12" />
+            <LinkButton targetHref="/venues" text="View all" styles="mt-8" />
          </div>
       </main>
    );

@@ -29,12 +29,12 @@ const UserDropdown = () => {
    }, [user]);
 
    const MenuItem: React.FC<{ item: MenuItemProps }> = ({ item }) => {
-      const isSpecialItem = [
+      const isModalItem = [
          "Change avatar",
          "Change banner",
          "Log out",
       ].includes(item.title);
-      return isSpecialItem ? (
+      return isModalItem ? (
          <>
             {item.title === "Log out" && <hr className="text-lightGrey" />}
             <Modal
@@ -45,7 +45,7 @@ const UserDropdown = () => {
          </>
       ) : (
          <>
-            {item.title === "Contact us" && !user && (
+            {item.title === "Log in" && !user && (
                <hr className="text-lightGrey" />
             )}
             <Link

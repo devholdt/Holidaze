@@ -15,7 +15,6 @@ export const API_URLS = {
 export const loggedOutMenuItems: MenuItemProps[] = [
    { title: "Register", route: "/user/register" },
    { title: "Log in", route: "/user/login" },
-   { title: "Contact us", route: "/contact" },
 ];
 
 export const customerMenuItems: MenuItemProps[] = [
@@ -23,7 +22,6 @@ export const customerMenuItems: MenuItemProps[] = [
    { title: "Change avatar" },
    { title: "Change banner" },
    { title: "Log out" },
-   { title: "Contact us", route: "/contact" },
 ];
 
 export const managerMenuItems: MenuItemProps[] = [
@@ -32,5 +30,4 @@ export const managerMenuItems: MenuItemProps[] = [
    { title: "Change avatar" },
    { title: "Change banner" },
    { title: "Log out" },
-   { title: "Contact us", route: "/contact" },
 ];

@@ -85,12 +85,6 @@ textarea {
    width: 48px;
 }
 
-@media (max-width: 330px) {
-   .bm-burger-button {
-      width: 40px;
-   }
-}
-
 .bm-menu-wrap {
    position: fixed;
    top: 0;
@@ -99,11 +93,17 @@ textarea {
 .bm-menu {
    background: var(--white);
    font-size: 1.15em;
-   padding: 2em 1em 0;
+   /* padding: 2em 1em 0; */
 }
 
 @media (max-width: 768px) {
    .react-burger-menu {
       display: block;
+   }
+}
+
+@media (max-width: 330px) {
+   .bm-burger-button {
+      width: 40px;
    }
 }

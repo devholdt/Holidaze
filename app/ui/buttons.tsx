@@ -46,7 +46,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
          className={`px-6 py-3 text-lg font-extralight uppercase tracking-widest transition ${styles} ${
             primary
                ? "bg-brown text-white hover:bg-darkBrown"
-               : "bg-green text-white hover:bg-lightGreen"
+               : "bg-yellow text-blue hover:bg-darkYellow"
          }`}
       >
          {text}
