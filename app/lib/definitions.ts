@@ -1,5 +1,3 @@
-"use client";
-
 import { StaticImageData } from "next/image";
 
 export interface VenueProps {
@@ -65,7 +63,7 @@ export interface ManagerVenueListProps {
 
 export interface VenueListProps {
    listLimit?: number;
-   showMoreButton?: boolean;
+   venuePage?: boolean;
 }
 
 export interface MenuItemProps {

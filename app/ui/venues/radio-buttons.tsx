@@ -35,7 +35,7 @@ class RadioButton extends Component<RadioButtonProps, RadioButtonState> {
                   <label
                      key={index}
                      htmlFor={id}
-                     className="flex items-center justify-center rounded-full py-2 pe-6 ps-3 text-blue hover:cursor-pointer has-[:checked]:bg-yellow"
+                     className="flex h-12 w-[120px] flex-col items-center rounded-full text-blue hover:cursor-pointer has-[:checked]:bg-yellow"
                   >
                      <input
                         type="radio"
