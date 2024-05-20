@@ -35,7 +35,7 @@ const VenueDetails = ({ id }: { id: string }) => {
    }));
 
    return (
-      <div className="m-4">
+      <div className="mx-1 my-4 xs:mx-4">
          <div className="relative mb-4 h-80">
             <Image
                src={imgSrc}
@@ -47,7 +47,7 @@ const VenueDetails = ({ id }: { id: string }) => {
             />
          </div>
 
-         <div className="flex gap-4">
+         <div className="flex flex-col gap-4 md:flex-row">
             <div className="grow">
                <h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
                   {venue.name}
@@ -55,16 +55,16 @@ const VenueDetails = ({ id }: { id: string }) => {
                <p className="mb-2 text-sm font-light italic">
                   Created {formatDate(venue.created)}
                </p>
-               <div className="mb-4 flex gap-4 font-extralight">
+               <div className="mb-4 flex gap-2 font-extralight xs:gap-4">
                   <p>
                      <span className="font-normal">£{venue.price}</span> / night
                   </p>
-                  |
+                  <span className="font-medium">|</span>
                   <p>
                      max <span className="font-normal">{venue.maxGuests}</span>{" "}
                      guests
                   </p>
-                  |
+                  <span className="font-medium">|</span>
                   <p>
                      rating:{" "}
                      <span className="font-normal">{venue.rating}/5</span>
@@ -77,7 +77,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                >
                   Amenities
                </h3>
-               <div className="mt-4 flex flex-col gap-2">
+               <div className="mb-8 mt-4 flex flex-col gap-1">
                   <p className="flex gap-2">
                      {venue.meta.wifi && (
                         <>
@@ -112,15 +112,15 @@ const VenueDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
             </div>
-            <div className="flex min-w-[320px] flex-col gap-4">
-               <div className="shadow">
+            <div className="flex flex-col gap-4">
+               <div className="w-full bg-white shadow">
                   <div
                      className="flex h-[80px] items-center justify-center"
                      style={{
                         backgroundImage: `url(${venue.owner.banner.url})`,
                      }}
                   ></div>
-                  <div className="bg-white p-6">
+                  <div className="px-6 py-12">
                      <h2
                         className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
                      >
@@ -150,7 +150,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                      </div>
                   </div>
                </div>
-               <div className="bg-white p-6 shadow">
+               <div className="w-full bg-white p-6 shadow">
                   <h4 className={`${elMessiri.className} mb-4 text-3xl`}>
                      Book this venue
                   </h4>
