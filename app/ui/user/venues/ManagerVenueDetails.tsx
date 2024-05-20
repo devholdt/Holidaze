@@ -43,9 +43,9 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
    );
 
    return (
-      <div className="m-8">
-         <div className="flex gap-4">
-            <div className="relative w-6/12">
+      <div className="mx-1 my-4 xs:mx-4">
+         <div className="flex flex-col gap-4 md:flex-row">
+            <div className="relative min-h-80 w-full md:w-6/12">
                <Image
                   src={imgSrc}
                   alt={venue?.media?.[0]?.alt || "Venue image"}
@@ -57,7 +57,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                />
             </div>
 
-            <div className="w-6/12">
+            <div className="md:w-6/12">
                <div className="flex items-start justify-between">
                   <div className="flex flex-col">
                      <Subheading
