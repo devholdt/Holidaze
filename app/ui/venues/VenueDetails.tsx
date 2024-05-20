@@ -35,7 +35,7 @@ const VenueDetails = ({ id }: { id: string }) => {
    }));
 
    return (
-      <div className="m-8">
+      <div className="m-4">
          <div className="relative mb-4 h-80">
             <Image
                src={imgSrc}
@@ -112,7 +112,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
             </div>
-            <div className="flex min-w-[400px] flex-col gap-4">
+            <div className="flex min-w-[320px] flex-col gap-4">
                <div className="shadow">
                   <div
                      className="flex h-[80px] items-center justify-center"
@@ -136,13 +136,10 @@ const VenueDetails = ({ id }: { id: string }) => {
                         />
 
                         <div className="flex flex-col">
-                           <div>
-                              <p className="text-xl">{venue.owner.name}</p>
-                              <p className="font-extralight italic">
-                                 {venue.owner.email}
-                              </p>
-                           </div>
-                           <hr className="my-2" />
+                           <p className="text-xl">{venue.owner.name}</p>
+
+                           <hr className="my-2 text-lightGrey" />
+
                            <Link
                               href={`/user/${venue.owner.name}`}
                               className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"

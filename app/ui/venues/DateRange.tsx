@@ -4,6 +4,8 @@ import React, { useCallback, useMemo, Suspense, lazy } from "react";
 import { DateRangeProps } from "@/app/lib/definitions";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 
+import { getYear, getMonth } from "date-fns";
+
 const DatePicker = lazy(() => import("react-datepicker"));
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -115,13 +117,14 @@ export default function DateRange({
                   selectsRange={true}
                   startDate={startDate}
                   endDate={endDate}
-                  onChange={handleDateChange}
                   monthsShown={2}
+                  onChange={handleDateChange}
                   dateFormat="dd/MM/yy"
                   minDate={new Date()}
                   excludeDates={disabledDates}
                   customInput={<CustomInput />}
                   withPortal
+                  calendarClassName="mx-4"
                />
             </Suspense>
             <div className="alert-daterange"></div>
