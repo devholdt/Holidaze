@@ -57,14 +57,19 @@ const ModalContent: React.FC<ModalContentProps> = ({
          className="fixed inset-0 z-50 flex items-center justify-center"
          style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
       >
-         <div className="relative bg-white p-5" ref={modalRef}>
+         <div
+            className="relative mx-2 w-full bg-white xs:w-auto"
+            ref={modalRef}
+         >
             <button
                onClick={hideModal}
                className="absolute right-0 top-0 m-1 px-2 py-1 text-xl font-bold text-dark hover:text-black"
             >
                &#x2715;
             </button>
-            <div className="px-6 py-10">{getContent()}</div>
+            <div className="flex w-full flex-col px-4 py-12 xs:min-w-[400px] xs:px-8">
+               {getContent()}
+            </div>
          </div>
       </div>
    );

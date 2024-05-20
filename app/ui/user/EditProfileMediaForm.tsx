@@ -11,7 +11,7 @@ const EditProfileMediaForm: React.FC<EditProfileMediaFormProps> = ({
    return (
       <form
          onSubmit={(event) => handleEditProfileMedia(event, action)}
-         className="flex w-[320px] flex-col justify-center"
+         className="flex flex-col justify-center"
       >
          <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
             Change {type}
