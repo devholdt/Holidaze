@@ -15,11 +15,29 @@ export const loginSchema = z.object({
 export const registerSchema = z.object({
    name: z
       .string()
-      .min(6, { message: "Name must be at least 6 characters long" }),
+      .min(4, { message: "Name must be at least 4 characters long" }),
    email: z.string().email({ message: "Invalid email address" }),
    password: z
       .string()
       .min(6, { message: "Password must be at least 6 characters long" }),
+});
+
+export const venueSchema = z.object({
+   name: z
+      .string()
+      .min(5, { message: "Name must be at least 5 characters long" }),
+   description: z
+      .string()
+      .min(5, { message: "Description must be at least 5 characters long" }),
+   price: z.number().positive().gte(1, { message: "Price must be at least 1" }),
+   maxGuests: z.number().min(1, { message: "At least 1 guest is required" }),
+});
+
+export const editProfileSchema = z.object({
+   url: z.string().url({ message: "Invalid URL" }),
+   alt: z
+      .string()
+      .min(3, { message: "Alt must be at least 3 characters long" }),
 });
 
 export const formatDate = (

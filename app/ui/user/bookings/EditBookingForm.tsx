@@ -81,11 +81,9 @@ export default function Form() {
                   type="number"
                   id="guests"
                   name="guests"
-                  min="1"
                   max={booking.venue.maxGuests}
                   placeholder={`1 - ${booking.venue.maxGuests.toString()}`}
                   className="w-20 rounded border border-lightGrey bg-background p-2 text-center hover:border-grey"
-                  required
                />
                <span className="ms-2 text-red">
                   max {booking.venue.maxGuests}

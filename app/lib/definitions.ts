@@ -133,12 +133,15 @@ export interface CreateVenueProps {
    };
 }
 
-export interface EditProfileProps {
-   avatar?: {
+export interface EditAvatarProps {
+   avatar: {
       url: string;
       alt: string;
    };
-   banner?: {
+}
+
+export interface EditBannerProps {
+   banner: {
       url: string;
       alt: string;
    };

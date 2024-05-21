@@ -166,7 +166,7 @@ export default function Form() {
                         id="price"
                         name="price"
                         placeholder="£0.00"
-                        value={venue.price || 0}
+                        value={venue.price || 1}
                         onChange={handleChange}
                         className="w-full max-w-[70px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                      />
@@ -182,9 +182,8 @@ export default function Form() {
                         type="number"
                         id="maxGuests"
                         name="maxGuests"
-                        min="1"
                         placeholder="1"
-                        value={venue.maxGuests || 0}
+                        value={venue.maxGuests || 1}
                         onChange={handleChange}
                         className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                      />

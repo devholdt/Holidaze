@@ -99,7 +99,6 @@ const CreateVenueForm = () => {
                            type="number"
                            id="maxGuests"
                            name="maxGuests"
-                           min="1"
                            placeholder="1"
                            className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                         />

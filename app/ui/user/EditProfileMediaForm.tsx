@@ -27,7 +27,6 @@ const EditProfileMediaForm: React.FC<EditProfileMediaFormProps> = ({
                   type="text"
                   name={`url`}
                   placeholder="Enter URL"
-                  required
                />
             </div>
          </div>
@@ -42,7 +41,6 @@ const EditProfileMediaForm: React.FC<EditProfileMediaFormProps> = ({
                   type="text"
                   name={`alt`}
                   placeholder="Enter alt text"
-                  required
                />
             </div>
          </div>

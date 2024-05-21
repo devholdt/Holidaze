@@ -4,11 +4,17 @@ import {
    FormAction,
    CreateBookingProps,
    CreateVenueProps,
-   EditProfileProps,
+   EditAvatarProps,
+   EditBannerProps,
 } from "@/app/lib/definitions";
 import { setItem, getItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
-import { loginSchema, registerSchema } from "@/app/lib/utils";
+import {
+   loginSchema,
+   registerSchema,
+   venueSchema,
+   editProfileSchema,
+} from "@/app/lib/utils";
 
 export const createBooking = async (
    event: React.FormEvent<HTMLFormElement>
@@ -27,17 +33,14 @@ export const createBooking = async (
          body: JSON.stringify(formValues),
       });
 
+      const json = await response.json();
+
       if (!response.ok) {
-         const errorText = await response.text();
-         alert(
-            "error",
-            `An error occured (${response.status})`,
-            ".alert-container"
-         );
-         throw new Error(`Failed to create booking: ${errorText}`);
+         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         alert("error", errorText, ".alert-container");
+         throw new Error(errorText);
       }
 
-      const json = await response.json();
       const booking = json.data;
 
       alert(
@@ -48,7 +51,7 @@ export const createBooking = async (
 
       return booking;
    } catch (error) {
-      console.error("An error occurred while creating a booking: ", error);
+      alert("error", `${error}`, ".alert-container");
       throw error;
    }
 };
@@ -71,17 +74,14 @@ export const editBooking = async (
          body: JSON.stringify(formValues),
       });
 
+      const json = await response.json();
+
       if (!response.ok) {
-         const errorText = await response.text();
-         alert(
-            "error",
-            `An error occured (${response.status})`,
-            ".alert-container"
-         );
-         throw new Error(`Failed to edit booking: ${errorText}`);
+         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         alert("error", errorText, ".alert-container");
+         throw new Error(errorText);
       }
 
-      const json = await response.json();
       const booking = json.data;
 
       alert("success", `Booking successfully edited!`, ".alert-container");
@@ -92,7 +92,7 @@ export const editBooking = async (
 
       return booking;
    } catch (error) {
-      console.error("An error occurred while editing a booking: ", error);
+      alert("error", `${error}`, ".alert-container");
       throw error;
    }
 };
@@ -105,14 +105,12 @@ export const deleteBooking = async (id: string) => {
             headers: headers("application/json"),
          });
 
+         const json = await response.json();
+
          if (!response.ok) {
-            const errorText = await response.text();
-            alert(
-               "error",
-               `An error occured (${response.status})`,
-               ".alert-container"
-            );
-            throw new Error(`Failed to delete booking: ${errorText}`);
+            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+            alert("error", errorText, ".alert-container");
+            throw new Error(errorText);
          }
 
          alert("success", `Booking successfully deleted!`, ".alert-container");
@@ -121,7 +119,7 @@ export const deleteBooking = async (id: string) => {
             window.location.href = "/user/bookings";
          }, 2000);
       } catch (error) {
-         console.error("An error occurred while deleting a booking: ", error);
+         alert("error", `${error}`, ".alert-container");
          throw error;
       }
    }
@@ -155,24 +153,38 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
       },
    };
 
+   const parsedValues = {
+      name: formValues.name as string,
+      description: formValues.description as string,
+      price: formValues.price as number,
+      maxGuests: formValues.maxGuests as number,
+   };
+
+   const result = venueSchema.safeParse(parsedValues);
+
+   if (!result.success) {
+      const errorMessages = result.error.errors
+         .map((error: any) => error.message)
+         .join(", ");
+      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
+      return;
+   }
+
    try {
       const response = await fetch(API_URLS.VENUES, {
          method: "POST",
          headers: headers("application/json"),
-         body: JSON.stringify(formValues),
+         body: JSON.stringify(result.data),
       });
 
+      const json = await response.json();
+
       if (!response.ok) {
-         const errorText = await response.text();
-         alert(
-            "error",
-            `An error occured (${response.status})`,
-            ".alert-container"
-         );
-         throw new Error(`Failed to create venue: ${errorText}`);
+         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         alert("error", errorText, ".alert-container");
+         throw new Error(errorText);
       }
 
-      const json = await response.json();
       const venue = json.data;
 
       alert(
@@ -183,7 +195,8 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
 
       return venue;
    } catch (error) {
-      console.error("An error occurred while creating a venue: ", error);
+      alert("error", `${error}`, ".alert-container");
+      throw error;
    }
 };
 
@@ -218,6 +231,23 @@ export const editVenue = async (
       },
    };
 
+   const parsedValues = {
+      name: formValues.name as string,
+      description: formValues.description as string,
+      price: formValues.price as number,
+      maxGuests: formValues.maxGuests as number,
+   };
+
+   const result = venueSchema.safeParse(parsedValues);
+
+   if (!result.success) {
+      const errorMessages = result.error.errors
+         .map((error: any) => error.message)
+         .join(", ");
+      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
+      return;
+   }
+
    try {
       const response = await fetch(`${API_URLS.VENUES}/${id}`, {
          method: "PUT",
@@ -246,7 +276,7 @@ export const editVenue = async (
 
       return venue;
    } catch (error) {
-      console.error("An error occurred while editing a venue: ", error);
+      alert("error", `${error}`, ".alert-container");
       throw error;
    }
 };
@@ -259,14 +289,12 @@ export const deleteVenue = async (id: string) => {
             headers: headers("application/json"),
          });
 
+         const json = await response.json();
+
          if (!response.ok) {
-            const errorText = await response.text();
-            alert(
-               "error",
-               `An error occured (${response.status})`,
-               ".alert-container"
-            );
-            throw new Error(`Failed to delete venue: ${errorText}`);
+            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+            alert("error", errorText, ".alert-container");
+            throw new Error(errorText);
          }
 
          alert("success", `Venue successfully deleted!`, ".alert-container");
@@ -275,7 +303,7 @@ export const deleteVenue = async (id: string) => {
             window.location.href = "/user/venues";
          }, 2000);
       } catch (error) {
-         console.error("An error occurred while deleting a venue: ", error);
+         alert("error", `${error}`, ".alert-container");
          throw error;
       }
    }
@@ -393,8 +421,9 @@ export const handleLoginUser = async (
 
    const formData = new FormData(event.currentTarget);
 
-   let formValues: { [key: string]: FormDataEntryValue | boolean } =
-      Object.fromEntries(formData.entries());
+   let formValues: { [key: string]: FormDataEntryValue } = Object.fromEntries(
+      formData.entries()
+   );
 
    const parsedValues = {
       email: formValues.email as string,
@@ -419,8 +448,6 @@ export const handleLoginUser = async (
       });
 
       const json = await response.json();
-
-      console.log(json);
 
       if (!response.ok) {
          const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
@@ -460,12 +487,31 @@ export const handleEditProfileMedia = async (
    const data = new FormData(event.currentTarget);
 
    if (action === FormAction.Avatar) {
-      const formValues: EditProfileProps = {
+      const formValues: EditAvatarProps = {
          avatar: {
             url: data.get("url") as string,
             alt: data.get("alt") as string,
          },
       };
+
+      const parsedValues = {
+         url: formValues.avatar.url as string,
+         alt: formValues.avatar.alt as string,
+      };
+
+      const result = editProfileSchema.safeParse(parsedValues);
+
+      if (!result.success) {
+         const errorMessages = result.error.errors
+            .map((error: any) => error.message)
+            .join(", ");
+         alert(
+            "error",
+            `Validation error - ${errorMessages}`,
+            ".alert-container"
+         );
+         return;
+      }
 
       try {
          const response = await fetch(
@@ -477,17 +523,14 @@ export const handleEditProfileMedia = async (
             }
          );
 
+         const json = await response.json();
+
          if (!response.ok) {
-            const errorText = await response.text();
-            alert(
-               "error",
-               `An error occured (${response.status})`,
-               ".alert-container"
-            );
-            throw new Error(`Failed to change avatar image: ${errorText}`);
+            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+            alert("error", errorText, ".alert-container");
+            throw new Error(errorText);
          }
 
-         const json = await response.json();
          const profile = json.data;
 
          alert(
@@ -502,21 +545,37 @@ export const handleEditProfileMedia = async (
 
          return profile;
       } catch (error) {
-         console.error(
-            "An error occurred while changing avatar image: ",
-            error
-         );
+         alert("error", `${error}`, ".alert-container");
          throw error;
       }
    }
 
    if (action === FormAction.Banner) {
-      const formValues: EditProfileProps = {
+      const formValues: EditBannerProps = {
          banner: {
             url: data.get("url") as string,
             alt: data.get("alt") as string,
          },
       };
+
+      const parsedValues = {
+         url: formValues.banner.url as string,
+         alt: formValues.banner.alt as string,
+      };
+
+      const result = editProfileSchema.safeParse(parsedValues);
+
+      if (!result.success) {
+         const errorMessages = result.error.errors
+            .map((error: any) => error.message)
+            .join(", ");
+         alert(
+            "error",
+            `Validation error - ${errorMessages}`,
+            ".alert-container"
+         );
+         return;
+      }
 
       try {
          const response = await fetch(
@@ -528,17 +587,14 @@ export const handleEditProfileMedia = async (
             }
          );
 
+         const json = await response.json();
+
          if (!response.ok) {
-            const errorText = await response.text();
-            alert(
-               "error",
-               `An error occured (${response.status})`,
-               ".alert-container"
-            );
-            throw new Error(`Failed to change banner image: ${errorText}`);
+            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+            alert("error", errorText, ".alert-container");
+            throw new Error(errorText);
          }
 
-         const json = await response.json();
          const profile = json.data;
 
          alert(
@@ -553,10 +609,7 @@ export const handleEditProfileMedia = async (
 
          return profile;
       } catch (error) {
-         console.error(
-            "An error occurred while changing banner image: ",
-            error
-         );
+         alert("error", `${error}`, ".alert-container");
          throw error;
       }
    }
