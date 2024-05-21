@@ -28,7 +28,7 @@ const CreateVenueForm = () => {
             </div>
          </div>
 
-         <div className="mb-4 flex gap-4">
+         <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
                <label className="text-dark" htmlFor="description">
                   Description
@@ -51,44 +51,50 @@ const CreateVenueForm = () => {
                      id="price"
                      name="price"
                      placeholder="£0.00"
-                     className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                     className="max-w-[100px] rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                   />
                </div>
 
-               <label className="text-dark" htmlFor="maxGuests">
-                  Max guests
-               </label>
-               <div className="relative">
-                  <input
-                     type="number"
-                     id="maxGuests"
-                     name="maxGuests"
-                     min="1"
-                     placeholder="1"
-                     className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
-               </div>
+               <div className="flex gap-4">
+                  <div>
+                     <label className="text-dark" htmlFor="maxGuests">
+                        Max guests
+                     </label>
+                     <div className="relative">
+                        <input
+                           type="number"
+                           id="maxGuests"
+                           name="maxGuests"
+                           min="1"
+                           placeholder="1"
+                           className="max-w-[100px] rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                        />
+                     </div>
+                  </div>
 
-               <label className="text-dark" htmlFor="rating">
-                  Rating
-               </label>
-               <div className="relative">
-                  <input
-                     type="number"
-                     id="rating"
-                     name="rating"
-                     min="0"
-                     max="5"
-                     placeholder="0"
-                     className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
+                  <div>
+                     <label className="text-dark" htmlFor="rating">
+                        Rating
+                     </label>
+                     <div className="relative">
+                        <input
+                           type="number"
+                           id="rating"
+                           name="rating"
+                           min="0"
+                           max="5"
+                           placeholder="0"
+                           className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                        />
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
 
          <fieldset className="mb-4">
             <legend>Amenities</legend>
-            <div className="flex gap-6">
+            <div className="grid grid-cols-2 xs:flex xs:gap-6">
                <div className="flex items-center gap-1">
                   <input type="checkbox" id="wifi" name="wifi" value="wifi" />
                   <label className="text-dark" htmlFor="wifi">
