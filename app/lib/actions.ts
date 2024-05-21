@@ -148,6 +148,10 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
          breakfast: data.get("breakfast") === "breakfast",
          pets: data.get("pets") === "pets",
       },
+      location: {
+         city: data.get("city") as string,
+         country: data.get("country") as string,
+      },
    };
 
    try {
@@ -206,6 +210,10 @@ export const editVenue = async (
          parking: data.get("parking") === "parking",
          breakfast: data.get("breakfast") === "breakfast",
          pets: data.get("pets") === "pets",
+      },
+      location: {
+         city: data.get("city") as string,
+         country: data.get("country") as string,
       },
    };
 

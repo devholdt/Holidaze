@@ -45,8 +45,14 @@ const VenueCard = ({ venue }: { venue: VenueProps }) => {
                   <span className="font-light">/ night</span>
                </p>
                <p className="truncate font-light">
-                  {venue.location.city ? venue.location.city : "N/A"}
-                  {venue.location.country ? `, ${venue.location.country}` : ""}
+                  {venue.location.city ? venue.location.city : ""}
+                  {venue.location.city && venue.location.country && (
+                     <span>, </span>
+                  )}
+                  {venue.location.country ? `${venue.location.country}` : ""}
+                  {!venue.location.city && !venue.location.country && (
+                     <span className="font-light">N/A</span>
+                  )}
                </p>
             </div>
          </div>

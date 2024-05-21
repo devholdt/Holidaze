@@ -54,11 +54,11 @@ const ModalContent: React.FC<ModalContentProps> = ({
 
    return (
       <div
-         className="fixed inset-0 z-50 flex items-center justify-center"
+         className="z-max fixed inset-0 flex justify-center"
          style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
       >
          <div
-            className="relative mx-2 w-full bg-white xs:w-auto"
+            className="relative m-2 h-full w-full overflow-scroll xs:w-auto"
             ref={modalRef}
          >
             <button
@@ -67,7 +67,7 @@ const ModalContent: React.FC<ModalContentProps> = ({
             >
                &#x2715;
             </button>
-            <div className="flex w-full flex-col px-4 py-12 xs:min-w-[400px] xs:px-8">
+            <div className="w-full bg-white px-4 py-12 xs:min-w-[400px] xs:px-8">
                {getContent()}
             </div>
          </div>

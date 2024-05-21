@@ -74,6 +74,18 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                      >
                         {venue.name}
                      </h1>
+                     <p className="font-light">
+                        {venue.location.city ? venue.location.city : ""}
+                        {venue.location.city && venue.location.country && (
+                           <span>, </span>
+                        )}
+                        {venue.location.country
+                           ? `${venue.location.country}`
+                           : ""}
+                        {!venue.location.city && !venue.location.country && (
+                           <span className="font-light">N/A</span>
+                        )}
+                     </p>
                   </div>
                   {user?.name === venue.owner.name && (
                      <Modal

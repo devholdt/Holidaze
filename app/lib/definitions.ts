@@ -127,6 +127,10 @@ export interface CreateVenueProps {
       breakfast: boolean;
       pets: boolean;
    };
+   location: {
+      city: string;
+      country: string;
+   };
 }
 
 export interface EditProfileProps {

@@ -14,7 +14,8 @@ export default function Form() {
 
    useEffect(() => {
       const fetchVenue = async () => {
-         setVenue(await getVenueById(venueId));
+         const fetchedVenue = await getVenueById(venueId);
+         setVenue(fetchedVenue);
       };
 
       fetchVenue();
@@ -39,6 +40,16 @@ export default function Form() {
             return {
                ...prevVenue,
                media: updatedMedia,
+            };
+         }
+
+         if (name === "city" || name === "country") {
+            return {
+               ...prevVenue,
+               location: {
+                  ...prevVenue.location,
+                  [name]: value,
+               },
             };
          }
 
@@ -73,9 +84,11 @@ export default function Form() {
          onSubmit={handleSubmit}
          className="flex max-w-[480px] flex-col justify-center"
       >
-         <h4 className="mb-4 text-center text-2xl font-extralight uppercase tracking-widest">
+         <h4 className="text-center text-2xl font-extralight uppercase tracking-widest">
             Edit venue
          </h4>
+
+         <div className="alert-container my-4"></div>
 
          <div className="mb-4">
             <label className="text-dark" htmlFor="name">
@@ -92,6 +105,41 @@ export default function Form() {
             />
          </div>
 
+         <div className="flex flex-col xs:flex-row xs:gap-4">
+            <div className="mb-4">
+               <label className="text-dark" htmlFor="city">
+                  City
+               </label>
+               <div className="relative">
+                  <input
+                     type="text"
+                     id="city"
+                     name="city"
+                     placeholder="Enter venue city"
+                     value={venue.location.city || ""}
+                     onChange={handleChange}
+                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  />
+               </div>
+            </div>
+            <div className="mb-4">
+               <label className="text-dark" htmlFor="country">
+                  Country
+               </label>
+               <div className="relative">
+                  <input
+                     type="text"
+                     id="country"
+                     name="country"
+                     placeholder="Enter venue country"
+                     value={venue.location.country || ""}
+                     onChange={handleChange}
+                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  />
+               </div>
+            </div>
+         </div>
+
          <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
                <label className="text-dark" htmlFor="description">
@@ -103,14 +151,14 @@ export default function Form() {
                   placeholder="Enter description"
                   value={venue.description || ""}
                   onChange={handleChange}
-                  className="h-full w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  className="h-full min-h-[120px] w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
             </div>
 
             <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
                <div>
                   <label className="text-dark" htmlFor="price">
-                     Price (per night)
+                     Price
                   </label>
                   <div className="relative">
                      <input
@@ -260,8 +308,6 @@ export default function Form() {
          >
             Delete venue
          </button>
-
-         <div className="alert-container"></div>
       </form>
    );
 }
