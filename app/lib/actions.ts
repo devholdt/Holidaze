@@ -307,7 +307,7 @@ export const handleUserRegistration = async (
       const errorMessages = result.error.errors
          .map((error: any) => error.message)
          .join(", ");
-      alert("error", `Validation error: ${errorMessages}`, ".alert-container");
+      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
       return;
    }
 
@@ -321,9 +321,9 @@ export const handleUserRegistration = async (
       const json = await response.json();
 
       if (!response.ok) {
-         const errorText = `Error ${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         const errorText = `Error: ${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
          alert("error", errorText, ".alert-container");
-         throw new Error(`Failed to register user: ${errorText}`);
+         throw new Error(errorText);
       }
 
       const user = json.data;
@@ -347,17 +347,14 @@ export const handleUserRegistration = async (
             }
          );
 
+         const loginJson = await loginResponse.json();
+
          if (!loginResponse.ok) {
-            const errorText = await loginResponse.text();
-            alert(
-               "error",
-               `An error occured (${loginResponse.status})`,
-               ".alert-container"
-            );
+            const errorText = `${loginJson.statusCode} (${loginJson.status}) - ${loginJson.errors[0].message}`;
+            alert("error", errorText, ".alert-container");
             throw new Error(`Failed to automatically log in: ${errorText}`);
          }
 
-         const loginJson = await loginResponse.json();
          const loginUser = loginJson.data;
 
          setItem({ key: "user", value: loginUser });
@@ -373,9 +370,7 @@ export const handleUserRegistration = async (
             `An error occured when attempting to automatically log in. Please log in manually.`,
             ".alert-container"
          );
-         throw new Error(
-            `An error occured when attempting to automatically log in: ${error}`
-         );
+         throw new Error(`${error}`);
       }
 
       return user;
@@ -412,7 +407,7 @@ export const handleLoginUser = async (
       const errorMessages = result.error.errors
          .map((error: any) => error.message)
          .join(", ");
-      alert("error", `Validation error: ${errorMessages}`, ".alert-container");
+      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
       return;
    }
 
@@ -428,9 +423,9 @@ export const handleLoginUser = async (
       console.log(json);
 
       if (!response.ok) {
-         const errorText = `Error ${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
          alert("error", errorText, ".alert-container");
-         throw new Error(`Failed to login: ${errorText}`);
+         throw new Error(errorText);
       }
 
       const user = json.data;
@@ -451,11 +446,7 @@ export const handleLoginUser = async (
 
       return user;
    } catch (error) {
-      // alert(
-      //    "error",
-      //    `An error occurred while submitting user login form: ${error}`,
-      //    ".alert-container"
-      // );
+      alert("error", `${error}`, ".alert-container");
       throw error;
    }
 };
