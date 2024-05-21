@@ -39,6 +39,18 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
             >
                {booking.venue.name}
             </h2>
+            <p className="mb-4 font-light">
+               {booking.venue.location.city ? booking.venue.location.city : ""}
+               {booking.venue.location.city &&
+                  booking.venue.location.country && <span>, </span>}
+               {booking.venue.location.country
+                  ? `${booking.venue.location.country}`
+                  : ""}
+               {!booking.venue.location.city &&
+                  !booking.venue.location.country && (
+                     <span className="font-light">N/A</span>
+                  )}
+            </p>
             <div className="mb-4 font-extralight">
                <span className="font-normal">
                   {formatDate(booking.dateFrom)}

@@ -60,6 +60,20 @@ const BookingDetails = ({ id }: { id: string }) => {
                      >
                         {booking.venue.name}
                      </h1>
+                     <p className="mb-4 font-light">
+                        {booking.venue.location.city
+                           ? booking.venue.location.city
+                           : ""}
+                        {booking.venue.location.city &&
+                           booking.venue.location.country && <span>, </span>}
+                        {booking.venue.location.country
+                           ? `${booking.venue.location.country}`
+                           : ""}
+                        {!booking.venue.location.city &&
+                           !booking.venue.location.country && (
+                              <span className="font-light">N/A</span>
+                           )}
+                     </p>
                      <p className="font-extralight">
                         <span className="font-normal">
                            {formatDate(booking.dateFrom)}

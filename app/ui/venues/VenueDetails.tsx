@@ -48,13 +48,25 @@ const VenueDetails = ({ id }: { id: string }) => {
 
          <div className="flex flex-col gap-4 md:flex-row">
             <div className="grow">
-               <h1
-                  className={`${elMessiri.className} text-[12vw] tracking-wide sm:text-[9vw] md:max-w-[440px] md:text-[5vw] lg:text-5xl`}
-               >
-                  {venue.name}
-               </h1>
-               <p className="mb-2 text-sm font-light italic">
-                  Created {formatDate(venue.created)}
+               <div className="items-top flex flex-col justify-between md:flex-row">
+                  <h1
+                     className={`${elMessiri.className} text-[12vw] tracking-wide sm:text-[9vw] md:max-w-[440px] md:text-[5vw] lg:text-5xl`}
+                  >
+                     {venue.name}
+                  </h1>
+                  <p className="text-sm font-light italic">
+                     Created {formatDate(venue.created)}
+                  </p>
+               </div>
+               <p className="mb-4 font-light">
+                  {venue.location.city ? venue.location.city : ""}
+                  {venue.location.city && venue.location.country && (
+                     <span>, </span>
+                  )}
+                  {venue.location.country ? `${venue.location.country}` : ""}
+                  {!venue.location.city && !venue.location.country && (
+                     <span className="font-light">N/A</span>
+                  )}
                </p>
                <div className="mb-4 flex gap-2 font-extralight xs:gap-4">
                   <p>

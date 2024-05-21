@@ -36,10 +36,20 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({
          />
          <div className="px-6 pb-2 text-center">
             <h2
-               className={`${elMessiri.className} my-4 text-4xl font-medium md:text-5xl`}
+               className={`${elMessiri.className} mt-4 text-4xl font-medium md:text-5xl`}
             >
                {venue.name}
             </h2>
+            <p className="mb-4 font-light">
+               {venue.location.city ? venue.location.city : ""}
+               {venue.location.city && venue.location.country && (
+                  <span>, </span>
+               )}
+               {venue.location.country ? `${venue.location.country}` : ""}
+               {!venue.location.city && !venue.location.country && (
+                  <span className="font-light">N/A</span>
+               )}
+            </p>
             <p className="font-light">{description}</p>
             <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
