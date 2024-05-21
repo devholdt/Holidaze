@@ -49,7 +49,7 @@ const VenueDetails = ({ id }: { id: string }) => {
          <div className="flex flex-col gap-4 md:flex-row">
             <div className="grow">
                <h1
-                  className={`${elMessiri.className} text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
+                  className={`${elMessiri.className} text-[12vw] tracking-wide sm:text-[9vw] md:max-w-[440px] md:text-[5vw] lg:text-5xl`}
                >
                   {venue.name}
                </h1>
@@ -73,11 +73,11 @@ const VenueDetails = ({ id }: { id: string }) => {
                </div>
                <p className="font-extralight">{venue.description}</p>
                <hr className="my-4" />
-               <h3
-                  className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
+               <h2
+                  className={`${elMessiri.className} mb-2 text-2xl md:text-3xl`}
                >
                   Amenities
-               </h3>
+               </h2>
                <div className="mb-8 mt-4 flex flex-col gap-1">
                   <p className="flex gap-2">
                      {venue.meta.wifi && (
@@ -122,11 +122,11 @@ const VenueDetails = ({ id }: { id: string }) => {
                      }}
                   ></div>
                   <div className="px-6 py-12 text-center xs:text-left">
-                     <h2
+                     <h3
                         className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
                      >
                         Venue host
-                     </h2>
+                     </h3>
                      <div className="flex flex-col items-center gap-4 xs:flex-row">
                         <Image
                            src={venue.owner.avatar.url}

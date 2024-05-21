@@ -73,7 +73,7 @@ export default function Form() {
          onSubmit={handleSubmit}
          className="flex min-w-[240px] max-w-[480px] flex-col justify-center"
       >
-         <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
+         <h4 className="mb-4 text-center text-2xl font-extralight uppercase tracking-widest">
             Edit venue
          </h4>
 
@@ -103,7 +103,7 @@ export default function Form() {
                   placeholder="Enter description"
                   value={venue.description || ""}
                   onChange={handleChange}
-                  className="h-full w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  className="h-full w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
             </div>
 

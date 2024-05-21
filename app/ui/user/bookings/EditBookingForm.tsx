@@ -52,7 +52,7 @@ export default function Form() {
          onSubmit={(event) => editBooking(event, bookingId)}
          className="flex min-w-[240px] max-w-[480px] flex-col justify-center"
       >
-         <h4 className="mb-4 text-center font-extralight uppercase tracking-widest">
+         <h4 className="mb-4 text-center text-2xl font-extralight uppercase tracking-widest">
             Edit booking
          </h4>
 

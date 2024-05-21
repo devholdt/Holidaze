@@ -96,7 +96,9 @@ const BookingDetails = ({ id }: { id: string }) => {
 
                <hr className="my-4" />
 
-               <h2 className={`${elMessiri.className} mb-2 text-3xl`}>
+               <h2
+                  className={`${elMessiri.className} mb-2 text-2xl md:text-3xl`}
+               >
                   Amenities
                </h2>
                <div className="flex flex-col gap-4">
@@ -150,7 +152,7 @@ const BookingDetails = ({ id }: { id: string }) => {
          <hr className="my-8" />
          <div>
             <h3
-               className={`${elMessiri.className} mb-2 text-4xl tracking-wide`}
+               className={`${elMessiri.className} mb-2 text-2xl tracking-wide md:text-4xl`}
             >
                Your host
             </h3>

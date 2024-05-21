@@ -22,14 +22,12 @@ const Page = () => {
             }}
             className="flex h-[240px] items-center justify-center xs:h-[320px] md:h-[400px]"
          >
-            <h1>
-               <Logo src={logoWhiteSubtitle} styles="w-[480px] px-8" />
-            </h1>
+            <Logo src={logoWhiteSubtitle} styles="w-[480px] px-8" />
          </div>
 
          <div className="border-x border-lightGrey">
             <Hero
-               heading="Serene Escapes"
+               heading="Holidaze Resorts"
                headingLevel={2}
                subheading="Welcome"
                text="Explore our global collection of exquisite resorts, each
@@ -40,9 +38,11 @@ const Page = () => {
             />
             <div className="mt-36 flex flex-col items-center">
                <div className="mb-12 flex flex-col items-center px-4 text-center">
-                  <h3 className={`${elMessiri.className} leading-tight`}>
+                  <h2
+                     className={`${elMessiri.className} text-3xl leading-tight xs:text-4xl`}
+                  >
                      Bookings & Venues
-                  </h3>
+                  </h2>
                   <Subheading
                      text={"Dream Vacations"}
                      left={"w-10 xs:w-24 me-2"}
