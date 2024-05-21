@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({
          <div className="flex flex-col items-center xs:items-start">
             <div>
                {subheading && <Subheading text={subheading} left={""} />}
-               <h1 className="text-6xl">{Heading}</h1>
+               <div className="text-6xl">{Heading}</div>
                {text && <p className="max-w-80 font-light">{text}</p>}
             </div>
          </div>

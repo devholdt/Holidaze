@@ -27,7 +27,6 @@ export default function RegistrationForm() {
                   type="name"
                   name="name"
                   placeholder="Enter name"
-                  required
                />
             </div>
          </div>
@@ -42,7 +41,6 @@ export default function RegistrationForm() {
                   type="email"
                   name="email"
                   placeholder="Enter email"
-                  required
                />
             </div>
          </div>
@@ -57,8 +55,6 @@ export default function RegistrationForm() {
                   type="password"
                   name="password"
                   placeholder="Enter password"
-                  required
-                  minLength={6}
                />
             </div>
          </div>

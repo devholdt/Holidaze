@@ -21,7 +21,6 @@ export default function LoginForm() {
                   type="email"
                   name="email"
                   placeholder="Enter email"
-                  required
                />
             </div>
          </div>
@@ -36,8 +35,6 @@ export default function LoginForm() {
                   type="password"
                   name="password"
                   placeholder="Enter password"
-                  required
-                  minLength={6}
                />
             </div>
          </div>

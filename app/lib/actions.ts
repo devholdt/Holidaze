@@ -8,6 +8,7 @@ import {
 } from "@/app/lib/definitions";
 import { setItem, getItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
+import { loginSchema, registerSchema } from "@/app/lib/utils";
 
 export const createBooking = async (
    event: React.FormEvent<HTMLFormElement>
@@ -293,24 +294,38 @@ export const handleUserRegistration = async (
 
    formValues.venueManager = isChecked as boolean;
 
+   const parsedValues = {
+      name: formValues.name as string,
+      email: formValues.email as string,
+      password: formValues.password as string,
+      venueManager: formValues.venueManager as boolean,
+   };
+
+   const result = registerSchema.safeParse(parsedValues);
+
+   if (!result.success) {
+      const errorMessages = result.error.errors
+         .map((error: any) => error.message)
+         .join(", ");
+      alert("error", `Validation error: ${errorMessages}`, ".alert-container");
+      return;
+   }
+
    try {
       const response = await fetch(`${API_PATH}/auth/register`, {
          method: "POST",
          headers: headers("application/json"),
-         body: JSON.stringify(formValues),
+         body: JSON.stringify(result.data),
       });
 
+      const json = await response.json();
+
       if (!response.ok) {
-         const errorText = await response.text();
-         alert(
-            "error",
-            `An error occured (${response.status})`,
-            ".alert-container"
-         );
+         const errorText = `Error ${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         alert("error", errorText, ".alert-container");
          throw new Error(`Failed to register user: ${errorText}`);
       }
 
-      const json = await response.json();
       const user = json.data;
 
       alert(
@@ -386,24 +401,38 @@ export const handleLoginUser = async (
    let formValues: { [key: string]: FormDataEntryValue | boolean } =
       Object.fromEntries(formData.entries());
 
+   const parsedValues = {
+      email: formValues.email as string,
+      password: formValues.password as string,
+   };
+
+   const result = loginSchema.safeParse(parsedValues);
+
+   if (!result.success) {
+      const errorMessages = result.error.errors
+         .map((error: any) => error.message)
+         .join(", ");
+      alert("error", `Validation error: ${errorMessages}`, ".alert-container");
+      return;
+   }
+
    try {
       const response = await fetch(`${API_PATH}/auth/login?_holidaze=true`, {
          method: "POST",
          headers: headers("application/json"),
-         body: JSON.stringify(formValues),
+         body: JSON.stringify(result.data),
       });
 
+      const json = await response.json();
+
+      console.log(json);
+
       if (!response.ok) {
-         const errorText = await response.text();
-         alert(
-            "error",
-            `An error occured (${response.status})`,
-            ".alert-container"
-         );
+         const errorText = `Error ${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         alert("error", errorText, ".alert-container");
          throw new Error(`Failed to login: ${errorText}`);
       }
 
-      const json = await response.json();
       const user = json.data;
 
       setItem({ key: "user", value: user });
@@ -422,11 +451,11 @@ export const handleLoginUser = async (
 
       return user;
    } catch (error) {
-      alert(
-         "error",
-         `An error occured while submitting user login form: ${error}`,
-         ".alert-container"
-      );
+      // alert(
+      //    "error",
+      //    `An error occurred while submitting user login form: ${error}`,
+      //    ".alert-container"
+      // );
       throw error;
    }
 };
