@@ -15,10 +15,12 @@ import { formatDate } from "@/app/lib/utils";
 import Link from "next/link";
 import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+import useFetchMap from "@/app/lib/hooks/useFetchMap";
 
 const VenueDetails = ({ id }: { id: string }) => {
    const venue = useFetchVenue(id);
    const [imgSrc, setImgSrc] = useImageSource(venue);
+   const mapUrl = useFetchMap(venue?.location?.country, venue?.location?.city);
 
    if (!venue) {
       return (
@@ -42,6 +44,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                onError={() => setImgSrc(backgroundReflection)}
                fill
                unoptimized
+               priority={true}
                className="z-1 object-cover object-center drop-shadow"
             />
          </div>
@@ -123,6 +126,25 @@ const VenueDetails = ({ id }: { id: string }) => {
                         </>
                      )}
                   </p>
+               </div>
+
+               <div className="relative">
+                  {mapUrl && mapUrl ? (
+                     <>
+                        <hr className="my-4" />
+                        <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
+                           Location
+                        </h3>
+                        <Image
+                           width={320}
+                           height={240}
+                           src={mapUrl}
+                           alt="Static map"
+                        />
+                     </>
+                  ) : (
+                     <></>
+                  )}
                </div>
             </div>
             <div className="flex flex-col gap-4">

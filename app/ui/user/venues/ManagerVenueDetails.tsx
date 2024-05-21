@@ -1,6 +1,5 @@
 "use client";
 
-import { lazy } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
@@ -20,14 +19,15 @@ import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import dynamic from "next/dynamic";
+import useFetchMap from "@/app/lib/hooks/useFetchMap";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
    const venue = useFetchVenue(id);
    const user = useFetchLoggedInUser();
-
    const [imgSrc, setImgSrc] = useImageSource(venue);
+   const mapUrl = useFetchMap(venue?.location?.country, venue?.location?.city);
 
    if (!venue) {
       return (
@@ -162,6 +162,25 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                         </>
                      )}
                   </p>
+               </div>
+
+               <div className="relative">
+                  {mapUrl && mapUrl ? (
+                     <>
+                        <hr className="my-4" />
+                        <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
+                           Location
+                        </h3>
+                        <Image
+                           width={320}
+                           height={240}
+                           src={mapUrl}
+                           alt="Static map"
+                        />
+                     </>
+                  ) : (
+                     <></>
+                  )}
                </div>
             </div>
          </div>

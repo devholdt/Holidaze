@@ -31,3 +31,6 @@ export const managerMenuItems: MenuItemProps[] = [
    { title: "Change banner" },
    { title: "Log out" },
 ];
+
+export const GOOGLE_API_PATH =
+   "https://maps.googleapis.com/maps/api/staticmap?";

@@ -1,5 +1,5 @@
 import React from "react";
-import { API_PATH, API_URLS } from "@/app/lib/constants";
+import { API_PATH, API_URLS, GOOGLE_API_PATH } from "@/app/lib/constants";
 import {
    FormAction,
    CreateBookingProps,

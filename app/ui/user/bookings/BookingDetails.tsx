@@ -17,12 +17,17 @@ import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import dynamic from "next/dynamic";
+import useFetchMap from "@/app/lib/hooks/useFetchMap";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const BookingDetails = ({ id }: { id: string }) => {
    const booking = useFetchBooking(id);
    const [imgSrc, setImgSrc] = useImageSource(booking);
+   const mapUrl = useFetchMap(
+      booking?.venue.location?.country,
+      booking?.venue.location?.city
+   );
 
    if (!booking) {
       return (
@@ -160,6 +165,25 @@ const BookingDetails = ({ id }: { id: string }) => {
                         </>
                      )}
                   </p>
+               </div>
+
+               <div className="relative">
+                  {mapUrl && mapUrl ? (
+                     <>
+                        <hr className="my-4" />
+                        <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
+                           Location
+                        </h3>
+                        <Image
+                           width={320}
+                           height={240}
+                           src={mapUrl}
+                           alt="Static map"
+                        />
+                     </>
+                  ) : (
+                     <></>
+                  )}
                </div>
             </div>
          </div>

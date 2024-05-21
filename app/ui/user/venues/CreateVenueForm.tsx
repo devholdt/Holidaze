@@ -61,6 +61,37 @@ const CreateVenueForm = () => {
             </div>
          </div>
 
+         <div className="flex gap-4">
+            <div className="mb-4">
+               <label className="text-dark" htmlFor="latitude">
+                  Latitude
+               </label>
+               <div className="relative">
+                  <input
+                     type="text"
+                     id="latitude"
+                     name="latitude"
+                     placeholder="Enter latitude"
+                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  />
+               </div>
+            </div>
+            <div className="mb-4">
+               <label className="text-dark" htmlFor="longitude">
+                  Longitude
+               </label>
+               <div className="relative">
+                  <input
+                     type="text"
+                     id="longitude"
+                     name="longitude"
+                     placeholder="Enter longitude"
+                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  />
+               </div>
+            </div>
+         </div>
+
          <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
                <label className="text-dark" htmlFor="description">
