@@ -58,7 +58,7 @@ const ModalContent: React.FC<ModalContentProps> = ({
          style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
       >
          <div
-            className="relative m-2 h-full w-full overflow-scroll xs:w-auto"
+            className="relative m-2 h-full w-full overflow-auto xs:w-auto"
             ref={modalRef}
          >
             <button
