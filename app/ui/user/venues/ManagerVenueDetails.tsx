@@ -70,7 +70,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                         right="w-14 ms-2"
                      />
                      <h1
-                        className={`${elMessiri.className} text-5xl tracking-wide`}
+                        className={`${elMessiri.className} text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
                      >
                         {venue.name}
                      </h1>

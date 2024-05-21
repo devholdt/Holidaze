@@ -31,7 +31,11 @@ const VenueCard = ({ venue }: { venue: VenueProps }) => {
          />
 
          <div className="rounded-b-xl bg-white px-6 py-4">
-            <h4 className={`${elMessiri.className} truncate`}>{venue.name}</h4>
+            <h2
+               className={`${elMessiri.className} truncate text-4xl lg:text-3xl`}
+            >
+               {venue.name}
+            </h2>
             <hr className="mb-2 mt-1" />
             <div className="flex flex-col justify-between">
                <p className="text-nowrap font-light">

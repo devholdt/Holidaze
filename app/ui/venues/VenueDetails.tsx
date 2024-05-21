@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import {
    WifiIcon,
@@ -49,7 +48,9 @@ const VenueDetails = ({ id }: { id: string }) => {
 
          <div className="flex flex-col gap-4 md:flex-row">
             <div className="grow">
-               <h1 className={`${elMessiri.className} text-6xl tracking-wide`}>
+               <h1
+                  className={`${elMessiri.className} text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
+               >
                   {venue.name}
                </h1>
                <p className="mb-2 text-sm font-light italic">
@@ -120,13 +121,13 @@ const VenueDetails = ({ id }: { id: string }) => {
                         backgroundImage: `url(${venue.owner.banner.url})`,
                      }}
                   ></div>
-                  <div className="px-6 py-12">
+                  <div className="px-6 py-12 text-center xs:text-left">
                      <h2
                         className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
                      >
                         Venue host
                      </h2>
-                     <div className="flex items-center gap-4">
+                     <div className="flex flex-col items-center gap-4 xs:flex-row">
                         <Image
                            src={venue.owner.avatar.url}
                            alt={venue.owner.avatar.alt}

@@ -1,6 +1,5 @@
 "use client";
 
-import { lazy } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate } from "@/app/lib/utils";
 import Image from "next/image";
@@ -56,7 +55,9 @@ const BookingDetails = ({ id }: { id: string }) => {
                         left=""
                         right="w-14 ms-2"
                      />
-                     <h1 className={`${elMessiri.className} tracking-wide`}>
+                     <h1
+                        className={`${elMessiri.className} text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
+                     >
                         {booking.venue.name}
                      </h1>
                      <p className="font-extralight">

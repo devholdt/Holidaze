@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import { useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/app/ui/buttons";
-import RadioButtons from "@/app/ui/venues/radio-buttons";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
@@ -27,13 +26,12 @@ const VenueList: React.FC<VenueListProps> = ({
    return (
       <div className="w-full px-2 md:px-8">
          {venuePage && (
-            <div className="xs:flex-row my-8 flex w-full flex-col gap-4 sm:gap-8">
+            <div className="my-8 flex w-full flex-col gap-4 xs:flex-row sm:gap-8">
                <Suspense fallback={<p>Loading...</p>}>
                   <Searchbar
                      venues={venues}
                      setFilteredVenues={setFilteredVenues}
                   />
-                  {/* <RadioButtons /> */}
                   <div className="flex max-w-[200px] flex-col">
                      <label htmlFor="filter">Filter by:</label>
                      <select
