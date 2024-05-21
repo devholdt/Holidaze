@@ -29,7 +29,7 @@ export const venueSchema = z.object({
    description: z
       .string()
       .min(5, { message: "Description must be at least 5 characters long" }),
-   price: z.number().positive().gte(1, { message: "Price must be at least 1" }),
+   price: z.number().gte(1, { message: "Price must be at least 1" }),
    maxGuests: z.number().min(1, { message: "At least 1 guest is required" }),
 });
 
