@@ -41,20 +41,21 @@ const CreateVenueForm = () => {
                />
             </div>
 
-            <div>
-               <label className="text-dark" htmlFor="price">
-                  Price (per night)
-               </label>
-               <div className="relative">
-                  <input
-                     type="number"
-                     id="price"
-                     name="price"
-                     placeholder="£0.00"
-                     className="max-w-[100px] rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
+            <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
+               <div>
+                  <label className="text-dark" htmlFor="price">
+                     Price (per night)
+                  </label>
+                  <div className="relative">
+                     <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        placeholder="£0.00"
+                        className="w-full max-w-[70px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                     />
+                  </div>
                </div>
-
                <div className="flex gap-4">
                   <div>
                      <label className="text-dark" htmlFor="maxGuests">
@@ -67,7 +68,7 @@ const CreateVenueForm = () => {
                            name="maxGuests"
                            min="1"
                            placeholder="1"
-                           className="max-w-[100px] rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                           className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                         />
                      </div>
                   </div>
@@ -84,7 +85,7 @@ const CreateVenueForm = () => {
                            min="0"
                            max="5"
                            placeholder="0"
-                           className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                           className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                         />
                      </div>
                   </div>

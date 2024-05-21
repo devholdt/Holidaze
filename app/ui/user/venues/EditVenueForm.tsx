@@ -71,7 +71,7 @@ export default function Form() {
    return (
       <form
          onSubmit={handleSubmit}
-         className="flex min-w-[240px] max-w-[480px] flex-col justify-center"
+         className="flex max-w-[480px] flex-col justify-center"
       >
          <h4 className="mb-4 text-center text-2xl font-extralight uppercase tracking-widest">
             Edit venue
@@ -92,7 +92,7 @@ export default function Form() {
             />
          </div>
 
-         <div className="mb-4 flex gap-4">
+         <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
                <label className="text-dark" htmlFor="description">
                   Description
@@ -107,60 +107,66 @@ export default function Form() {
                />
             </div>
 
-            <div>
-               <label className="text-dark" htmlFor="price">
-                  Price (per night)
-               </label>
-               <div className="relative">
-                  <input
-                     type="number"
-                     id="price"
-                     name="price"
-                     placeholder="£0.00"
-                     value={venue.price || 0}
-                     onChange={handleChange}
-                     className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
+            <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
+               <div>
+                  <label className="text-dark" htmlFor="price">
+                     Price (per night)
+                  </label>
+                  <div className="relative">
+                     <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        placeholder="£0.00"
+                        value={venue.price || 0}
+                        onChange={handleChange}
+                        className="w-full max-w-[70px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                     />
+                  </div>
                </div>
 
-               <label className="text-dark" htmlFor="maxGuests">
-                  Max guests
-               </label>
-               <div className="relative">
-                  <input
-                     type="number"
-                     id="maxGuests"
-                     name="maxGuests"
-                     min="1"
-                     placeholder="1"
-                     value={venue.maxGuests || 0}
-                     onChange={handleChange}
-                     className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
+               <div>
+                  <label className="text-dark" htmlFor="maxGuests">
+                     Max guests
+                  </label>
+                  <div className="relative">
+                     <input
+                        type="number"
+                        id="maxGuests"
+                        name="maxGuests"
+                        min="1"
+                        placeholder="1"
+                        value={venue.maxGuests || 0}
+                        onChange={handleChange}
+                        className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                     />
+                  </div>
                </div>
 
-               <label className="text-dark" htmlFor="rating">
-                  Rating
-               </label>
-               <div className="relative">
-                  <input
-                     type="number"
-                     id="rating"
-                     name="rating"
-                     min="0"
-                     max="5"
-                     placeholder="0"
-                     value={venue?.rating || 0}
-                     onChange={handleChange}
-                     className="rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
+               <div>
+                  <label className="text-dark" htmlFor="rating">
+                     Rating
+                  </label>
+                  <div className="relative">
+                     <input
+                        type="number"
+                        id="rating"
+                        name="rating"
+                        min="0"
+                        max="5"
+                        placeholder="0"
+                        value={venue?.rating || 0}
+                        onChange={handleChange}
+                        className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                     />
+                  </div>
                </div>
             </div>
          </div>
 
          <fieldset className="mb-4">
             <legend>Amenities</legend>
-            <div className="flex gap-6">
+            <div className="grid grid-cols-2 xs:flex xs:gap-6">
                <div className="flex items-center gap-1">
                   <input
                      type="checkbox"
