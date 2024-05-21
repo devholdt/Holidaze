@@ -153,9 +153,9 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                </div>
             </div>
          </div>
+         <hr className="my-8" />
          {user?.name === venue.owner.name && (
             <>
-               <hr className="my-8" />
                <div>
                   <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
                      Bookings for this venue

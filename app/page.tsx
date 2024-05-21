@@ -6,14 +6,13 @@ import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import { LinkButton } from "@/app/ui/buttons";
 import Hero from "@/app/ui/hero";
 import dynamic from "next/dynamic";
-import React from "react";
 
 const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
    loading: () => <p>Loading...</p>,
 });
 
-const Page: React.FC = () => {
+const Page = () => {
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col bg-background">
          <div

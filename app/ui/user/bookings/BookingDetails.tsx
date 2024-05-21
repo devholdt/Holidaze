@@ -34,9 +34,9 @@ const BookingDetails = ({ id }: { id: string }) => {
    }
 
    return (
-      <div className="m-8 flex flex-col gap-8">
-         <div className="flex gap-4">
-            <div className="relative w-6/12 drop-shadow">
+      <div className="mx-1 my-4 xs:mx-4">
+         <div className="flex flex-col gap-4 md:flex-row">
+            <div className="relative min-h-80 w-full md:w-6/12">
                <Image
                   src={imgSrc}
                   alt={booking?.venue?.media?.[0]?.alt || "Venue image"}
@@ -48,7 +48,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                />
             </div>
 
-            <div className="w-6/12">
+            <div className="md:w-6/12">
                <div className="flex items-start justify-between">
                   <div className="flex flex-col">
                      <Subheading
@@ -56,9 +56,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                         left=""
                         right="w-14 ms-2"
                      />
-                     <h1
-                        className={`${elMessiri.className} text-6xl tracking-wide`}
-                     >
+                     <h1 className={`${elMessiri.className} tracking-wide`}>
                         {booking.venue.name}
                      </h1>
                      <p className="font-extralight">
@@ -97,9 +95,7 @@ const BookingDetails = ({ id }: { id: string }) => {
 
                <hr className="my-4" />
 
-               <h2
-                  className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
-               >
+               <h2 className={`${elMessiri.className} mb-2 text-3xl`}>
                   Amenities
                </h2>
                <div className="flex flex-col gap-4">
@@ -150,6 +146,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                </div>
             </div>
          </div>
+         <hr className="my-8" />
          <div>
             <h3
                className={`${elMessiri.className} mb-2 text-4xl tracking-wide`}
@@ -164,7 +161,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   }}
                ></div>
                <div className="bg-white px-6 py-4">
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col items-center gap-4 text-center xs:flex-row xs:text-left">
                      <Image
                         src={booking.venue.owner.avatar.url}
                         alt={booking.venue.owner.avatar.alt}
@@ -183,7 +180,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                         <hr className="my-2" />
                         <Link
                            href={`/user/${booking.venue.owner.name}`}
-                           className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
+                           className="mx-auto w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown xs:mx-0"
                         >
                            profile
                         </Link>

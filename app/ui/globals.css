@@ -21,6 +21,13 @@
    --black: #000000;
 }
 
+h1,
+h2,
+h3,
+h4 {
+   line-height: 100%;
+}
+
 h1 {
    font-size: 5em;
    text-transform: uppercase;
@@ -40,6 +47,20 @@ h4 {
    font-weight: 500;
 }
 
+@media (max-width: 1024px) {
+   h1 {
+      font-size: 4em;
+   }
+
+   h2 {
+      font-size: 3em;
+   }
+
+   h3 {
+      font-size: 2.5em;
+   }
+}
+
 @media (max-width: 768px) {
    h1 {
       font-size: 3.5em;
@@ -55,6 +76,24 @@ h4 {
 
    h4 {
       font-size: 1.25em;
+   }
+}
+
+@media (max-width: 500px) {
+   h1 {
+      font-size: 2.5em;
+   }
+
+   h2 {
+      font-size: 2em;
+   }
+
+   h3 {
+      font-size: 1.5em;
+   }
+
+   h4 {
+      font-size: 1em;
    }
 }
 
