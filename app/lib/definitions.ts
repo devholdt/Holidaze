@@ -147,6 +147,12 @@ export interface EditBannerProps {
    };
 }
 
+export interface BreadcrumbProps {
+   label: string;
+   href: string;
+   active?: boolean;
+}
+
 export type SubheadingProps = {
    text: string;
    left?: string;

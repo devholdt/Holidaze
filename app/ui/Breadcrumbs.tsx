@@ -1,13 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { clsx } from "clsx";
+import { BreadcrumbProps } from "@/app/lib/definitions";
 
-interface Breadcrumb {
-   label: string;
-   href: string;
-   active?: boolean;
-}
-
-const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) => {
+const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: BreadcrumbProps[] }) => {
    return (
       <nav className="m-4 block">
          <ol className="flex text-base font-light md:text-lg">
