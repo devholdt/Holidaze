@@ -8,10 +8,7 @@ import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import { getItem } from "@/app/lib/storage";
 
-const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({
-   venue,
-   manager,
-}) => {
+const ManagerVenueCard = ({ venue, manager }: ManagerVenueCardProps) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
    let description = venue.description || `No description available`;

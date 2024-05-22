@@ -119,44 +119,52 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.wifi ? (
                         <>
-                           <WifiIcon className="w-6" /> Wifi
+                           <span className="icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
+                           Wifi
                         </>
                      ) : (
                         <>
-                           <WifiIcon className="w-6" /> No Wifi
+                           <span className="icon-[mdi--wifi-off] h-6 w-6 text-grey"></span>{" "}
+                           No Wifi
                         </>
                      )}
                   </p>
                   <p className="flex gap-2">
                      {booking.venue.meta.parking ? (
                         <>
-                           <TruckIcon className="w-6" /> Parking
+                           <span className="icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
+                           Parking
                         </>
                      ) : (
                         <>
-                           <TruckIcon className="w-6" /> No Parking
+                           <span className="icon-[mdi--car-off] h-6 w-6 text-grey"></span>{" "}
+                           No Parking
                         </>
                      )}
                   </p>
                   <p className="flex gap-2">
                      {booking.venue.meta.breakfast ? (
                         <>
-                           <CakeIcon className="w-6" /> Breakfast
+                           <span className="icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
+                           Breakfast
                         </>
                      ) : (
                         <>
-                           <CakeIcon className="w-6" /> No Breakfast
+                           <span className="icon-[mdi--free-breakfast-off] h-6 w-6 text-grey"></span>{" "}
+                           No breakfast
                         </>
                      )}
                   </p>
                   <p className="flex gap-2">
                      {booking.venue.meta.pets ? (
                         <>
-                           <FaceSmileIcon className="w-6" /> Pets allowed
+                           <span className="icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
+                           Pets allowed
                         </>
                      ) : (
                         <>
-                           <FaceFrownIcon className="w-6" /> Pets not allowed
+                           <span className="icon-[mdi--dog-side-off] h-6 w-6 text-grey"></span>{" "}
+                           No pets allowed
                         </>
                      )}
                   </p>

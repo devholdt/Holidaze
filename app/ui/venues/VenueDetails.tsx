@@ -90,41 +90,59 @@ const VenueDetails = ({ id }: { id: string }) => {
                   </div>
                   <p className="font-extralight">{venue.description}</p>
                   <hr className="my-4" />
-                  <h2
-                     className={`${elMessiri.className} mb-2 text-2xl md:text-3xl`}
-                  >
+                  <h2 className={`${elMessiri.className} mb-2 text-3xl`}>
                      Amenities
                   </h2>
-                  <div className="mb-8 mt-4 flex flex-col gap-1">
-                     <p className="flex gap-2">
-                        {venue.meta.wifi && (
+                  <div className="mb-8 mt-4 flex flex-col gap-4">
+                     <p className="flex gap-3">
+                        {venue.meta.wifi ? (
                            <>
-                              <WifiIcon className="w-6" /> Wifi
-                           </>
-                        )}
-                     </p>
-                     <p className="flex gap-2">
-                        {venue.meta.parking && (
-                           <>
-                              <TruckIcon className="w-6" /> Parking
-                           </>
-                        )}
-                     </p>
-                     <p className="flex gap-2">
-                        {venue.meta.breakfast && (
-                           <>
-                              <CakeIcon className="w-6" /> Breakfast
-                           </>
-                        )}
-                     </p>
-                     <p className="flex gap-2">
-                        {venue.meta.pets ? (
-                           <>
-                              <FaceSmileIcon className="w-6" /> Pets allowed
+                              <span className="icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
+                              Wifi
                            </>
                         ) : (
                            <>
-                              <FaceFrownIcon className="w-6" /> Pets not allowed
+                              <span className="icon-[mdi--wifi-off] h-6 w-6 text-grey"></span>{" "}
+                              No Wifi
+                           </>
+                        )}
+                     </p>
+                     <p className="flex gap-3">
+                        {venue.meta.parking ? (
+                           <>
+                              <span className="icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
+                              Parking
+                           </>
+                        ) : (
+                           <>
+                              <span className="icon-[mdi--car-off] h-6 w-6 text-grey"></span>{" "}
+                              No Parking
+                           </>
+                        )}
+                     </p>
+                     <p className="flex gap-3">
+                        {venue.meta.breakfast ? (
+                           <>
+                              <span className="icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
+                              Breakfast
+                           </>
+                        ) : (
+                           <>
+                              <span className="icon-[mdi--free-breakfast-off] h-6 w-6 text-grey"></span>{" "}
+                              No breakfast
+                           </>
+                        )}
+                     </p>
+                     <p className="flex gap-3">
+                        {venue.meta.pets ? (
+                           <>
+                              <span className="icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
+                              Pets allowed
+                           </>
+                        ) : (
+                           <>
+                              <span className="icon-[mdi--dog-side-off] h-6 w-6 text-grey"></span>{" "}
+                              No pets allowed
                            </>
                         )}
                      </p>

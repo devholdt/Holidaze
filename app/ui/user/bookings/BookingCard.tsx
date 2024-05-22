@@ -26,7 +26,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
       >
          <Image
             src={imgSrc}
-            alt={booking.venue.media?.[0].alt || "Venue image"}
+            alt={booking.venue.media?.[0]?.alt || "Venue image"}
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
