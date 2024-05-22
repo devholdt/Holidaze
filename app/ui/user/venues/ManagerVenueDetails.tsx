@@ -4,14 +4,6 @@ import { elMessiri } from "@/app/ui/fonts";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Subheading from "@/app/ui/subheading";
-import {
-   WifiIcon,
-   TruckIcon,
-   CakeIcon,
-   FaceSmileIcon,
-   FaceFrownIcon,
-   PencilSquareIcon,
-} from "@heroicons/react/24/outline";
 import { formatDate } from "@/app/lib/utils";
 import { BookingProps } from "@/app/lib/definitions";
 import Link from "next/link";
@@ -89,7 +81,9 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   {user?.name === venue.owner.name && (
                      <Modal
                         modal="Edit venue"
-                        textContent={<PencilSquareIcon className="w-6" />}
+                        textContent={
+                           <span className="icon-[mdi--square-edit-outline] h-7 w-7 text-dark"></span>
+                        }
                      />
                   )}
                </div>

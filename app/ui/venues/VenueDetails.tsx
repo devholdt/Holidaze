@@ -1,13 +1,6 @@
 "use client";
 
 import { elMessiri } from "@/app/ui/fonts";
-import {
-   WifiIcon,
-   TruckIcon,
-   CakeIcon,
-   FaceSmileIcon,
-   FaceFrownIcon,
-} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Form from "@/app/ui/venues/BookingForm";

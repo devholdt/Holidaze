@@ -5,14 +5,6 @@ import { formatDate } from "@/app/lib/utils";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Subheading from "@/app/ui/subheading";
-import {
-   WifiIcon,
-   TruckIcon,
-   CakeIcon,
-   FaceSmileIcon,
-   FaceFrownIcon,
-   PencilSquareIcon,
-} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useImageSource from "@/app/lib/hooks/useImageSource";
@@ -86,7 +78,9 @@ const BookingDetails = ({ id }: { id: string }) => {
                   </div>
                   <Modal
                      modal="Edit booking"
-                     textContent={<PencilSquareIcon className="w-6" />}
+                     textContent={
+                        <span className="icon-[mdi--square-edit-outline] h-7 w-7 text-dark"></span>
+                     }
                   />
                </div>
 
