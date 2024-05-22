@@ -54,17 +54,17 @@ const ModalContent = ({ modalContent, hideModal }: ModalContentProps) => {
          className="fixed inset-0 z-max flex justify-center"
          style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
       >
-         <div
-            className="relative m-2 h-full w-full overflow-auto xs:w-auto"
-            ref={modalRef}
-         >
+         <div className="relative m-2 h-full w-full overflow-auto xs:w-auto">
             <button
                onClick={hideModal}
                className="absolute right-0 top-0 m-1 px-2 py-1 text-xl font-bold text-dark hover:text-black"
             >
                &#x2715;
             </button>
-            <div className="w-full bg-white px-4 py-12 xs:min-w-[400px] xs:px-8">
+            <div
+               className="w-full bg-white px-4 py-12 xs:min-w-[400px] xs:px-8"
+               ref={modalRef}
+            >
                {getContent()}
             </div>
          </div>

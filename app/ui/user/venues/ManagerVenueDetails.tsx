@@ -1,6 +1,5 @@
 "use client";
 
-import { lazy } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";

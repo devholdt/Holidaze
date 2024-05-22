@@ -88,7 +88,7 @@ const EditVenueForm = () => {
    return (
       <form
          onSubmit={handleSubmit}
-         className="flex max-w-[480px] flex-col justify-center"
+         className="flex h-full max-w-[480px] flex-col justify-center"
       >
          <h4 className="text-center text-2xl font-extralight uppercase tracking-widest">
             Edit venue
