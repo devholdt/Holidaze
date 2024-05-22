@@ -36,7 +36,7 @@ const VenueDetails = ({ id }: { id: string }) => {
 
    return (
       <Suspense fallback={<div>Loading...</div>}>
-         <div className="mx-1 my-4 xs:mx-4">
+         <div className="mx-1 mb-4 xs:mx-4">
             <div className="relative mb-4 h-80">
                <Image
                   src={imgSrc}
