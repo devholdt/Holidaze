@@ -26,7 +26,7 @@ const Hero: React.FC<HeroProps> = ({
             backgroundSize: "cover",
             backgroundPosition: "center",
          }}
-         className={`flex h-64 flex-col justify-center p-0 text-dark xs:p-12 md:h-80 md:p-28 ${styles}`}
+         className={`flex h-64 flex-col justify-center border-y border-white p-0 text-dark xs:p-12 md:h-80 md:p-28 ${styles}`}
       >
          <div className="flex flex-col items-center xs:items-start">
             <div>
