@@ -11,8 +11,13 @@ export default function Page({ params }: { params: { id: string } }) {
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
          <Breadcrumbs
             breadcrumbs={[
+               { label: "Home", href: "/" },
                { label: "Venues", href: "/venues" },
-               { label: "Venue", href: `/venues/${params.id}`, active: true },
+               {
+                  label: "Venue details",
+                  href: `/venues/${params.id}`,
+                  active: true,
+               },
             ]}
          />
          <VenueDetails id={params.id} />
