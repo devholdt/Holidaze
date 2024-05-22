@@ -6,7 +6,7 @@ import { BreadcrumbProps } from "@/app/lib/definitions";
 
 const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: BreadcrumbProps[] }) => {
    return (
-      <nav className="m-4 block">
+      <nav className="mx-2 my-4 block md:mx-4">
          <ol className="flex text-base font-light md:text-lg">
             {breadcrumbs.map((breadcrumb, index) => (
                <>
