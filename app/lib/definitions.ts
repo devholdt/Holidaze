@@ -21,6 +21,7 @@ export interface VenueProps {
       country: string;
    };
    created: string;
+   href: string;
 }
 
 export interface BookingProps {

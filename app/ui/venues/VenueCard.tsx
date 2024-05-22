@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import { VenueProps } from "@/app/lib/definitions";
@@ -8,13 +7,16 @@ import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 
-const VenueCard = ({ venue }: { venue: VenueProps }) => {
+const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
+   venue,
+   onClick,
+}) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
    return (
-      <Link
-         href={`/venues/${venue.id}`}
-         className="relative flex flex-col rounded-xl border border-white bg-white shadow transition duration-75 hover:border-grey"
+      <div
+         onClick={onClick}
+         className="relative flex cursor-pointer flex-col rounded-xl border border-white bg-white shadow transition duration-75 hover:border-grey"
       >
          <Image
             src={imgSrc}
@@ -56,7 +58,7 @@ const VenueCard = ({ venue }: { venue: VenueProps }) => {
                </p>
             </div>
          </div>
-      </Link>
+      </div>
    );
 };
 

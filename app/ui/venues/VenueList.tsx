@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/app/ui/buttons";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
+import { useRouter } from "next/navigation";
 
 const Searchbar = dynamic(() => import("@/app/ui/venues/Searchbar"), {
    ssr: false,
@@ -20,6 +21,39 @@ const VenueList: React.FC<VenueListProps> = ({
    const INITIAL_LIMIT = listLimit;
    const [limit, setLimit] = useState(INITIAL_LIMIT);
    const [filteredVenues, setFilteredVenues] = useState<VenueProps[]>([]);
+   const router = useRouter();
+
+   useEffect(() => {
+      if (window.location.pathname === "/venues") {
+         const savedScrollPosition = sessionStorage.getItem("scrollPosition");
+         const savedLimit = sessionStorage.getItem("venueLimit");
+
+         if (savedLimit) {
+            setLimit(parseInt(savedLimit, 10));
+         }
+
+         if (savedScrollPosition) {
+            setTimeout(() => {
+               window.focus();
+               window.scrollTo(0, parseInt(savedScrollPosition, 10));
+               sessionStorage.removeItem("scrollPosition");
+               sessionStorage.removeItem("venueLimit");
+            }, 400);
+         }
+      } else {
+         sessionStorage.removeItem("scrollPosition");
+         sessionStorage.removeItem("venueLimit");
+      }
+   }, []);
+
+   const handleCardClick = (href: string) => {
+      if (window.location.pathname === "/venues") {
+         sessionStorage.setItem("scrollPosition", String(window.scrollY));
+         sessionStorage.setItem("venueLimit", String(limit));
+      }
+
+      router.push(href);
+   };
 
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
 
@@ -53,12 +87,24 @@ const VenueList: React.FC<VenueListProps> = ({
                   ? filteredVenues
                        .slice(0, limit)
                        .map((venue) => (
-                          <VenueCard key={venue.id} venue={venue} />
+                          <VenueCard
+                             key={venue.id}
+                             venue={venue}
+                             onClick={() =>
+                                handleCardClick(`/venues/${venue.id}`)
+                             }
+                          />
                        ))
                   : venues
                        .slice(0, limit)
                        .map((venue) => (
-                          <VenueCard key={venue.id} venue={venue} />
+                          <VenueCard
+                             key={venue.id}
+                             venue={venue}
+                             onClick={() =>
+                                handleCardClick(`/venues/${venue.id}`)
+                             }
+                          />
                        ))}
             </div>
             {venuePage && filteredVenues && limit < filteredVenues.length && (
