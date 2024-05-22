@@ -1,17 +1,12 @@
 "use client";
 
 import { Suspense, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { Button } from "@/app/ui/buttons";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
 import { useRouter } from "next/navigation";
-
-const Searchbar = dynamic(() => import("@/app/ui/venues/Searchbar"), {
-   ssr: false,
-   loading: () => <div>Loading...</div>,
-});
+import Searchbar from "@/app/ui/venues/Searchbar";
 
 const VenueList: React.FC<VenueListProps> = ({
    listLimit = 12,
@@ -38,7 +33,7 @@ const VenueList: React.FC<VenueListProps> = ({
                window.scrollTo(0, parseInt(savedScrollPosition, 10));
                sessionStorage.removeItem("scrollPosition");
                sessionStorage.removeItem("venueLimit");
-            }, 400);
+            }, 500);
          }
       } else {
          sessionStorage.removeItem("scrollPosition");
@@ -47,7 +42,7 @@ const VenueList: React.FC<VenueListProps> = ({
    }, []);
 
    const handleCardClick = (href: string) => {
-      if (window.location.pathname === "/venues") {
+      if (window.location.pathname === "/venues" && window.scrollY >= 500) {
          sessionStorage.setItem("scrollPosition", String(window.scrollY));
          sessionStorage.setItem("venueLimit", String(limit));
       }

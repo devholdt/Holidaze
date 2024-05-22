@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { ModalContentProps, FormAction } from "@/app/lib/definitions";
 import EditProfileMediaForm from "@/app/ui/user/EditProfileMediaForm";
 import CreateVenueForm from "@/app/ui/user/venues/CreateVenueForm";
@@ -8,11 +8,8 @@ import EditVenueForm from "@/app/ui/user/venues/EditVenueForm";
 import EditBookingForm from "@/app/ui/user/bookings/EditBookingForm";
 import LogoutModal from "@/app/ui/user/LogoutModal";
 
-const ModalContent: React.FC<ModalContentProps> = ({
-   modalContent,
-   hideModal,
-}) => {
-   const modalRef = React.useRef<HTMLDivElement>(null);
+const ModalContent = ({ modalContent, hideModal }: ModalContentProps) => {
+   const modalRef = useRef<HTMLDivElement>(null);
 
    useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -54,7 +51,7 @@ const ModalContent: React.FC<ModalContentProps> = ({
 
    return (
       <div
-         className="z-max fixed inset-0 flex justify-center"
+         className="fixed inset-0 z-max flex justify-center"
          style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
       >
          <div

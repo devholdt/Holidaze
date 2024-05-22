@@ -1,16 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { getVenueById } from "@/app/lib/data";
 import { Button } from "@/app/ui/buttons";
 import { editVenue, deleteVenue } from "@/app/lib/actions";
 
-export default function Form() {
+const EditVenueForm = () => {
    const pathname = usePathname();
    const venueId = pathname.substring(pathname.lastIndexOf("/") + 1);
-
    const [venue, setVenue] = useState<any>(null);
+   const mediaUrlRef = useRef<HTMLInputElement>(null);
+
+   const clearMediaUrl = () => {
+      if (mediaUrlRef.current) {
+         mediaUrlRef.current.value = "";
+      }
+   };
 
    useEffect(() => {
       const fetchVenue = async () => {
@@ -273,16 +279,27 @@ export default function Form() {
             <label className="text-dark" htmlFor="url">
                Media URL
             </label>
-            <input
-               type="text"
-               id="url"
-               name="url"
-               placeholder="Enter URL"
-               value={venue.media[0].url || ""}
-               onChange={handleChange}
-               className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-            />
+            <div className="flex">
+               <input
+                  type="text"
+                  id="url"
+                  name="url"
+                  placeholder="Enter URL"
+                  ref={mediaUrlRef}
+                  value={venue.media[0].url || ""}
+                  onChange={handleChange}
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               />
+               <button
+                  type="button"
+                  onClick={clearMediaUrl}
+                  className="clear-button rounded-e border border-lightGrey px-3 text-dark hover:bg-background"
+               >
+                  Clear
+               </button>
+            </div>
          </div>
+
          <div className="mb-4">
             <label className="text-dark" htmlFor="alt">
                Alt text
@@ -309,4 +326,6 @@ export default function Form() {
          </button>
       </form>
    );
-}
+};
+
+export default EditVenueForm;
