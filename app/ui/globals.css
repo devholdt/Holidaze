@@ -67,6 +67,8 @@ h4 {
 .bm-burger-button {
    position: relative;
    width: 48px;
+   height: 48px;
+   color: white;
 }
 
 .bm-menu-wrap {

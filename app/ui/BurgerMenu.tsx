@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import Link from "next/link";
 import {
@@ -67,8 +66,12 @@ const BurgerMenu = () => {
          right
          isOpen={menuOpen}
          onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
-         customBurgerIcon={<Bars3Icon className="text-white" />}
-         customCrossIcon={<XMarkIcon className="text-white" />}
+         customBurgerIcon={
+            <span className="icon-[mdi--menu] text-white"></span>
+         }
+         customCrossIcon={
+            <span className="icon-[mdi--close] text-white"></span>
+         }
          width={"100%"}
       >
          <div

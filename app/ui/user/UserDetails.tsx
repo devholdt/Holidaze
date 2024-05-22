@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { UserDetailsProps } from "@/app/lib/definitions";
 import BackgroundReflection from "@/public/background-reflection.jpg";
 
@@ -42,7 +41,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
                      {user.name}
                   </span>
                   {user.venueManager && (
-                     <CheckCircleIcon className="w-[22px] text-yellow" />
+                     <span className="icon-[mdi--check-circle-outline] h-[24px] w-[24px] text-yellow"></span>
                   )}
                </p>
                <p className="font-thin text-dark">{user.email}</p>

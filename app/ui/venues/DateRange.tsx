@@ -2,9 +2,6 @@
 
 import React, { useCallback, useMemo, Suspense, lazy } from "react";
 import { DateRangeProps } from "@/app/lib/definitions";
-import { CalendarIcon } from "@heroicons/react/24/outline";
-
-import { getYear, getMonth } from "date-fns";
 
 const DatePicker = lazy(() => import("react-datepicker"));
 import "react-datepicker/dist/react-datepicker.css";
@@ -91,7 +88,7 @@ export default function DateRange({
          : "Click here to pick dates";
 
       return (
-         <div className="flex gap-2">
+         <div className="flex items-center gap-2">
             <button
                className="w-fit cursor-pointer text-nowrap rounded border border-lightGrey bg-background px-4 py-2 text-center"
                onClick={onClick}
@@ -101,7 +98,7 @@ export default function DateRange({
             >
                {displayValue}
             </button>
-            <CalendarIcon className="w-6" />
+            <span className="icon-[mdi--calendar-blank] h-6 w-6 text-dark"></span>
          </div>
       );
    });

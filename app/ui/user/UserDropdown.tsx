@@ -1,6 +1,5 @@
 "use client";
 
-import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import { useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import {
@@ -65,8 +64,8 @@ const UserDropdown = () => {
             className="flex items-center gap-2 rounded-full bg-white p-2 text-dark"
             onClick={() => setIsOpen(!isOpen)}
          >
-            <Bars3Icon className="h-6 w-8" />
-            <UserCircleIcon className="h-6 w-6" />
+            <span className="icon-[mdi--menu] h-6 w-8 text-dark"></span>
+            <span className="icon-[mdi--user-circle] h-6 w-6 text-dark"></span>
          </button>
          <div
             ref={dropdownRef}

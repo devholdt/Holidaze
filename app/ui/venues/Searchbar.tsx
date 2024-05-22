@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { VenueProps } from "@/app/lib/definitions";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 interface SearchbarProps {
    venues: VenueProps[];
@@ -63,7 +62,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ venues, setFilteredVenues }) => {
                onClick={handleButtonClick}
                className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-yellow p-3 text-blue"
             >
-               <MagnifyingGlassIcon className="h-6 w-6" />
+               <span className="icon-[mdi--search] h-6 w-6 text-blue"></span>
             </button>
          </div>
       </div>
