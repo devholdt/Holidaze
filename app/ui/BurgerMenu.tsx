@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import Link from "next/link";
 import {
    loggedOutMenuItems,
@@ -15,12 +14,13 @@ import logoWhite from "@/public/logo-white.svg";
 import Logo from "@/app/ui/Logo";
 import { LinkButton } from "@/app/ui/buttons";
 import { slide as Menu } from "react-burger-menu";
+import useUser from "@/app/lib/hooks/useUser";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 const UserDetails = dynamic(() => import("@/app/ui/user/UserDetails"));
 
 const BurgerMenu = () => {
-   const user = useFetchLoggedInUser();
+   const { user } = useUser();
    const [menuOpen, setMenuOpen] = useState(false);
 
    const closeMenu = () => {
