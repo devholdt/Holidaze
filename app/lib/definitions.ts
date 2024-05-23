@@ -132,10 +132,10 @@ export interface CreateBookingProps {
 export interface CreateVenueProps {
    name: string;
    description: string;
-   media?: [{ url: string; alt: string }];
+   media?: { url: string; alt: string }[];
    price: number;
    maxGuests: number;
-   rating?: number;
+   rating: number;
    meta: {
       wifi: boolean;
       parking: boolean;
@@ -147,6 +147,25 @@ export interface CreateVenueProps {
       country: string;
    };
 }
+
+// export interface CreateVenueProps {
+//    name: string;
+//    description: string;
+//    media?: [{ url: string; alt: string }];
+//    price: number;
+//    maxGuests: number;
+//    rating?: number;
+//    meta: {
+//       wifi: boolean;
+//       parking: boolean;
+//       breakfast: boolean;
+//       pets: boolean;
+//    };
+//    location: {
+//       city: string;
+//       country: string;
+//    };
+// }
 
 export interface EditAvatarProps {
    avatar: {

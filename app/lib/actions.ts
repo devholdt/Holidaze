@@ -214,12 +214,7 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    const formValues: CreateVenueProps = {
       name: data.get("name") as string,
       description: data.get("description") as string,
-      media: [
-         {
-            url: (data.get("url") as string) || "",
-            alt: (data.get("alt") as string) || "",
-         },
-      ],
+      media: [],
       price: Number(data.get("price")),
       maxGuests: Number(data.get("maxGuests")),
       rating: Number(data.get("rating") || 0),
@@ -235,11 +230,18 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
       },
    };
 
+   const mediaUrl = data.get("url") as string;
+   const mediaAlt = data.get("alt") as string;
+
+   if (mediaUrl || mediaAlt) {
+      formValues.media?.push({ url: mediaUrl ?? "", alt: mediaAlt ?? "" });
+   }
+
    const parsedValues = {
-      name: formValues.name as string,
-      description: formValues.description as string,
-      price: formValues.price as number,
-      maxGuests: formValues.maxGuests as number,
+      name: formValues.name,
+      description: formValues.description,
+      price: formValues.price,
+      maxGuests: formValues.maxGuests,
    };
 
    const result = venueSchema.safeParse(parsedValues);
@@ -253,20 +255,21 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    }
 
    try {
-      const response = await fetch(API_URLS.VENUES, {
+      const response = await fetch("/api/auth/venues", {
          method: "POST",
-         headers: headers("application/json"),
-         body: JSON.stringify(result.data),
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(formValues),
       });
 
-      const json = await response.json();
-
       if (!response.ok) {
-         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         const errorText = await response.text();
          alert("error", errorText, ".alert-container");
          throw new Error(errorText);
       }
 
+      const json = await response.json();
       const venue = json.data;
 
       alert(
@@ -333,9 +336,7 @@ export const editVenue = async (
    try {
       const response = await fetch(`/api/auth/venues/${id}`, {
          method: "PUT",
-         headers: {
-            "Content-Type": "application/json",
-         },
+         headers: headers("application/json"),
          body: JSON.stringify(formValues),
       });
 
