@@ -16,7 +16,12 @@ export const registerSchema = z.object({
    name: z
       .string()
       .min(4, { message: "Name must be at least 4 characters long" }),
-   email: z.string().email({ message: "Invalid email address" }),
+   email: z
+      .string()
+      .email({ message: "Invalid email address" })
+      .refine((email) => email.endsWith("@stud.noroff.no"), {
+         message: "Email must be a valid Noroff student email address",
+      }),
    password: z
       .string()
       .min(6, { message: "Password must be at least 6 characters long" }),

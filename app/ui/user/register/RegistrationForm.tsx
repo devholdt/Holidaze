@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/app/ui/buttons";
 import Link from "next/link";
-import { handleUserRegistration } from "@/app/lib/actions";
+import { handleRegisterSubmit } from "@/app/lib/actions";
 
 export default function RegistrationForm() {
    const [isChecked, setIsChecked] = useState(false);
@@ -14,7 +14,7 @@ export default function RegistrationForm() {
    return (
       <form
          className="w-full max-w-[320px]"
-         onSubmit={(event) => handleUserRegistration(event, isChecked)}
+         onSubmit={(event) => handleRegisterSubmit(event, isChecked)}
       >
          <div className="mb-4">
             <label className="text-dark" htmlFor="name">

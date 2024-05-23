@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "@/app/lib/utils";
 
-const loginUser = async (email: string, password: string) => {
+const registerUser = async (
+   name: string,
+   email: string,
+   password: string,
+   venueManager: boolean
+) => {
    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_PATH}/auth/login?_holidaze=true`,
+      `${process.env.NEXT_PUBLIC_API_PATH}/auth/register`,
       {
          method: "POST",
          headers: headers("application/json"),
-         body: JSON.stringify({ email, password }),
+         body: JSON.stringify({ name, email, password, venueManager }),
       }
    );
 
@@ -22,13 +27,13 @@ const loginUser = async (email: string, password: string) => {
 };
 
 export async function POST(req: NextRequest) {
-   const { email, password } = await req.json();
+   const { name, email, password, venueManager } = await req.json();
 
    try {
-      const userData = await loginUser(email, password);
+      const userData = await registerUser(name, email, password, venueManager);
 
       const response = NextResponse.json({
-         message: `Login successful! <br /> Welcome back <strong>${userData.data.name}</strong>`,
+         message: `Registration successful! <br /> Welcome <strong>${userData.data.name}</strong>`,
          user: userData,
       });
 

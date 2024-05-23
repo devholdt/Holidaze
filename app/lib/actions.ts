@@ -7,7 +7,7 @@ import {
    EditAvatarProps,
    EditBannerProps,
 } from "@/app/lib/definitions";
-import { setItem, getItem } from "@/app/lib/storage";
+import { getItem } from "@/app/lib/storage";
 import { alert, headers } from "@/app/lib/utils";
 import {
    loginSchema,
@@ -15,7 +15,54 @@ import {
    venueSchema,
    editProfileSchema,
 } from "@/app/lib/utils";
-import { authenticate } from "@/app/lib/auth/authenticate";
+import { loginAuth, registerAuth } from "@/app/lib/auth/authenticate";
+
+export const handleRegisterSubmit = async (
+   event: React.FormEvent<HTMLFormElement>,
+   isChecked: boolean = false
+) => {
+   event.preventDefault();
+   const formData = new FormData(event.currentTarget);
+
+   let formValues: { [key: string]: FormDataEntryValue | boolean } =
+      Object.fromEntries(formData.entries());
+
+   formValues.venueManager = isChecked;
+
+   const parsedValues = {
+      name: formValues.name as string,
+      email: formValues.email as string,
+      password: formValues.password as string,
+      venueManager: formValues.venueManager as boolean,
+   };
+
+   const result = registerSchema.safeParse(parsedValues);
+
+   if (!result.success) {
+      const errorMessages = result.error.errors
+         .map((error: any) => error.message)
+         .join(", ");
+      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
+      return;
+   }
+
+   try {
+      const registrationResponse = await registerAuth(formData, isChecked);
+
+      alert("success", registrationResponse.message, ".alert-container");
+      try {
+         await loginAuth(formData);
+
+         setTimeout(() => {
+            location.href = "/";
+         }, 2000);
+      } catch (loginError: any) {
+         alert("error", loginError.message, ".alert-container");
+      }
+   } catch (error: any) {
+      alert("error", error.message, ".alert-container");
+   }
+};
 
 export const handleLoginSubmit = async (
    event: React.FormEvent<HTMLFormElement>
@@ -39,7 +86,13 @@ export const handleLoginSubmit = async (
    }
 
    try {
-      const response = await authenticate(formData);
+      const response = await loginAuth(formData);
+
+      if (!response.ok) {
+         alert("error", response.message, ".alert-container");
+         throw new Error(response.message);
+      }
+
       alert("success", response.message, ".alert-container");
 
       setTimeout(() => {
@@ -340,111 +393,6 @@ export const deleteVenue = async (id: string) => {
          alert("error", `${error}`, ".alert-container");
          throw error;
       }
-   }
-};
-
-export const handleUserRegistration = async (
-   event: React.FormEvent<HTMLFormElement>,
-   isChecked?: boolean
-) => {
-   event.preventDefault();
-
-   const formData = new FormData(event.currentTarget);
-
-   let formValues: { [key: string]: FormDataEntryValue | boolean } =
-      Object.fromEntries(formData.entries());
-
-   formValues.venueManager = isChecked as boolean;
-
-   const parsedValues = {
-      name: formValues.name as string,
-      email: formValues.email as string,
-      password: formValues.password as string,
-      venueManager: formValues.venueManager as boolean,
-   };
-
-   const result = registerSchema.safeParse(parsedValues);
-
-   if (!result.success) {
-      const errorMessages = result.error.errors
-         .map((error: any) => error.message)
-         .join(", ");
-      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
-      return;
-   }
-
-   try {
-      const response = await fetch(`${API_PATH}/auth/register`, {
-         method: "POST",
-         headers: headers("application/json"),
-         body: JSON.stringify(result.data),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-         const errorText = `Error: ${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-         alert("error", errorText, ".alert-container");
-         throw new Error(errorText);
-      }
-
-      const user = json.data;
-
-      alert(
-         "success",
-         `Registration successfull! <br /> Welcome, <strong>${user.name}</strong>`,
-         ".alert-container"
-      );
-
-      try {
-         const loginResponse = await fetch(
-            `${API_PATH}/auth/login?_holidaze=true`,
-            {
-               method: "POST",
-               headers: headers("application/json"),
-               body: JSON.stringify({
-                  email: formValues.email,
-                  password: formValues.password,
-               }),
-            }
-         );
-
-         const loginJson = await loginResponse.json();
-
-         if (!loginResponse.ok) {
-            const errorText = `${loginJson.statusCode} (${loginJson.status}) - ${loginJson.errors[0].message}`;
-            alert("error", errorText, ".alert-container");
-            throw new Error(`Failed to automatically log in: ${errorText}`);
-         }
-
-         const loginUser = loginJson.data;
-
-         setItem({ key: "user", value: loginUser });
-         setItem({ key: "name", value: loginUser.name });
-         setItem({ key: "token", value: loginUser.accessToken });
-
-         setTimeout(() => {
-            window.location.href = "/";
-         }, 2000);
-      } catch (error) {
-         alert(
-            "error",
-            `An error occured when attempting to automatically log in. Please log in manually.`,
-            ".alert-container"
-         );
-         throw new Error(`${error}`);
-      }
-
-      return user;
-   } catch (error) {
-      alert(
-         "error",
-         "An error occured when attempting user registration",
-         "alert-container"
-      );
-      throw new Error(
-         `An error occured when attempting user registration: ${error}`
-      );
    }
 };
 
