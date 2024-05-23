@@ -3,30 +3,29 @@
 import { useEffect, useState } from "react";
 import { VenueProps } from "@/app/lib/definitions";
 
-const useFetchVenuesByName = () => {
+const useFetchVenuesByUser = (name: string) => {
    const [venues, setVenues] = useState<VenueProps[]>([]);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
       async function fetchVenues() {
-         const response = await fetch("/api/auth/managerVenues", {
+         const response = await fetch(`/api/auth/managerVenues?name=${name}`, {
             credentials: "include",
          });
+
          if (response.ok) {
             const json = await response.json();
-
-            const venuesData = json.data;
-
-            setVenues(venuesData);
+            setVenues(json.data);
          } else {
             setVenues([]);
          }
          setLoading(false);
       }
+
       fetchVenues();
-   }, []);
+   }, [name]);
 
    return { venues, loading };
 };
 
-export default useFetchVenuesByName;
+export default useFetchVenuesByUser;

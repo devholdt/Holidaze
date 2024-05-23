@@ -7,9 +7,11 @@ import ManagerVenueCard from "@/app/ui/user/venues/ManagerVenueCard";
 
 const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
    const { user, loading: userLoading } = useUser();
-   const managerName = name;
+   const managerName = name || user?.name;
 
-   const { venues, loading: venuesLoading } = useFetchVenuesByUser();
+   const { venues, loading: venuesLoading } = useFetchVenuesByUser(
+      managerName || ""
+   );
 
    if (userLoading || venuesLoading) {
       return <p className="mt-8 flex justify-center">Loading...</p>;

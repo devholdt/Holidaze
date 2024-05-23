@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const fetchManagerVenues = async (name: string, token: string) => {
    const response = await fetch(
-      process.env.NEXT_PUBLIC_API_PATH + `/holidaze/profiles/${name}/venues`,
+      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}/venues`,
       {
          method: "GET",
          headers: {
@@ -17,13 +17,13 @@ const fetchManagerVenues = async (name: string, token: string) => {
    }
 
    const data = await response.json();
-
    return data;
 };
 
 export async function GET(req: NextRequest) {
    const token = req.cookies.get("accessToken")?.value;
-   const name = req.cookies.get("name")?.value;
+   const { searchParams } = new URL(req.url);
+   const name = searchParams.get("name");
 
    if (!token || !name) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
