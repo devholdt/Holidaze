@@ -43,8 +43,7 @@ export async function registerAuth(formData: FormData, isChecked: boolean) {
    const json = await response.json();
 
    if (!response.ok) {
-      const errorText = `${json.data.statusCode} (${json.data.status}) - ${json.data.errors[0].message}`;
-      throw new Error(errorText);
+      throw new Error(json.message || "Invalid credentials");
    }
 
    return json;

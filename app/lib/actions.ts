@@ -88,11 +88,6 @@ export const handleLoginSubmit = async (
    try {
       const response = await loginAuth(formData);
 
-      if (!response.ok) {
-         alert("error", response.message, ".alert-container");
-         throw new Error(response.message);
-      }
-
       alert("success", response.message, ".alert-container");
 
       setTimeout(() => {

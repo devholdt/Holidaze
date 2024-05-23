@@ -11,9 +11,9 @@ import { MenuItemProps } from "@/app/lib/definitions";
 import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
 import dynamic from "next/dynamic";
 import useUser from "@/app/lib/hooks/useUser";
+import UserDetails from "@/app/ui/user/UserDetails";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
-const UserDetails = dynamic(() => import("@/app/ui/user/UserDetails"));
 
 const UserDropdown = () => {
    const { user } = useUser();

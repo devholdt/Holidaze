@@ -1,16 +1,11 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
 import waterImg from "@/public/texture-water-sm.jpg";
-import dynamic from "next/dynamic";
 import BurgerMenu from "@/app/ui/BurgerMenu";
-
-const UserDropdown = dynamic(() => import("@/app/ui/user/UserDropdown"), {
-   ssr: false,
-});
+import UserDropdown from "@/app/ui/user/UserDropdown";
 
 const HeaderComponent = () => {
    return (
