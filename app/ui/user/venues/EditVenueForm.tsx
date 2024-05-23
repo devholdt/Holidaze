@@ -1,33 +1,35 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { getVenueById } from "@/app/lib/data";
 import { Button } from "@/app/ui/buttons";
 import { editVenue, deleteVenue } from "@/app/lib/actions";
+import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
 const EditVenueForm = () => {
    const pathname = usePathname();
    const venueId = pathname.substring(pathname.lastIndexOf("/") + 1);
-   const [venue, setVenue] = useState<any>(null);
+   const { venue: fetchedVenue, loading } = useFetchVenueById(venueId);
+   const [venue, setVenue] = useState(fetchedVenue);
    const mediaUrlRef = useRef<HTMLInputElement>(null);
 
    const clearMediaUrl = () => {
       if (mediaUrlRef.current) {
          mediaUrlRef.current.value = "";
+         setVenue((prevVenue: any) => ({
+            ...prevVenue,
+            media: [{ ...prevVenue.media[0], url: "" }],
+         }));
       }
    };
 
    useEffect(() => {
-      const fetchVenue = async () => {
-         const fetchedVenue = await getVenueById(venueId);
+      if (fetchedVenue) {
          setVenue(fetchedVenue);
-      };
+      }
+   }, [fetchedVenue]);
 
-      fetchVenue();
-   }, [venueId]);
-
-   if (!venue) {
+   if (!venue || loading) {
       return <p>Loading...</p>;
    }
 

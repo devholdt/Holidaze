@@ -19,6 +19,7 @@ const fetchVenue = async (id: string, token: string) => {
 
    const json = await response.json();
    const data = json.data;
+
    return data;
 };
 

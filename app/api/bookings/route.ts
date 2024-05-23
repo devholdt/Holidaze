@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const fetchBookings = async (name: string, token: string) => {
    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}/bookings?_customer=true&_venue=true`,
+      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}/bookings?_customer=true&_venue=true&sort=dateFrom&sortOrder=asc`,
       {
          method: "GET",
          headers: {

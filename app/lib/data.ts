@@ -1,5 +1,4 @@
 import { API_URLS } from "@/app/lib/constants";
-import { getItem } from "@/app/lib/storage";
 import { headers } from "@/app/lib/utils";
 
 export async function getVenues() {
@@ -34,24 +33,6 @@ export async function getVenueById(id: string) {
    }
 }
 
-export async function getVenuesByUser(name: string) {
-   const url = `${API_URLS.PROFILES}/${name}/venues?_bookings=true&_owner=true`;
-   const options = {
-      method: "GET",
-      headers: headers("application/json"),
-   };
-
-   try {
-      const response = await fetch(url, options);
-      const json = await response.json();
-
-      return json.data || [];
-   } catch (error) {
-      console.error("An error occured while fetching manager venues: ", error);
-      throw new Error("Failed to fetch manager venues.");
-   }
-}
-
 export async function getUserByName(name: string) {
    const url = `${API_URLS.PROFILES}/${name}`;
    const options = {
@@ -69,66 +50,5 @@ export async function getUserByName(name: string) {
    } catch (error) {
       console.error("An error occured while fetching logged in user: ", error);
       throw new Error("Failed to fetch logged in user.");
-   }
-}
-
-export async function getLoggedInUser() {
-   const url = `${API_URLS.PROFILES}/${getItem("name")}`;
-   const options = {
-      method: "GET",
-      headers: headers("application/json"),
-   };
-
-   try {
-      const response = await fetch(url, options);
-
-      const json = await response.json();
-      const data = json.data;
-
-      return data;
-   } catch (error) {
-      console.error("An error occured while fetching logged in user: ", error);
-      throw new Error("Failed to fetch logged in user.");
-   }
-}
-
-export async function getBookingsByUser() {
-   const url = `${API_URLS.PROFILES}/${getItem("name")}/bookings?_venue=true&sort=dateFrom&sortOrder=asc`;
-   const options = {
-      method: "GET",
-      headers: headers("application/json"),
-   };
-
-   try {
-      const response = await fetch(url, options);
-      const json = await response.json();
-
-      return json.data || [];
-   } catch (error) {
-      console.error(
-         "An error occured while fetching profile bookings: ",
-         error
-      );
-      throw new Error("Failed to fetch profile bookings.");
-   }
-}
-
-export async function getBookingById(id: string) {
-   const url = `${API_URLS.BOOKINGS}/${id}?_customer=true&_venue=true`;
-   const options = {
-      method: "GET",
-      headers: headers("application/json"),
-   };
-
-   try {
-      const response = await fetch(url, options);
-
-      const json = await response.json();
-      const data = json.data;
-
-      return data;
-   } catch (error) {
-      console.error("An error occured while fetching booking data: ", error);
-      throw new Error("Failed to fetch booking data.");
    }
 }
