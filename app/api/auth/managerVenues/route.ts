@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const fetchManagerVenues = async (name: string, token: string) => {
    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}/venues`,
+      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}/venues?_owner=true&_bookings=true`,
       {
          method: "GET",
          headers: {

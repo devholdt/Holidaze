@@ -50,7 +50,7 @@ export interface BookingCardProps {
 }
 
 export interface BookingListProps {
-   name?: string;
+   name: string;
 }
 
 export interface VenueOwnerProps {
@@ -67,7 +67,7 @@ export interface ManagerVenueCardProps {
 }
 
 export interface ManagerVenueListProps {
-   name?: string;
+   name: string;
 }
 
 export interface VenueListProps {

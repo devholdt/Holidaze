@@ -6,20 +6,20 @@ import { ManagerVenueCardProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
-import { getItem } from "@/app/lib/storage";
 
 const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
    let description = venue.description || `No description available`;
 
+   const isOwner = user && venue.owner && user.name === venue.owner.name;
+   const redirectLink = isOwner
+      ? `/user/venues/${venue.id}`
+      : `/venues/${venue.id}`;
+
    return (
       <Link
-         href={
-            user?.name === getItem("name")
-               ? `/user/venues/${venue.id}`
-               : `/venues/${venue.id}`
-         }
+         href={redirectLink}
          className="relative flex flex-col rounded-xl border border-white bg-white shadow transition duration-75 hover:border-grey"
       >
          <Image
@@ -28,7 +28,6 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
-            unoptimized
             className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
          />
          <div className="px-6 pb-2 text-center">
