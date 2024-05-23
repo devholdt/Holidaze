@@ -331,9 +331,11 @@ export const editVenue = async (
    }
 
    try {
-      const response = await fetch(`${API_URLS.VENUES}/${id}`, {
+      const response = await fetch(`/api/auth/venues/${id}`, {
          method: "PUT",
-         headers: headers("application/json"),
+         headers: {
+            "Content-Type": "application/json",
+         },
          body: JSON.stringify(formValues),
       });
 
@@ -341,7 +343,7 @@ export const editVenue = async (
          const errorText = await response.text();
          alert(
             "error",
-            `An error occured (${response.status})`,
+            `An error occurred (${response.status})`,
             ".alert-container"
          );
          throw new Error(`Failed to edit venue: ${errorText}`);
@@ -350,7 +352,7 @@ export const editVenue = async (
       const json = await response.json();
       const venue = json.data;
 
-      alert("success", `Venue successfully edited!`, ".alert-container");
+      alert("success", "Venue successfully edited!", ".alert-container");
 
       setTimeout(() => {
          window.location.href = `/user/venues/${venue.id}`;
