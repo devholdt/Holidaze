@@ -19,6 +19,7 @@ const useFetchVenuesByUser = (name: string) => {
          } else {
             setVenues([]);
          }
+
          setLoading(false);
       }
 

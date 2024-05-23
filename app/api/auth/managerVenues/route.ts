@@ -30,8 +30,8 @@ export async function GET(req: NextRequest) {
    }
 
    try {
-      const userData = await fetchManagerVenues(name, token);
-      return NextResponse.json(userData);
+      const data = await fetchManagerVenues(name, token);
+      return NextResponse.json(data);
    } catch (error) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
    }

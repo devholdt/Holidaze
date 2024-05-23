@@ -12,17 +12,17 @@ const useFetchBookingsByUser = () => {
          const response = await fetch("/api/auth/bookings", {
             credentials: "include",
          });
+
          if (response.ok) {
             const json = await response.json();
-
-            const bookingsData = json.data;
-
-            setBookings(bookingsData);
+            setBookings(json.data);
          } else {
             setBookings([]);
          }
+
          setLoading(false);
       }
+
       fetchBookings();
    }, []);
 

@@ -28,7 +28,6 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
-            unoptimized
             className="h-[240px] rounded-t-xl object-cover object-center"
          />
 

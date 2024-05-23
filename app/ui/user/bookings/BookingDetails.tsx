@@ -13,10 +13,11 @@ import dynamic from "next/dynamic";
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const BookingDetails = ({ id }: { id: string }) => {
-   const booking = useFetchBooking(id);
+   const { booking, loading } = useFetchBooking(id);
+
    const [imgSrc, setImgSrc] = useImageSource(booking);
 
-   if (!booking) {
+   if (!booking || loading) {
       return (
          <div className="mt-12 flex flex-col items-center justify-center text-center">
             <p>Loading...</p>

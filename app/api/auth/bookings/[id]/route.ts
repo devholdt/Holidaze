@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const fetchUserData = async (name: string, token: string) => {
+const fetchBooking = async (id: string, token: string) => {
    const response = await fetch(
-      process.env.NEXT_PUBLIC_API_PATH +
-         `/holidaze/profiles/${name}?_bookings=true&_venues=true`,
+      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/bookings/${id}?_customer=true&_venue=true`,
       {
          method: "GET",
          headers: {
@@ -18,21 +17,20 @@ const fetchUserData = async (name: string, token: string) => {
    }
 
    const data = await response.json();
-
    return data;
 };
 
 export async function GET(req: NextRequest) {
    const token = req.cookies.get("accessToken")?.value;
-   const name = req.cookies.get("name")?.value;
+   const id = req.url.split("/").pop();
 
-   if (!token || !name) {
+   if (!token || !id) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
    }
 
    try {
-      const userData = await fetchUserData(name, token);
-      return NextResponse.json(userData);
+      const data = await fetchBooking(id, token);
+      return NextResponse.json(data);
    } catch (error) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
    }

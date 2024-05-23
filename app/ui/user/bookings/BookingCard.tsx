@@ -11,7 +11,7 @@ import { BookingCardProps } from "@/app/lib/definitions";
 const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
    const [imgSrc, setImgSrc] = useImageSource(booking);
 
-   let description = booking.venue?.description || "No description available";
+   let description = booking.venue.description || "No description available";
 
    return (
       <Link
@@ -20,7 +20,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
       >
          <Image
             src={imgSrc}
-            alt={booking.venue?.media[0]?.alt || "Venue image"}
+            alt={booking.venue.media[0]?.alt || "Venue image"}
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
@@ -31,19 +31,17 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             <h2
                className={`${elMessiri.className} mt-4 text-3xl font-medium md:text-4xl`}
             >
-               {booking.venue?.name}
+               {booking.venue.name}
             </h2>
             <p className="mb-4 font-light">
-               {booking.venue?.location.city
-                  ? booking.venue?.location.city
-                  : ""}
-               {booking.venue?.location.city &&
-                  booking.venue?.location.country && <span>, </span>}
-               {booking.venue?.location.country
+               {booking.venue.location.city ? booking.venue?.location.city : ""}
+               {booking.venue.location.city &&
+                  booking.venue.location.country && <span>, </span>}
+               {booking.venue.location.country
                   ? booking.venue?.location.country
                   : ""}
-               {!booking.venue?.location.city &&
-                  !booking.venue?.location.country && (
+               {!booking.venue.location.city &&
+                  !booking.venue.location.country && (
                      <span className="font-light">N/A</span>
                   )}
             </p>
@@ -58,7 +56,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
                <p>
-                  <span className="font-normal">£{booking.venue?.price}</span> /
+                  <span className="font-normal">£{booking.venue.price}</span> /
                   night
                </p>
                |
@@ -68,7 +66,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                |
                <p>
                   rating:{" "}
-                  <span className="font-normal">{booking.venue?.rating}/5</span>
+                  <span className="font-normal">{booking.venue.rating}/5</span>
                </p>
             </div>
          </div>
