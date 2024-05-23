@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { UserProps, UseUserProps } from "@/app/lib/definitions";
 
-const useUser = () => {
-   const [user, setUser] = useState<{ email: string } | null>(null);
+const useUser = (): UseUserProps => {
+   const [user, setUser] = useState<UserProps | null>(null);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {

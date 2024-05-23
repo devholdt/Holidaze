@@ -1,8 +1,21 @@
 "use client";
 
 import { LogoutProps } from "@/app/lib/definitions";
+import { logout } from "@/app/lib/auth/logout";
+import { useState } from "react";
 
 const LogoutModal: React.FC<LogoutProps> = ({ hideModal }) => {
+   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+   const handleLogout = async () => {
+      try {
+         await logout();
+         window.location.href = "/";
+      } catch (error: any) {
+         setErrorMessage(error.message);
+      }
+   };
+
    return (
       <>
          <h4 className="text-center text-xl">
@@ -16,17 +29,13 @@ const LogoutModal: React.FC<LogoutProps> = ({ hideModal }) => {
                Go Back
             </button>
             <button
-               onClick={() => {
-                  localStorage.removeItem("user");
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("name");
-                  window.location.href = "/";
-               }}
+               onClick={handleLogout}
                className="mt-4 bg-dark px-4 py-3 text-base font-extralight uppercase tracking-widest text-white shadow-md transition hover:bg-black xs:px-6 xs:text-lg"
             >
                Logout
             </button>
          </div>
+         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       </>
    );
 };

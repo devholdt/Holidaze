@@ -80,6 +80,11 @@ export interface UserProps {
    venueManager: boolean;
 }
 
+export interface UseUserProps {
+   user: UserProps | null;
+   loading: boolean;
+}
+
 export interface UserDetailsProps {
    user: UserProps;
 }
