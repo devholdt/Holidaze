@@ -1,23 +1,29 @@
 "use client";
 
 import { ManagerVenueListProps } from "@/app/lib/definitions";
-import { getItem } from "@/app/lib/storage";
-import useFetchUser from "@/app/lib/hooks/useFetchUser";
+import useUser from "@/app/lib/hooks/useUser";
 import useFetchVenuesByUser from "@/app/lib/hooks/useFetchVenuesByUser";
-import dynamic from "next/dynamic";
-
-const ManagerVenueCard = dynamic(
-   () => import("@/app/ui/user/venues/ManagerVenueCard")
-);
+import ManagerVenueCard from "@/app/ui/user/venues/ManagerVenueCard";
 
 const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
-   const managerName = name || getItem("name");
-   const manager = useFetchUser(managerName);
-   const { venues, loading } = useFetchVenuesByUser(managerName);
+   const { user, loading: userLoading } = useUser();
+   const managerName = name;
 
-   if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
+   const { venues, loading: venuesLoading } = useFetchVenuesByUser();
 
-   if (venues.length === 0) {
+   if (userLoading || venuesLoading) {
+      return <p className="mt-8 flex justify-center">Loading...</p>;
+   }
+
+   if (!managerName) {
+      return (
+         <div className="flex flex-col items-center justify-center font-light">
+            <p className="mt-8">No manager name found.</p>
+         </div>
+      );
+   }
+
+   if (venues?.length === 0) {
       return (
          <div className="flex flex-col items-center justify-center font-light">
             <p className="mt-8">No venues created yet.</p>
@@ -28,7 +34,7 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
          {venues.map((venue) => (
-            <ManagerVenueCard key={venue.id} venue={venue} manager={manager} />
+            <ManagerVenueCard key={venue.id} venue={venue} manager={user!} />
          ))}
       </div>
    );

@@ -3,6 +3,7 @@ import Hero from "@/app/ui/hero";
 import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
 import dynamic from "next/dynamic";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
+import { cookies } from "next/headers";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+   const name = cookies().get("name")?.value;
+
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col border-x border-lightGrey bg-background">
          <Breadcrumbs
@@ -33,7 +36,7 @@ export default function Page() {
             />
          </div>
 
-         <ManagerVenueList />
+         <ManagerVenueList name={name ?? ""} />
       </main>
    );
 }

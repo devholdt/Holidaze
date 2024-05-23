@@ -1,5 +1,4 @@
 import { StaticImageData } from "next/image";
-
 export interface VenueProps {
    id: string;
    name: string;
@@ -55,11 +54,11 @@ export interface VenueOwnerProps {
 
 export interface ManagerVenueCardProps {
    venue: VenueProps;
-   manager: UserProps | null;
+   manager: UserProps;
 }
 
 export interface ManagerVenueListProps {
-   name?: string;
+   name: string;
 }
 
 export interface VenueListProps {
@@ -78,6 +77,7 @@ export interface UserProps {
    avatar?: { url: string; alt: string };
    banner?: { url: string; alt: string };
    venueManager: boolean;
+   accessToken: string;
 }
 
 export interface UseUserProps {

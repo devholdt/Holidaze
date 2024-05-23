@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { UserProps, UseUserProps } from "@/app/lib/definitions";
 

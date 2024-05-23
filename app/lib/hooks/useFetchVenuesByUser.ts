@@ -1,28 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getVenuesByUser } from "@/app/lib/data";
+import { useEffect, useState } from "react";
 import { VenueProps } from "@/app/lib/definitions";
 
-const useFetchVenuesByUser = (name: string) => {
+const useFetchVenuesByName = () => {
    const [venues, setVenues] = useState<VenueProps[]>([]);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
-      const fetchVenues = async () => {
-         try {
-            const fetchedVenues = await getVenuesByUser(name);
-            setVenues(fetchedVenues);
-         } catch (error) {
-            console.error("Error fetching venues:", error);
+      async function fetchVenues() {
+         const response = await fetch("/api/auth/managerVenues", {
+            credentials: "include",
+         });
+         if (response.ok) {
+            const json = await response.json();
+
+            const venuesData = json.data;
+
+            setVenues(venuesData);
+         } else {
+            setVenues([]);
          }
          setLoading(false);
-      };
-
+      }
       fetchVenues();
-   }, [name]);
+   }, []);
 
    return { venues, loading };
 };
 
-export default useFetchVenuesByUser;
+export default useFetchVenuesByName;
