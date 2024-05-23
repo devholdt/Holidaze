@@ -145,14 +145,18 @@ export const editBooking = async (
    event.preventDefault();
 
    const data = new FormData(event.currentTarget);
-   const formValues: CreateBookingProps = Object.fromEntries(data.entries());
+   const formValues: any = Object.fromEntries(data.entries());
 
    formValues.guests = Number(formValues.guests);
 
+   console.log("Form values:", formValues);
+
    try {
-      const response = await fetch(`${API_PATH}/holidaze/bookings/${id}`, {
+      const response = await fetch(`/api/bookings/${id}`, {
          method: "PUT",
-         headers: headers("application/json"),
+         headers: {
+            "Content-Type": "application/json",
+         },
          body: JSON.stringify(formValues),
       });
 
@@ -168,9 +172,9 @@ export const editBooking = async (
 
       alert("success", `Booking successfully edited!`, ".alert-container");
 
-      setTimeout(() => {
-         window.location.href = `/user/bookings/${booking.id}`;
-      }, 2000);
+      // setTimeout(() => {
+      //    window.location.href = `/user/bookings/${booking.id}`;
+      // }, 2000);
 
       return booking;
    } catch (error) {
@@ -255,7 +259,7 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
    }
 
    try {
-      const response = await fetch("/api/auth/venues", {
+      const response = await fetch("/api/venues", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
@@ -334,7 +338,7 @@ export const editVenue = async (
    }
 
    try {
-      const response = await fetch(`/api/auth/venues/${id}`, {
+      const response = await fetch(`/api/venues/${id}`, {
          method: "PUT",
          headers: headers("application/json"),
          body: JSON.stringify(formValues),

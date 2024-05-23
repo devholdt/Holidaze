@@ -6,15 +6,15 @@ import backgroundReflection from "@/public/background-reflection.jpg";
 import Form from "@/app/ui/venues/BookingForm";
 import { formatDate } from "@/app/lib/utils";
 import Link from "next/link";
-import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import { Suspense } from "react";
+import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
 const VenueDetails = ({ id }: { id: string }) => {
-   const venue = useFetchVenue(id);
+   const { venue, loading } = useFetchVenueById(id);
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
-   if (!venue) {
+   if (!venue || loading) {
       return (
          <div className="mt-12 flex flex-col items-center justify-center text-center">
             <p>Loading...</p>

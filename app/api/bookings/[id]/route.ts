@@ -6,6 +6,7 @@ const fetchBooking = async (id: string, token: string) => {
       {
          method: "GET",
          headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
          },
@@ -26,9 +27,9 @@ const editBooking = async (id: string, formValues: any, token: string) => {
       {
          method: "PUT",
          headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
-            "Content-Type": "application/json",
          },
          body: JSON.stringify(formValues),
       }
@@ -68,6 +69,8 @@ export async function PUT(req: NextRequest) {
    }
 
    const formValues = await req.json();
+
+   console.log("Form values received:", formValues);
 
    try {
       const editedBooking = await editBooking(id, formValues, token);

@@ -6,6 +6,7 @@ const fetchVenues = async (name: string, token: string) => {
       {
          method: "GET",
          headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
          },

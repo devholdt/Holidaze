@@ -148,25 +148,6 @@ export interface CreateVenueProps {
    };
 }
 
-// export interface CreateVenueProps {
-//    name: string;
-//    description: string;
-//    media?: [{ url: string; alt: string }];
-//    price: number;
-//    maxGuests: number;
-//    rating?: number;
-//    meta: {
-//       wifi: boolean;
-//       parking: boolean;
-//       breakfast: boolean;
-//       pets: boolean;
-//    };
-//    location: {
-//       city: string;
-//       country: string;
-//    };
-// }
-
 export interface EditAvatarProps {
    avatar: {
       url: string;
@@ -197,11 +178,11 @@ export type ImageSourceProps<T> = (
    entity: T | null
 ) => string | StaticImageData;
 
-export type DateRangeProps = {
+export interface DateRangeProps {
    dateRange: [Date | null, Date | null];
-   setDateRange: (update: [Date | null, Date | null]) => void;
-   bookedDates?: { dateFrom: string; dateTo: string }[];
-};
+   setDateRange: (range: [Date | null, Date | null]) => void;
+   bookedDates: { dateFrom: string; dateTo: string }[];
+}
 
 export type HeroProps = {
    heading: string;

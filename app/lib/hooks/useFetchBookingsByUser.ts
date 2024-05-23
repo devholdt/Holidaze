@@ -9,7 +9,7 @@ const useFetchBookingsByUser = () => {
 
    useEffect(() => {
       async function fetchBookings() {
-         const response = await fetch("/api/auth/bookings", {
+         const response = await fetch("/api/bookings", {
             credentials: "include",
          });
 

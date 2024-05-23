@@ -1,40 +1,28 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import DateRange from "@/app/ui/venues/DateRange";
 import { Button } from "@/app/ui/buttons";
 import { formatDateISO } from "@/app/lib/utils";
-import { getBookingById, getVenueById } from "@/app/lib/data";
 import { usePathname } from "next/navigation";
 import { BookingProps } from "@/app/lib/definitions";
 import { editBooking, deleteBooking } from "@/app/lib/actions";
+import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
+import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
 export default function Form() {
    const pathname = usePathname();
    const bookingId = pathname.substring(pathname.lastIndexOf("/") + 1);
-
-   const [booking, setBooking] = useState<any>(null);
-   const [venue, setVenue] = useState<any>(null);
+   const { booking, loading: bookingLoading } = useFetchBooking(bookingId);
+   const venueId = booking?.venue?.id;
+   const { venue, loading: venueLoading } = useFetchVenueById(venueId || "");
    const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
       null,
       null,
    ]);
    const [startDate, endDate] = dateRange;
 
-   useEffect(() => {
-      const fetchBooking = async () => {
-         const fetchedBooking = await getBookingById(bookingId);
-         setBooking(fetchedBooking);
-         if (fetchedBooking && fetchedBooking.venue) {
-            const fetchedVenue = await getVenueById(fetchedBooking.venue.id);
-            setVenue(fetchedVenue);
-         }
-      };
-
-      fetchBooking();
-   }, [bookingId]);
-
-   if (!booking || !venue) {
+   if (bookingLoading || (venueId && venueLoading)) {
       return <p>Loading...</p>;
    }
 
@@ -42,10 +30,11 @@ export default function Form() {
       return date ? formatDateISO(date).toString() : "";
    };
 
-   const bookedDates = venue.bookings.map((booking: BookingProps) => ({
-      dateFrom: booking.dateFrom,
-      dateTo: booking.dateTo,
-   }));
+   const bookedDates =
+      venue?.bookings?.map((booking: BookingProps) => ({
+         dateFrom: formatDateISO(new Date(booking.dateFrom)),
+         dateTo: formatDateISO(new Date(booking.dateTo)),
+      })) || [];
 
    return (
       <form
@@ -70,7 +59,10 @@ export default function Form() {
             <DateRange
                dateRange={dateRange}
                setDateRange={setDateRange}
-               bookedDates={bookedDates}
+               bookedDates={bookedDates.map((booking) => ({
+                  dateFrom: booking.dateFrom.toString(),
+                  dateTo: booking.dateTo.toString(),
+               }))}
             />
          </div>
 
@@ -81,12 +73,13 @@ export default function Form() {
                   type="number"
                   id="guests"
                   name="guests"
-                  max={booking.venue.maxGuests}
-                  placeholder={`1 - ${booking.venue.maxGuests.toString()}`}
+                  max={booking?.venue.maxGuests}
+                  placeholder={`1 - ${booking?.venue.maxGuests.toString()}`}
                   className="w-20 rounded border border-lightGrey bg-background p-2 text-center hover:border-grey"
+                  defaultValue={booking?.guests}
                />
                <span className="ms-2 text-red">
-                  max {booking.venue.maxGuests}
+                  max {booking?.venue.maxGuests}
                </span>
             </div>
          </div>

@@ -9,13 +9,15 @@ const useFetchBooking = (id: string) => {
 
    useEffect(() => {
       async function fetchBooking() {
-         const response = await fetch(`/api/auth/bookings/${id}`, {
+         const response = await fetch(`/api/bookings/${id}`, {
             credentials: "include",
          });
 
          if (response.ok) {
             const json = await response.json();
-            setBooking(json.data);
+            const data = json.data;
+
+            setBooking(data);
          } else {
             setBooking(null);
          }

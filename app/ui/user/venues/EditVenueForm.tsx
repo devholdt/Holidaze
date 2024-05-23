@@ -288,7 +288,7 @@ const EditVenueForm = () => {
                   name="url"
                   placeholder="Enter URL"
                   ref={mediaUrlRef}
-                  value={venue.media[0].url || ""}
+                  value={venue.media[0]?.url || ""}
                   onChange={handleChange}
                   className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
@@ -311,7 +311,7 @@ const EditVenueForm = () => {
                id="alt"
                name="alt"
                placeholder="Enter alt text"
-               value={venue.media[0].alt || ""}
+               value={venue.media[0]?.alt || ""}
                onChange={handleChange}
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />

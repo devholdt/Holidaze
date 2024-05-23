@@ -61,9 +61,14 @@ export const formatDate = (
 
 export const formatDateISO = (date: Date | null) => {
    if (!date) return "";
-   const localDate = new Date(date);
-   return localDate;
+   return date.toISOString();
 };
+
+// export const formatDateISO = (date: Date | null) => {
+//    if (!date) return "";
+//    const localDate = new Date(date);
+//    return localDate;
+// };
 
 export const formatNumber = (number: number, locale: string = "en-GB") => {
    const formatter = new Intl.NumberFormat(locale);
