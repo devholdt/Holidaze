@@ -44,6 +44,15 @@ export interface BookingProps {
    venue: VenueProps;
 }
 
+export interface BookingCardProps {
+   booking: BookingProps;
+   user: UserProps;
+}
+
+export interface BookingListProps {
+   name?: string;
+}
+
 export interface VenueOwnerProps {
    name: string;
    email: string;
@@ -54,11 +63,11 @@ export interface VenueOwnerProps {
 
 export interface ManagerVenueCardProps {
    venue: VenueProps;
-   manager: UserProps;
+   user: UserProps;
 }
 
 export interface ManagerVenueListProps {
-   name: string;
+   name?: string;
 }
 
 export interface VenueListProps {

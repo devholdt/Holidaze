@@ -13,7 +13,6 @@ const fetchUserData = async (name: string, token: string) => {
    );
 
    if (!response.ok) {
-      console.log("UNAUTHORIZED");
       throw new Error("Unauthorized");
    }
 

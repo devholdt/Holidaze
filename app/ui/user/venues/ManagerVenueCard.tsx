@@ -8,10 +8,7 @@ import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import { getItem } from "@/app/lib/storage";
 
-const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({
-   venue,
-   manager,
-}) => {
+const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
    let description = venue.description || `No description available`;
@@ -19,7 +16,7 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({
    return (
       <Link
          href={
-            manager?.name === getItem("name")
+            user?.name === getItem("name")
                ? `/user/venues/${venue.id}`
                : `/venues/${venue.id}`
          }

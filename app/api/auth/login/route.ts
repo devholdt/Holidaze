@@ -23,10 +23,6 @@ const authenticateUser = async (email: string, password: string) => {
 
 export async function POST(req: NextRequest) {
    const { email, password } = await req.json();
-   console.log("Login API called with email and password:", {
-      email,
-      password,
-   });
 
    try {
       const userData = await authenticateUser(email, password);
@@ -49,10 +45,8 @@ export async function POST(req: NextRequest) {
          path: "/",
          maxAge: 60 * 60 * 24 * 7,
       });
-      console.log("Login API userData:", userData);
       return response;
    } catch (error) {
-      console.log("Login API error:", error);
       return NextResponse.json(
          { message: "Invalid credentials" },
          { status: 401 }

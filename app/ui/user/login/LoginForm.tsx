@@ -9,17 +9,10 @@ export default function LoginForm() {
 
    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log("Form submitted");
       const formData = new FormData(event.currentTarget);
-      console.log(
-         "Form data:",
-         formData.get("email"),
-         formData.get("password")
-      );
 
       try {
          const result = await authenticate(formData);
-         console.log("Authentication successful:", result);
          setErrorMessage(null);
       } catch (error: any) {
          console.error("Authentication failed:", error);

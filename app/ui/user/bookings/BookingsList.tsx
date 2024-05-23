@@ -2,14 +2,27 @@
 
 import Link from "next/link";
 import useFetchBookingsByUser from "@/app/lib/hooks/useFetchBookingsByUser";
-import dynamic from "next/dynamic";
+import BookingCard from "@/app/ui/user/bookings/BookingCard";
+import useUser from "@/app/lib/hooks/useUser";
+import { BookingListProps } from "@/app/lib/definitions";
 
-const BookingCard = dynamic(() => import("@/app/ui/user/bookings/BookingCard"));
+const BookingsList: React.FC<BookingListProps> = ({ name }) => {
+   const { user, loading: userLoading } = useUser();
+   const username = name;
 
-const BookingsList = () => {
-   const { bookings, loading } = useFetchBookingsByUser();
+   const { bookings, loading: bookingsLoading } = useFetchBookingsByUser();
 
-   if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
+   if (userLoading || bookingsLoading) {
+      return <p className="mt-8 flex justify-center">Loading...</p>;
+   }
+
+   if (!username) {
+      return (
+         <div className="flex flex-col items-center justify-center font-light">
+            <p className="mt-8">No user found.</p>
+         </div>
+      );
+   }
 
    if (bookings.length === 0) {
       return (
@@ -29,7 +42,7 @@ const BookingsList = () => {
    return (
       <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
          {bookings.map((booking) => (
-            <BookingCard key={booking.id} booking={booking} />
+            <BookingCard key={booking.id} booking={booking} user={user!} />
          ))}
       </div>
    );

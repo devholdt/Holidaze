@@ -2,22 +2,16 @@
 
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
-import { BookingProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import Link from "next/link";
 import { formatDate } from "@/app/lib/utils";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+import { BookingCardProps } from "@/app/lib/definitions";
 
-const BookingCard = ({ booking }: { booking: BookingProps }) => {
+const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
    const [imgSrc, setImgSrc] = useImageSource(booking);
 
-   let description;
-
-   if (!booking.venue.description) {
-      description = `No description available`;
-   } else {
-      description = booking.venue.description;
-   }
+   let description = booking.venue?.description || "No description available";
 
    return (
       <Link
@@ -26,7 +20,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
       >
          <Image
             src={imgSrc}
-            alt={booking.venue.media?.[0]?.alt || "Venue image"}
+            alt={booking.venue?.media[0]?.alt || "Venue image"}
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
@@ -37,17 +31,19 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
             <h2
                className={`${elMessiri.className} mt-4 text-3xl font-medium md:text-4xl`}
             >
-               {booking.venue.name}
+               {booking.venue?.name}
             </h2>
             <p className="mb-4 font-light">
-               {booking.venue.location.city ? booking.venue.location.city : ""}
-               {booking.venue.location.city &&
-                  booking.venue.location.country && <span>, </span>}
-               {booking.venue.location.country
-                  ? `${booking.venue.location.country}`
+               {booking.venue?.location.city
+                  ? booking.venue?.location.city
                   : ""}
-               {!booking.venue.location.city &&
-                  !booking.venue.location.country && (
+               {booking.venue?.location.city &&
+                  booking.venue?.location.country && <span>, </span>}
+               {booking.venue?.location.country
+                  ? booking.venue?.location.country
+                  : ""}
+               {!booking.venue?.location.city &&
+                  !booking.venue?.location.country && (
                      <span className="font-light">N/A</span>
                   )}
             </p>
@@ -62,7 +58,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
             <hr className="my-4 border-[1px] text-grey" />
             <div className="mb-4 flex justify-between font-extralight">
                <p>
-                  <span className="font-normal">£{booking.venue.price}</span> /
+                  <span className="font-normal">£{booking.venue?.price}</span> /
                   night
                </p>
                |
@@ -72,7 +68,7 @@ const BookingCard = ({ booking }: { booking: BookingProps }) => {
                |
                <p>
                   rating:{" "}
-                  <span className="font-normal">{booking.venue.rating}/5</span>
+                  <span className="font-normal">{booking.venue?.rating}/5</span>
                </p>
             </div>
          </div>

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getBookingsByUser } from "@/app/lib/data";
+import { useEffect, useState } from "react";
 import { BookingProps } from "@/app/lib/definitions";
 
 const useFetchBookingsByUser = () => {
@@ -9,16 +8,21 @@ const useFetchBookingsByUser = () => {
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
-      const fetchBookings = async () => {
-         try {
-            const fetchedBookings = await getBookingsByUser();
-            setBookings(fetchedBookings);
-         } catch (error) {
-            console.error("Error fetching bookings:", error);
+      async function fetchBookings() {
+         const response = await fetch("/api/auth/bookings", {
+            credentials: "include",
+         });
+         if (response.ok) {
+            const json = await response.json();
+
+            const bookingsData = json.data;
+
+            setBookings(bookingsData);
+         } else {
+            setBookings([]);
          }
          setLoading(false);
-      };
-
+      }
       fetchBookings();
    }, []);
 
