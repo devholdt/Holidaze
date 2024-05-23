@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const fetchManagerVenues = async (name: string, token: string) => {
+const fetchVenues = async (name: string, token: string) => {
    const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}/venues?_owner=true&_bookings=true`,
       {
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
    }
 
    try {
-      const data = await fetchManagerVenues(name, token);
+      const data = await fetchVenues(name, token);
       return NextResponse.json(data);
    } catch (error) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

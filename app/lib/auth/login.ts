@@ -1,6 +1,6 @@
 import { headers } from "@/app/lib/utils";
 
-export async function signIn(email: string, password: string) {
+export async function login(email: string, password: string) {
    const response = await fetch("/api/auth/login", {
       method: "POST",
       headers: headers("application/json"),

@@ -9,7 +9,7 @@ const useFetchVenuesByUser = (name: string) => {
 
    useEffect(() => {
       async function fetchVenues() {
-         const response = await fetch(`/api/auth/managerVenues?name=${name}`, {
+         const response = await fetch(`/api/auth/venues?name=${name}`, {
             credentials: "include",
          });
 

@@ -25,44 +25,42 @@ const CreateVenueForm = () => {
          <div className="alert-container my-4"></div>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="createName">
+            <label className="text-dark" htmlFor="name">
                Venue Name
             </label>
-            <div className="relative">
-               <input
-                  type="text"
-                  id="createName"
-                  name="createName"
-                  placeholder="Enter venue name"
-                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-               />
-            </div>
+            <input
+               type="text"
+               id="name"
+               name="name"
+               placeholder="Enter venue name"
+               className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+            />
          </div>
 
          <div className="flex flex-col xs:flex-row xs:gap-4">
             <div className="mb-4">
-               <label className="text-dark" htmlFor="createCity">
+               <label className="text-dark" htmlFor="city">
                   City
                </label>
                <div className="relative">
                   <input
                      type="text"
-                     id="createCity"
-                     name="createCity"
+                     id="city"
+                     name="city"
                      placeholder="Enter venue city"
                      className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                   />
                </div>
             </div>
             <div className="mb-4">
-               <label className="text-dark" htmlFor="createCountry">
+               <label className="text-dark" htmlFor="country">
                   Country
                </label>
                <div className="relative">
                   <input
                      type="text"
-                     id="createCountry"
-                     name="createCountry"
+                     id="country"
+                     name="country"
                      placeholder="Enter venue country"
                      className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                   />
@@ -72,12 +70,12 @@ const CreateVenueForm = () => {
 
          <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
-               <label className="text-dark" htmlFor="createDescription">
+               <label className="text-dark" htmlFor="description">
                   Description
                </label>
                <textarea
-                  id="createDescription"
-                  name="createDescription"
+                  id="description"
+                  name="description"
                   placeholder="Enter description"
                   className="h-full min-h-[120px] w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
@@ -85,48 +83,49 @@ const CreateVenueForm = () => {
 
             <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
                <div>
-                  <label className="text-dark" htmlFor="createPrice">
+                  <label className="text-dark" htmlFor="price">
                      Price
                   </label>
                   <div className="relative">
                      <input
                         type="number"
-                        id="createPrice"
-                        name="createPrice"
+                        id="price"
+                        name="price"
                         placeholder="£0.00"
                         className="w-full max-w-[70px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                      />
                   </div>
                </div>
+
                <div className="flex gap-4">
                   <div>
-                     <label className="text-dark" htmlFor="createMaxGuests">
+                     <label className="text-dark" htmlFor="maxGuests">
                         Max guests
                      </label>
                      <div className="relative">
                         <input
                            type="number"
-                           id="createMaxGuests"
-                           name="createMaxGuests"
+                           id="maxGuests"
+                           name="maxGuests"
                            placeholder="1"
-                           className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                           className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                         />
                      </div>
                   </div>
 
                   <div>
-                     <label className="text-dark" htmlFor="createRating">
+                     <label className="text-dark" htmlFor="rating">
                         Rating
                      </label>
                      <div className="relative">
                         <input
                            type="number"
-                           id="createRating"
-                           name="createRating"
+                           id="rating"
+                           name="rating"
                            min="0"
                            max="5"
                            placeholder="0"
-                           className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                           className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                         />
                      </div>
                   </div>
@@ -138,46 +137,36 @@ const CreateVenueForm = () => {
             <legend>Amenities</legend>
             <div className="grid grid-cols-2 xs:flex xs:gap-6">
                <div className="flex items-center gap-1">
-                  <input
-                     type="checkbox"
-                     id="createWifi"
-                     name="createWifi"
-                     value="wifi"
-                  />
-                  <label className="text-dark" htmlFor="createWifi">
+                  <input type="checkbox" id="wifi" name="wifi" value="wifi" />
+                  <label className="text-dark" htmlFor="wifi">
                      Wifi
                   </label>
                </div>
                <div className="flex items-center gap-1">
                   <input
                      type="checkbox"
-                     id="createParking"
-                     name="createParking"
+                     id="parking"
+                     name="parking"
                      value="parking"
                   />
-                  <label className="text-dark" htmlFor="createParking">
+                  <label className="text-dark" htmlFor="parking">
                      Parking
                   </label>
                </div>
                <div className="flex items-center gap-1">
                   <input
                      type="checkbox"
-                     id="createBreakfast"
-                     name="createBreakfast"
+                     id="breakfast"
+                     name="breakfast"
                      value="breakfast"
                   />
-                  <label className="text-dark" htmlFor="createBreakfast">
+                  <label className="text-dark" htmlFor="breakfast">
                      Breakfast
                   </label>
                </div>
                <div className="flex items-center gap-1">
-                  <input
-                     type="checkbox"
-                     id="createPets"
-                     name="createPets"
-                     value="pets"
-                  />
-                  <label className="text-dark" htmlFor="createPets">
+                  <input type="checkbox" id="pets" name="pets" value="pets" />
+                  <label className="text-dark" htmlFor="pets">
                      Pets allowed
                   </label>
                </div>
@@ -185,14 +174,14 @@ const CreateVenueForm = () => {
          </fieldset>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="createUrl">
+            <label className="text-dark" htmlFor="url">
                Media URL
             </label>
             <div className="flex">
                <input
                   type="text"
-                  id="createUrl"
-                  name="createUrl"
+                  id="url"
+                  name="url"
                   ref={mediaUrlRef}
                   placeholder="Enter URL"
                   className="w-full rounded-s bg-background px-4 py-3 outline-green placeholder:text-grey"
@@ -207,13 +196,13 @@ const CreateVenueForm = () => {
             </div>
          </div>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="createAlt">
+            <label className="text-dark" htmlFor="alt">
                Alt text
             </label>
             <input
                type="text"
-               id="createAlt"
-               name="createAlt"
+               id="alt"
+               name="alt"
                placeholder="Enter alt text"
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
             />

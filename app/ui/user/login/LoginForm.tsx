@@ -1,27 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { authenticate } from "@/app/lib/auth/authenticate";
+import { handleLoginSubmit } from "@/app/lib/actions";
 
 export default function LoginForm() {
-   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-
-      try {
-         const result = await authenticate(formData);
-         setErrorMessage(null);
-      } catch (error: any) {
-         console.error("Authentication failed:", error);
-         setErrorMessage(error);
-      }
-   };
-
    return (
-      <form className="w-full max-w-[320px]" onSubmit={handleSubmit}>
+      <form className="w-full max-w-[320px]" onSubmit={handleLoginSubmit}>
          <div className="mb-4">
             <label className="text-dark" htmlFor="email">
                Email
@@ -50,7 +34,6 @@ export default function LoginForm() {
                />
             </div>
          </div>
-         <div>{errorMessage && <p>{errorMessage}</p>}</div>
          <button
             className="w-full bg-green px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white transition hover:bg-lightGreen"
             type="submit"

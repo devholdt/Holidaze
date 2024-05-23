@@ -174,44 +174,46 @@ const EditVenueForm = () => {
                         placeholder="£0.00"
                         value={venue.price || 1}
                         onChange={handleChange}
-                        className="w-full max-w-[70px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                        className="w-full rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
                      />
                   </div>
                </div>
 
-               <div>
-                  <label className="text-dark" htmlFor="maxGuests">
-                     Max guests
-                  </label>
-                  <div className="relative">
-                     <input
-                        type="number"
-                        id="maxGuests"
-                        name="maxGuests"
-                        placeholder="1"
-                        value={venue.maxGuests || 1}
-                        onChange={handleChange}
-                        className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
-                     />
+               <div className="flex gap-4">
+                  <div>
+                     <label className="text-dark" htmlFor="maxGuests">
+                        Max guests
+                     </label>
+                     <div className="relative">
+                        <input
+                           type="number"
+                           id="maxGuests"
+                           name="maxGuests"
+                           placeholder="1"
+                           value={venue.maxGuests || 1}
+                           onChange={handleChange}
+                           className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                        />
+                     </div>
                   </div>
-               </div>
 
-               <div>
-                  <label className="text-dark" htmlFor="rating">
-                     Rating
-                  </label>
-                  <div className="relative">
-                     <input
-                        type="number"
-                        id="rating"
-                        name="rating"
-                        min="0"
-                        max="5"
-                        placeholder="0"
-                        value={venue?.rating || 0}
-                        onChange={handleChange}
-                        className="w-full max-w-[50px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
-                     />
+                  <div>
+                     <label className="text-dark" htmlFor="rating">
+                        Rating
+                     </label>
+                     <div className="relative">
+                        <input
+                           type="number"
+                           id="rating"
+                           name="rating"
+                           min="0"
+                           max="5"
+                           placeholder="0"
+                           value={venue?.rating || 0}
+                           onChange={handleChange}
+                           className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                        />
+                     </div>
                   </div>
                </div>
             </div>

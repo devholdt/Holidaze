@@ -15,6 +15,40 @@ import {
    venueSchema,
    editProfileSchema,
 } from "@/app/lib/utils";
+import { authenticate } from "@/app/lib/auth/authenticate";
+
+export const handleLoginSubmit = async (
+   event: React.FormEvent<HTMLFormElement>
+) => {
+   event.preventDefault();
+   const formData = new FormData(event.currentTarget);
+
+   const formValues = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+   };
+
+   const result = loginSchema.safeParse(formValues);
+
+   if (!result.success) {
+      const errorMessages = result.error.errors
+         .map((error: any) => error.message)
+         .join(", ");
+      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
+      return;
+   }
+
+   try {
+      const response = await authenticate(formData);
+      alert("success", response.message, ".alert-container");
+
+      setTimeout(() => {
+         location.href = "/";
+      }, 2000);
+   } catch (error: any) {
+      alert("error", error.message, ".alert-container");
+   }
+};
 
 export const createBooking = async (
    event: React.FormEvent<HTMLFormElement>
