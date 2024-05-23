@@ -1,14 +1,34 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { authenticate } from "@/app/lib/auth/authenticate";
-import { useFormStatus, useFormState } from "react-dom";
 
 export default function LoginForm() {
-   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log("Form submitted");
+      const formData = new FormData(event.currentTarget);
+      console.log(
+         "Form data:",
+         formData.get("email"),
+         formData.get("password")
+      );
+
+      try {
+         const result = await authenticate(formData);
+         console.log("Authentication successful:", result);
+         setErrorMessage(null);
+      } catch (error: any) {
+         console.error("Authentication failed:", error);
+         setErrorMessage(error);
+      }
+   };
 
    return (
-      <form className="w-full max-w-[320px]" action={dispatch}>
+      <form className="w-full max-w-[320px]" onSubmit={handleSubmit}>
          <div className="mb-4">
             <label className="text-dark" htmlFor="email">
                Email
@@ -38,7 +58,12 @@ export default function LoginForm() {
             </div>
          </div>
          <div>{errorMessage && <p>{errorMessage}</p>}</div>
-         <LoginButton />
+         <button
+            className="w-full bg-green px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white transition hover:bg-lightGreen"
+            type="submit"
+         >
+            Login
+         </button>
          <div className="mt-4 w-full font-extralight tracking-wider">
             Don&apos;t have an account? Register{" "}
             <Link
@@ -50,26 +75,6 @@ export default function LoginForm() {
          </div>
          <div className="alert-container"></div>
       </form>
-   );
-}
-
-function LoginButton() {
-   const { pending } = useFormStatus();
-
-   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (pending) {
-         event.preventDefault();
-      }
-   };
-
-   return (
-      <button
-         className="w-full bg-green px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white transition hover:bg-lightGreen"
-         type="submit"
-         onClick={handleClick}
-      >
-         Login
-      </button>
    );
 }
 

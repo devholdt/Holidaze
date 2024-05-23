@@ -1,19 +1,31 @@
-"use server";
+export async function authenticate(formData: FormData) {
+   const email = formData.get("email") as string;
+   const password = formData.get("password") as string;
+   console.log("Authenticate called with email and password:", {
+      email,
+      password,
+   });
 
-import { signIn } from "@/app/lib/auth/signIn";
-
-export async function authenticate(_currentState: unknown, formData: FormData) {
-   try {
-      await signIn("credentials", formData);
-   } catch (error: any) {
-      if (error) {
-         switch (error.type) {
-            case "CredentialsSignin":
-               return "Invalid credentials.";
-            default:
-               return "Something went wrong.";
-         }
-      }
-      throw error;
+   if (!email || !password) {
+      throw new Error("Email and password are required");
    }
+
+   const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+   });
+
+   const json = await response.json();
+
+   console.log("Authenticate response:", response, json);
+
+   if (!response.ok) {
+      const errorText = `${json.data.statusCode} (${json.data.status}) - ${json.data.errors[0].message}`;
+      throw new Error(errorText);
+   }
+
+   return json;
 }
