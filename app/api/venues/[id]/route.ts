@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 const fetchVenue = async (id: string, token: string) => {
+   noStore();
+
    const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/venues/${id}?_bookings=true&_owner=true`,
       {
@@ -54,13 +57,13 @@ const editVenue = async (id: string, formValues: any, token: string) => {
       }
    );
 
-   const data = await response.json();
+   const json = await response.json();
 
    if (!response.ok) {
-      throw new Error(data.message || "Failed to edit venue");
+      throw new Error(json.message || "Failed to edit venue");
    }
 
-   return data;
+   return json;
 };
 
 export async function PUT(req: NextRequest) {

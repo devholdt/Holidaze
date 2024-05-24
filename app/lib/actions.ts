@@ -344,19 +344,20 @@ export const editVenue = async (
          body: JSON.stringify(formValues),
       });
 
-      const venue = await response.json();
+      const json = await response.json();
 
-      // if (!response.ok) {
-      //    const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-      //    alert("error", errorText, ".alert-container");
-      //    throw new Error(errorText);
-      // }
+      if (!response.ok) {
+         alert("error", json.message, ".alert-container");
+         throw new Error(json.message);
+      }
+
+      const venue = json.data;
 
       alert("success", "Venue successfully edited!", ".alert-container");
 
-      // setTimeout(() => {
-      //    window.location.href = `/user/venues/${venue.id}`;
-      // }, 2000);
+      setTimeout(() => {
+         window.location.href = `/user/venues/${venue.id}`;
+      }, 2000);
 
       return venue;
    } catch (error) {

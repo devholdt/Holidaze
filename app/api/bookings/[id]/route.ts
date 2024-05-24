@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 const fetchBooking = async (id: string, token: string) => {
+   noStore();
+
    const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/bookings/${id}?_customer=true&_venue=true`,
       {

@@ -7,20 +7,20 @@ import Subheading from "@/app/ui/subheading";
 import { formatDate } from "@/app/lib/utils";
 import { BookingProps } from "@/app/lib/definitions";
 import Link from "next/link";
-import useFetchVenue from "@/app/lib/hooks/useFetchVenue";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import dynamic from "next/dynamic";
 import useUser from "@/app/lib/hooks/useUser";
+import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
-   const venue = useFetchVenue(id);
+   const { venue, loading } = useFetchVenueById(id);
    const { user } = useUser();
 
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
-   if (!venue) {
+   if (!venue || loading) {
       return (
          <div className="mt-12 flex flex-col items-center justify-center text-center">
             <p>Loading...</p>
