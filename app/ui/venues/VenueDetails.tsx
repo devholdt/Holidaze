@@ -10,6 +10,7 @@ import useImageSource from "@/app/lib/hooks/useImageSource";
 import { Suspense } from "react";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 import Cookies from "js-cookie";
+import RenderStars from "@/app/ui/venues/RenderStars";
 
 const VenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
@@ -79,12 +80,19 @@ const VenueDetails = ({ id }: { id: string }) => {
                         guests
                      </p>
                      <span className="font-medium">|</span>
-                     <p>
+                     <p className="flex items-center gap-2">
                         rating:{" "}
-                        <span className="font-normal">{venue.rating}/5</span>
+                        <span className="hidden xs:block">
+                           <div className="flex items-center">
+                              {RenderStars(venue.rating)}
+                           </div>
+                        </span>
+                        <span className="block font-normal xs:hidden ">
+                           {venue.rating}/5
+                        </span>
                      </p>
                   </div>
-                  <p className="max-w-[500px] whitespace-pre-wrap font-extralight">
+                  <p className="max-w-[500px] whitespace-pre-wrap break-all font-extralight">
                      {venue.description}
                   </p>
                   <hr className="my-4" />

@@ -17,7 +17,6 @@ const Modal = dynamic(() => import("@/app/ui/Modal"));
 const ManagerVenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
    const { user } = useFetchLoggedInUser();
-
    const [imgSrc, setImgSrc] = useImageSource(venue);
 
    if (!venue || loading) {
@@ -101,7 +100,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
 
-               <p className="whitespace-pre-wrap font-extralight">
+               <p className="whitespace-pre-wrap break-all font-extralight">
                   {venue.description || "No description available"}
                </p>
 

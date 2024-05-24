@@ -99,7 +99,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
 
-               <p className="whitespace-pre-wrap font-extralight">
+               <p className="whitespace-pre-wrap break-all font-extralight">
                   {booking.venue.description || "No description available"}
                </p>
 

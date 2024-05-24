@@ -7,6 +7,7 @@ import Link from "next/link";
 import { formatDate } from "@/app/lib/utils";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import { BookingCardProps } from "@/app/lib/definitions";
+import RenderStars from "@/app/ui/venues/RenderStars";
 
 const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
    const [imgSrc, setImgSrc] = useImageSource(booking);
@@ -46,6 +47,11 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                         <span className="font-light">N/A</span>
                      )}
                </p>
+               <p className="mb-4 flex items-center justify-center gap-2">
+                  <div className="flex items-center">
+                     {RenderStars(booking.venue.rating)}
+                  </div>
+               </p>
                <div className="mb-4 font-extralight">
                   <span className="font-normal">
                      {formatDate(booking.dateFrom)}
@@ -63,17 +69,9 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                      <span className="font-normal">£{booking.venue.price}</span>{" "}
                      / night
                   </p>
-                  |
                   <p>
                      <span className="font-normal">{booking.guests}</span>{" "}
                      guest(s)
-                  </p>
-                  |
-                  <p>
-                     rating:{" "}
-                     <span className="font-normal">
-                        {booking.venue.rating}/5
-                     </span>
                   </p>
                </div>
             </div>

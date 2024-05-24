@@ -6,11 +6,10 @@ import { ManagerVenueCardProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
+import RenderStars from "@/app/ui/venues/RenderStars";
 
 const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
-
-   let description = venue.description || `No description available`;
 
    const isOwner = user && venue.owner && user.name === venue.owner.name;
    const redirectLink = isOwner
@@ -47,6 +46,11 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
                      <span className="font-light">N/A</span>
                   )}
                </p>
+               <p className="flex items-center justify-center gap-2">
+                  <div className="flex items-center">
+                     {RenderStars(venue.rating)}
+                  </div>
+               </p>
             </div>
             <div>
                <hr className="my-4 border-[1px] text-grey" />
@@ -57,10 +61,6 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
                   <p>
                      max <span className="font-normal">{venue.maxGuests}</span>{" "}
                      guests
-                  </p>
-                  <p>
-                     rating:{" "}
-                     <span className="font-normal">{venue.rating}/5</span>
                   </p>
                </div>
             </div>
