@@ -299,12 +299,7 @@ export const editVenue = async (
    const formValues: CreateVenueProps = {
       name: data.get("name") as string,
       description: data.get("description") as string,
-      media: [
-         {
-            url: (data.get("url") as string) || "",
-            alt: (data.get("alt") as string) || "",
-         },
-      ],
+      media: [],
       price: Number(data.get("price")),
       maxGuests: Number(data.get("maxGuests")),
       rating: Number(data.get("rating") || 0),
@@ -320,6 +315,13 @@ export const editVenue = async (
       },
    };
 
+   const mediaUrl = data.get("url") as string;
+   const mediaAlt = data.get("alt") as string;
+
+   if (mediaUrl || mediaAlt) {
+      formValues.media?.push({ url: mediaUrl ?? "", alt: mediaAlt ?? "" });
+   }
+
    const parsedValues = {
       name: formValues.name as string,
       description: formValues.description as string,
@@ -328,6 +330,8 @@ export const editVenue = async (
    };
 
    const result = venueSchema.safeParse(parsedValues);
+
+   console.log(result);
 
    if (!result.success) {
       const errorMessages = result.error.errors

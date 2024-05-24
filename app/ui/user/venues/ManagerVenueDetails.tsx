@@ -96,12 +96,12 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   </p>
                   |
                   <p>
-                     <span className="font-normal">{venue.maxGuests}</span> max
+                     max <span className="font-normal">{venue.maxGuests}</span>{" "}
                      guests
                   </p>
                </div>
 
-               <p className="font-extralight">
+               <p className="whitespace-pre-wrap font-extralight">
                   {venue.description || "No description available"}
                </p>
 

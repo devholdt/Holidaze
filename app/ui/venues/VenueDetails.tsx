@@ -81,7 +81,9 @@ const VenueDetails = ({ id }: { id: string }) => {
                         <span className="font-normal">{venue.rating}/5</span>
                      </p>
                   </div>
-                  <p className="font-extralight">{venue.description}</p>
+                  <p className="max-w-[500px] whitespace-pre-wrap font-extralight">
+                     {venue.description}
+                  </p>
                   <hr className="my-4" />
                   <h2 className={`${elMessiri.className} mb-2 text-3xl`}>
                      Amenities

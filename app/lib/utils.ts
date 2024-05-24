@@ -34,8 +34,14 @@ export const venueSchema = z.object({
    description: z
       .string()
       .min(5, { message: "Description must be at least 5 characters long" }),
-   price: z.number().gte(1, { message: "Price must be at least 1" }),
-   maxGuests: z.number().min(1, { message: "At least 1 guest is required" }),
+   price: z
+      .number()
+      .gte(1, { message: "Price must be at least 1" })
+      .lte(10000, { message: "Price must be at most 10000" }),
+   maxGuests: z
+      .number()
+      .gte(1, { message: "At least 1 guest is required" })
+      .lte(100, { message: "At most 100 guests are allowed" }),
 });
 
 export const editProfileSchema = z.object({
