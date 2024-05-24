@@ -33,7 +33,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                >
                   {booking.venue.name}
                </h2>
-               <p className="mb-4 break-all font-light">
+               <p className="mb-4 break-words font-light">
                   {booking.venue.location.city
                      ? booking.venue?.location.city
                      : ""}

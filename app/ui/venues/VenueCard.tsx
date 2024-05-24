@@ -39,8 +39,6 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
             >
                {venue.name}
             </h2>
-            <p>bookings: {venue.bookings.length}</p>
-            <p>created: {formatDate(venue.created)}</p>
             <hr className="mb-2 mt-1" />
             <div className="flex flex-col justify-between">
                <p className="text-nowrap font-light">

@@ -100,7 +100,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
 
-               <p className="whitespace-pre-wrap break-all font-extralight">
+               <p className="whitespace-pre-wrap break-words font-extralight">
                   {venue.description || "No description available"}
                </p>
 

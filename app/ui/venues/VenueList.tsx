@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/app/ui/buttons";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
@@ -55,14 +55,10 @@ const VenueList: React.FC<VenueListProps> = ({
    return (
       <div className="w-full px-2 md:px-8">
          {venuePage && (
-            <div className="my-8 flex w-full flex-col gap-4 xs:flex-row sm:gap-8">
-               <Suspense fallback={<p>Loading...</p>}>
-                  <VenueFiltering
-                     venues={venues}
-                     setFilteredVenues={setFilteredVenues}
-                  />
-               </Suspense>
-            </div>
+            <VenueFiltering
+               venues={venues}
+               setFilteredVenues={setFilteredVenues}
+            />
          )}
          <div className="mb-8 flex flex-col items-center">
             <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">

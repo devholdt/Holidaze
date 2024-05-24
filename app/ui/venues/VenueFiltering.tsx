@@ -78,44 +78,52 @@ const VenueFiltering: React.FC<SearchbarProps> = ({
    };
 
    return (
-      <>
-         <div className="flex w-full flex-col">
-            <label htmlFor="searchbar">Search:</label>
-            <div className="flex gap-2 text-blue">
-               <input
-                  type="text"
-                  name="searchbar"
-                  id="searchbar"
-                  aria-label="Search venues"
-                  placeholder="Search venues..."
-                  className="placeholder:text-gray-500 h-12 w-full rounded-full border-2 border-yellow py-2 pl-4"
-                  onChange={handleChange}
-                  onKeyDown={handleOnKeyDown}
-                  value={searchTerm}
-               />
-               <button
-                  onClick={handleButtonClick}
-                  className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-yellow p-3 text-blue"
+      <div className="my-8 w-full">
+         <div className="mb-2 flex flex-col gap-4 xs:flex-row sm:gap-8">
+            <div className="flex w-full flex-col">
+               <label htmlFor="searchbar">Search:</label>
+               <div className="flex gap-2 text-blue">
+                  <input
+                     type="text"
+                     name="searchbar"
+                     id="searchbar"
+                     aria-label="Search venues"
+                     placeholder="Search venues..."
+                     className="placeholder:text-gray-500 h-12 w-full rounded-full border-2 border-yellow py-2 pl-4"
+                     onChange={handleChange}
+                     onKeyDown={handleOnKeyDown}
+                     value={searchTerm}
+                  />
+                  <button
+                     onClick={handleButtonClick}
+                     className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-yellow p-3 text-blue"
+                  >
+                     <span className="icon-[mdi--search] h-6 w-6 text-blue"></span>
+                  </button>
+               </div>
+            </div>
+            <div className="flex max-w-[200px] flex-col">
+               <label htmlFor="filter">Filter by:</label>
+               <select
+                  name="filter"
+                  id="filter"
+                  className="h-12 rounded-full border-2 border-yellow px-4 text-blue hover:cursor-pointer"
+                  onChange={handleSelectChange}
+                  value={sortOption}
                >
-                  <span className="icon-[mdi--search] h-6 w-6 text-blue"></span>
-               </button>
+                  <option value="Latest">Latest</option>
+                  <option value="Oldest">Oldest</option>
+                  <option value="Popular">Popular</option>
+               </select>
             </div>
          </div>
-         <div className="flex max-w-[200px] flex-col">
-            <label htmlFor="filter">Filter by:</label>
-            <select
-               name="filter"
-               id="filter"
-               className="h-12 rounded-full border-2 border-yellow px-4 text-blue hover:cursor-pointer"
-               onChange={handleSelectChange}
-               value={sortOption}
-            >
-               <option value="Latest">Latest</option>
-               <option value="Oldest">Oldest</option>
-               <option value="Popular">Popular</option>
-            </select>
+         <div className="bg-white p-4">
+            <div className="flex items-center gap-2 font-light uppercase tracking-wide text-dark">
+               <p className="icon-[mdi--chevron-down] h-6 w-6"></p>
+               <p>More options</p>
+            </div>
          </div>
-      </>
+      </div>
    );
 };
 

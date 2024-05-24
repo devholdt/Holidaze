@@ -92,7 +92,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                         </span>
                      </p>
                   </div>
-                  <p className="max-w-[500px] whitespace-pre-wrap break-all font-extralight">
+                  <p className="max-w-[500px] whitespace-pre-wrap break-words font-extralight">
                      {venue.description}
                   </p>
                   <hr className="my-4" />
@@ -156,13 +156,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                </div>
                <div className="flex flex-col gap-4">
                   <div className="w-full bg-white shadow">
-                     <div
-                        className="flex h-[80px] items-center justify-center bg-cover bg-center"
-                        style={{
-                           backgroundImage: `url(${venue.owner.banner.url})`,
-                        }}
-                     ></div>
-                     <div className="px-6 py-8 text-center xs:text-left">
+                     <div className="p-6 text-center xs:text-left">
                         <h3
                            className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
                         >

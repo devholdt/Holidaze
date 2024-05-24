@@ -49,11 +49,11 @@ const BookingDetails = ({ id }: { id: string }) => {
                         right="w-14 ms-2"
                      />
                      <h1
-                        className={`${elMessiri.className} break-all text-[9vw] tracking-wide  md:text-[4.7vw] lg:text-5xl`}
+                        className={`${elMessiri.className} break-words text-[9vw] tracking-wide  md:text-[4.7vw] lg:text-5xl`}
                      >
                         {booking.venue.name}
                      </h1>
-                     <p className="mb-4 break-all font-light">
+                     <p className="mb-4 break-words font-light">
                         {booking.venue.location.city
                            ? booking.venue.location.city
                            : ""}
@@ -99,7 +99,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   </p>
                </div>
 
-               <p className="whitespace-pre-wrap break-all font-extralight">
+               <p className="whitespace-pre-wrap break-words font-extralight">
                   {booking.venue.description || "No description available"}
                </p>
 
@@ -174,12 +174,6 @@ const BookingDetails = ({ id }: { id: string }) => {
                Your host
             </h3>
             <div className="drop-shadow">
-               <div
-                  className="flex h-[80px] bg-cover bg-center"
-                  style={{
-                     backgroundImage: `url(${booking.venue.owner.banner.url})`,
-                  }}
-               ></div>
                <div className="bg-white px-6 py-4">
                   <div className="flex flex-col items-center gap-4 text-center xs:flex-row xs:text-left">
                      <Image
