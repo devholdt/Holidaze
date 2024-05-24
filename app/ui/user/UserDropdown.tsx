@@ -6,7 +6,7 @@ import {
    loggedOutMenuItems,
    customerMenuItems,
    managerMenuItems,
-} from "@/app/lib/constants";
+} from "@/app/lib/definitions";
 import { MenuItemProps } from "@/app/lib/definitions";
 import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
 import dynamic from "next/dynamic";

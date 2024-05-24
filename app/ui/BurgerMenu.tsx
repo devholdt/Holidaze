@@ -6,7 +6,7 @@ import {
    loggedOutMenuItems,
    customerMenuItems,
    managerMenuItems,
-} from "@/app/lib/constants";
+} from "@/app/lib/definitions";
 import { MenuItemProps } from "@/app/lib/definitions";
 import dynamic from "next/dynamic";
 import BackgroundReflection from "@/public/background-reflection.jpg";
