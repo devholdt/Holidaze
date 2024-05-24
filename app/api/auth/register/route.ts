@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "@/app/lib/utils";
 
 const registerUser = async (
    name: string,
@@ -11,7 +10,9 @@ const registerUser = async (
       `${process.env.NEXT_PUBLIC_API_PATH}/auth/register`,
       {
          method: "POST",
-         headers: headers("application/json"),
+         headers: {
+            "Content-Type": "application/json",
+         },
          body: JSON.stringify({ name, email, password, venueManager }),
       }
    );

@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "@/app/lib/utils";
 
 const loginUser = async (email: string, password: string) => {
    const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_PATH}/auth/login?_holidaze=true`,
       {
          method: "POST",
-         headers: headers("application/json"),
+         headers: {
+            "Content-Type": "application/json",
+         },
          body: JSON.stringify({ email, password }),
       }
    );
