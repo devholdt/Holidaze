@@ -30,35 +30,39 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
             height={600}
             className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
          />
-         <div className="px-6 pb-2 text-center">
-            <h2
-               className={`${elMessiri.className} mt-4 text-4xl font-medium md:text-5xl`}
-            >
-               {venue.name}
-            </h2>
-            <p className="mb-4 font-light">
-               {venue.location.city ? venue.location.city : ""}
-               {venue.location.city && venue.location.country && (
-                  <span>, </span>
-               )}
-               {venue.location.country ? `${venue.location.country}` : ""}
-               {!venue.location.city && !venue.location.country && (
-                  <span className="font-light">N/A</span>
-               )}
-            </p>
-            <p className="font-light">{description}</p>
-            <hr className="my-4 border-[1px] text-grey" />
-            <div className="mb-4 flex justify-between font-extralight">
-               <p>
-                  <span className="font-normal">£{venue.price}</span> / night
+         <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
+            <div>
+               <h2
+                  className={`${elMessiri.className} mt-4 text-4xl font-medium md:text-5xl`}
+               >
+                  {venue.name}
+               </h2>
+               <p className="mb-4 font-light">
+                  {venue.location.city ? venue.location.city : ""}
+                  {venue.location.city && venue.location.country && (
+                     <span>, </span>
+                  )}
+                  {venue.location.country ? `${venue.location.country}` : ""}
+                  {!venue.location.city && !venue.location.country && (
+                     <span className="font-light">N/A</span>
+                  )}
                </p>
-               <p>
-                  max <span className="font-normal">{venue.maxGuests}</span>{" "}
-                  guests
-               </p>
-               <p>
-                  rating: <span className="font-normal">{venue.rating}/5</span>
-               </p>
+            </div>
+            <div>
+               <hr className="my-4 border-[1px] text-grey" />
+               <div className="mb-4 flex justify-between font-extralight">
+                  <p>
+                     <span className="font-normal">£{venue.price}</span> / night
+                  </p>
+                  <p>
+                     max <span className="font-normal">{venue.maxGuests}</span>{" "}
+                     guests
+                  </p>
+                  <p>
+                     rating:{" "}
+                     <span className="font-normal">{venue.rating}/5</span>
+                  </p>
+               </div>
             </div>
          </div>
       </Link>
