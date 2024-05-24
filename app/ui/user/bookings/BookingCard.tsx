@@ -29,11 +29,11 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
          <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
             <div>
                <h2
-                  className={`${elMessiri.className} mt-4 text-3xl font-medium md:text-4xl`}
+                  className={`${elMessiri.className} mt-4 truncate text-3xl font-medium md:text-4xl`}
                >
                   {booking.venue.name}
                </h2>
-               <p className="mb-4 font-light">
+               <p className="mb-4 break-all font-light">
                   {booking.venue.location.city
                      ? booking.venue?.location.city
                      : ""}

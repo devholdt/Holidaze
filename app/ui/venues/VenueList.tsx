@@ -6,7 +6,7 @@ import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
 import { useRouter } from "next/navigation";
-import Searchbar from "@/app/ui/venues/Searchbar";
+import VenueFiltering from "@/app/ui/venues/VenueFiltering";
 
 const VenueList: React.FC<VenueListProps> = ({
    listLimit = 12,
@@ -57,50 +57,22 @@ const VenueList: React.FC<VenueListProps> = ({
          {venuePage && (
             <div className="my-8 flex w-full flex-col gap-4 xs:flex-row sm:gap-8">
                <Suspense fallback={<p>Loading...</p>}>
-                  <Searchbar
+                  <VenueFiltering
                      venues={venues}
                      setFilteredVenues={setFilteredVenues}
                   />
-                  <div className="flex max-w-[200px] flex-col">
-                     <label htmlFor="filter">Filter by:</label>
-                     <select
-                        name="filter"
-                        id="filter"
-                        className="h-12 rounded-full border-2 border-yellow px-4 text-blue hover:cursor-pointer"
-                     >
-                        <option value="Latest">Latest</option>
-                        <option value="Popular">Popular</option>
-                        <option value="Featured">Featured</option>
-                     </select>
-                  </div>
                </Suspense>
             </div>
          )}
          <div className="mb-8 flex flex-col items-center">
             <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-               {venuePage
-                  ? filteredVenues
-                       .slice(0, limit)
-                       .map((venue) => (
-                          <VenueCard
-                             key={venue.id}
-                             venue={venue}
-                             onClick={() =>
-                                handleCardClick(`/venues/${venue.id}`)
-                             }
-                          />
-                       ))
-                  : venues
-                       .slice(0, limit)
-                       .map((venue) => (
-                          <VenueCard
-                             key={venue.id}
-                             venue={venue}
-                             onClick={() =>
-                                handleCardClick(`/venues/${venue.id}`)
-                             }
-                          />
-                       ))}
+               {filteredVenues.slice(0, limit).map((venue) => (
+                  <VenueCard
+                     key={venue.id}
+                     venue={venue}
+                     onClick={() => handleCardClick(`/venues/${venue.id}`)}
+                  />
+               ))}
             </div>
             {venuePage && filteredVenues && limit < filteredVenues.length && (
                <Button

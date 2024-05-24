@@ -35,7 +35,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   onError={() => setImgSrc(backgroundReflection)}
                   fill
                   unoptimized
-                  className="object-cover object-center"
+                  className="max-h-[800px] object-cover object-center"
                   priority={true}
                />
             </div>
@@ -49,11 +49,11 @@ const BookingDetails = ({ id }: { id: string }) => {
                         right="w-14 ms-2"
                      />
                      <h1
-                        className={`${elMessiri.className} text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
+                        className={`${elMessiri.className} break-all text-[9vw] tracking-wide  md:text-[4.7vw] lg:text-5xl`}
                      >
                         {booking.venue.name}
                      </h1>
-                     <p className="mb-4 font-light">
+                     <p className="mb-4 break-all font-light">
                         {booking.venue.location.city
                            ? booking.venue.location.city
                            : ""}
