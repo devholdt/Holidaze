@@ -72,8 +72,10 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
    }
 
+   const formValues = await req.json();
+
    try {
-      const data = await editUser(name, req.body, token);
+      const data = await editUser(name, formValues, token);
 
       return NextResponse.json(data);
    } catch (error) {

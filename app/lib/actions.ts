@@ -377,7 +377,8 @@ export const deleteVenue = async (id: string) => {
 
 export const handleEditProfileMedia = async (
    event: React.FormEvent<HTMLFormElement>,
-   action: FormAction
+   action: FormAction,
+   name: string
 ) => {
    event.preventDefault();
 
@@ -409,8 +410,6 @@ export const handleEditProfileMedia = async (
          );
          return;
       }
-
-      const name = Cookies.get("name");
 
       try {
          const response = await fetch(`/api/user/${name}`, {
@@ -475,7 +474,7 @@ export const handleEditProfileMedia = async (
       const name = Cookies.get("name");
 
       try {
-         const response = await fetch(`${API_PATH}/holidaze/profiles/${name}`, {
+         const response = await fetch(`/api/user/${name}`, {
             method: "PUT",
             body: JSON.stringify(formValues),
          });
