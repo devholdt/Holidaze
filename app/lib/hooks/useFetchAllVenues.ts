@@ -22,7 +22,7 @@ const useFetchAllVenues = () => {
       }
 
       fetchVenues();
-   }, [name]);
+   }, []);
 
    return { venues, loading };
 };
