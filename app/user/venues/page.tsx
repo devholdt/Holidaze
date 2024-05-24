@@ -22,7 +22,6 @@ export default function Page() {
    }
 
    if (venueManager?.value !== "true") {
-      console.log("Not a venue manager");
       redirect("/venues");
    }
 
