@@ -38,6 +38,16 @@ export async function POST(req: NextRequest) {
          maxAge: 60 * 60 * 24 * 7,
       });
 
+      response.cookies.set(
+         "venueManager",
+         JSON.stringify(userData.data.venueManager),
+         {
+            path: "/",
+            httpOnly: true,
+            maxAge: 60 * 60 * 24 * 7,
+         }
+      );
+
       response.cookies.set("accessToken", userData.data.accessToken, {
          path: "/",
          httpOnly: true,

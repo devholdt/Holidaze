@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-   const cookieStore = cookies();
-   const name = cookieStore.get("name");
+   const name = cookies().get("name");
 
    if (name) {
       redirect("/");

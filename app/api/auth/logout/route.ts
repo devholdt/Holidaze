@@ -9,5 +9,6 @@ export async function POST() {
    });
    response.cookies.set("name", "", { path: "/", maxAge: 0 });
    response.cookies.set("user", "", { path: "/", maxAge: 0 });
+   response.cookies.set("venueManager", "", { path: "/", maxAge: 0 });
    return response;
 }
