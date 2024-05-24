@@ -12,9 +12,11 @@ const useUser = (): UseUserProps => {
          const response = await fetch("/api/auth/user", {
             credentials: "include",
          });
-         if (response.ok) {
-            const json = await response.json();
+         const json = await response.json();
 
+         if (json.message === "User is not logged in") {
+            setUser(null);
+         } else if (response.ok) {
             const userData = json.data;
 
             setUser(userData);

@@ -15,14 +15,14 @@ const fetchUserData = async (name: string, token: string) => {
          },
       }
    );
+   const json = await response.json();
 
    if (!response.ok) {
-      throw new Error("Unauthorized");
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
    }
 
-   const data = await response.json();
-
-   return data;
+   return json;
 };
 
 export async function GET(req: NextRequest) {
@@ -30,13 +30,16 @@ export async function GET(req: NextRequest) {
    const name = req.cookies.get("name")?.value;
 
    if (!token || !name) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+         { message: "User is not logged in" },
+         { status: 200 }
+      );
    }
 
    try {
       const userData = await fetchUserData(name, token);
       return NextResponse.json(userData);
    } catch (error) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ message: error }, { status: 401 });
    }
 }
