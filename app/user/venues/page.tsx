@@ -14,10 +14,16 @@ export const metadata: Metadata = {
 
 export default function Page() {
    const name = cookies().get("name");
+   const venueManager = cookies().get("venueManager");
    const nameValue = cookies().get("name")?.value;
 
    if (!name) {
       redirect("/user/login");
+   }
+
+   if (venueManager?.value !== "true") {
+      console.log("Not a venue manager");
+      redirect("/venues");
    }
 
    return (
