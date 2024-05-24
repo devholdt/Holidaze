@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_noStore as noStore } from "next/cache";
 
-const fetchUser = async (name: string, token: string) => {
+const fetchLoggedInUser = async (name: string, token: string) => {
    noStore();
 
    const response = await fetch(
@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
    }
 
    try {
-      const userData = await fetchUser(name, token);
+      const userData = await fetchLoggedInUser(name, token);
       return NextResponse.json(userData);
    } catch (error) {
       return NextResponse.json({ message: error }, { status: 401 });

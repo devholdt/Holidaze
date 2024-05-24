@@ -87,6 +87,12 @@ export interface UserProps {
    banner?: { url: string; alt: string };
    venueManager: boolean;
    accessToken: string;
+   venues?: VenueProps[];
+   bookings?: BookingProps[];
+   _count?: {
+      venues: number;
+      bookings: number;
+   };
 }
 
 export interface LoggedInUserProps {
@@ -213,6 +219,7 @@ export const customerMenuItems: MenuItemProps[] = [
 
 export const managerMenuItems: MenuItemProps[] = [
    { title: "Your venues", route: "/user/venues" },
+   { title: "Create venue" },
    { title: "Bookings", route: "/user/bookings" },
    { title: "Change avatar" },
    { title: "Change banner" },
