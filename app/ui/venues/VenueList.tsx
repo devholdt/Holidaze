@@ -19,6 +19,12 @@ const VenueList: React.FC<VenueListProps> = ({
    const router = useRouter();
 
    useEffect(() => {
+      if (venues.length > 0) {
+         setFilteredVenues(venues);
+      }
+   }, [venues]);
+
+   useEffect(() => {
       if (window.location.pathname === "/venues") {
          const savedScrollPosition = sessionStorage.getItem("scrollPosition");
          const savedLimit = sessionStorage.getItem("venueLimit");

@@ -8,14 +8,14 @@ import {
    AccordionItemPanel,
 } from "react-accessible-accordion";
 
-interface SearchbarProps {
+interface VenueFilterProps {
    venues: VenueProps[];
    setFilteredVenues: React.Dispatch<React.SetStateAction<VenueProps[]>>;
 }
 
 type FilterCategory = "continents" | "prices" | "ratings";
 
-const VenueFiltering: React.FC<SearchbarProps> = ({
+const VenueFiltering: React.FC<VenueFilterProps> = ({
    venues,
    setFilteredVenues,
 }) => {
