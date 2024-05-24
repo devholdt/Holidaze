@@ -10,7 +10,6 @@ import useImageSource from "@/app/lib/hooks/useImageSource";
 import { Suspense } from "react";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 import Cookies from "js-cookie";
-import clsx from "clsx";
 
 const VenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
@@ -150,7 +149,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                <div className="flex flex-col gap-4">
                   <div className="w-full bg-white shadow">
                      <div
-                        className="flex h-[80px] items-center justify-center"
+                        className="flex h-[80px] items-center justify-center bg-cover bg-center"
                         style={{
                            backgroundImage: `url(${venue.owner.banner.url})`,
                         }}
@@ -211,11 +210,23 @@ const VenueDetails = ({ id }: { id: string }) => {
                      <h4 className={`${elMessiri.className} mb-4 text-3xl`}>
                         Book this venue
                      </h4>
-                     <Form
-                        maxGuests={venue.maxGuests}
-                        venueId={venue.id}
-                        bookedDates={bookedDates}
-                     />
+                     {user ? (
+                        <Form
+                           maxGuests={venue.maxGuests}
+                           venueId={venue.id}
+                           bookedDates={bookedDates}
+                        />
+                     ) : (
+                        <p className="text-center text-red">
+                           <Link
+                              href="/user/login"
+                              className="underline hover:text-dark"
+                           >
+                              Log in
+                           </Link>{" "}
+                           to book this venue
+                        </p>
+                     )}
                   </div>
                </div>
             </div>
