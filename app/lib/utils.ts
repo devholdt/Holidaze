@@ -15,7 +15,11 @@ export const loginSchema = z.object({
 export const registerSchema = z.object({
    name: z
       .string()
-      .min(4, { message: "Name must be at least 4 characters long" }),
+      .min(4, { message: "Name must be at least 4 characters long" })
+      .refine((name) => /^[a-zA-Z0-9_]*$/.test(name), {
+         message:
+            "Name can only contain alphanumeric characters and underscores",
+      }),
    email: z
       .string()
       .email({ message: "Invalid email address" })
@@ -24,7 +28,7 @@ export const registerSchema = z.object({
       }),
    password: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters long" }),
+      .min(8, { message: "Password must be at least 8 characters long" }),
 });
 
 export const venueSchema = z.object({

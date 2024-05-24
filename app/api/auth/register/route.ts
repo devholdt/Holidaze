@@ -16,14 +16,15 @@ const registerUser = async (
       }
    );
 
-   const data = await response.json();
+   const json = await response.json();
 
    if (!response.ok) {
-      const errorText = `${data.statusCode} (${data.status}) - ${data.errors[0].message}`;
-      throw new Error(errorText);
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      console.log("errorText route.ts - ", errorText);
+      throw errorText;
    }
 
-   return data;
+   return json;
 };
 
 export async function POST(req: NextRequest) {
@@ -31,6 +32,8 @@ export async function POST(req: NextRequest) {
 
    try {
       const userData = await registerUser(name, email, password, venueManager);
+
+      console.log("userData route.ts - ", userData);
 
       const response = NextResponse.json({
          message: `Registration successful! <br /> Welcome <strong>${userData.data.name}</strong>`,
@@ -57,9 +60,6 @@ export async function POST(req: NextRequest) {
       return response;
    } catch (error) {
       console.error("Authentication failed:", error);
-      return NextResponse.json(
-         { message: "Invalid credentials" },
-         { status: 401 }
-      );
+      return NextResponse.json({ message: error }, { status: 401 });
    }
 }

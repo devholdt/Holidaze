@@ -43,7 +43,6 @@ export const handleRegisterSubmit = async (
          .map((error: any) => error.message)
          .join(", ");
       alert("error", `Validation error - ${errorMessages}`, ".alert-container");
-      return;
    }
 
    try {
