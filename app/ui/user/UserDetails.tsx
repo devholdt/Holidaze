@@ -14,23 +14,12 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
       );
    }
 
-   let userAvatar;
-   let userAlt;
-
-   if (!user.avatar) {
-      userAvatar = BackgroundReflection.src;
-      userAlt = "User avatar";
-   } else {
-      userAvatar = user.avatar.url;
-      userAlt = user.avatar.alt;
-   }
-
    return (
       <>
          <div className="m-auto mx-6 mb-6 flex flex items-center justify-center gap-2">
             <Image
-               src={userAvatar}
-               alt={userAlt}
+               src={user.avatar?.url ?? BackgroundReflection.src}
+               alt={user.avatar?.alt ?? "User avatar"}
                width={200}
                height={200}
                className="h-[72px] w-[72px] rounded-full border border-grey"

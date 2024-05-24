@@ -1,12 +1,12 @@
 "use client";
 
 import { ManagerVenueListProps } from "@/app/lib/definitions";
-import useUser from "@/app/lib/hooks/useUser";
+import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenuesByUser from "@/app/lib/hooks/useFetchVenuesByUser";
 import ManagerVenueCard from "@/app/ui/user/venues/ManagerVenueCard";
 
 const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
-   const { user, loading: userLoading } = useUser();
+   const { user, loading: userLoading } = useFetchLoggedInUser();
    const { venues, loading: venuesLoading } = useFetchVenuesByUser(name);
 
    if (userLoading || venuesLoading) {

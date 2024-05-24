@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_noStore as noStore } from "next/cache";
 
-const fetchUserData = async (name: string, token: string) => {
+const fetchUser = async (name: string, token: string) => {
    noStore();
 
    const response = await fetch(
-      process.env.NEXT_PUBLIC_API_PATH +
-         `/holidaze/profiles/${name}?_bookings=true&_venues=true`,
+      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/profiles/${name}?_bookings=true&_venues=true`,
       {
          method: "GET",
          headers: {
@@ -37,7 +36,7 @@ export async function GET(req: NextRequest) {
    }
 
    try {
-      const userData = await fetchUserData(name, token);
+      const userData = await fetchUser(name, token);
       return NextResponse.json(userData);
    } catch (error) {
       return NextResponse.json({ message: error }, { status: 401 });

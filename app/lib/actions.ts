@@ -1,5 +1,4 @@
-import React from "react";
-import { API_PATH, API_URLS } from "@/app/lib/constants";
+import { API_PATH } from "@/app/lib/constants";
 import {
    FormAction,
    CreateBookingProps,
@@ -7,8 +6,7 @@ import {
    EditAvatarProps,
    EditBannerProps,
 } from "@/app/lib/definitions";
-import { getItem } from "@/app/lib/storage";
-import { alert, headers } from "@/app/lib/utils";
+import { alert } from "@/app/lib/utils";
 import {
    loginSchema,
    registerSchema,
@@ -16,6 +14,8 @@ import {
    editProfileSchema,
 } from "@/app/lib/utils";
 import { loginAuth, registerAuth } from "@/app/lib/auth/authenticate";
+import Cookies from "js-cookie";
+import React from "react";
 
 export const handleRegisterSubmit = async (
    event: React.FormEvent<HTMLFormElement>,
@@ -186,7 +186,6 @@ export const deleteBooking = async (id: string) => {
    if (confirm("Are you sure you want to delete this booking?") === true) {
       const response = await fetch(`/api/bookings/${id}`, {
          method: "DELETE",
-         headers: headers("application/json"),
       });
 
       if (!response.ok) {
@@ -333,7 +332,6 @@ export const editVenue = async (
    try {
       const response = await fetch(`/api/venues/${id}`, {
          method: "PUT",
-         headers: headers("application/json"),
          body: JSON.stringify(formValues),
       });
 
@@ -363,7 +361,6 @@ export const deleteVenue = async (id: string) => {
    if (confirm("Are you sure you want to delete this venue?") === true) {
       const response = await fetch(`/api/venues/${id}`, {
          method: "DELETE",
-         headers: headers("application/json"),
       });
 
       if (!response.ok) {
@@ -413,15 +410,13 @@ export const handleEditProfileMedia = async (
          return;
       }
 
+      const name = Cookies.get("name");
+
       try {
-         const response = await fetch(
-            `${API_URLS.PROFILES}/${getItem("name")}`,
-            {
-               method: "PUT",
-               headers: headers("application/json"),
-               body: JSON.stringify(formValues),
-            }
-         );
+         const response = await fetch(`/api/user/${name}`, {
+            method: "PUT",
+            body: JSON.stringify(formValues),
+         });
 
          const json = await response.json();
 
@@ -477,15 +472,13 @@ export const handleEditProfileMedia = async (
          return;
       }
 
+      const name = Cookies.get("name");
+
       try {
-         const response = await fetch(
-            `${API_URLS.PROFILES}/${getItem("name")}`,
-            {
-               method: "PUT",
-               headers: headers("application/json"),
-               body: JSON.stringify(formValues),
-            }
-         );
+         const response = await fetch(`${API_PATH}/holidaze/profiles/${name}`, {
+            method: "PUT",
+            body: JSON.stringify(formValues),
+         });
 
          const json = await response.json();
 

@@ -10,13 +10,13 @@ import {
 import { MenuItemProps } from "@/app/lib/definitions";
 import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
 import dynamic from "next/dynamic";
-import useUser from "@/app/lib/hooks/useUser";
+import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import UserDetails from "@/app/ui/user/UserDetails";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const UserDropdown = () => {
-   const { user } = useUser();
+   const { user } = useFetchLoggedInUser();
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const dropdownRef = useRef<HTMLDivElement>(null);
 

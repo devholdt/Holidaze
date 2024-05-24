@@ -9,14 +9,14 @@ import { BookingProps } from "@/app/lib/definitions";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import dynamic from "next/dynamic";
-import useUser from "@/app/lib/hooks/useUser";
+import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const ManagerVenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
-   const { user } = useUser();
+   const { user } = useFetchLoggedInUser();
 
    const [imgSrc, setImgSrc] = useImageSource(venue);
 

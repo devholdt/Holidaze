@@ -4,6 +4,7 @@ import { StaticImageData } from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import { BookingProps, VenueProps } from "@/app/lib/definitions";
 import { z } from "zod";
+import Cookies from "js-cookie";
 
 export const loginSchema = z.object({
    email: z.string().email({ message: "Invalid email address" }),

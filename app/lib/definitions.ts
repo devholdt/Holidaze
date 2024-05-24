@@ -89,7 +89,7 @@ export interface UserProps {
    accessToken: string;
 }
 
-export interface UseUserProps {
+export interface LoggedInUserProps {
    user: UserProps | null;
    loading: boolean;
 }

@@ -3,11 +3,11 @@
 import Link from "next/link";
 import useFetchBookingsByUser from "@/app/lib/hooks/useFetchBookingsByUser";
 import BookingCard from "@/app/ui/user/bookings/BookingCard";
-import useUser from "@/app/lib/hooks/useUser";
+import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import { BookingListProps } from "@/app/lib/definitions";
 
 const BookingsList: React.FC<BookingListProps> = ({ name }) => {
-   const { user, loading: userLoading } = useUser();
+   const { user, loading: userLoading } = useFetchLoggedInUser();
    const username = name;
 
    const { bookings, loading: bookingsLoading } = useFetchBookingsByUser();
