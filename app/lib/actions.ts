@@ -13,6 +13,7 @@ import {
    alert,
 } from "@/app/lib/utils";
 import { loginAuth, registerAuth } from "@/app/lib/auth/authenticate";
+import Cookies from "js-cookie";
 
 export const handleRegisterSubmit = async (
    event: React.FormEvent<HTMLFormElement>,
@@ -374,8 +375,7 @@ export const deleteVenue = async (id: string) => {
 
 export const handleEditProfileMedia = async (
    event: React.FormEvent<HTMLFormElement>,
-   action: FormAction,
-   name: string
+   action: FormAction
 ) => {
    event.preventDefault();
 
@@ -407,6 +407,8 @@ export const handleEditProfileMedia = async (
          );
          return;
       }
+
+      const name = Cookies.get("name");
 
       try {
          const response = await fetch(`/api/user/${name}`, {
@@ -467,6 +469,8 @@ export const handleEditProfileMedia = async (
          );
          return;
       }
+
+      const name = Cookies.get("name");
 
       try {
          const response = await fetch(`/api/user/${name}`, {

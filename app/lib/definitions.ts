@@ -123,7 +123,6 @@ export interface LogoutProps {
 export interface EditProfileMediaFormProps {
    type: string;
    action: FormAction;
-   name: string;
 }
 
 export interface CreateBookingProps {

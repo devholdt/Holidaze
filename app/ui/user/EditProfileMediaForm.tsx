@@ -7,11 +7,10 @@ import { EditProfileMediaFormProps } from "@/app/lib/definitions";
 const EditProfileMediaForm: React.FC<EditProfileMediaFormProps> = ({
    type,
    action,
-   name,
 }) => {
    return (
       <form
-         onSubmit={(event) => handleEditProfileMedia(event, action, name)}
+         onSubmit={(event) => handleEditProfileMedia(event, action)}
          className="mx-auto flex max-w-[350px] flex-col justify-center"
       >
          <h4 className="mb-4 text-center text-2xl font-extralight uppercase tracking-widest">
