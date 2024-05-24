@@ -149,8 +149,6 @@ export const editBooking = async (
 
    formValues.guests = Number(formValues.guests);
 
-   console.log("Form values:", formValues);
-
    try {
       const response = await fetch(`/api/bookings/${id}`, {
          method: "PUT",
@@ -172,9 +170,9 @@ export const editBooking = async (
 
       alert("success", `Booking successfully edited!`, ".alert-container");
 
-      // setTimeout(() => {
-      //    window.location.href = `/user/bookings/${booking.id}`;
-      // }, 2000);
+      setTimeout(() => {
+         window.location.href = `/user/bookings/${booking.id}`;
+      }, 2000);
 
       return booking;
    } catch (error) {
@@ -330,8 +328,6 @@ export const editVenue = async (
    };
 
    const result = venueSchema.safeParse(parsedValues);
-
-   console.log(result);
 
    if (!result.success) {
       const errorMessages = result.error.errors

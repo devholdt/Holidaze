@@ -73,8 +73,6 @@ export async function PUT(req: NextRequest) {
 
    const formValues = await req.json();
 
-   console.log("Form values received:", formValues);
-
    try {
       const editedBooking = await editBooking(id, formValues, token);
       return NextResponse.json(editedBooking);

@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-   const name = cookies().get("name");
+   const user = cookies().get("user");
 
-   if (name) {
+   if (user) {
       redirect("/");
    }
 
