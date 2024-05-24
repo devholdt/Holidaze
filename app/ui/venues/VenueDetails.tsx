@@ -155,7 +155,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                            backgroundImage: `url(${venue.owner.banner.url})`,
                         }}
                      ></div>
-                     <div className="px-6 py-12 text-center xs:text-left">
+                     <div className="px-6 py-8 text-center xs:text-left">
                         <h3
                            className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
                         >
@@ -175,24 +175,36 @@ const VenueDetails = ({ id }: { id: string }) => {
 
                               <hr className="my-2 text-lightGrey" />
 
-                              <Link
-                                 href={`/user/${venue.owner.name}`}
-                                 className={clsx(
-                                    "w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown",
-                                    user ? "block" : "hidden"
-                                 )}
-                              >
-                                 profile
-                              </Link>
-
-                              {/* <Link
-                                 href={`/user/${venue.owner.name}`}
-                                 className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
-                              >
-                                 profile
-                              </Link> */}
+                              {user ? (
+                                 <Link
+                                    href={`/user/${venue.owner.name}`}
+                                    className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
+                                 >
+                                    profile
+                                 </Link>
+                              ) : (
+                                 <button
+                                    className="w-fit bg-lightGrey px-4 py-2 font-extralight uppercase tracking-widest text-white"
+                                    disabled
+                                 >
+                                    profile
+                                 </button>
+                              )}
                            </div>
                         </div>
+                        {user ? (
+                           ""
+                        ) : (
+                           <p className="mt-4 flex justify-center tracking-wider text-red">
+                              <Link
+                                 href="/user/login"
+                                 className="me-2 underline hover:text-dark"
+                              >
+                                 Log in
+                              </Link>{" "}
+                              to view profile
+                           </p>
+                        )}
                      </div>
                   </div>
                   <div className="w-full bg-white p-6 shadow">
