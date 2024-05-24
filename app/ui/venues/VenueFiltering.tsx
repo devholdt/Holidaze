@@ -168,7 +168,7 @@ const VenueFiltering: React.FC<SearchbarProps> = ({
                      <div className="flex flex-col gap-5">
                         <div className="flex gap-5 font-light text-dark">
                            <p className="font-normal">Continent:</p>
-                           <div className="flex flex-wrap items-center gap-6">
+                           <div className="flex flex-wrap items-center gap-2 sm:gap-6">
                               {[
                                  "Africa",
                                  "Asia",
@@ -179,7 +179,7 @@ const VenueFiltering: React.FC<SearchbarProps> = ({
                               ].map((continent) => (
                                  <div
                                     key={continent}
-                                    className="flex items-center gap-1"
+                                    className="flex items-center gap-1 border px-2 py-1 sm:border-0 sm:p-0"
                                  >
                                     <label className="flex w-fit cursor-pointer items-center">
                                        <input
@@ -199,7 +199,7 @@ const VenueFiltering: React.FC<SearchbarProps> = ({
                         </div>
                         <div className="flex gap-5 font-light text-dark">
                            <p className="font-normal">Price (£):</p>
-                           <div className="flex flex-wrap items-center gap-6">
+                           <div className="flex flex-wrap items-center gap-2 sm:gap-6">
                               {[
                                  "< 100",
                                  "100 - 200",
@@ -210,7 +210,7 @@ const VenueFiltering: React.FC<SearchbarProps> = ({
                               ].map((priceRange) => (
                                  <div
                                     key={priceRange}
-                                    className="flex items-center gap-1"
+                                    className="flex items-center gap-1 border px-2 py-1 sm:border-0 sm:p-0"
                                  >
                                     <label className="flex w-fit cursor-pointer items-center">
                                        <input
@@ -232,11 +232,11 @@ const VenueFiltering: React.FC<SearchbarProps> = ({
                         </div>
                         <div className="flex gap-5 font-light text-dark">
                            <p className="font-normal">Rating:</p>
-                           <div className="flex flex-wrap items-center gap-6">
+                           <div className="flex flex-wrap items-center gap-2 sm:gap-6">
                               {[0, 1, 2, 3, 4, 5].map((rating) => (
                                  <div
                                     key={rating}
-                                    className="flex items-center gap-1"
+                                    className="flex items-center gap-1 border px-2 py-1 sm:border-0 sm:p-0"
                                  >
                                     <label className="flex w-fit cursor-pointer items-center">
                                        <input
