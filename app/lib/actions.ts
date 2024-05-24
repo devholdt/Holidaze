@@ -1,4 +1,3 @@
-import { API_PATH } from "@/app/lib/constants";
 import {
    FormAction,
    CreateBookingProps,
@@ -6,16 +5,14 @@ import {
    EditAvatarProps,
    EditBannerProps,
 } from "@/app/lib/definitions";
-import { alert } from "@/app/lib/utils";
 import {
    loginSchema,
    registerSchema,
    venueSchema,
    editProfileSchema,
+   alert,
 } from "@/app/lib/utils";
 import { loginAuth, registerAuth } from "@/app/lib/auth/authenticate";
-import Cookies from "js-cookie";
-import React from "react";
 
 export const handleRegisterSubmit = async (
    event: React.FormEvent<HTMLFormElement>,
@@ -470,8 +467,6 @@ export const handleEditProfileMedia = async (
          );
          return;
       }
-
-      const name = Cookies.get("name");
 
       try {
          const response = await fetch(`/api/user/${name}`, {
