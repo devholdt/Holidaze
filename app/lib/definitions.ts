@@ -18,6 +18,7 @@ export interface VenueProps {
    location: {
       city: string;
       country: string;
+      continent: string;
    };
    created: string;
    href: string;

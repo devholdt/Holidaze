@@ -58,13 +58,13 @@ export default function RegistrationForm() {
                />
             </div>
          </div>
-         <div className="checkbox-wrapper mb-8">
-            <label className="flex items-center">
+         <div className="mb-8">
+            <label className="flex w-fit cursor-pointer items-center">
                <input
                   type="checkbox"
                   checked={isChecked}
                   onChange={handleChange}
-                  className={isChecked ? "checked" : ""}
+                  className="h-4 w-4 cursor-pointer"
                />
                <span className="ms-1">Register as Venue Manager</span>
             </label>
