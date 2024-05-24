@@ -14,7 +14,8 @@ const useFetchVenueByUser = (id: string) => {
          });
 
          if (response.ok) {
-            const data = await response.json();
+            const json = await response.json();
+            const data = json.data;
 
             setVenue(data);
          } else {

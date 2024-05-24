@@ -14,13 +14,14 @@ const fetchAllVenues = async () => {
       }
    );
 
+   const json = await response.json();
+
    if (!response.ok) {
-      throw new Error("Unauthorized");
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
    }
 
-   const data = await response.json();
-
-   return data;
+   return json;
 };
 
 const fetchVenuesByName = async (name: string, token: string) => {
@@ -38,12 +39,14 @@ const fetchVenuesByName = async (name: string, token: string) => {
       }
    );
 
+   const json = await response.json();
+
    if (!response.ok) {
-      throw new Error("Unauthorized");
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
    }
 
-   const data = await response.json();
-   return data;
+   return json;
 };
 
 const createVenue = async (formValues: any, token: string) => {
@@ -60,13 +63,14 @@ const createVenue = async (formValues: any, token: string) => {
       }
    );
 
+   const json = await response.json();
+
    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(errorText || "Failed to create venue");
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
    }
 
-   const data = await response.json();
-   return data;
+   return json;
 };
 
 export async function GET(req: NextRequest) {
@@ -90,7 +94,7 @@ export async function GET(req: NextRequest) {
          return NextResponse.json(data);
       }
    } catch (error) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error }, { status: 401 });
    }
 }
 
@@ -107,6 +111,6 @@ export async function POST(req: NextRequest) {
       const newVenue = await createVenue(formValues, token);
       return NextResponse.json(newVenue);
    } catch (error: any) {
-      return NextResponse.json({ message: error.message }, { status: 400 });
+      return NextResponse.json({ error }, { status: 400 });
    }
 }

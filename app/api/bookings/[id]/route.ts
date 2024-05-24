@@ -16,12 +16,14 @@ const fetchBooking = async (id: string, token: string) => {
       }
    );
 
+   const json = await response.json();
+
    if (!response.ok) {
-      throw new Error("Unauthorized");
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
    }
 
-   const data = await response.json();
-   return data;
+   return json;
 };
 
 const editBooking = async (id: string, formValues: any, token: string) => {
@@ -38,13 +40,34 @@ const editBooking = async (id: string, formValues: any, token: string) => {
       }
    );
 
-   const data = await response.json();
+   const json = await response.json();
 
    if (!response.ok) {
-      throw new Error(data.message || "Failed to edit booking");
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
    }
 
-   return data;
+   return json;
+};
+
+const deleteBooking = async (id: string, token: string) => {
+   const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_PATH}/holidaze/bookings/${id}`,
+      {
+         method: "DELETE",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
+         },
+      }
+   );
+
+   if (response.status !== 204) {
+      const json = await response.json();
+      const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+      throw errorText;
+   }
 };
 
 export async function GET(req: NextRequest) {
@@ -59,7 +82,7 @@ export async function GET(req: NextRequest) {
       const data = await fetchBooking(id, token);
       return NextResponse.json(data);
    } catch (error) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error }, { status: 401 });
    }
 }
 
@@ -77,6 +100,22 @@ export async function PUT(req: NextRequest) {
       const editedBooking = await editBooking(id, formValues, token);
       return NextResponse.json(editedBooking);
    } catch (error: any) {
-      return NextResponse.json({ message: error.message }, { status: 400 });
+      return NextResponse.json({ error }, { status: 400 });
+   }
+}
+
+export async function DELETE(req: NextRequest) {
+   const token = req.cookies.get("accessToken")?.value;
+   const id = req.url.split("/").pop();
+
+   if (!token || !id) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+   }
+
+   try {
+      await deleteBooking(id, token);
+      return NextResponse.json({ message: "Booking successfully deleted" });
+   } catch (error: any) {
+      return NextResponse.json({ error }, { status: 400 });
    }
 }

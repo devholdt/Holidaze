@@ -108,9 +108,11 @@ export const createBooking = async (
    formValues.guests = Number(formValues.guests);
 
    try {
-      const response = await fetch(`${API_PATH}/holidaze/bookings`, {
+      const response = await fetch("/api/bookings", {
          method: "POST",
-         headers: headers("application/json"),
+         headers: {
+            "Content-Type": "application/json",
+         },
          body: JSON.stringify(formValues),
       });
 
@@ -182,29 +184,20 @@ export const editBooking = async (
 
 export const deleteBooking = async (id: string) => {
    if (confirm("Are you sure you want to delete this booking?") === true) {
-      try {
-         const response = await fetch(`${API_PATH}/holidaze/bookings/${id}`, {
-            method: "DELETE",
-            headers: headers("application/json"),
-         });
+      const response = await fetch(`/api/bookings/${id}`, {
+         method: "DELETE",
+         headers: headers("application/json"),
+      });
 
-         const json = await response.json();
-
-         if (!response.ok) {
-            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-            alert("error", errorText, ".alert-container");
-            throw new Error(errorText);
-         }
-
-         alert("success", `Booking successfully deleted!`, ".alert-container");
-
-         setTimeout(() => {
-            window.location.href = "/user/bookings";
-         }, 2000);
-      } catch (error) {
-         alert("error", `${error}`, ".alert-container");
-         throw error;
+      if (!response.ok) {
+         throw new Error("An error occurred while deleting the booking");
       }
+
+      alert("success", `Booking successfully deleted!`, ".alert-container");
+
+      setTimeout(() => {
+         window.location.href = "/user/bookings";
+      }, 2000);
    }
 };
 
@@ -264,13 +257,14 @@ export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
          body: JSON.stringify(formValues),
       });
 
+      const json = await response.json();
+
       if (!response.ok) {
-         const errorText = await response.text();
+         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
          alert("error", errorText, ".alert-container");
          throw new Error(errorText);
       }
 
-      const json = await response.json();
       const venue = json.data;
 
       alert(
@@ -367,29 +361,20 @@ export const editVenue = async (
 
 export const deleteVenue = async (id: string) => {
    if (confirm("Are you sure you want to delete this venue?") === true) {
-      try {
-         const response = await fetch(`${API_URLS.VENUES}/${id}`, {
-            method: "DELETE",
-            headers: headers("application/json"),
-         });
+      const response = await fetch(`/api/venues/${id}`, {
+         method: "DELETE",
+         headers: headers("application/json"),
+      });
 
-         const json = await response.json();
-
-         if (!response.ok) {
-            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-            alert("error", errorText, ".alert-container");
-            throw new Error(errorText);
-         }
-
-         alert("success", `Venue successfully deleted!`, ".alert-container");
-
-         setTimeout(() => {
-            window.location.href = "/user/venues";
-         }, 2000);
-      } catch (error) {
-         alert("error", `${error}`, ".alert-container");
-         throw error;
+      if (!response.ok) {
+         throw new Error("An error occurred while deleting the venue");
       }
+
+      alert("success", `Venue successfully deleted!`, ".alert-container");
+
+      setTimeout(() => {
+         window.location.href = "/user/venues";
+      }, 2000);
    }
 };
 

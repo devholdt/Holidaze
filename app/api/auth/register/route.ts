@@ -20,7 +20,6 @@ const registerUser = async (
 
    if (!response.ok) {
       const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-      console.log("errorText route.ts - ", errorText);
       throw errorText;
    }
 
@@ -32,8 +31,6 @@ export async function POST(req: NextRequest) {
 
    try {
       const userData = await registerUser(name, email, password, venueManager);
-
-      console.log("userData route.ts - ", userData);
 
       const response = NextResponse.json({
          message: `Registration successful! <br /> Welcome <strong>${userData.data.name}</strong>`,
