@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_noStore as noStore } from "next/cache";
 
-const fetchAllVenues = async (token: string) => {
+const fetchAllVenues = async () => {
    noStore();
 
    const response = await fetch(
@@ -10,8 +10,6 @@ const fetchAllVenues = async (token: string) => {
          method: "GET",
          headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
          },
       }
    );
@@ -21,6 +19,7 @@ const fetchAllVenues = async (token: string) => {
    }
 
    const data = await response.json();
+
    return data;
 };
 
@@ -75,16 +74,19 @@ export async function GET(req: NextRequest) {
    const { searchParams } = new URL(req.url);
    const name = searchParams.get("name");
 
-   if (!token) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-   }
-
    try {
       if (name) {
+         if (!token) {
+            return NextResponse.json(
+               { message: "Unauthorized" },
+               { status: 401 }
+            );
+         }
+
          const data = await fetchVenuesByName(name, token);
          return NextResponse.json(data);
       } else {
-         const data = await fetchAllVenues(token);
+         const data = await fetchAllVenues();
          return NextResponse.json(data);
       }
    } catch (error) {

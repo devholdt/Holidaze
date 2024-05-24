@@ -9,10 +9,14 @@ import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import { Suspense } from "react";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
+import Cookies from "js-cookie";
+import clsx from "clsx";
 
 const VenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
    const [imgSrc, setImgSrc] = useImageSource(venue);
+
+   const user = Cookies.get("name");
 
    if (!venue || loading) {
       return (
@@ -173,10 +177,20 @@ const VenueDetails = ({ id }: { id: string }) => {
 
                               <Link
                                  href={`/user/${venue.owner.name}`}
-                                 className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
+                                 className={clsx(
+                                    "w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown",
+                                    user ? "block" : "hidden"
+                                 )}
                               >
                                  profile
                               </Link>
+
+                              {/* <Link
+                                 href={`/user/${venue.owner.name}`}
+                                 className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
+                              >
+                                 profile
+                              </Link> */}
                            </div>
                         </div>
                      </div>

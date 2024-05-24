@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-   const user = cookies().get("user");
-   const name = cookies().get("name")?.value;
+   const name = cookies().get("name");
+   const nameValue = cookies().get("name")?.value;
 
-   if (!user) {
+   if (!name) {
       redirect("/user/login");
    }
 
@@ -30,7 +30,7 @@ export default function Page() {
             ]}
          />
          <Hero heading="Bookings" headingLevel={1} subheading="Your upcoming" />
-         <BookingsList name={name ?? ""} />
+         <BookingsList name={nameValue ?? ""} />
       </main>
    );
 }

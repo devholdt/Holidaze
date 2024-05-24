@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_noStore as noStore } from "next/cache";
 
-const fetchVenue = async (id: string, token: string) => {
+const fetchVenue = async (id: string) => {
    noStore();
 
    const response = await fetch(
@@ -10,8 +10,6 @@ const fetchVenue = async (id: string, token: string) => {
          method: "GET",
          headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
          },
       }
    );
@@ -27,15 +25,14 @@ const fetchVenue = async (id: string, token: string) => {
 };
 
 export async function GET(req: NextRequest) {
-   const token = req.cookies.get("accessToken")?.value;
    const id = req.url.split("/").pop();
 
-   if (!token || !id) {
+   if (!id) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
    }
 
    try {
-      const data = await fetchVenue(id, token);
+      const data = await fetchVenue(id);
 
       return NextResponse.json(data);
    } catch (error) {
