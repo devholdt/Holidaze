@@ -74,12 +74,12 @@ const createVenue = async (formValues: any, token: string) => {
 };
 
 export async function GET(req: NextRequest) {
-   const token = req.cookies.get("accessToken")?.value;
    const { searchParams } = new URL(req.url);
    const name = searchParams.get("name");
 
    try {
       if (name) {
+         const token = req.cookies.get("accessToken")?.value;
          if (!token) {
             return NextResponse.json(
                { message: "Unauthorized" },
