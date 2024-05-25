@@ -4,15 +4,16 @@ import useFetchUserByName from "@/app/lib/hooks/useFetchUserByName";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import { elMessiri } from "@/app/ui/fonts";
 import Image from "next/image";
-
-interface ProfileDetailsProps {
-   name: string;
-}
+import { ProfileDetailsProps } from "@/app/lib/definitions";
+import { useEffect } from "react";
 
 export const ProfileDetails: React.FC<ProfileDetailsProps> = ({ name }) => {
    const userData = useFetchUserByName(name);
-
    const user = userData.user;
+
+   useEffect(() => {
+      document.title = `${user?.name ?? "User"} | Holidaze Resorts`;
+   }, [user?.name]);
 
    if (!user) {
       return (
@@ -43,11 +44,16 @@ export const ProfileDetails: React.FC<ProfileDetailsProps> = ({ name }) => {
                />
 
                <div className="text-center md:text-left">
-                  <h2
-                     className={`${elMessiri.className} text-4xl tracking-wide text-blue`}
-                  >
-                     {user.name}
-                  </h2>
+                  <div className="flex gap-1">
+                     <h2
+                        className={`${elMessiri.className} text-4xl tracking-wide text-blue`}
+                     >
+                        {user.name}
+                     </h2>
+                     {user.venueManager && (
+                        <span className="icon-[mdi--check-circle-outline] h-5 w-5 text-yellow"></span>
+                     )}
+                  </div>
                   <p className="font-light tracking-wide">{user.email}</p>
                </div>
             </div>

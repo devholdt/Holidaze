@@ -10,21 +10,25 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
    const { venues, loading: venuesLoading } = useFetchVenuesByUser(name);
 
    if (userLoading || venuesLoading) {
-      return <p className="mt-8 flex justify-center">Loading...</p>;
+      return (
+         <div className="my-12 flex flex-col items-center justify-center font-light">
+            <p>Loading...</p>
+         </div>
+      );
    }
 
    if (!name) {
       return (
-         <div className="flex flex-col items-center justify-center font-light">
-            <p className="mt-8">No manager name found.</p>
+         <div className="my-12 flex flex-col items-center justify-center font-light">
+            <p>No venue manager found.</p>
          </div>
       );
    }
 
    if (venues?.length === 0) {
       return (
-         <div className="flex flex-col items-center justify-center font-light">
-            <p className="mt-8">No venues created yet.</p>
+         <div className="my-12 flex flex-col items-center justify-center font-light">
+            <p>No venues created yet.</p>
          </div>
       );
    }

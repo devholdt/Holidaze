@@ -186,7 +186,12 @@ const BookingDetails = ({ id }: { id: string }) => {
 
                      <div className="flex flex-col">
                         <div>
-                           <p className="text-xl">{booking.venue.owner.name}</p>
+                           <div className="flex gap-1">
+                              <p className="text-xl">
+                                 {booking.venue.owner.name}
+                              </p>
+                              <span className="icon-[mdi--check-circle-outline] h-4 w-4 text-yellow"></span>
+                           </div>
                            <p className="font-extralight italic">
                               {booking.venue.owner.email}
                            </p>

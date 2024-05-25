@@ -11,6 +11,7 @@ import useImageSource from "@/app/lib/hooks/useImageSource";
 import dynamic from "next/dynamic";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
+import { useEffect } from "react";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
@@ -18,6 +19,10 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
    const { user } = useFetchLoggedInUser();
    const [imgSrc, setImgSrc] = useImageSource(venue);
+
+   useEffect(() => {
+      document.title = `${venue?.name} | Holidaze Resorts`;
+   });
 
    if (!venue || loading) {
       return (

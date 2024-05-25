@@ -160,6 +160,10 @@ export interface CreateVenueProps {
    };
 }
 
+export interface ProfileDetailsProps {
+   name: string;
+}
+
 export interface EditAvatarProps {
    avatar: {
       url: string;
