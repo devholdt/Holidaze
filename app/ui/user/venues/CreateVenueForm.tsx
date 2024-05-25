@@ -22,8 +22,6 @@ const CreateVenueForm = () => {
             Create Venue
          </h4>
 
-         <div className="alert-container my-4"></div>
-
          <div className="mb-4">
             <label className="text-dark" htmlFor="name">
                Venue Name
@@ -208,6 +206,7 @@ const CreateVenueForm = () => {
             />
          </div>
          <Button text="Confirm" styles="w-[150px] mx-auto" primary={false} />
+         <div className="alert-container"></div>
       </form>
    );
 };

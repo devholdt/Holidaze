@@ -34,6 +34,7 @@ const BurgerMenu = () => {
 
    const MenuItem: React.FC<{ item: MenuItemProps }> = ({ item }) => {
       const isModalItem = [
+         "Create venue",
          "Change avatar",
          "Change banner",
          "Log out",
