@@ -7,7 +7,7 @@ import { BookingProps } from "@/app/lib/definitions";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
-import Subheading from "@/app/ui/subheading";
+import Subheading from "@/app/ui/Subheading";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { createVenue } from "@/app/lib/actions";
-import { Button } from "@/app/ui/buttons";
+import { Button } from "@/app/ui/Buttons";
 
 const CreateVenueForm = () => {
    const mediaUrlRef = useRef<HTMLInputElement>(null);

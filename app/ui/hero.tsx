@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { HeroProps } from "@/app/lib/definitions";
-import Subheading from "@/app/ui/subheading";
+import Subheading from "@/app/ui/Subheading";
 import backgroundImage from "@/public/background-beach.jpg";
 
 const Hero: React.FC<HeroProps> = ({

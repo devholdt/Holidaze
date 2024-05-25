@@ -7,7 +7,7 @@ import {
    managerMenuItems,
 } from "@/app/lib/constants";
 import { MenuItemProps } from "@/app/lib/definitions";
-import { LinkButton } from "@/app/ui/buttons";
+import { LinkButton } from "@/app/ui/Buttons";
 import { slide as Menu } from "react-burger-menu";
 import Link from "next/link";
 import dynamic from "next/dynamic";

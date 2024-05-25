@@ -159,9 +159,9 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                <AccordionItemPanel>
                   <div className="border-b border-yellow p-4">
                      <div className="flex flex-col gap-5">
-                        <div className="flex gap-5 font-light text-dark">
+                        <div className="flex flex-col gap-2 font-light text-dark">
                            <p className="font-normal">Continent:</p>
-                           <div className="flex flex-wrap items-center gap-2 sm:gap-6">
+                           <div className="flex flex-wrap items-center gap-2">
                               {[
                                  "Africa",
                                  "Asia",
@@ -172,7 +172,7 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                               ].map((continent) => (
                                  <div
                                     key={continent}
-                                    className="flex items-center gap-1 border px-2 py-1 sm:border-0 sm:p-0"
+                                    className="flex items-center gap-1 bg-yellow px-2 py-1 text-blue"
                                  >
                                     <label className="flex w-fit cursor-pointer items-center">
                                        <input
@@ -190,9 +190,9 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                               ))}
                            </div>
                         </div>
-                        <div className="flex gap-5 font-light text-dark">
+                        <div className="flex flex-col gap-2 font-light text-dark">
                            <p className="font-normal">Price (£):</p>
-                           <div className="flex flex-wrap items-center gap-2 sm:gap-6">
+                           <div className="flex flex-wrap items-center gap-2">
                               {[
                                  "< 100",
                                  "100 - 200",
@@ -203,7 +203,7 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                               ].map((priceRange) => (
                                  <div
                                     key={priceRange}
-                                    className="flex items-center gap-1 border px-2 py-1 sm:border-0 sm:p-0"
+                                    className="flex items-center gap-1 bg-yellow px-2 py-1 text-blue"
                                  >
                                     <label className="flex w-fit cursor-pointer items-center">
                                        <input
@@ -223,13 +223,13 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                               ))}
                            </div>
                         </div>
-                        <div className="flex gap-5 font-light text-dark">
+                        <div className="flex flex-col gap-2 font-light text-dark">
                            <p className="font-normal">Rating:</p>
-                           <div className="flex flex-wrap items-center gap-2 sm:gap-6">
+                           <div className="flex flex-wrap items-center gap-2">
                               {[0, 1, 2, 3, 4, 5].map((rating) => (
                                  <div
                                     key={rating}
-                                    className="flex items-center gap-1 border px-2 py-1 sm:border-0 sm:p-0"
+                                    className="flex items-center gap-1 bg-yellow px-2 py-1 text-blue"
                                  >
                                     <label className="flex w-fit cursor-pointer items-center">
                                        <input

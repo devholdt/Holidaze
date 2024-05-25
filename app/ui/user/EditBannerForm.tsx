@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/app/ui/buttons";
+import { Button } from "@/app/ui/Buttons";
 import { handleEditProfileBanner } from "@/app/lib/actions";
 
 const EditProfileMediaForm = () => {

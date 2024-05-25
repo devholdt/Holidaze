@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Hero from "@/app/ui/hero";
+import Hero from "@/app/ui/Hero";
 import dynamic from "next/dynamic";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
 

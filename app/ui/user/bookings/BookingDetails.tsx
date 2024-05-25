@@ -4,7 +4,7 @@ import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
-import Subheading from "@/app/ui/subheading";
+import Subheading from "@/app/ui/Subheading";
 import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useImageSource from "@/app/lib/hooks/useImageSource";

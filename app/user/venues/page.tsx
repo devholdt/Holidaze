@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Hero from "@/app/ui/hero";
+import Hero from "@/app/ui/Hero";
 import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
 import dynamic from "next/dynamic";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";

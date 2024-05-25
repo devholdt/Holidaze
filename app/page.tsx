@@ -1,11 +1,11 @@
 import { elMessiri } from "@/app/ui/fonts";
-import { LinkButton } from "@/app/ui/buttons";
+import { LinkButton } from "@/app/ui/Buttons";
 import dynamic from "next/dynamic";
 import Logo from "@/app/ui/Logo";
-import Subheading from "@/app/ui/subheading";
+import Subheading from "@/app/ui/Subheading";
 import waterImg from "@/public/texture-water-lighter.jpg";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
-import Hero from "@/app/ui/hero";
+import Hero from "@/app/ui/Hero";
 
 const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
