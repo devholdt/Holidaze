@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
    loggedOutMenuItems,
@@ -8,7 +8,6 @@ import {
    managerMenuItems,
 } from "@/app/lib/constants";
 import { MenuItemProps } from "@/app/lib/definitions";
-import useOutsideClick from "@/app/lib/hooks/useOutsideClick";
 import dynamic from "next/dynamic";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import UserDetails from "@/app/ui/user/UserDetails";
@@ -19,8 +18,6 @@ const UserDropdown = () => {
    const { user } = useFetchLoggedInUser();
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const dropdownRef = useRef<HTMLDivElement>(null);
-
-   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
    const menuItems = useMemo(() => {
       if (!user) return loggedOutMenuItems;
@@ -59,8 +56,29 @@ const UserDropdown = () => {
       );
    };
 
+   const handleClickOutside = (event: MouseEvent) => {
+      if (
+         dropdownRef.current &&
+         !dropdownRef.current.contains(event.target as Node)
+      ) {
+         setIsOpen(false);
+      }
+   };
+
+   useEffect(() => {
+      if (isOpen) {
+         document.addEventListener("mousedown", handleClickOutside);
+      } else {
+         document.removeEventListener("mousedown", handleClickOutside);
+      }
+
+      return () => {
+         document.removeEventListener("mousedown", handleClickOutside);
+      };
+   }, [isOpen]);
+
    return (
-      <div className="relative">
+      <div className="relative" ref={dropdownRef}>
          <button
             className="flex items-center gap-2 rounded-full bg-white p-2 text-dark"
             onClick={() => setIsOpen(!isOpen)}
@@ -69,7 +87,6 @@ const UserDropdown = () => {
             <span className="icon-[mdi--user-circle] h-6 w-6 text-dark"></span>
          </button>
          <div
-            ref={dropdownRef}
             className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${isOpen ? "flex" : "hidden"}`}
          >
             <button
