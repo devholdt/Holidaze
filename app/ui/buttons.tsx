@@ -1,11 +1,5 @@
 import Link from "next/link";
-
-type ButtonProps = {
-   text: string;
-   styles?: string;
-   primary?: boolean;
-   onClick?: () => void;
-};
+import { ButtonProps, LinkButtonProps } from "@/app/lib/definitions";
 
 const Button: React.FC<ButtonProps> = ({
    text,
@@ -25,14 +19,6 @@ const Button: React.FC<ButtonProps> = ({
          {text}
       </button>
    );
-};
-
-type LinkButtonProps = {
-   text: string;
-   styles?: string;
-   primary?: boolean;
-   targetHref: string;
-   onClick?: () => void;
 };
 
 const LinkButton: React.FC<LinkButtonProps> = ({

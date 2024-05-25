@@ -1,11 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
-type LogoProps = {
-   src: string;
-   styles: string;
-};
+import { LogoProps } from "@/app/lib/definitions";
 
 const Logo: React.FC<LogoProps> = ({ src, styles }) => {
    return (

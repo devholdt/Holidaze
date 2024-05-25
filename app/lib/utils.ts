@@ -1,5 +1,4 @@
 import { iconCheck, iconXmark } from "@/public/icons";
-import { getItem } from "@/app/lib/storage";
 import { StaticImageData } from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import { BookingProps, VenueProps } from "@/app/lib/definitions";
@@ -129,22 +128,6 @@ export const alert = (
    if (element) {
       element.append(wrapper);
    }
-};
-
-export const headers = (contentType: string) => {
-   const token = getItem("token");
-   const headers: { [key: string]: string } = {};
-
-   if (contentType) {
-      headers["Content-Type"] = contentType;
-   }
-
-   if (token) {
-      headers.Authorization = `Bearer ${token}`;
-      headers["X-Noroff-API-Key"] = process.env.NEXT_PUBLIC_API_KEY as string;
-   }
-
-   return headers;
 };
 
 export const defaultImgSrc = (

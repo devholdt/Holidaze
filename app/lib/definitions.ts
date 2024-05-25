@@ -190,6 +190,26 @@ export type SubheadingProps = {
    right?: string;
 };
 
+export type ButtonProps = {
+   text: string;
+   styles?: string;
+   primary?: boolean;
+   onClick?: () => void;
+};
+
+export type LinkButtonProps = {
+   text: string;
+   styles?: string;
+   primary?: boolean;
+   targetHref: string;
+   onClick?: () => void;
+};
+
+export type LogoProps = {
+   src: string;
+   styles: string;
+};
+
 export type ImageSourceProps<T> = (
    entity: T | null
 ) => string | StaticImageData;
@@ -216,24 +236,3 @@ export enum FormAction {
    Avatar = "avatar",
    Banner = "banner",
 }
-
-export const loggedOutMenuItems: MenuItemProps[] = [
-   { title: "Register", route: "/user/register" },
-   { title: "Log in", route: "/user/login" },
-];
-
-export const customerMenuItems: MenuItemProps[] = [
-   { title: "Bookings", route: "/user/bookings" },
-   { title: "Change avatar" },
-   { title: "Change banner" },
-   { title: "Log out" },
-];
-
-export const managerMenuItems: MenuItemProps[] = [
-   { title: "Your venues", route: "/user/venues" },
-   { title: "Create venue" },
-   { title: "Bookings", route: "/user/bookings" },
-   { title: "Change avatar" },
-   { title: "Change banner" },
-   { title: "Log out" },
-];
