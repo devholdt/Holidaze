@@ -4,7 +4,6 @@ import { StaticImageData } from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import { BookingProps, VenueProps } from "@/app/lib/definitions";
 import { z } from "zod";
-import Cookies from "js-cookie";
 
 export const loginSchema = z.object({
    email: z.string().email({ message: "Invalid email address" }),
@@ -53,7 +52,7 @@ export const editProfileSchema = z.object({
    url: z.string().url({ message: "Invalid URL" }),
    alt: z
       .string()
-      .min(3, { message: "Alt must be at least 3 characters long" }),
+      .min(3, { message: "Alt text must be at least 3 characters long" }),
 });
 
 export const formatDate = (
