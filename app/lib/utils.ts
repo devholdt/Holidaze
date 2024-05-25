@@ -1,8 +1,8 @@
 import { iconCheck, iconXmark } from "@/public/icons";
 import { StaticImageData } from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
 import { BookingProps, VenueProps } from "@/app/lib/definitions";
 import { z } from "zod";
+import backgroundReflection from "@/public/background-reflection.jpg";
 
 export const loginSchema = z.object({
    email: z.string().email({ message: "Invalid email address" }),
@@ -82,12 +82,6 @@ export const formatDateISO = (date: Date | null) => {
 export const formatNumber = (number: number, locale: string = "en-GB") => {
    const formatter = new Intl.NumberFormat(locale);
    return formatter.format(number);
-};
-
-export const getTomorrowDate = () => {
-   const tomorrow = new Date();
-   tomorrow.setDate(tomorrow.getDate() + 1);
-   return tomorrow;
 };
 
 export const alert = (

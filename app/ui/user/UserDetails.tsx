@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { UserDetailsProps } from "@/app/lib/definitions";
+import Image from "next/image";
 import BackgroundReflection from "@/public/background-reflection.jpg";
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import BookingDetails from "@/app/ui/user/bookings/BookingDetails";
-import Breadcrumbs from "@/app/ui/Breadcrumbs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import BookingDetails from "@/app/ui/user/bookings/BookingDetails";
+import Breadcrumbs from "@/app/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
    title: "Booking",

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { clsx } from "clsx";
 import { BreadcrumbProps } from "@/app/lib/definitions";
+import Link from "next/link";
 
 const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: BreadcrumbProps[] }) => {
    return (

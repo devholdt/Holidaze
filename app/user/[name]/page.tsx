@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
-import Hero from "@/app/ui/hero";
-import Breadcrumbs from "@/app/ui/Breadcrumbs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ProfileDetails } from "@/app/ui/user/ProfileDetails";
+import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
+import Hero from "@/app/ui/hero";
+import Breadcrumbs from "@/app/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
    title: "Profile",

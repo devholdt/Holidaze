@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ButtonProps, LinkButtonProps } from "@/app/lib/definitions";
+import Link from "next/link";
 
 const Button: React.FC<ButtonProps> = ({
    text,

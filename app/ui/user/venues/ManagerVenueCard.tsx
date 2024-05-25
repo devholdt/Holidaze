@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
 import { ManagerVenueCardProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
+import { formatNumber } from "@/app/lib/utils";
+import Image from "next/image";
+import backgroundReflection from "@/public/background-reflection.jpg";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import RenderStars from "@/app/ui/venues/RenderStars";
@@ -56,7 +57,10 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
                <hr className="my-4 border-[1px] text-grey" />
                <div className="mb-4 flex justify-between font-extralight">
                   <p>
-                     <span className="font-normal">£{venue.price}</span> / night
+                     <span className="font-normal">
+                        £{formatNumber(venue.price)}
+                     </span>{" "}
+                     / night
                   </p>
                   <p>
                      max <span className="font-normal">{venue.maxGuests}</span>{" "}

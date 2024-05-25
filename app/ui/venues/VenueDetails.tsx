@@ -1,16 +1,16 @@
 "use client";
 
+import { Suspense } from "react";
 import { elMessiri } from "@/app/ui/fonts";
+import { formatDate, formatNumber } from "@/app/lib/utils";
 import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
 import Form from "@/app/ui/venues/BookingForm";
-import { formatDate } from "@/app/lib/utils";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
-import { Suspense } from "react";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 import Cookies from "js-cookie";
 import RenderStars from "@/app/ui/venues/RenderStars";
+import backgroundReflection from "@/public/background-reflection.jpg";
 
 const VenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
@@ -70,8 +70,10 @@ const VenueDetails = ({ id }: { id: string }) => {
                   </p>
                   <div className="mb-4 flex gap-2 font-extralight xs:gap-4">
                      <p>
-                        <span className="font-normal">£{venue.price}</span> /
-                        night
+                        <span className="font-normal">
+                           £{formatNumber(venue.price)}
+                        </span>{" "}
+                        / night
                      </p>
                      <span className="font-medium">|</span>
                      <p>

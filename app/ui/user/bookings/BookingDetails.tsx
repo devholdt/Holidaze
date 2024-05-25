@@ -1,7 +1,7 @@
 "use client";
 
 import { elMessiri } from "@/app/ui/fonts";
-import { formatDate } from "@/app/lib/utils";
+import { formatDate, formatNumber } from "@/app/lib/utils";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import Subheading from "@/app/ui/subheading";
@@ -89,7 +89,9 @@ const BookingDetails = ({ id }: { id: string }) => {
 
                <div className="mb-4 flex gap-2 font-extralight">
                   <p>
-                     <span className="font-normal">£{booking.venue.price}</span>{" "}
+                     <span className="font-normal">
+                        £{formatNumber(booking.venue.price)}
+                     </span>{" "}
                      / night
                   </p>
                   |

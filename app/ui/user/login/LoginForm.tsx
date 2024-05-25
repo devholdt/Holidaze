@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { handleLoginSubmit } from "@/app/lib/actions";
+import Link from "next/link";
 
 export default function LoginForm() {
    return (

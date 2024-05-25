@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
 import { elMessiri } from "@/app/ui/fonts";
-import Link from "next/link";
-import { formatDate } from "@/app/lib/utils";
-import useImageSource from "@/app/lib/hooks/useImageSource";
+import { formatDate, formatNumber } from "@/app/lib/utils";
 import { BookingCardProps } from "@/app/lib/definitions";
+import Image from "next/image";
+import Link from "next/link";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 import RenderStars from "@/app/ui/venues/RenderStars";
+import backgroundReflection from "@/public/background-reflection.jpg";
 
 const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
    const [imgSrc, setImgSrc] = useImageSource(booking);
@@ -66,7 +66,9 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                <hr className="mb-4 border-[1px] text-grey" />
                <div className="mb-4 flex justify-between font-extralight">
                   <p>
-                     <span className="font-normal">£{booking.venue.price}</span>{" "}
+                     <span className="font-normal">
+                        £{formatNumber(booking.venue.price)}
+                     </span>{" "}
                      / night
                   </p>
                   <p>

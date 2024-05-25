@@ -1,20 +1,20 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
+import { useState, useMemo } from "react";
 import {
    loggedOutMenuItems,
    customerMenuItems,
    managerMenuItems,
 } from "@/app/lib/constants";
 import { MenuItemProps } from "@/app/lib/definitions";
-import dynamic from "next/dynamic";
-import BackgroundReflection from "@/public/background-reflection.jpg";
-import logoWhite from "@/public/logo-white.svg";
-import Logo from "@/app/ui/Logo";
 import { LinkButton } from "@/app/ui/buttons";
 import { slide as Menu } from "react-burger-menu";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import Logo from "@/app/ui/Logo";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
+import logoWhite from "@/public/logo-white.svg";
+import BackgroundReflection from "@/public/background-reflection.jpg";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 const UserDetails = dynamic(() => import("@/app/ui/user/UserDetails"));

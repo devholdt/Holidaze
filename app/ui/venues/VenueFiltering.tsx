@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { VenueFilterProps, FilterCategories } from "@/app/lib/definitions";
 import {
    Accordion,

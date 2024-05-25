@@ -1,11 +1,11 @@
 "use client";
 
-import useFetchUserByName from "@/app/lib/hooks/useFetchUserByName";
+import { useEffect } from "react";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import { elMessiri } from "@/app/ui/fonts";
-import Image from "next/image";
 import { ProfileDetailsProps } from "@/app/lib/definitions";
-import { useEffect } from "react";
+import useFetchUserByName from "@/app/lib/hooks/useFetchUserByName";
+import Image from "next/image";
 
 export const ProfileDetails: React.FC<ProfileDetailsProps> = ({ name }) => {
    const userData = useFetchUserByName(name);

@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/app/ui/buttons";
+import { VenueListProps, VenueProps } from "@/app/lib/definitions";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
-import { VenueListProps, VenueProps } from "@/app/lib/definitions";
-import { useRouter } from "next/navigation";
 import VenueFiltering from "@/app/ui/venues/VenueFiltering";
 
 const VenueList: React.FC<VenueListProps> = ({

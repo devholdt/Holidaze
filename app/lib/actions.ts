@@ -6,8 +6,8 @@ import {
    bookingSchema,
    alert,
 } from "@/app/lib/utils";
-import Cookies from "js-cookie";
 import { z } from "zod";
+import Cookies from "js-cookie";
 
 const fetchData = async (
    url: string,

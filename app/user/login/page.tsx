@@ -1,9 +1,9 @@
 import { Metadata } from "next";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import LoginForm from "@/app/ui/user/login/LoginForm";
 import Logo from "@/app/ui/Logo";
 import logoBlack from "@/public/logo-black.svg";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
    title: "Login",

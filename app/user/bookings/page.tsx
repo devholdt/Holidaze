@@ -1,9 +1,9 @@
 import { Metadata } from "next";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import Hero from "@/app/ui/hero";
 import BookingsList from "@/app/ui/user/bookings/BookingsList";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
    title: "Bookings",

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useMemo, useRef, useEffect } from "react";
-import Link from "next/link";
 import {
    loggedOutMenuItems,
    customerMenuItems,
    managerMenuItems,
 } from "@/app/lib/constants";
 import { MenuItemProps } from "@/app/lib/definitions";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import UserDetails from "@/app/ui/user/UserDetails";

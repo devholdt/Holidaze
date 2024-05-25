@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, Suspense, lazy } from "react";
+import { useCallback, useMemo, Suspense, lazy, forwardRef } from "react";
 import { DateRangeProps } from "@/app/lib/definitions";
 
 const DatePicker = lazy(() => import("react-datepicker"));
@@ -79,7 +79,7 @@ export default function DateRange({
       [calculateMaxEndDate, setDateRange]
    );
 
-   const CustomInput = React.forwardRef<
+   const CustomInput = forwardRef<
       HTMLButtonElement,
       { value?: string; onClick?: () => void }
    >(({ value, onClick }, ref) => {

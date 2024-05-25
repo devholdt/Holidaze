@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import ModalContent from "@/app/ui/ModalContent";
 import { ModalProps } from "@/app/lib/definitions";
+import ModalContent from "@/app/ui/ModalContent";
 
 const Modal = ({ modal, textContent, buttonStyles }: ModalProps) => {
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

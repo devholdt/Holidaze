@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { LogoutProps } from "@/app/lib/definitions";
 import { logout } from "@/app/lib/auth/logout";
-import { useState } from "react";
 
 const LogoutModal: React.FC<LogoutProps> = ({ hideModal }) => {
    const [errorMessage, setErrorMessage] = useState<string | null>(null);

@@ -1,17 +1,17 @@
 "use client";
 
+import { useEffect } from "react";
 import { elMessiri } from "@/app/ui/fonts";
-import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
-import Subheading from "@/app/ui/subheading";
 import { formatDate } from "@/app/lib/utils";
 import { BookingProps } from "@/app/lib/definitions";
-import Link from "next/link";
-import useImageSource from "@/app/lib/hooks/useImageSource";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import Image from "next/image";
+import Subheading from "@/app/ui/subheading";
+import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
-import { useEffect } from "react";
+import backgroundReflection from "@/public/background-reflection.jpg";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 

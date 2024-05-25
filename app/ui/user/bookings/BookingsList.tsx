@@ -1,10 +1,10 @@
 "use client";
 
+import { BookingListProps } from "@/app/lib/definitions";
 import Link from "next/link";
 import useFetchBookingsByUser from "@/app/lib/hooks/useFetchBookingsByUser";
 import BookingCard from "@/app/ui/user/bookings/BookingCard";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
-import { BookingListProps } from "@/app/lib/definitions";
 
 const BookingsList: React.FC<BookingListProps> = ({ name }) => {
    const { user, loading: userLoading } = useFetchLoggedInUser();
