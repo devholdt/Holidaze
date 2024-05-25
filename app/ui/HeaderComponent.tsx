@@ -10,12 +10,13 @@ import UserDropdown from "@/app/ui/user/UserDropdown";
 const HeaderComponent = () => {
    return (
       <header
+         className="sticky top-0 z-max w-full px-6 py-4 shadow md:px-10"
          style={{
             backgroundImage: `url(${waterImg.src})`,
             backgroundSize: "cover",
          }}
       >
-         <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-8">
+         <div className="m-auto flex max-w-7xl items-center justify-between">
             <Link href="/">
                <Logo src={logoWhite} styles="max-w-[160px]" />
             </Link>
