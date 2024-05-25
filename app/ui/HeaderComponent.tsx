@@ -15,7 +15,7 @@ const HeaderComponent = () => {
             backgroundSize: "cover",
          }}
       >
-         <div className="m-auto flex max-w-7xl items-center justify-between px-10 py-8">
+         <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-8">
             <Link href="/">
                <Logo src={logoWhite} styles="max-w-[160px]" />
             </Link>

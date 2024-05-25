@@ -75,7 +75,7 @@ const BurgerMenu = () => {
          width={"100%"}
       >
          <div
-            className="mb-6 h-[180px] bg-cover bg-center p-8"
+            className="mb-6 h-[180px] bg-cover bg-center p-6"
             style={{ backgroundImage: `url(${BackgroundReflection.src})` }}
          >
             <div className="flex h-full flex-col justify-between">
