@@ -76,6 +76,11 @@ export interface VenueListProps {
    venuePage?: boolean;
 }
 
+export interface VenueFilterProps {
+   venues: VenueProps[];
+   setFilteredVenues: React.Dispatch<React.SetStateAction<VenueProps[]>>;
+}
+
 export interface MenuItemProps {
    title: string;
    route?: string;
@@ -198,6 +203,8 @@ export type HeroProps = {
    text?: string;
    styles?: string;
 };
+
+export type FilterCategories = "continents" | "prices" | "ratings";
 
 export enum FormAction {
    Register = "register",

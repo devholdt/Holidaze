@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { VenueProps } from "@/app/lib/definitions";
+import { VenueFilterProps, FilterCategories } from "@/app/lib/definitions";
 import {
    Accordion,
    AccordionItem,
@@ -7,13 +7,6 @@ import {
    AccordionItemButton,
    AccordionItemPanel,
 } from "react-accessible-accordion";
-
-interface VenueFilterProps {
-   venues: VenueProps[];
-   setFilteredVenues: React.Dispatch<React.SetStateAction<VenueProps[]>>;
-}
-
-type FilterCategory = "continents" | "prices" | "ratings";
 
 const VenueFiltering: React.FC<VenueFilterProps> = ({
    venues,
@@ -102,7 +95,7 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
 
    const handleFilterChange = (
       e: React.ChangeEvent<HTMLInputElement>,
-      category: FilterCategory
+      category: FilterCategories
    ) => {
       const value =
          category === "ratings" ? parseInt(e.target.value) : e.target.value;
