@@ -32,6 +32,7 @@ const CreateVenueForm = () => {
                name="name"
                placeholder="Enter venue name"
                className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               required
             />
          </div>
 
@@ -40,29 +41,25 @@ const CreateVenueForm = () => {
                <label className="text-dark" htmlFor="city">
                   City
                </label>
-               <div className="relative">
-                  <input
-                     type="text"
-                     id="city"
-                     name="city"
-                     placeholder="Enter venue city"
-                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
-               </div>
+               <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="Enter venue city"
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               />
             </div>
             <div className="mb-4">
                <label className="text-dark" htmlFor="country">
                   Country
                </label>
-               <div className="relative">
-                  <input
-                     type="text"
-                     id="country"
-                     name="country"
-                     placeholder="Enter venue country"
-                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
-               </div>
+               <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  placeholder="Enter venue country"
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               />
             </div>
          </div>
 
@@ -76,6 +73,7 @@ const CreateVenueForm = () => {
                   name="description"
                   placeholder="Enter description"
                   className="h-full min-h-[120px] w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  required
                />
             </div>
 
@@ -91,6 +89,7 @@ const CreateVenueForm = () => {
                         name="price"
                         placeholder="£0.00"
                         className="w-full max-w-[70px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                        required
                      />
                   </div>
                </div>
@@ -107,6 +106,7 @@ const CreateVenueForm = () => {
                            name="maxGuests"
                            placeholder="1"
                            className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                           required
                         />
                      </div>
                   </div>

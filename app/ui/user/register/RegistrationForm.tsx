@@ -65,6 +65,9 @@ export default function RegistrationForm() {
                   checked={isChecked}
                   onChange={handleChange}
                   className="h-4 w-4 cursor-pointer"
+                  name="venueManager"
+                  id="venueManager"
+                  value="venueManager"
                />
                <span className="ms-1">Register as Venue Manager</span>
             </label>

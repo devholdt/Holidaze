@@ -38,23 +38,6 @@ export async function POST(req: NextRequest) {
          user: userData,
       });
 
-      response.cookies.set("user", JSON.stringify(userData.data), {
-         path: "/",
-         httpOnly: true,
-         maxAge: 60 * 60 * 24 * 7,
-      });
-
-      response.cookies.set("accessToken", userData.data.accessToken, {
-         path: "/",
-         httpOnly: true,
-         maxAge: 60 * 60 * 24 * 7,
-      });
-
-      response.cookies.set("name", userData.data.name, {
-         path: "/",
-         maxAge: 60 * 60 * 24 * 7,
-      });
-
       return response;
    } catch (error) {
       console.error("Authentication failed:", error);

@@ -7,8 +7,6 @@ import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.jpg";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 
-import { formatDate } from "@/app/lib/utils";
-
 const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
    venue,
    onClick,
@@ -32,7 +30,6 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
             height={600}
             className="h-[240px] rounded-t-xl object-cover object-center"
          />
-
          <div className="rounded-b-xl bg-white px-6 py-4">
             <h2
                className={`${elMessiri.className} truncate text-4xl lg:text-3xl`}
@@ -52,7 +49,7 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
                   {venue.location.city && venue.location.country && (
                      <span>, </span>
                   )}
-                  {venue.location.country ? `${venue.location.country}` : ""}
+                  {venue.location.country ? venue.location.country : ""}
                   {!venue.location.city && !venue.location.country && (
                      <span className="font-light">N/A</span>
                   )}

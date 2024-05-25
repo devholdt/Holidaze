@@ -82,21 +82,14 @@ const EditVenueForm = () => {
       }));
    };
 
-   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      editVenue(event, venueId);
-   };
-
    return (
       <form
-         onSubmit={handleSubmit}
+         onSubmit={(event) => editVenue(event, venueId)}
          className="flex h-full max-w-[480px] flex-col justify-center"
       >
          <h4 className="text-center text-2xl font-extralight uppercase tracking-widest">
             Edit venue
          </h4>
-
-         <div className="alert-container my-4"></div>
 
          <div className="mb-4">
             <label className="text-dark" htmlFor="name">
@@ -328,6 +321,8 @@ const EditVenueForm = () => {
          >
             Delete venue
          </button>
+
+         <div className="alert-container"></div>
       </form>
    );
 };

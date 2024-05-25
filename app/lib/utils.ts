@@ -47,6 +47,12 @@ export const venueSchema = z.object({
       .lte(100, { message: "At most 100 guests are allowed" }),
 });
 
+export const bookingSchema = z.object({
+   dateFrom: z.string().min(10, { message: "Invalid date" }),
+   dateTo: z.string().min(10, { message: "Invalid date" }),
+   guests: z.number().min(1, { message: "At least 1 guest is required" }),
+});
+
 export const editProfileSchema = z.object({
    url: z.string().url({ message: "Invalid URL" }),
    alt: z

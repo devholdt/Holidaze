@@ -38,9 +38,9 @@ export const ProfileDetails: React.FC<ProfileDetailsProps> = ({ name }) => {
                <Image
                   src={user.avatar?.url ?? ""}
                   alt={user.avatar?.alt ?? ""}
-                  width={200}
-                  height={200}
-                  className="h-[160px] w-[160px] rounded-full object-cover"
+                  width={300}
+                  height={300}
+                  className="h-[160px] w-[160px] rounded-full"
                />
 
                <div className="text-center md:text-left">

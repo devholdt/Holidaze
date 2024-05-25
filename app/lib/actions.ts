@@ -1,78 +1,149 @@
 import {
-   FormAction,
-   CreateBookingProps,
-   CreateVenueProps,
-   EditAvatarProps,
-   EditBannerProps,
-} from "@/app/lib/definitions";
-import {
    loginSchema,
    registerSchema,
    venueSchema,
    editProfileSchema,
+   bookingSchema,
    alert,
 } from "@/app/lib/utils";
-import { loginAuth, registerAuth } from "@/app/lib/auth/authenticate";
 import Cookies from "js-cookie";
+import { z } from "zod";
 
-export const handleRegisterSubmit = async (
-   event: React.FormEvent<HTMLFormElement>,
-   isChecked: boolean = false
+const fetchData = async (
+   url: string,
+   options: RequestInit,
+   successMessage: string,
+   redirectUrl: string
 ) => {
-   event.preventDefault();
-   const formData = new FormData(event.currentTarget);
-
-   let formValues: { [key: string]: FormDataEntryValue | boolean } =
-      Object.fromEntries(formData.entries());
-
-   formValues.venueManager = isChecked;
-
-   const parsedValues = {
-      name: formValues.name as string,
-      email: formValues.email as string,
-      password: formValues.password as string,
-      venueManager: formValues.venueManager as boolean,
-   };
-
-   const result = registerSchema.safeParse(parsedValues);
-
-   if (!result.success) {
-      const errorMessages = result.error.errors
-         .map((error: any) => error.message)
-         .join(", ");
-      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
-   }
-
    try {
-      const registrationResponse = await registerAuth(formData, isChecked);
+      const response = await fetch(url, options);
+      const json = await response.json();
 
-      alert("success", registrationResponse.message, ".alert-container");
-      try {
-         await loginAuth(formData);
-
-         setTimeout(() => {
-            location.href = "/";
-         }, 2000);
-      } catch (loginError: any) {
-         alert("error", loginError.message, ".alert-container");
+      if (!response.ok) {
+         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
+         alert("error", errorText, ".alert-container");
+         throw new Error(errorText);
       }
+
+      alert("success", successMessage, ".alert-container");
+      setTimeout(() => {
+         window.location.href = redirectUrl;
+      }, 2000);
+      return json.data;
    } catch (error: any) {
-      alert("error", error.message, ".alert-container");
+      alert("error", `${error}`, ".alert-container");
+      throw error;
    }
 };
 
-export const handleLoginSubmit = async (
-   event: React.FormEvent<HTMLFormElement>
+const handleSubmit = async (
+   event: React.FormEvent<HTMLFormElement>,
+   schema: any,
+   apiEndpoint: string,
+   successMessage: string,
+   redirectUrl: string,
+   method: string = "POST",
+   formType: string
 ) => {
    event.preventDefault();
    const formData = new FormData(event.currentTarget);
+   const formEntries = Object.fromEntries(formData.entries());
 
-   const formValues = {
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-   };
+   let formValues: any = {};
 
-   const result = loginSchema.safeParse(formValues);
+   switch (formType) {
+      case "createVenue":
+      case "editVenue":
+         formValues = {
+            name: formEntries.name as string,
+            description: formEntries.description as string,
+            media: [],
+            price: Number(formEntries.price),
+            maxGuests: Number(formEntries.maxGuests),
+            rating: Number(formEntries.rating || 0),
+            meta: {
+               wifi: formEntries.wifi === "on",
+               parking: formEntries.parking === "on",
+               breakfast: formEntries.breakfast === "on",
+               pets: formEntries.pets === "on",
+            },
+            location: {
+               city: formEntries.city as string,
+               country: formEntries.country as string,
+            },
+         };
+
+         if (formEntries.url || formEntries.alt) {
+            formValues.media.push({
+               url: formEntries.url ?? "",
+               alt: formEntries.alt ?? "",
+            });
+         }
+         break;
+
+      case "createBooking":
+      case "editBooking":
+         formValues = {
+            dateFrom: formEntries.dateFrom,
+            dateTo: formEntries.dateTo,
+            guests: Number(formEntries.guests),
+            venueId: formEntries.venueId,
+         };
+         break;
+
+      case "register":
+         formValues = {
+            name: formEntries.name as string,
+            email: formEntries.email as string,
+            password: formEntries.password as string,
+            venueManager: formEntries.venueManager === "venueManager",
+         };
+         break;
+
+      case "login":
+         formValues = {
+            email: formEntries.email as string,
+            password: formEntries.password as string,
+         };
+         break;
+
+      case "editProfileAvatar":
+         formValues = {
+            avatar: {
+               url: formEntries.url as string,
+               alt: formEntries.alt as string,
+            },
+         };
+         break;
+
+      case "editProfileBanner":
+         formValues = {
+            banner: {
+               url: formEntries.url as string,
+               alt: formEntries.alt as string,
+            },
+         };
+         break;
+
+      default:
+         formValues = formEntries;
+         break;
+   }
+
+   const dynamicSchema =
+      formType === "editProfileAvatar" || formType === "editProfileBanner"
+         ? z.object({
+              [formType === "editProfileAvatar" ? "avatar" : "banner"]:
+                 z.object({
+                    url: z.string().url({ message: "Invalid URL" }),
+                    alt: z.string().min(3, {
+                       message: "Alt text must be at least 3 characters long",
+                    }),
+                 }),
+           })
+         : schema;
+
+   const result = dynamicSchema.safeParse(formValues);
 
    if (!result.success) {
       const errorMessages = result.error.errors
@@ -83,31 +154,8 @@ export const handleLoginSubmit = async (
    }
 
    try {
-      const response = await loginAuth(formData);
-
-      alert("success", response.message, ".alert-container");
-
-      setTimeout(() => {
-         location.href = "/";
-      }, 2000);
-   } catch (error: any) {
-      alert("error", error.message, ".alert-container");
-   }
-};
-
-export const createBooking = async (
-   event: React.FormEvent<HTMLFormElement>
-) => {
-   event.preventDefault();
-
-   const data = new FormData(event.currentTarget);
-   const formValues: CreateBookingProps = Object.fromEntries(data.entries());
-
-   formValues.guests = Number(formValues.guests);
-
-   try {
-      const response = await fetch("/api/bookings", {
-         method: "POST",
+      const response = await fetch(apiEndpoint, {
+         method,
          headers: {
             "Content-Type": "application/json",
          },
@@ -122,386 +170,187 @@ export const createBooking = async (
          throw new Error(errorText);
       }
 
-      const booking = json.data;
+      alert("success", successMessage, ".alert-container");
 
-      alert(
-         "success",
-         `Booking successful! <br /> <span class="font-light">Click <a href="/user/bookings/${booking.id}" class="underline font-medium">here</a> to view.</span>`,
-         ".alert-container"
-      );
+      if (formType === "register") {
+         const loginResponse = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+               email: formValues.email,
+               password: formValues.password,
+            }),
+         });
 
-      return booking;
-   } catch (error) {
-      alert("error", `${error}`, ".alert-container");
-      throw error;
+         const loginJson = await loginResponse.json();
+
+         if (!loginResponse.ok) {
+            const errorText = `${loginJson.statusCode} (${loginJson.status}) - ${loginJson.errors[0].message}`;
+            alert("error", errorText, ".alert-container");
+            throw new Error(errorText);
+         }
+
+         alert(
+            "success",
+            "Successfully registered and logged in!",
+            ".alert-container"
+         );
+
+         setTimeout(() => {
+            window.location.href = redirectUrl;
+         }, 2000);
+      } else {
+         setTimeout(() => {
+            window.location.href = redirectUrl;
+         }, 2000);
+      }
+   } catch (error: any) {
+      alert("error", error.message, ".alert-container");
    }
+};
+
+export const handleRegisterSubmit = async (
+   event: React.FormEvent<HTMLFormElement>,
+   isChecked: boolean
+) => {
+   const formData = new FormData(event.currentTarget);
+   formData.set("venueManager", isChecked ? "true" : "false");
+
+   await handleSubmit(
+      event,
+      registerSchema,
+      "/api/auth/register",
+      "Successfully registered! <br /> Logging in...",
+      "/",
+      "POST",
+      "register"
+   );
+};
+
+export const handleLoginSubmit = async (
+   event: React.FormEvent<HTMLFormElement>
+) => {
+   await handleSubmit(
+      event,
+      loginSchema,
+      "/api/auth/login",
+      "Successfully logged in! <br /> Welcome back!",
+      "/",
+      "POST",
+      "login"
+   );
+};
+
+export const createBooking = async (
+   event: React.FormEvent<HTMLFormElement>
+) => {
+   await handleSubmit(
+      event,
+      bookingSchema,
+      "/api/bookings",
+      "Booking successfully created! <br /> Redirecting to bookings...",
+      "/user/bookings",
+      "POST",
+      "createBooking"
+   );
 };
 
 export const editBooking = async (
    event: React.FormEvent<HTMLFormElement>,
    id: string
 ) => {
-   event.preventDefault();
-
-   const data = new FormData(event.currentTarget);
-   const formValues: any = Object.fromEntries(data.entries());
-
-   formValues.guests = Number(formValues.guests);
-
-   try {
-      const response = await fetch(`/api/bookings/${id}`, {
-         method: "PUT",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(formValues),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-         alert("error", errorText, ".alert-container");
-         throw new Error(errorText);
-      }
-
-      const booking = json.data;
-
-      alert("success", `Booking successfully edited!`, ".alert-container");
-
-      setTimeout(() => {
-         window.location.href = `/user/bookings/${booking.id}`;
-      }, 2000);
-
-      return booking;
-   } catch (error) {
-      alert("error", `${error}`, ".alert-container");
-      throw error;
-   }
+   await handleSubmit(
+      event,
+      bookingSchema,
+      `/api/bookings/${id}`,
+      "Booking successfully edited! <br /> Redirecting to booking...",
+      `/user/bookings/${id}`,
+      "PUT",
+      "editBooking"
+   );
 };
 
 export const deleteBooking = async (id: string) => {
    if (confirm("Are you sure you want to delete this booking?") === true) {
-      const response = await fetch(`/api/bookings/${id}`, {
-         method: "DELETE",
-      });
-
-      if (!response.ok) {
-         throw new Error("An error occurred while deleting the booking");
-      }
-
-      alert("success", `Booking successfully deleted!`, ".alert-container");
-
-      setTimeout(() => {
-         window.location.href = "/user/bookings";
-      }, 2000);
+      await fetchData(
+         `/api/bookings/${id}`,
+         {
+            method: "DELETE",
+         },
+         "Booking successfully deleted! <br /> Redirecting to bookings...",
+         "/user/bookings"
+      );
    }
 };
 
 export const createVenue = async (event: React.FormEvent<HTMLFormElement>) => {
-   event.preventDefault();
-
-   const data = new FormData(event.currentTarget);
-   const formValues: CreateVenueProps = {
-      name: data.get("name") as string,
-      description: data.get("description") as string,
-      media: [],
-      price: Number(data.get("price")),
-      maxGuests: Number(data.get("maxGuests")),
-      rating: Number(data.get("rating") || 0),
-      meta: {
-         wifi: data.get("wifi") === "wifi",
-         parking: data.get("parking") === "parking",
-         breakfast: data.get("breakfast") === "breakfast",
-         pets: data.get("pets") === "pets",
-      },
-      location: {
-         city: data.get("city") as string,
-         country: data.get("country") as string,
-      },
-   };
-
-   const mediaUrl = data.get("url") as string;
-   const mediaAlt = data.get("alt") as string;
-
-   if (mediaUrl || mediaAlt) {
-      formValues.media?.push({ url: mediaUrl ?? "", alt: mediaAlt ?? "" });
-   }
-
-   const parsedValues = {
-      name: formValues.name,
-      description: formValues.description,
-      price: formValues.price,
-      maxGuests: formValues.maxGuests,
-   };
-
-   const result = venueSchema.safeParse(parsedValues);
-
-   if (!result.success) {
-      const errorMessages = result.error.errors
-         .map((error: any) => error.message)
-         .join(", ");
-      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
-      return;
-   }
-
-   try {
-      const response = await fetch("/api/venues", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(formValues),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-         const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-         alert("error", errorText, ".alert-container");
-         throw new Error(errorText);
-      }
-
-      const venue = json.data;
-
-      alert(
-         "success",
-         `Venue successfully created! <br /> <span class="font-light">Click <a href="/user/venues/${venue.id}" class="underline font-medium">here</a> to view.</span>`,
-         ".alert-container"
-      );
-
-      return venue;
-   } catch (error) {
-      alert("error", `${error}`, ".alert-container");
-      throw error;
-   }
+   await handleSubmit(
+      event,
+      venueSchema,
+      "/api/venues",
+      "Venue successfully created! <br /> Redirecting to venues...",
+      "/user/venues",
+      "POST",
+      "createVenue"
+   );
 };
 
 export const editVenue = async (
    event: React.FormEvent<HTMLFormElement>,
    id: string
 ) => {
-   event.preventDefault();
-
-   const data = new FormData(event.currentTarget);
-   const formValues: CreateVenueProps = {
-      name: data.get("name") as string,
-      description: data.get("description") as string,
-      media: [],
-      price: Number(data.get("price")),
-      maxGuests: Number(data.get("maxGuests")),
-      rating: Number(data.get("rating") || 0),
-      meta: {
-         wifi: data.get("wifi") === "wifi",
-         parking: data.get("parking") === "parking",
-         breakfast: data.get("breakfast") === "breakfast",
-         pets: data.get("pets") === "pets",
-      },
-      location: {
-         city: data.get("city") as string,
-         country: data.get("country") as string,
-      },
-   };
-
-   const mediaUrl = data.get("url") as string;
-   const mediaAlt = data.get("alt") as string;
-
-   if (mediaUrl || mediaAlt) {
-      formValues.media?.push({ url: mediaUrl ?? "", alt: mediaAlt ?? "" });
-   }
-
-   const parsedValues = {
-      name: formValues.name as string,
-      description: formValues.description as string,
-      price: formValues.price as number,
-      maxGuests: formValues.maxGuests as number,
-   };
-
-   const result = venueSchema.safeParse(parsedValues);
-
-   if (!result.success) {
-      const errorMessages = result.error.errors
-         .map((error: any) => error.message)
-         .join(", ");
-      alert("error", `Validation error - ${errorMessages}`, ".alert-container");
-      return;
-   }
-
-   try {
-      const response = await fetch(`/api/venues/${id}`, {
-         method: "PUT",
-         body: JSON.stringify(formValues),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-         alert("error", json.message, ".alert-container");
-         throw new Error(json.message);
-      }
-
-      const venue = json.data;
-
-      alert("success", "Venue successfully edited!", ".alert-container");
-
-      setTimeout(() => {
-         window.location.href = `/user/venues/${venue.id}`;
-      }, 2000);
-
-      return venue;
-   } catch (error) {
-      alert("error", `${error}`, ".alert-container");
-      throw error;
-   }
+   await handleSubmit(
+      event,
+      venueSchema,
+      `/api/venues/${id}`,
+      "Venue successfully edited! <br /> Redirecting to venue...",
+      `/user/venues/${id}`,
+      "PUT",
+      "editVenue"
+   );
 };
 
 export const deleteVenue = async (id: string) => {
    if (confirm("Are you sure you want to delete this venue?") === true) {
-      const response = await fetch(`/api/venues/${id}`, {
-         method: "DELETE",
-      });
-
-      if (!response.ok) {
-         throw new Error("An error occurred while deleting the venue");
-      }
-
-      alert("success", `Venue successfully deleted!`, ".alert-container");
-
-      setTimeout(() => {
-         window.location.href = "/user/venues";
-      }, 2000);
+      await fetchData(
+         `/api/venues/${id}`,
+         {
+            method: "DELETE",
+         },
+         "Venue successfully deleted! <br /> Redirecting to venues...",
+         "/user/venues"
+      );
    }
 };
 
-export const handleEditProfileMedia = async (
-   event: React.FormEvent<HTMLFormElement>,
-   action: FormAction
+export const handleEditProfileAvatar = async (
+   event: React.FormEvent<HTMLFormElement>
 ) => {
-   event.preventDefault();
+   const name = Cookies.get("name");
+   await handleSubmit(
+      event,
+      editProfileSchema,
+      `/api/user/${name}`,
+      "Avatar image successfully changed!",
+      "/",
+      "PUT",
+      "editProfileAvatar"
+   );
+};
 
-   const data = new FormData(event.currentTarget);
-
-   if (action === FormAction.Avatar) {
-      const formValues: EditAvatarProps = {
-         avatar: {
-            url: data.get("url") as string,
-            alt: data.get("alt") as string,
-         },
-      };
-
-      const parsedValues = {
-         url: formValues.avatar.url as string,
-         alt: formValues.avatar.alt as string,
-      };
-
-      const result = editProfileSchema.safeParse(parsedValues);
-
-      if (!result.success) {
-         const errorMessages = result.error.errors
-            .map((error: any) => error.message)
-            .join(", ");
-         alert(
-            "error",
-            `Validation error - ${errorMessages}`,
-            ".alert-container"
-         );
-         return;
-      }
-
-      const name = Cookies.get("name");
-
-      try {
-         const response = await fetch(`/api/user/${name}`, {
-            method: "PUT",
-            body: JSON.stringify(formValues),
-         });
-
-         const json = await response.json();
-
-         if (!response.ok) {
-            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-            alert("error", errorText, ".alert-container");
-            throw new Error(errorText);
-         }
-
-         const profile = json.data;
-
-         alert(
-            "success",
-            "Avatar image successfully changed",
-            ".alert-container"
-         );
-
-         setTimeout(() => {
-            window.location.href = "/";
-         }, 2000);
-
-         return profile;
-      } catch (error) {
-         alert("error", `${error}`, ".alert-container");
-         throw error;
-      }
-   }
-
-   if (action === FormAction.Banner) {
-      const formValues: EditBannerProps = {
-         banner: {
-            url: data.get("url") as string,
-            alt: data.get("alt") as string,
-         },
-      };
-
-      const parsedValues = {
-         url: formValues.banner.url as string,
-         alt: formValues.banner.alt as string,
-      };
-
-      const result = editProfileSchema.safeParse(parsedValues);
-
-      if (!result.success) {
-         const errorMessages = result.error.errors
-            .map((error: any) => error.message)
-            .join(", ");
-         alert(
-            "error",
-            `Validation error - ${errorMessages}`,
-            ".alert-container"
-         );
-         return;
-      }
-
-      const name = Cookies.get("name");
-
-      try {
-         const response = await fetch(`/api/user/${name}`, {
-            method: "PUT",
-            body: JSON.stringify(formValues),
-         });
-
-         const json = await response.json();
-
-         if (!response.ok) {
-            const errorText = `${json.statusCode} (${json.status}) - ${json.errors[0].message}`;
-            alert("error", errorText, ".alert-container");
-            throw new Error(errorText);
-         }
-
-         const profile = json.data;
-
-         alert(
-            "success",
-            "Banner image successfully changed",
-            ".alert-container"
-         );
-
-         setTimeout(() => {
-            window.location.href = "/";
-         }, 2000);
-
-         return profile;
-      } catch (error) {
-         alert("error", `${error}`, ".alert-container");
-         throw error;
-      }
-   }
+export const handleEditProfileBanner = async (
+   event: React.FormEvent<HTMLFormElement>
+) => {
+   const name = Cookies.get("name");
+   await handleSubmit(
+      event,
+      editProfileSchema,
+      `/api/user/${name}`,
+      "Banner image successfully changed!",
+      "/",
+      "PUT",
+      "editProfileBanner"
+   );
 };

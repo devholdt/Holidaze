@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import { useState, useEffect, useCallback } from "react";
 import { StaticImageData } from "next/image";
-import { ImageSourceProps } from "@/app/lib/definitions";
+import {
+   ImageSourceProps,
+   BookingProps,
+   VenueProps,
+} from "@/app/lib/definitions";
 import { defaultImgSrc } from "@/app/lib/utils";
-import { BookingProps, VenueProps } from "@/app/lib/definitions";
+import backgroundReflection from "@/public/background-reflection.jpg";
 
 const useImageSource = <T extends BookingProps | VenueProps>(
    entity: T | null,
@@ -15,10 +18,16 @@ const useImageSource = <T extends BookingProps | VenueProps>(
       backgroundReflection
    );
 
+   const memoizedGetMediaSrc = useCallback(getMediaSrc, [getMediaSrc]);
+
    useEffect(() => {
-      const src = getMediaSrc(entity);
-      setImgSrc(src || backgroundReflection);
-   }, [entity, getMediaSrc]);
+      if (entity) {
+         const src = memoizedGetMediaSrc(entity);
+         setImgSrc(src || backgroundReflection);
+      } else {
+         setImgSrc(backgroundReflection);
+      }
+   }, [entity, memoizedGetMediaSrc]);
 
    return [imgSrc, setImgSrc];
 };

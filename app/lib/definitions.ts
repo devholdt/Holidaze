@@ -132,52 +132,9 @@ export interface LogoutProps {
    hideModal: () => void;
 }
 
-export interface EditProfileMediaFormProps {
-   type: string;
-   action: FormAction;
-}
-
-export interface CreateBookingProps {
-   [key: string]: FormDataEntryValue | number;
-}
-
-export interface CreateVenueProps {
-   name: string;
-   description: string;
-   media?: { url: string; alt: string }[];
-   price: number;
-   maxGuests: number;
-   rating: number;
-   meta: {
-      wifi: boolean;
-      parking: boolean;
-      breakfast: boolean;
-      pets: boolean;
-   };
-   location: {
-      city: string;
-      country: string;
-   };
-}
-
 export interface ProfileDetailsProps {
    name: string;
 }
-
-export interface EditAvatarProps {
-   avatar: {
-      url: string;
-      alt: string;
-   };
-}
-
-export interface EditBannerProps {
-   banner: {
-      url: string;
-      alt: string;
-   };
-}
-
 export interface BreadcrumbProps {
    label: string;
    href: string;
@@ -229,10 +186,3 @@ export type HeroProps = {
 };
 
 export type FilterCategories = "continents" | "prices" | "ratings";
-
-export enum FormAction {
-   Register = "register",
-   Login = "login",
-   Avatar = "avatar",
-   Banner = "banner",
-}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { UserProps } from "@/app/lib/definitions";
 
 const useFetchUserByName = (name: string) => {
@@ -26,7 +26,7 @@ const useFetchUserByName = (name: string) => {
          setLoading(false);
       }
       fetchUser();
-   }, []);
+   }, [name]);
 
    return { user, loading };
 };

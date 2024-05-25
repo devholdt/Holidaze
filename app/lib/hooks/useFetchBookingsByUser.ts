@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { BookingProps } from "@/app/lib/definitions";
 
 const useFetchBookingsByUser = () => {

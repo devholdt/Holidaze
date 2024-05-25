@@ -20,9 +20,9 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
             <Image
                src={user.avatar?.url ?? BackgroundReflection.src}
                alt={user.avatar?.alt ?? "User avatar"}
-               width={200}
-               height={200}
-               className="h-[72px] w-[72px] rounded-full border border-grey"
+               width={300}
+               height={300}
+               className="h-[72px] w-[72px] rounded-full border border-grey object-cover object-center"
             />
             <div className="flex flex-col items-center xs:items-start">
                <div className="flex items-start text-3xl font-medium">
