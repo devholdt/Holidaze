@@ -11,10 +11,15 @@ export const metadata: Metadata = {
 };
 
 export default function Page({ params }: { params: { name: string } }) {
-   const name = cookies().get("name");
+   const nameData = cookies().get("name");
+   const name = cookies().get("name")?.value.toLowerCase();
 
-   if (!name) {
+   if (!nameData) {
       redirect("/user/login");
+   }
+
+   if (name === params.name) {
+      redirect("/user/venues");
    }
 
    return (
