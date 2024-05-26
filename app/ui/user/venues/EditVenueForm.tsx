@@ -56,7 +56,7 @@ const EditVenueForm = () => {
             };
          }
 
-         if (name === "city" || name === "country") {
+         if (name === "city" || name === "country" || name === "continent") {
             return {
                ...prevVenue,
                location: {
@@ -116,100 +116,110 @@ const EditVenueForm = () => {
                <label className="text-body" htmlFor="city">
                   City
                </label>
-               <div className="relative">
-                  <input
-                     type="text"
-                     id="city"
-                     name="city"
-                     placeholder="Enter venue city"
-                     value={venue.location.city || ""}
-                     onChange={handleChange}
-                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
-               </div>
+
+               <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="Enter venue city"
+                  value={venue.location.city || ""}
+                  onChange={handleChange}
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               />
             </div>
             <div className="mb-4">
                <label className="text-body" htmlFor="country">
                   Country
                </label>
-               <div className="relative">
-                  <input
-                     type="text"
-                     id="country"
-                     name="country"
-                     placeholder="Enter venue country"
-                     value={venue.location.country || ""}
-                     onChange={handleChange}
-                     className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  />
-               </div>
+
+               <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  placeholder="Enter venue country"
+                  value={venue.location.country || ""}
+                  onChange={handleChange}
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               />
+            </div>
+            <div className="mb-4">
+               <label className="text-body" htmlFor="continent">
+                  Continent
+               </label>
+               <input
+                  type="text"
+                  id="continent"
+                  name="continent"
+                  placeholder="Enter continent"
+                  value={venue.location.continent || ""}
+                  onChange={handleChange}
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               />
             </div>
          </div>
 
-         <div className="mb-4 flex flex-col gap-4 xs:flex-row">
-            <div className="flex flex-col">
-               <label className="text-body" htmlFor="description">
-                  Description
+         <div className="mb-4 flex flex-col">
+            <label className="text-body" htmlFor="description">
+               Description
+            </label>
+            <textarea
+               id="description"
+               name="description"
+               placeholder="Enter description"
+               value={venue.description || ""}
+               onChange={handleChange}
+               className="h-full min-h-[120px] w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+               required
+            />
+         </div>
+
+         <div className="flex flex-col xs:flex-row xs:gap-4">
+            <div className="mb-4">
+               <label className="text-body" htmlFor="price">
+                  Price
                </label>
-               <textarea
-                  id="description"
-                  name="description"
-                  placeholder="Enter description"
-                  value={venue.description || ""}
+               <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  placeholder="£0.00"
+                  value={venue.price || 1}
                   onChange={handleChange}
-                  className="h-full min-h-[120px] w-full resize-none rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                  required
                />
             </div>
 
-            <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
-               <div>
-                  <label htmlFor="price">Price</label>
-                  <div className="relative">
-                     <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        placeholder="£0.00"
-                        value={venue.price || 1}
-                        onChange={handleChange}
-                        className="w-full rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
-                     />
-                  </div>
-               </div>
+            <div className="mb-4">
+               <label className="text-body" htmlFor="maxGuests">
+                  Max guests
+               </label>
+               <input
+                  type="number"
+                  id="maxGuests"
+                  name="maxGuests"
+                  placeholder="1"
+                  value={venue.maxGuests || 1}
+                  onChange={handleChange}
+                  className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                  required
+               />
+            </div>
 
-               <div className="flex gap-4">
-                  <div>
-                     <label htmlFor="maxGuests">Max guests</label>
-                     <div className="relative">
-                        <input
-                           type="number"
-                           id="maxGuests"
-                           name="maxGuests"
-                           placeholder="1"
-                           value={venue.maxGuests || 1}
-                           onChange={handleChange}
-                           className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
-                        />
-                     </div>
-                  </div>
-
-                  <div>
-                     <label htmlFor="rating">Rating</label>
-                     <div className="relative">
-                        <input
-                           type="number"
-                           id="rating"
-                           name="rating"
-                           min="0"
-                           max="5"
-                           placeholder="0"
-                           value={venue?.rating || 0}
-                           onChange={handleChange}
-                           className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
-                        />
-                     </div>
-                  </div>
-               </div>
+            <div className="mb-4">
+               <label className="text-body" htmlFor="rating">
+                  Rating
+               </label>
+               <input
+                  type="number"
+                  id="rating"
+                  name="rating"
+                  placeholder="0"
+                  value={venue?.rating || 0}
+                  onChange={handleChange}
+                  className="w-full max-w-[60px] rounded bg-background px-1 py-3 text-center outline-green placeholder:text-grey"
+                  required
+               />
             </div>
          </div>
 

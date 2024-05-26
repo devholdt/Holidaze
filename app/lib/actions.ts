@@ -70,6 +70,7 @@ const handleSubmit = async (
             location: {
                city: formEntries.city as string,
                country: formEntries.country as string,
+               continent: formEntries.continent as string,
             },
          };
 

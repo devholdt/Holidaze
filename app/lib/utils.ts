@@ -45,6 +45,9 @@ export const venueSchema = z.object({
       .number()
       .gte(1, { message: "At least 1 guest is required" })
       .lte(100, { message: "At most 100 guests are allowed" }),
+   rating: z.number().gte(0, { message: "Rating must be at least 0" }).lte(5, {
+      message: "Rating must be at most 5",
+   }),
 });
 
 export const bookingSchema = z.object({
