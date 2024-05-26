@@ -32,7 +32,7 @@ const EditProfileMediaForm = () => {
                   name="url"
                   ref={mediaUrlRef}
                   placeholder="Enter URL"
-                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
+                  className="w-full rounded-s bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
                <button
                   type="button"

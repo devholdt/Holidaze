@@ -21,7 +21,13 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
       ratings: new Set<number>(),
    });
 
-   useEffect(() => {
+   const [checkedFilters, setCheckedFilters] = useState({
+      continents: {} as Record<string, boolean>,
+      prices: {} as Record<string, boolean>,
+      ratings: {} as Record<number, boolean>,
+   });
+
+   const filterVenues = () => {
       let results = [...venues];
 
       if (searchTerm) {
@@ -39,21 +45,18 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
       if (filters.prices.size > 0) {
          results = results.filter((venue) => {
             const price = venue.price;
-            if (filters.prices.has("< 100") && price < 100) return true;
-            if (filters.prices.has("100 - 200") && price >= 100 && price <= 200)
-               return true;
-            if (filters.prices.has("200 - 500") && price >= 200 && price <= 500)
-               return true;
-            if (filters.prices.has("500-1000") && price >= 500 && price <= 1000)
-               return true;
-            if (
-               filters.prices.has("1000-2000") &&
-               price >= 1000 &&
-               price <= 2000
-            )
-               return true;
-            if (filters.prices.has("> 2000") && price > 2000) return true;
-            return false;
+            const priceRanges = [
+               { range: "< 100", min: 0, max: 100 },
+               { range: "100 - 200", min: 100, max: 200 },
+               { range: "200 - 500", min: 200, max: 500 },
+               { range: "500-1000", min: 500, max: 1000 },
+               { range: "1000-2000", min: 1000, max: 2000 },
+               { range: "> 2000", min: 2000, max: Infinity },
+            ];
+
+            return priceRanges.some(({ range, min, max }) => {
+               return filters.prices.has(range) && price >= min && price < max;
+            });
          });
       }
 
@@ -61,27 +64,32 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
          results = results.filter((venue) => filters.ratings.has(venue.rating));
       }
 
+      return results;
+   };
+
+   const sortVenues = (venues: any[]) => {
       switch (sortOption) {
          case "Latest":
-            results.sort(
+            return venues.sort(
                (a, b) =>
                   new Date(b.created).getTime() - new Date(a.created).getTime()
             );
-            break;
          case "Oldest":
-            results.sort(
+            return venues.sort(
                (a, b) =>
                   new Date(a.created).getTime() - new Date(b.created).getTime()
             );
-            break;
          case "Popular":
-            results.sort((a, b) => b.bookings.length - a.bookings.length);
-            break;
+            return venues.sort((a, b) => b.bookings.length - a.bookings.length);
          default:
-            break;
+            return venues;
       }
+   };
 
-      setFilteredVenues(results);
+   useEffect(() => {
+      const filteredVenues = filterVenues();
+      const sortedVenues = sortVenues(filteredVenues);
+      setFilteredVenues(sortedVenues);
    }, [searchTerm, sortOption, filters, venues, setFilteredVenues]);
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,14 +107,39 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
    ) => {
       const value =
          category === "ratings" ? parseInt(e.target.value) : e.target.value;
+      const isChecked = e.target.checked;
+
       setFilters((prevFilters) => {
          const newFilters = { ...prevFilters };
-         if (e.target.checked) {
+         if (isChecked) {
             (newFilters[category] as Set<any>).add(value);
          } else {
             (newFilters[category] as Set<any>).delete(value);
          }
          return newFilters;
+      });
+
+      setCheckedFilters((prevCheckedFilters) => {
+         const newCheckedFilters = { ...prevCheckedFilters };
+         newCheckedFilters[category] = {
+            ...newCheckedFilters[category],
+            [value]: isChecked,
+         };
+         return newCheckedFilters;
+      });
+   };
+
+   const handleResetFilters = () => {
+      setFilters({
+         continents: new Set<string>(),
+         prices: new Set<string>(),
+         ratings: new Set<number>(),
+      });
+
+      setCheckedFilters({
+         continents: {},
+         prices: {},
+         ratings: {},
       });
    };
 
@@ -160,7 +193,7 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                   </AccordionItemButton>
                </AccordionItemHeading>
                <AccordionItemPanel>
-                  <div className="border-b border-yellow p-4">
+                  <div className="flex justify-between gap-4 border-b border-yellow p-4">
                      <div className="flex flex-col gap-5">
                         <div className="flex flex-col gap-2 font-light">
                            <p className="font-normal">Continent:</p>
@@ -185,6 +218,11 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                                           className="h-4 w-4 cursor-pointer"
                                           onChange={(e) =>
                                              handleFilterChange(e, "continents")
+                                          }
+                                          checked={
+                                             !!checkedFilters.continents[
+                                                continent
+                                             ]
                                           }
                                        />
                                        <span className="ms-1">{continent}</span>
@@ -217,6 +255,9 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                                           onChange={(e) =>
                                              handleFilterChange(e, "prices")
                                           }
+                                          checked={
+                                             !!checkedFilters.prices[priceRange]
+                                          }
                                        />
                                        <span className="ms-1">
                                           {priceRange}
@@ -243,6 +284,9 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                                           onChange={(e) =>
                                              handleFilterChange(e, "ratings")
                                           }
+                                          checked={
+                                             !!checkedFilters.ratings[rating]
+                                          }
                                        />
                                        <span className="ms-1">{rating}</span>
                                     </label>
@@ -250,6 +294,14 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
                               ))}
                            </div>
                         </div>
+                     </div>
+                     <div>
+                        <button
+                           className="bg-red px-3 py-1 font-light uppercase tracking-wider text-white hover:bg-darkRed"
+                           onClick={handleResetFilters}
+                        >
+                           Reset
+                        </button>
                      </div>
                   </div>
                </AccordionItemPanel>
