@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Hero from "@/app/ui/Hero";
+import Hero from "@/app/ui/HeroComponent";
 import BookingsList from "@/app/ui/user/bookings/BookingsList";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
 

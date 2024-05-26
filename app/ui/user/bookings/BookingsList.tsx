@@ -1,7 +1,7 @@
 "use client";
 
 import { BookingListProps } from "@/app/lib/definitions";
-import { LinkButton } from "@/app/ui/Buttons";
+import { LinkButton } from "@/app/ui/ButtonComponents";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import useFetchBookingsByUser from "@/app/lib/hooks/useFetchBookingsByUser";
 import BookingCard from "@/app/ui/user/bookings/BookingCard";

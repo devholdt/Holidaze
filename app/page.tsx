@@ -1,15 +1,16 @@
 import { elMessiri } from "@/app/ui/fonts";
-import { LinkButton } from "@/app/ui/Buttons";
+import { LinkButton } from "@/app/ui/ButtonComponents";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import dynamic from "next/dynamic";
 import Logo from "@/app/ui/Logo";
 import Subheading from "@/app/ui/Subheading";
-import waterImg from "@/public/texture-water-lighter.jpg";
+import waterImg from "@/public/texture-water-lighter.avif";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
-import Hero from "@/app/ui/Hero";
+import Hero from "@/app/ui/HeroComponent";
 
 const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
-   loading: () => <p>Loading...</p>,
+   loading: () => <LoadingSpinner />,
 });
 
 const Page = () => {

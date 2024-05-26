@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ProfileDetails } from "@/app/ui/user/ProfileDetails";
-import Hero from "@/app/ui/Hero";
+import Hero from "@/app/ui/HeroComponent";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
 
 export const metadata: Metadata = {

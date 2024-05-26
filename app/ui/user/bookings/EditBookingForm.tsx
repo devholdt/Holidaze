@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import DateRange from "@/app/ui/venues/DateRange";
-import { Button } from "@/app/ui/Buttons";
+import { Button } from "@/app/ui/ButtonComponents";
 import { formatDateISO } from "@/app/lib/utils";
 import { usePathname } from "next/navigation";
 import { BookingProps } from "@/app/lib/definitions";

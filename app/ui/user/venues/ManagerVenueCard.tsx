@@ -4,7 +4,7 @@ import { ManagerVenueCardProps } from "@/app/lib/definitions";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import RenderStars from "@/app/ui/venues/RenderStars";

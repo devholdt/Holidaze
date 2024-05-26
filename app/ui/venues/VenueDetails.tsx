@@ -10,7 +10,7 @@ import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 import Cookies from "js-cookie";
 import RenderStars from "@/app/ui/venues/RenderStars";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 
 const VenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
@@ -34,14 +34,15 @@ const VenueDetails = ({ id }: { id: string }) => {
    return (
       <Suspense fallback={<div>Loading...</div>}>
          <div className="mx-1 mb-4 xs:mx-4">
-            <div className="relative mb-4 h-80">
+            <div className="relative mb-4">
                <Image
                   src={imgSrc}
                   alt={venue.media?.[0]?.alt || "Venue image"}
                   onError={() => setImgSrc(backgroundReflection)}
-                  fill
-                  unoptimized
-                  className="z-1 object-cover object-center drop-shadow"
+                  width={1000}
+                  height={1000}
+                  className="h-80 w-full object-cover object-center drop-shadow"
+                  priority={true}
                />
             </div>
 

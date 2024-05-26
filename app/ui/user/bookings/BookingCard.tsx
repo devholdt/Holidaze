@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import RenderStars from "@/app/ui/venues/RenderStars";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 
 const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
    const [imgSrc, setImgSrc] = useImageSource(booking);
@@ -23,7 +23,6 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
-            unoptimized
             className="h-[200px] rounded-t-xl object-cover object-center"
          />
          <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">

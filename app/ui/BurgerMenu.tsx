@@ -7,14 +7,14 @@ import {
    managerMenuItems,
 } from "@/app/lib/constants";
 import { MenuItemProps } from "@/app/lib/definitions";
-import { LinkButton } from "@/app/ui/Buttons";
+import { LinkButton } from "@/app/ui/ButtonComponents";
 import { slide as Menu } from "react-burger-menu";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Logo from "@/app/ui/Logo";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import logoWhite from "@/public/logo-white.svg";
-import BackgroundReflection from "@/public/background-reflection.jpg";
+import BackgroundReflection from "@/public/background-reflection.avif";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 const UserDetails = dynamic(() => import("@/app/ui/user/UserDetails"));

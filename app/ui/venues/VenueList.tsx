@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/app/ui/Buttons";
+import { Button } from "@/app/ui/ButtonComponents";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";

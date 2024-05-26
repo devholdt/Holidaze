@@ -1,9 +1,9 @@
 import "@/app/ui/globals.css";
 import { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
-import { ScrollButton } from "@/app/ui/Buttons";
-import Footer from "@/app/ui/Footer";
-import HeaderComponent from "@/app/ui/HeaderComponent";
+import { ScrollButton } from "@/app/ui/ButtonComponents";
+import Footer from "@/app/ui/FooterComponent";
+import Header from "@/app/ui/HeaderComponent";
 
 export const metadata: Metadata = {
    title: {
@@ -21,7 +21,7 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body className={`${robotoFlex.className} bg-lighterGrey antialiased`}>
-            <HeaderComponent />
+            <Header />
             {children}
             <ScrollButton />
             <Footer />

@@ -15,7 +15,7 @@ const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: BreadcrumbProps[] }) => {
                   className={clsx(
                      breadcrumb.active
                         ? "text-body"
-                        : "hover:text-body text-grey transition"
+                        : "hover:text-body text-darkGrey transition"
                   )}
                >
                   <Link href={breadcrumb.href}>{breadcrumb.label}</Link>

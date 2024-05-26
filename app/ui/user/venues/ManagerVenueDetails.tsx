@@ -11,7 +11,7 @@ import Subheading from "@/app/ui/Subheading";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
@@ -40,14 +40,14 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
    return (
       <div className="mx-1 mb-4 xs:mx-4">
          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="relative min-h-80 w-full md:w-6/12">
+            <div className="relative md:w-6/12">
                <Image
                   src={imgSrc}
                   alt={venue?.media?.[0]?.alt || "Venue image"}
                   onError={() => setImgSrc(backgroundReflection)}
-                  fill
-                  unoptimized
-                  className="object-cover object-center"
+                  width={1000}
+                  height={1000}
+                  className="h-80 w-full object-cover object-center drop-shadow md:h-[480px] "
                   priority={true}
                />
             </div>

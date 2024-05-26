@@ -3,7 +3,7 @@
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 import Subheading from "@/app/ui/Subheading";
 import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
@@ -28,14 +28,14 @@ const BookingDetails = ({ id }: { id: string }) => {
    return (
       <div className="mx-1 mb-4 xs:mx-4">
          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="relative min-h-80 w-full md:w-6/12">
+            <div className="relative md:w-6/12">
                <Image
                   src={imgSrc}
                   alt={booking?.venue?.media?.[0]?.alt || "Venue image"}
                   onError={() => setImgSrc(backgroundReflection)}
-                  fill
-                  unoptimized
-                  className="max-h-[800px] object-cover object-center"
+                  width={1000}
+                  height={1000}
+                  className="h-80 w-full object-cover object-center md:h-[480px]"
                   priority={true}
                />
             </div>

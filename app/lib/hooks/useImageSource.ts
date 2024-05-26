@@ -8,7 +8,7 @@ import {
    VenueProps,
 } from "@/app/lib/definitions";
 import { defaultImgSrc } from "@/app/lib/utils";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 
 const useImageSource = <T extends BookingProps | VenueProps>(
    entity: T | null,

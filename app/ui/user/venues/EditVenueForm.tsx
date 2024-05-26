@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/app/ui/Buttons";
+import { Button } from "@/app/ui/ButtonComponents";
 import { editVenue, deleteVenue } from "@/app/lib/actions";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 

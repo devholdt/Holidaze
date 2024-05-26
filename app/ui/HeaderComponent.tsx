@@ -3,11 +3,11 @@
 import Link from "next/link";
 import Logo from "@/app/ui/Logo";
 import logoWhite from "@/public/logo-white.svg";
-import waterImg from "@/public/texture-water-sm.jpg";
+import waterImg from "@/public/texture-water-sm.avif";
 import BurgerMenu from "@/app/ui/BurgerMenu";
 import UserDropdown from "@/app/ui/user/UserDropdown";
 
-const HeaderComponent = () => {
+const Header = () => {
    return (
       <header
          className="sticky top-0 z-max w-full px-6 py-4 shadow md:px-10"
@@ -51,4 +51,4 @@ const HeaderComponent = () => {
    );
 };
 
-export default HeaderComponent;
+export default Header;

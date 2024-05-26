@@ -2,7 +2,7 @@
 
 import { UserDetailsProps } from "@/app/lib/definitions";
 import Image from "next/image";
-import BackgroundReflection from "@/public/background-reflection.jpg";
+import BackgroundReflection from "@/public/background-reflection.avif";
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
    if (!user) {

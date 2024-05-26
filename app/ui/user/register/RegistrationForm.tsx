@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/app/ui/Buttons";
+import { Button } from "@/app/ui/ButtonComponents";
 import { handleRegisterSubmit } from "@/app/lib/actions";
 import Link from "next/link";
 

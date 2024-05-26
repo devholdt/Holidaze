@@ -4,7 +4,7 @@ import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import { VenueProps } from "@/app/lib/definitions";
 import Image from "next/image";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 
 const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({

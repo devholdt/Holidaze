@@ -81,6 +81,7 @@ const UserDropdown = () => {
       <div className="relative" ref={dropdownRef}>
          <button
             className="text-body flex items-center gap-2 rounded-full bg-white p-2"
+            aria-label="User dropdown"
             onClick={() => setIsOpen(!isOpen)}
          >
             <span className="text-body icon-[mdi--menu] h-6 w-8"></span>

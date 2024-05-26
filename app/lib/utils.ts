@@ -2,7 +2,7 @@ import { iconCheck, iconXmark } from "@/public/icons";
 import { StaticImageData } from "next/image";
 import { BookingProps, VenueProps } from "@/app/lib/definitions";
 import { z } from "zod";
-import backgroundReflection from "@/public/background-reflection.jpg";
+import backgroundReflection from "@/public/background-reflection.avif";
 
 export const loginSchema = z.object({
    email: z.string().email({ message: "Invalid email address" }),

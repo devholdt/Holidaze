@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { createBooking } from "@/app/lib/actions";
-import { Button } from "@/app/ui/Buttons";
+import { Button } from "@/app/ui/ButtonComponents";
 import { BookingFormProps } from "@/app/lib/definitions";
 import { formatDateISO } from "@/app/lib/utils";
 import DateRange from "@/app/ui/venues/DateRange";
