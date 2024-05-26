@@ -43,14 +43,14 @@ const BookingDetails = ({ id }: { id: string }) => {
 
             <div className="md:w-6/12">
                <div className="flex items-start justify-between">
-                  <div className="flex flex-col">
+                  <div className="flex max-w-[90%] flex-col">
                      <Subheading
                         text="Your destination"
                         left=""
                         right="w-14 ms-2"
                      />
                      <h1
-                        className={`${elMessiri.className} break-words text-[9vw] tracking-wide  md:text-[4.7vw] lg:text-5xl`}
+                        className={`${elMessiri.className} break-words text-[9vw] tracking-wide md:text-[4.7vw] lg:text-5xl`}
                      >
                         {booking.venue.name}
                      </h1>
