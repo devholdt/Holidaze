@@ -1,9 +1,18 @@
 "use client";
 
+import { useRef } from "react";
 import { Button } from "@/app/ui/ButtonComponents";
 import { handleEditProfileAvatar } from "@/app/lib/actions";
 
 const EditProfileMediaForm = () => {
+   const mediaUrlRef = useRef<HTMLInputElement>(null);
+
+   const clearMediaUrl = () => {
+      if (mediaUrlRef.current) {
+         mediaUrlRef.current.value = "";
+      }
+   };
+
    return (
       <form
          onSubmit={(event) => handleEditProfileAvatar(event)}
@@ -16,14 +25,22 @@ const EditProfileMediaForm = () => {
             <label className="text-body" htmlFor="url">
                Avatar URL
             </label>
-            <div className="relative">
+            <div className="flex">
                <input
-                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                   id="url"
                   type="text"
                   name="url"
+                  ref={mediaUrlRef}
                   placeholder="Enter URL"
+                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
                />
+               <button
+                  type="button"
+                  onClick={clearMediaUrl}
+                  className="clear-button text-body rounded-e border border-lightGrey px-3 hover:bg-background"
+               >
+                  Clear
+               </button>
             </div>
          </div>
          <div className="mb-8">
