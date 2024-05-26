@@ -3,7 +3,7 @@ import { elMessiri } from "@/app/ui/fonts";
 import { HeroProps } from "@/app/lib/definitions";
 import Image from "next/image";
 import Subheading from "@/app/ui/Subheading";
-import backgroundImage from "@/public/background-beach.jpg";
+import backgroundImage from "@/public/background-beach-weppy.webp";
 
 const Hero: React.FC<HeroProps> = ({
    heading,
