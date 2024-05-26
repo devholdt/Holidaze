@@ -2,8 +2,8 @@ import { SubheadingProps } from "@/app/lib/definitions";
 
 const Subheading: React.FC<SubheadingProps> = ({
    text,
-   left = "w-20 me-2",
-   right = "w-20 ms-2",
+   left = "w-[80px] me-2",
+   right = "w-[80px] ms-2",
 }) => {
    return (
       <div className="flex flex-row items-center">
