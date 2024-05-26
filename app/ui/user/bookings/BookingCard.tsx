@@ -24,15 +24,15 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             width={800}
             height={600}
             unoptimized
-            className="h-[200px] max-h-[240px] rounded-t-xl object-cover object-center"
+            className="h-[200px] rounded-t-xl object-cover object-center"
          />
          <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
             <div>
-               <h2
+               <h3
                   className={`${elMessiri.className} mt-4 truncate text-3xl font-medium md:text-4xl`}
                >
                   {booking.venue.name}
-               </h2>
+               </h3>
                <p className="mb-4 break-words font-light">
                   {booking.venue.location.city
                      ? booking.venue?.location.city

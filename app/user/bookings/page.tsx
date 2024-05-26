@@ -30,6 +30,7 @@ export default function Page() {
             ]}
          />
          <Hero heading="Bookings" headingLevel={1} subheading="Your upcoming" />
+
          <BookingsList name={nameValue ?? ""} />
       </main>
    );

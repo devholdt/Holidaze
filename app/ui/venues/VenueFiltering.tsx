@@ -111,7 +111,7 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
    };
 
    return (
-      <div className="my-8 w-full">
+      <div className="mb-8 w-full">
          <div className="mb-2 flex flex-col gap-4 xs:flex-row sm:gap-8">
             <div className="flex w-full flex-col">
                <label htmlFor="searchbar">Search:</label>

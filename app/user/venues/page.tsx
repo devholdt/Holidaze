@@ -3,10 +3,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Hero from "@/app/ui/Hero";
 import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
-import dynamic from "next/dynamic";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
+// import dynamic from "next/dynamic";
 
-const Modal = dynamic(() => import("@/app/ui/Modal"));
+// const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 export const metadata: Metadata = {
    title: "Your Venues",
@@ -39,13 +39,16 @@ export default function Page() {
          />
          <Hero heading="Venues" headingLevel={1} subheading="Your" />
 
-         <div className="mb-4 mt-8 flex justify-center">
+         {/* <div className="mb-4 mt-8 flex w-full flex-col items-center justify-center gap-2 bg-white py-4 shadow">
+            <h2 className="text-center text-lg font-light uppercase tracking-wider text-blue sm:text-xl">
+               Be the curator of someones next adventure
+            </h2>
             <Modal
                modal="Create venue"
                textContent="Create venue"
-               buttonStyles="px-8 py-3 text-lg font-extralight uppercase tracking-widest transition bg-brown text-white hover:bg-darkBrown"
+               buttonStyles="px-8 py-3 w-max text-lg font-extralight uppercase tracking-widest transition bg-brown text-white hover:bg-darkBrown"
             />
-         </div>
+         </div> */}
 
          <ManagerVenueList name={nameValue ?? ""} />
       </main>

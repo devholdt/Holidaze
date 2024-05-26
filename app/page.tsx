@@ -28,7 +28,7 @@ const Page = () => {
          <div className="border-x border-lightGrey">
             <Hero
                heading="Holidaze Resorts"
-               headingLevel={2}
+               headingLevel={1}
                subheading="Welcome"
                text="Explore our global collection of exquisite resorts, each
                   offering a unique sanctuary of peace and luxury. Dive into
@@ -39,7 +39,7 @@ const Page = () => {
             <div className="mt-36 flex flex-col items-center">
                <div className="mb-12 flex flex-col items-center px-4 text-center">
                   <h2
-                     className={`${elMessiri.className} text-3xl leading-tight xs:text-4xl`}
+                     className={`${elMessiri.className} text-3xl leading-tight xs:text-5xl`}
                   >
                      Bookings & Venues
                   </h2>

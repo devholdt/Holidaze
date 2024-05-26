@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { elMessiri } from "@/app/ui/fonts";
 import Hero from "@/app/ui/Hero";
 import dynamic from "next/dynamic";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
@@ -26,6 +27,11 @@ export default function Page() {
             ]}
          />
          <Hero heading="Venues" headingLevel={1} />
+         <h2
+            className={`${elMessiri.className} mx-8 mb-2 mt-8 text-center text-xl font-light uppercase tracking-widest text-blue sm:text-2xl`}
+         >
+            Find your next adventure
+         </h2>
          <div className="mb-36 flex flex-col items-center">
             <VenueList venuePage={true} />
          </div>

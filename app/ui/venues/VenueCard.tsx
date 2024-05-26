@@ -31,11 +31,11 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
             className="h-[240px] rounded-t-xl object-cover object-center"
          />
          <div className="rounded-b-xl bg-white px-6 py-4">
-            <h2
+            <h3
                className={`${elMessiri.className} truncate text-4xl lg:text-3xl`}
             >
                {venue.name}
-            </h2>
+            </h3>
             <hr className="mb-2 mt-1" />
             <div className="flex flex-col justify-between">
                <p className="text-nowrap font-light">

@@ -28,15 +28,15 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
             height={600}
-            className="h-full max-h-[240px] rounded-t-xl object-cover object-center"
+            className="h-[200px] rounded-t-xl object-cover object-center"
          />
          <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
             <div>
-               <h2
-                  className={`${elMessiri.className} mt-4 text-4xl font-medium md:text-5xl`}
+               <h3
+                  className={`${elMessiri.className} mt-4 text-3xl font-medium md:text-4xl`}
                >
                   {venue.name}
-               </h2>
+               </h3>
                <p className="mb-4 font-light">
                   {venue.location.city ? venue.location.city : ""}
                   {venue.location.city && venue.location.country && (
