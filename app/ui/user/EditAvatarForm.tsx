@@ -13,7 +13,7 @@ const EditProfileMediaForm = () => {
             Change avatar
          </h4>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="url">
+            <label className="text-body" htmlFor="url">
                Avatar URL
             </label>
             <div className="relative">
@@ -27,7 +27,7 @@ const EditProfileMediaForm = () => {
             </div>
          </div>
          <div className="mb-8">
-            <label className="text-dark" htmlFor="alt">
+            <label className="text-body" htmlFor="alt">
                Alt text
             </label>
             <div className="relative">

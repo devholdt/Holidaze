@@ -54,7 +54,7 @@ const ModalContent = ({ modalContent, hideModal }: ModalContentProps) => {
          <div className="relative m-2 h-full w-full overflow-auto xs:w-auto">
             <button
                onClick={hideModal}
-               className="absolute right-0 top-0 m-1 px-2 py-1 text-xl font-bold text-dark hover:text-black"
+               className="text-body absolute right-0 top-0 m-1 px-2 py-1 text-xl font-bold hover:text-black"
             >
                &#x2715;
             </button>

@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({
 
    return (
       <div
-         className={`relative z-10 flex h-64 flex-col justify-center border-y border-white p-0 text-dark xs:p-12 md:h-80 md:p-28 ${styles}`}
+         className={`text-body relative z-10 flex h-64 flex-col justify-center border-y border-white p-0 xs:p-12 md:h-80 md:p-28 ${styles}`}
       >
          <Image
             src={backgroundImage.src}

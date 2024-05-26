@@ -7,7 +7,7 @@ export default function LoginForm() {
    return (
       <form className="w-full max-w-[320px]" onSubmit={handleLoginSubmit}>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="email">
+            <label className="text-body" htmlFor="email">
                Email
             </label>
             <div className="relative">
@@ -21,7 +21,7 @@ export default function LoginForm() {
             </div>
          </div>
          <div className="mb-8">
-            <label className="text-dark" htmlFor="password">
+            <label className="text-body" htmlFor="password">
                Password
             </label>
             <div className="relative">

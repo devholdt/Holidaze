@@ -62,10 +62,10 @@ const handleSubmit = async (
             maxGuests: Number(formEntries.maxGuests),
             rating: Number(formEntries.rating || 0),
             meta: {
-               wifi: formEntries.wifi === "on",
-               parking: formEntries.parking === "on",
-               breakfast: formEntries.breakfast === "on",
-               pets: formEntries.pets === "on",
+               wifi: formEntries.wifi === "wifi",
+               parking: formEntries.parking === "parking",
+               breakfast: formEntries.breakfast === "breakfast",
+               pets: formEntries.pets === "pets",
             },
             location: {
                city: formEntries.city as string,

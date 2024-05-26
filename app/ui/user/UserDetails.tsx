@@ -32,7 +32,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
                      <span className="icon-[mdi--check-circle-outline] h-[24px] w-[24px] text-yellow"></span>
                   )}
                </div>
-               <p className="text-sm font-thin text-dark xs:text-base">
+               <p className="text-body text-sm font-thin xs:text-base">
                   {user.email}
                </p>
             </div>

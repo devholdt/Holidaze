@@ -45,7 +45,7 @@ const BurgerMenu = () => {
             <Modal
                modal={item.title}
                textContent={item.title}
-               buttonStyles="py-4 font-light text-center text-dark hover:bg-lighterGrey text-left"
+               buttonStyles="py-4 font-light text-center text-body hover:bg-lighterGrey text-left"
             />
          </>
       ) : (
@@ -54,7 +54,7 @@ const BurgerMenu = () => {
             <Link
                href={item.route ?? ""}
                onClick={() => setMenuOpen(false)}
-               className="py-4 text-center font-light text-dark hover:bg-lighterGrey"
+               className="text-body py-4 text-center font-light hover:bg-lighterGrey"
             >
                {item.title}
             </Link>
@@ -100,7 +100,7 @@ const BurgerMenu = () => {
          <Link
             onClick={closeMenu}
             href="/"
-            className="py-4 text-left text-center font-light text-dark hover:bg-lighterGrey"
+            className="text-body py-4 text-left text-center font-light hover:bg-lighterGrey"
          >
             Home
          </Link>

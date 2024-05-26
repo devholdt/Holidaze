@@ -80,7 +80,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <Modal
                      modal="Edit booking"
                      textContent={
-                        <span className="icon-[mdi--square-edit-outline] h-7 w-7 text-dark"></span>
+                        <span className="text-body icon-[mdi--square-edit-outline] h-7 w-7"></span>
                      }
                   />
                </div>
@@ -116,7 +116,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.wifi ? (
                         <>
-                           <span className="icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
+                           <span className="text-body icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
                            Wifi
                         </>
                      ) : (
@@ -129,7 +129,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.parking ? (
                         <>
-                           <span className="icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
+                           <span className="text-body icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
                            Parking
                         </>
                      ) : (
@@ -142,7 +142,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.breakfast ? (
                         <>
-                           <span className="icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
+                           <span className="text-body icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
                            Breakfast
                         </>
                      ) : (
@@ -155,7 +155,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.pets ? (
                         <>
-                           <span className="icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
+                           <span className="text-body icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
                            Pets allowed
                         </>
                      ) : (

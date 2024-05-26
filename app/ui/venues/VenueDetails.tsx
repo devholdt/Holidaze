@@ -201,7 +201,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                            <p className="mt-4 flex justify-center tracking-wider text-red">
                               <Link
                                  href="/user/login"
-                                 className="me-2 underline hover:text-dark"
+                                 className="hover:text-body me-2 underline"
                               >
                                  Log in
                               </Link>{" "}
@@ -224,7 +224,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                         <p className="text-center text-red">
                            <Link
                               href="/user/login"
-                              className="underline hover:text-dark"
+                              className="hover:text-body underline"
                            >
                               Log in
                            </Link>{" "}

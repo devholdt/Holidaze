@@ -92,7 +92,7 @@ const EditVenueForm = () => {
          </h4>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="name">
+            <label className="text-body" htmlFor="name">
                Venue Name
             </label>
             <input
@@ -108,7 +108,7 @@ const EditVenueForm = () => {
 
          <div className="flex flex-col xs:flex-row xs:gap-4">
             <div className="mb-4">
-               <label className="text-dark" htmlFor="city">
+               <label className="text-body" htmlFor="city">
                   City
                </label>
                <div className="relative">
@@ -124,7 +124,7 @@ const EditVenueForm = () => {
                </div>
             </div>
             <div className="mb-4">
-               <label className="text-dark" htmlFor="country">
+               <label className="text-body" htmlFor="country">
                   Country
                </label>
                <div className="relative">
@@ -143,7 +143,7 @@ const EditVenueForm = () => {
 
          <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
-               <label className="text-dark" htmlFor="description">
+               <label className="text-body" htmlFor="description">
                   Description
                </label>
                <textarea
@@ -158,9 +158,7 @@ const EditVenueForm = () => {
 
             <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
                <div>
-                  <label className="text-dark" htmlFor="price">
-                     Price
-                  </label>
+                  <label htmlFor="price">Price</label>
                   <div className="relative">
                      <input
                         type="number"
@@ -176,9 +174,7 @@ const EditVenueForm = () => {
 
                <div className="flex gap-4">
                   <div>
-                     <label className="text-dark" htmlFor="maxGuests">
-                        Max guests
-                     </label>
+                     <label htmlFor="maxGuests">Max guests</label>
                      <div className="relative">
                         <input
                            type="number"
@@ -193,9 +189,7 @@ const EditVenueForm = () => {
                   </div>
 
                   <div>
-                     <label className="text-dark" htmlFor="rating">
-                        Rating
-                     </label>
+                     <label htmlFor="rating">Rating</label>
                      <div className="relative">
                         <input
                            type="number"
@@ -226,9 +220,7 @@ const EditVenueForm = () => {
                      checked={venue?.meta.wifi || false}
                      onChange={handleCheckboxChange}
                   />
-                  <label className="text-dark" htmlFor="wifi">
-                     Wifi
-                  </label>
+                  <label htmlFor="wifi">Wifi</label>
                </div>
                <div className="flex items-center gap-1">
                   <input
@@ -239,9 +231,7 @@ const EditVenueForm = () => {
                      checked={venue?.meta.parking || false}
                      onChange={handleCheckboxChange}
                   />
-                  <label className="text-dark" htmlFor="parking">
-                     Parking
-                  </label>
+                  <label htmlFor="parking">Parking</label>
                </div>
                <div className="flex items-center gap-1">
                   <input
@@ -252,9 +242,7 @@ const EditVenueForm = () => {
                      checked={venue?.meta.breakfast || false}
                      onChange={handleCheckboxChange}
                   />
-                  <label className="text-dark" htmlFor="breakfast">
-                     Breakfast
-                  </label>
+                  <label htmlFor="breakfast">Breakfast</label>
                </div>
                <div className="flex items-center gap-1">
                   <input
@@ -265,17 +253,13 @@ const EditVenueForm = () => {
                      checked={venue?.meta.pets || false}
                      onChange={handleCheckboxChange}
                   />
-                  <label className="text-dark" htmlFor="pets">
-                     Pets allowed
-                  </label>
+                  <label htmlFor="pets">Pets allowed</label>
                </div>
             </div>
          </fieldset>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="url">
-               Media URL
-            </label>
+            <label htmlFor="url">Media URL</label>
             <div className="flex">
                <input
                   type="text"
@@ -290,7 +274,7 @@ const EditVenueForm = () => {
                <button
                   type="button"
                   onClick={clearMediaUrl}
-                  className="clear-button rounded-e border border-lightGrey px-3 text-dark hover:bg-background"
+                  className="clear-button rounded-e border border-lightGrey px-3 hover:bg-background"
                >
                   Clear
                </button>
@@ -298,9 +282,7 @@ const EditVenueForm = () => {
          </div>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="alt">
-               Alt text
-            </label>
+            <label htmlFor="alt">Alt text</label>
             <input
                type="text"
                id="alt"

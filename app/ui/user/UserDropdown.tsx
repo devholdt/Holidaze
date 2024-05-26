@@ -37,7 +37,7 @@ const UserDropdown = () => {
             <Modal
                modal={item.title}
                textContent={item.title}
-               buttonStyles="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey text-left"
+               buttonStyles="px-4 py-3 font-extralight text-body hover:bg-lighterGrey text-left"
             />
          </>
       ) : (
@@ -48,7 +48,7 @@ const UserDropdown = () => {
             <Link
                href={item.route ?? ""}
                onClick={() => setIsOpen(false)}
-               className="px-4 py-3 font-extralight text-dark hover:bg-lighterGrey"
+               className="text-body px-4 py-3 font-extralight hover:bg-lighterGrey"
             >
                {item.title}
             </Link>
@@ -80,14 +80,14 @@ const UserDropdown = () => {
    return (
       <div className="relative" ref={dropdownRef}>
          <button
-            className="flex items-center gap-2 rounded-full bg-white p-2 text-dark"
+            className="text-body flex items-center gap-2 rounded-full bg-white p-2"
             onClick={() => setIsOpen(!isOpen)}
          >
-            <span className="icon-[mdi--menu] h-6 w-8 text-dark"></span>
-            <span className="icon-[mdi--user-circle] h-6 w-6 text-dark"></span>
+            <span className="text-body icon-[mdi--menu] h-6 w-8"></span>
+            <span className="text-body icon-[mdi--user-circle] h-6 w-6"></span>
          </button>
          <div
-            className={`absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white text-dark shadow-md ${isOpen ? "flex" : "hidden"}`}
+            className={`text-body absolute right-0 top-0 z-30 flex w-max min-w-44 flex-col rounded-3xl bg-white shadow-md ${isOpen ? "flex" : "hidden"}`}
          >
             <button
                onClick={() => setIsOpen(false)}

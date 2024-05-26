@@ -86,7 +86,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                      <Modal
                         modal="Edit venue"
                         textContent={
-                           <span className="icon-[mdi--square-edit-outline] h-7 w-7 text-dark"></span>
+                           <span className="icon-[mdi--square-edit-outline] h-7 w-7"></span>
                         }
                      />
                   )}

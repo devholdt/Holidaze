@@ -23,7 +23,7 @@ const CreateVenueForm = () => {
          </h4>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="name">
+            <label className="text-body" htmlFor="name">
                Venue Name
             </label>
             <input
@@ -38,7 +38,7 @@ const CreateVenueForm = () => {
 
          <div className="flex flex-col xs:flex-row xs:gap-4">
             <div className="mb-4">
-               <label className="text-dark" htmlFor="city">
+               <label className="text-body" htmlFor="city">
                   City
                </label>
                <input
@@ -50,7 +50,7 @@ const CreateVenueForm = () => {
                />
             </div>
             <div className="mb-4">
-               <label className="text-dark" htmlFor="country">
+               <label className="text-body" htmlFor="country">
                   Country
                </label>
                <input
@@ -65,7 +65,7 @@ const CreateVenueForm = () => {
 
          <div className="mb-4 flex flex-col gap-4 xs:flex-row">
             <div className="flex flex-col">
-               <label className="text-dark" htmlFor="description">
+               <label className="text-body" htmlFor="description">
                   Description
                </label>
                <textarea
@@ -79,7 +79,7 @@ const CreateVenueForm = () => {
 
             <div className="flex flex-row gap-4 xs:flex-col xs:gap-2">
                <div>
-                  <label className="text-dark" htmlFor="price">
+                  <label className="text-body" htmlFor="price">
                      Price
                   </label>
                   <div className="relative">
@@ -96,7 +96,7 @@ const CreateVenueForm = () => {
 
                <div className="flex gap-4">
                   <div>
-                     <label className="text-dark" htmlFor="maxGuests">
+                     <label className="text-body" htmlFor="maxGuests">
                         Max guests
                      </label>
                      <div className="relative">
@@ -112,7 +112,7 @@ const CreateVenueForm = () => {
                   </div>
 
                   <div>
-                     <label className="text-dark" htmlFor="rating">
+                     <label className="text-body" htmlFor="rating">
                         Rating
                      </label>
                      <div className="relative">
@@ -136,7 +136,7 @@ const CreateVenueForm = () => {
             <div className="grid grid-cols-2 xs:flex xs:gap-6">
                <div className="flex items-center gap-1">
                   <input type="checkbox" id="wifi" name="wifi" value="wifi" />
-                  <label className="text-dark" htmlFor="wifi">
+                  <label className="text-body" htmlFor="wifi">
                      Wifi
                   </label>
                </div>
@@ -147,7 +147,7 @@ const CreateVenueForm = () => {
                      name="parking"
                      value="parking"
                   />
-                  <label className="text-dark" htmlFor="parking">
+                  <label className="text-body" htmlFor="parking">
                      Parking
                   </label>
                </div>
@@ -158,13 +158,13 @@ const CreateVenueForm = () => {
                      name="breakfast"
                      value="breakfast"
                   />
-                  <label className="text-dark" htmlFor="breakfast">
+                  <label className="text-body" htmlFor="breakfast">
                      Breakfast
                   </label>
                </div>
                <div className="flex items-center gap-1">
                   <input type="checkbox" id="pets" name="pets" value="pets" />
-                  <label className="text-dark" htmlFor="pets">
+                  <label className="text-body" htmlFor="pets">
                      Pets allowed
                   </label>
                </div>
@@ -172,7 +172,7 @@ const CreateVenueForm = () => {
          </fieldset>
 
          <div className="mb-4">
-            <label className="text-dark" htmlFor="url">
+            <label className="text-body" htmlFor="url">
                Media URL
             </label>
             <div className="flex">
@@ -187,14 +187,14 @@ const CreateVenueForm = () => {
                <button
                   type="button"
                   onClick={clearMediaUrl}
-                  className="clear-button rounded-e border border-lightGrey px-3 text-dark hover:bg-background"
+                  className="clear-button text-body rounded-e border border-lightGrey px-3 hover:bg-background"
                >
                   Clear
                </button>
             </div>
          </div>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="alt">
+            <label className="text-body" htmlFor="alt">
                Alt text
             </label>
             <input

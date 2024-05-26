@@ -14,13 +14,13 @@ const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: BreadcrumbProps[] }) => {
                   aria-current={breadcrumb.active}
                   className={clsx(
                      breadcrumb.active
-                        ? "text-dark"
-                        : "text-grey transition hover:text-dark"
+                        ? "text-body"
+                        : "hover:text-body text-grey transition"
                   )}
                >
                   <Link href={breadcrumb.href}>{breadcrumb.label}</Link>
                   {index < breadcrumbs.length - 1 ? (
-                     <span className="mx-3 text-dark md:mx-2">/</span>
+                     <span className="text-body mx-3 md:mx-2">/</span>
                   ) : null}
                </li>
             ))}

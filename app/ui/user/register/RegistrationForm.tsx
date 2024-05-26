@@ -17,7 +17,7 @@ export default function RegistrationForm() {
          onSubmit={(event) => handleRegisterSubmit(event, isChecked)}
       >
          <div className="mb-4">
-            <label className="text-dark" htmlFor="name">
+            <label className="text-body" htmlFor="name">
                Name
             </label>
             <div className="relative">
@@ -31,7 +31,7 @@ export default function RegistrationForm() {
             </div>
          </div>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="email">
+            <label className="text-body" htmlFor="email">
                Email
             </label>
             <div className="relative">
@@ -45,7 +45,7 @@ export default function RegistrationForm() {
             </div>
          </div>
          <div className="mb-4">
-            <label className="text-dark" htmlFor="password">
+            <label className="text-body" htmlFor="password">
                Password
             </label>
             <div className="relative">

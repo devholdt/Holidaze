@@ -17,8 +17,13 @@
    --lighterGrey: #eeeeee;
    --darkGrey: #383840;
    --background: #f1f3f5;
+   --body: #151515;
    --white: #ffffff;
    --black: #000000;
+}
+
+body {
+   color: var(--body);
 }
 
 h1,
@@ -26,6 +31,10 @@ h2,
 h3,
 h4 {
    line-height: 100%;
+}
+
+h1 {
+   color: var(--dark);
 }
 
 .bm-burger-button {

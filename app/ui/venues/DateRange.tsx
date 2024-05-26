@@ -98,7 +98,7 @@ export default function DateRange({
             >
                {displayValue}
             </button>
-            <span className="icon-[mdi--calendar-blank] h-6 w-6 text-dark"></span>
+            <span className="icon-[mdi--calendar-blank] h-6 w-6"></span>
          </div>
       );
    });
