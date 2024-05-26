@@ -19,7 +19,7 @@ export default function Page() {
    }
 
    if (venueManager?.value !== "true") {
-      redirect("/venues");
+      redirect("/user/bookings");
    }
 
    return (

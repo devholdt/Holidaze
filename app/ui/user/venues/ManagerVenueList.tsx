@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ManagerVenueListProps } from "@/app/lib/definitions";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
@@ -10,8 +11,16 @@ import dynamic from "next/dynamic";
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
 const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
+   const [paramName, setParamName] = useState<string>("");
    const { user, loading: userLoading } = useFetchLoggedInUser();
    const { venues, loading: venuesLoading } = useFetchVenuesByUser(name);
+   const isVenueManager = user?.venueManager;
+
+   useEffect(() => {
+      const fullUrl = window.location.href;
+      const lastSegment = fullUrl.split("/").pop();
+      setParamName(lastSegment!);
+   }, []);
 
    if (userLoading || venuesLoading) {
       return (
@@ -47,16 +56,18 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
 
    return (
       <>
-         <div className="mb-4 mt-8 flex w-full flex-col items-center justify-center gap-2 bg-white py-4 shadow">
-            <h2 className="text-center text-lg font-light uppercase tracking-wider text-blue sm:text-xl">
-               Be the curator of someones next adventure
-            </h2>
-            <Modal
-               modal="Create venue"
-               textContent="Create venue"
-               buttonStyles="px-8 py-3 w-max text-lg font-extralight uppercase tracking-widest transition bg-brown text-white hover:bg-darkBrown"
-            />
-         </div>
+         {isVenueManager && paramName === "venues" && (
+            <div className="mb-4 mt-8 flex w-full flex-col items-center justify-center gap-2 bg-white py-4 shadow">
+               <h2 className="text-center text-lg font-light uppercase tracking-wider text-blue sm:text-xl">
+                  Be the curator of someones next adventure
+               </h2>
+               <Modal
+                  modal="Create venue"
+                  textContent="Create venue"
+                  buttonStyles="px-8 py-3 w-max text-lg font-extralight uppercase tracking-widest transition bg-brown text-white hover:bg-darkBrown"
+               />
+            </div>
+         )}
          <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
             {venues.map((venue) => (
                <ManagerVenueCard key={venue.id} venue={venue} user={user!} />
