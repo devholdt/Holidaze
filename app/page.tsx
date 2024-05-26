@@ -3,7 +3,7 @@ import { LinkButton } from "@/app/ui/ButtonComponents";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import dynamic from "next/dynamic";
 import Logo from "@/app/ui/Logo";
-import Subheading from "@/app/ui/Subheading";
+import Subheading from "@/app/ui/subheading";
 import waterImg from "@/public/texture-water-lighter.avif";
 import logoWhiteSubtitle from "@/public/logo-white-subtitle.svg";
 import Hero from "@/app/ui/HeroComponent";

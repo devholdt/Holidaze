@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { HeroProps } from "@/app/lib/definitions";
 import Image from "next/image";
-import Subheading from "@/app/ui/Subheading";
+import Subheading from "@/app/ui/subheading";
 import backgroundImage from "@/public/background-beach.avif";
 
 const Hero: React.FC<HeroProps> = ({
@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({
 
    return (
       <div
-         className={`text-body relative z-10 flex h-64 flex-col justify-center border-y border-white p-0 xs:p-12 md:h-80 md:p-28 ${styles}`}
+         className={`relative z-10 flex h-64 flex-col justify-center border-y border-white p-0 text-body xs:p-12 md:h-80 md:p-28 ${styles}`}
       >
          <Image
             src={backgroundImage.src}

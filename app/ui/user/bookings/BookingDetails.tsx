@@ -5,7 +5,7 @@ import { formatDate, formatNumber } from "@/app/lib/utils";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.avif";
-import Subheading from "@/app/ui/Subheading";
+import Subheading from "@/app/ui/subheading";
 import Link from "next/link";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useImageSource from "@/app/lib/hooks/useImageSource";
@@ -85,7 +85,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <Modal
                      modal="Edit booking"
                      textContent={
-                        <span className="text-body icon-[mdi--square-edit-outline] h-7 w-7"></span>
+                        <span className="icon-[mdi--square-edit-outline] h-7 w-7 text-body"></span>
                      }
                   />
                </div>
@@ -121,7 +121,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.wifi ? (
                         <>
-                           <span className="text-body icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
+                           <span className="icon-[mdi--wifi] h-6 w-6 text-body text-dark"></span>{" "}
                            Wifi
                         </>
                      ) : (
@@ -134,7 +134,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.parking ? (
                         <>
-                           <span className="text-body icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
+                           <span className="icon-[mdi--car] h-6 w-6 text-body text-dark"></span>{" "}
                            Parking
                         </>
                      ) : (
@@ -147,7 +147,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.breakfast ? (
                         <>
-                           <span className="text-body icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
+                           <span className="icon-[mdi--free-breakfast] h-6 w-6 text-body text-dark"></span>{" "}
                            Breakfast
                         </>
                      ) : (
@@ -160,7 +160,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   <p className="flex gap-2">
                      {booking.venue.meta.pets ? (
                         <>
-                           <span className="text-body icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
+                           <span className="icon-[mdi--dog-side] h-6 w-6 text-body text-dark"></span>{" "}
                            Pets allowed
                         </>
                      ) : (
