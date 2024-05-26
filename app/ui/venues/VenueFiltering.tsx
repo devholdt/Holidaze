@@ -111,7 +111,10 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
    };
 
    return (
-      <div className="mb-8 w-full">
+      <div className="mb-8 mt-12 w-full bg-white px-4 pb-4 pt-6 shadow">
+         <h2 className="text-center text-xl font-extralight uppercase tracking-widest text-blue sm:text-3xl sm:font-thin">
+            Find your next adventure
+         </h2>
          <div className="mb-2 flex flex-col gap-4 xs:flex-row sm:gap-8">
             <div className="flex w-full flex-col">
                <label htmlFor="searchbar">Search:</label>

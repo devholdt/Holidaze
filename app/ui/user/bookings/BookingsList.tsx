@@ -33,7 +33,7 @@ const BookingsList: React.FC<BookingListProps> = ({ name }) => {
       return (
          <div className="mt-8 flex w-full flex-col items-center justify-center gap-2 bg-white py-8 font-light shadow">
             <p className="mb-8 mt-4">No bookings found.</p>
-            <h2 className="text-center text-lg font-light uppercase tracking-wider text-blue sm:text-xl">
+            <h2 className="mx-2 text-center text-lg font-light uppercase tracking-wider text-blue sm:text-xl">
                Browse our venues
             </h2>
             <LinkButton text="Venues" targetHref="/venues" />

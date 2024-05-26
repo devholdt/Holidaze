@@ -35,7 +35,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       <Link
          onClick={onClick}
          href={targetHref}
-         className={`px-6 py-3 text-lg font-extralight uppercase tracking-widest transition ${styles} ${
+         className={`mx-2 px-6 py-3 text-center text-lg font-extralight uppercase tracking-widest transition ${styles} ${
             primary
                ? "bg-brown text-white hover:bg-darkBrown"
                : "bg-yellow text-blue hover:bg-darkYellow"

@@ -59,14 +59,14 @@ const VenueList: React.FC<VenueListProps> = ({
    if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
 
    return (
-      <div className="w-full px-2 md:px-8">
+      <>
          {venuePage && (
             <VenueFiltering
                venues={venues}
                setFilteredVenues={setFilteredVenues}
             />
          )}
-         <div className="mb-8 flex flex-col items-center">
+         <div className="mx-2 flex flex-col items-center md:mx-4">
             <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                {filteredVenues.slice(0, limit).map((venue) => (
                   <VenueCard
@@ -84,7 +84,7 @@ const VenueList: React.FC<VenueListProps> = ({
                />
             )}
          </div>
-      </div>
+      </>
    );
 };
 
