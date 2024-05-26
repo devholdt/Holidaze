@@ -55,7 +55,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
 
             <div className="md:w-6/12">
                <div className="flex items-start justify-between">
-                  <div className="flex flex-col">
+                  <div className="flex max-w-[90%] flex-col">
                      <Subheading
                         text={
                            user?.name === venue.owner.name
@@ -66,22 +66,26 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                         right="w-14 ms-2"
                      />
                      <h1
-                        className={`${elMessiri.className} text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
+                        className={`${elMessiri.className} break-words text-[9vw] tracking-wide md:max-w-[440px] md:text-[4.7vw] lg:text-5xl`}
                      >
                         {venue.name}
                      </h1>
-                     <p className="font-light">
-                        {venue.location.city ? venue.location.city : ""}
-                        {venue.location.city && venue.location.country && (
-                           <span>, </span>
-                        )}
-                        {venue.location.country
-                           ? `${venue.location.country}`
-                           : ""}
-                        {!venue.location.city && !venue.location.country && (
-                           <span className="font-light">N/A</span>
-                        )}
-                     </p>
+                     <div className="flex gap-1 font-light">
+                        <p className="truncate">
+                           {venue.location.city ? venue.location.city : ""}
+                           {venue.location.city && venue.location.country && (
+                              <span>, </span>
+                           )}
+                        </p>
+                        <p className="truncate">
+                           {venue.location.country
+                              ? `${venue.location.country}`
+                              : ""}
+                           {!venue.location.city && !venue.location.country && (
+                              <span className="font-light">N/A</span>
+                           )}
+                        </p>
+                     </div>
                   </div>
                   {user?.name === venue.owner.name && (
                      <Modal

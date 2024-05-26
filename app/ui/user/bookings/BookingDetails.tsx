@@ -54,20 +54,24 @@ const BookingDetails = ({ id }: { id: string }) => {
                      >
                         {booking.venue.name}
                      </h1>
-                     <p className="mb-4 break-words font-light">
-                        {booking.venue.location.city
-                           ? booking.venue.location.city
-                           : ""}
-                        {booking.venue.location.city &&
-                           booking.venue.location.country && <span>, </span>}
-                        {booking.venue.location.country
-                           ? `${booking.venue.location.country}`
-                           : ""}
-                        {!booking.venue.location.city &&
-                           !booking.venue.location.country && (
-                              <span className="font-light">N/A</span>
-                           )}
-                     </p>
+                     <div className="mb-4 flex gap-1 break-words font-light">
+                        <p className="truncate">
+                           {booking.venue.location.city
+                              ? booking.venue.location.city
+                              : ""}
+                           {booking.venue.location.city &&
+                              booking.venue.location.country && <span>, </span>}
+                        </p>
+                        <p className="truncate">
+                           {booking.venue.location.country
+                              ? `${booking.venue.location.country}`
+                              : ""}
+                           {!booking.venue.location.city &&
+                              !booking.venue.location.country && (
+                                 <span className="font-light">N/A</span>
+                              )}
+                        </p>
+                     </div>
                      <p className="font-extralight">
                         <span className="font-normal">
                            {formatDate(booking.dateFrom)}

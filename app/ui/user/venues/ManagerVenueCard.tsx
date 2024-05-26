@@ -33,20 +33,24 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
          <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
             <div>
                <h3
-                  className={`${elMessiri.className} mt-4 text-3xl font-medium md:text-4xl`}
+                  className={`${elMessiri.className} mt-4 truncate text-3xl font-medium md:text-4xl`}
                >
                   {venue.name}
                </h3>
-               <p className="mb-4 font-light">
-                  {venue.location.city ? venue.location.city : ""}
-                  {venue.location.city && venue.location.country && (
-                     <span>, </span>
-                  )}
-                  {venue.location.country ? `${venue.location.country}` : ""}
-                  {!venue.location.city && !venue.location.country && (
-                     <span className="font-light">N/A</span>
-                  )}
-               </p>
+               <div className="mb-4 flex justify-center gap-1 break-words font-light">
+                  <p className="truncate">
+                     {venue.location.city ? venue.location.city : ""}
+                     {venue.location.city && venue.location.country && (
+                        <span>, </span>
+                     )}
+                  </p>
+                  <p className="truncate">
+                     {venue.location.country ? `${venue.location.country}` : ""}
+                     {!venue.location.city && !venue.location.country && (
+                        <span className="font-light">N/A</span>
+                     )}
+                  </p>
+               </div>
                <p className="flex items-center justify-center gap-2">
                   <div className="flex items-center">
                      {RenderStars(venue.rating)}

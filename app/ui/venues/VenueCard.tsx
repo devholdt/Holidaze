@@ -44,16 +44,20 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
                   </span>{" "}
                   <span className="font-light">/ night</span>
                </p>
-               <p className="truncate font-light">
-                  {venue.location.city ? venue.location.city : ""}
-                  {venue.location.city && venue.location.country && (
-                     <span>, </span>
-                  )}
-                  {venue.location.country ? venue.location.country : ""}
-                  {!venue.location.city && !venue.location.country && (
-                     <span className="font-light">N/A</span>
-                  )}
-               </p>
+               <div className="flex gap-1 font-light">
+                  <p className="truncate">
+                     {venue.location.city ? venue.location.city : ""}
+                     {venue.location.city && venue.location.country && (
+                        <span>, </span>
+                     )}
+                  </p>
+                  <p className="truncate">
+                     {venue.location.country ? venue.location.country : ""}
+                     {!venue.location.city && !venue.location.country && (
+                        <span className="font-light">N/A</span>
+                     )}
+                  </p>
+               </div>
             </div>
          </div>
       </div>
