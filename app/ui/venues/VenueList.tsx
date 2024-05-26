@@ -73,7 +73,7 @@ const VenueList: React.FC<VenueListProps> = ({
             />
          )}
          <div className="mx-2 flex flex-col items-center md:mx-4">
-            <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid w-full w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                {filteredVenues.slice(0, limit).map((venue) => (
                   <VenueCard
                      key={venue.id}
@@ -82,6 +82,12 @@ const VenueList: React.FC<VenueListProps> = ({
                   />
                ))}
             </div>
+            {filteredVenues.length === 0 && (
+               <div className="mx-auto mt-12 flex w-full flex-col items-center justify-center text-lg font-light">
+                  <p>No venues found.</p>
+                  <p>Try another search query or filter combination.</p>
+               </div>
+            )}
             {venuePage && filteredVenues && limit < filteredVenues.length && (
                <Button
                   text={"Show more"}

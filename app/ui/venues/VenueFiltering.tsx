@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { VenueFilterProps, FilterCategories } from "@/app/lib/definitions";
 import {
    Accordion,
@@ -27,7 +27,7 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
       ratings: {} as Record<number, boolean>,
    });
 
-   const filterVenues = () => {
+   const filterVenues = useCallback(() => {
       let results = [...venues];
 
       if (searchTerm) {
@@ -65,9 +65,9 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
       }
 
       return results;
-   };
+   }, [searchTerm, filters, venues]);
 
-   const sortVenues = (venues: any[]) => {
+   const sortVenues = useCallback((venues: any[]) => {
       switch (sortOption) {
          case "Latest":
             return venues.sort(
@@ -84,13 +84,13 @@ const VenueFiltering: React.FC<VenueFilterProps> = ({
          default:
             return venues;
       }
-   };
+   }, [sortOption]);
 
    useEffect(() => {
       const filteredVenues = filterVenues();
       const sortedVenues = sortVenues(filteredVenues);
       setFilteredVenues(sortedVenues);
-   }, [searchTerm, sortOption, filters, venues, setFilteredVenues]);
+   }, [searchTerm, sortOption, filters, venues, setFilteredVenues, filterVenues, sortVenues]);
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchTerm(event.target.value);
