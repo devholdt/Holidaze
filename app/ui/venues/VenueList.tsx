@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/ui/ButtonComponents";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import VenueCard from "@/app/ui/venues/VenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 import VenueFiltering from "@/app/ui/venues/VenueFiltering";
@@ -56,7 +57,12 @@ const VenueList: React.FC<VenueListProps> = ({
       router.push(href);
    };
 
-   if (loading) return <p className="mt-8 flex justify-center">Loading...</p>;
+   if (loading)
+      return (
+         <div className="mt-12 flex items-center justify-center">
+            <LoadingSpinner />
+         </div>
+      );
 
    return (
       <>

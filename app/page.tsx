@@ -10,7 +10,11 @@ import Hero from "@/app/ui/HeroComponent";
 
 const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
-   loading: () => <LoadingSpinner />,
+   loading: () => (
+      <div className="mt-12 flex items-center justify-center">
+         <LoadingSpinner />
+      </div>
+   ),
 });
 
 const Page = () => {

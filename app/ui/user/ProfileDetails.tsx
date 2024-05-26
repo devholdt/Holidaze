@@ -18,7 +18,7 @@ export const ProfileDetails: React.FC<ProfileDetailsProps> = ({ name }) => {
 
    if (!user) {
       return (
-         <div className="flex items-center justify-center">
+         <div className="mt-12 flex items-center justify-center">
             <LoadingSpinner />
          </div>
       );

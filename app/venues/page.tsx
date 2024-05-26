@@ -1,11 +1,16 @@
 import { Metadata } from "next";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import Hero from "@/app/ui/HeroComponent";
 import dynamic from "next/dynamic";
 import Breadcrumbs from "@/app/ui/Breadcrumbs";
 
 const VenueList = dynamic(() => import("@/app/ui/venues/VenueList"), {
    ssr: false,
-   loading: () => <div>Loading...</div>,
+   loading: () => (
+      <div className="mt-12 flex items-center justify-center">
+         <LoadingSpinner />
+      </div>
+   ),
 });
 
 export const metadata: Metadata = {

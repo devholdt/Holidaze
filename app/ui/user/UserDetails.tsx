@@ -1,14 +1,15 @@
 "use client";
 
 import { UserDetailsProps } from "@/app/lib/definitions";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import Image from "next/image";
 import BackgroundReflection from "@/public/background-reflection.avif";
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
    if (!user) {
       return (
-         <div className="mt-12 flex flex-col items-center justify-center text-center">
-            <p>Loading...</p>
+         <div className="flex items-center justify-center">
+            <LoadingSpinner />
          </div>
       );
    }

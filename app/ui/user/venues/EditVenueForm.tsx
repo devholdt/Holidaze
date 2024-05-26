@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/app/ui/ButtonComponents";
 import { editVenue, deleteVenue } from "@/app/lib/actions";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
 const EditVenueForm = () => {
@@ -30,7 +31,11 @@ const EditVenueForm = () => {
    }, [fetchedVenue]);
 
    if (!venue || loading) {
-      return <p>Loading...</p>;
+      return (
+         <div className="mt-12 flex items-center justify-center">
+            <LoadingSpinner />
+         </div>
+      );
    }
 
    const handleChange = (

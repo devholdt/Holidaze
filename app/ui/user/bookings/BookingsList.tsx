@@ -15,7 +15,7 @@ const BookingsList: React.FC<BookingListProps> = ({ name }) => {
 
    if (userLoading || bookingsLoading) {
       return (
-         <div className="my-12 flex flex-col items-center justify-center font-light">
+         <div className="mt-12 flex items-center justify-center">
             <LoadingSpinner />
          </div>
       );

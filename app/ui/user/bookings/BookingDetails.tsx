@@ -2,6 +2,7 @@
 
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import Image from "next/image";
 import backgroundReflection from "@/public/background-reflection.avif";
 import Subheading from "@/app/ui/Subheading";
@@ -19,8 +20,8 @@ const BookingDetails = ({ id }: { id: string }) => {
 
    if (!booking || loading) {
       return (
-         <div className="mt-12 flex flex-col items-center justify-center text-center">
-            <p>Loading...</p>
+         <div className="mt-12 flex items-center justify-center">
+            <LoadingSpinner />
          </div>
       );
    }

@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import Image from "next/image";
 import Form from "@/app/ui/venues/BookingForm";
 import Link from "next/link";
@@ -20,8 +21,8 @@ const VenueDetails = ({ id }: { id: string }) => {
 
    if (!venue || loading) {
       return (
-         <div className="mt-12 flex flex-col items-center justify-center text-center">
-            <p>Loading...</p>
+         <div className="mt-12 flex items-center justify-center">
+            <LoadingSpinner />
          </div>
       );
    }

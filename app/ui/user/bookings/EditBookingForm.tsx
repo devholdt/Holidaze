@@ -7,6 +7,7 @@ import { formatDateISO } from "@/app/lib/utils";
 import { usePathname } from "next/navigation";
 import { BookingProps } from "@/app/lib/definitions";
 import { editBooking, deleteBooking } from "@/app/lib/actions";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import useFetchBooking from "@/app/lib/hooks/useFetchBooking";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 
@@ -23,7 +24,11 @@ export default function Form() {
    const [startDate, endDate] = dateRange;
 
    if (bookingLoading || (venueId && venueLoading)) {
-      return <p>Loading...</p>;
+      return (
+         <div className="mt-12 flex items-center justify-center">
+            <LoadingSpinner />
+         </div>
+      );
    }
 
    const formatDateValue = (date: Date | null) => {

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate } from "@/app/lib/utils";
 import { BookingProps } from "@/app/lib/definitions";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,8 +27,8 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
 
    if (!venue || loading) {
       return (
-         <div className="mt-12 flex flex-col items-center justify-center text-center">
-            <p>Loading...</p>
+         <div className="mt-12 flex items-center justify-center">
+            <LoadingSpinner />
          </div>
       );
    }

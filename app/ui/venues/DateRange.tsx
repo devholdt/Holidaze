@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, Suspense, lazy, forwardRef } from "react";
 import { DateRangeProps } from "@/app/lib/definitions";
+import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 
 const DatePicker = lazy(() => import("react-datepicker"));
 import "react-datepicker/dist/react-datepicker.css";
@@ -109,7 +110,13 @@ export default function DateRange({
       <fieldset>
          <legend className="mb-1 text-blue">Pick dates</legend>
          <div className="flex items-center gap-2">
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+               fallback={
+                  <div className="mt-12 flex items-center justify-center">
+                     <LoadingSpinner />
+                  </div>
+               }
+            >
                <DatePicker
                   selectsRange={true}
                   startDate={startDate}
