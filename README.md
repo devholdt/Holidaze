@@ -1,39 +1,64 @@
 <div align="center">
-    <img src="./public/logo-white-subtitle.svg" alt="holidaze logo" width="450">
+    <img src="https://github.com/devholdt/holidaze-pe2/assets/81162745/cbb093e3-be79-46cd-9d96-5b49ca75f21b" alt="holidaze logo" width="450">
 </div>
 
 ## About Holidaze
 
 <div align="center">
-    An accomodation booking site developed in TypeScript with Next.js and Tailwind CSS, representing my final project exam at Noroff
+    Holidaze is an accomodation booking site developed in TypeScript with Next.js and Tailwind CSS, representing my final project exam at Noroff
 </div>
 
 </br>
 
-## Key Features
+<div align="center">
+  
+  [Live site](https://holidaze-nextjs.netlify.app/)
 
--  **CRUD**: Create, read, update and delete venues and bookings
--  **User Stories**: Register and login to browse and book venues, or register as a venue manager to create venues for customers to book
--  **Next.js App Router**: Developed using Next.js App Router for the best possible performance and improved data fetching and asset optimization
+</div>
+
+<br/>
+
+![holidaze-home](https://github.com/devholdt/holidaze-pe2/assets/81162745/a2facbff-8b2b-4569-be60-5e0d099d1c39)
+
+<br/>
+
+## Features
+
+-  **Server Actions**: Utilizes Next.js API routes for server-side actions to handle form submissions and data mutations securely. These server-side capabilities allow for efficient handling of complex operations and interactions.
+-  **TypeScript Integration**: TypeScript provides robust type safety and improved code maintainability, reducing the likelihood of runtime errors and enhancing developer productivity.
+-  **User Authentication**: Users can register, login, and manage their profiles. They can book venues, while venue managers can create and edit their own venues.
+-  **Responsive Design**: The website offers a seamless and user-friendly experience across all devices, ensuring optimal usability and accessibility on smartphones, tablets, and desktops.
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 
 ### Installation
 
-1. **Clone the repo**
+1. **Clone repository:**
 
-   ```bash
-   git clone https://github.com/devholdt/holidaze-pe2.git
+```bash
+git clone https://github.com/devholdt/holidaze-pe2.git
+cd holidaze-pe2
+```
 
-   cd holidaze-pe2
-   ```
+2. **Install the dependencies:**
 
-2. **Install dependencies**
+```bash
+npm install
+```
 
-   ```bash
-   npm install
-   ```
+3. **Start the development server:**
 
-### Running the project
+```bash
+npm run dev
+```
 
-1. Run `npm run dev` in the terminal to start the dev server
+The application should now be running on http://localhost:3000.
 
-2. Visit `http://localhost:3000` to view the application
+## License
+
+This project is licensed under the MIT License.
