@@ -13,6 +13,8 @@ import Cookies from "js-cookie";
 import RenderStars from "@/app/ui/venues/RenderStars";
 import backgroundReflection from "@/public/background-reflection.avif";
 
+import { VenueHost } from "@/app/ui/venues/VenueHost";
+
 const VenueDetails = ({ id }: { id: string }) => {
    const { venue, loading } = useFetchVenueById(id);
    const [imgSrc, setImgSrc] = useImageSource(venue);
@@ -165,59 +167,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                   </div>
                </div>
                <div className="flex flex-col gap-4">
-                  <div className="w-full bg-white shadow">
-                     <div className="p-6 text-center xs:text-left">
-                        <h3
-                           className={`${elMessiri.className} mb-2 text-3xl tracking-wide`}
-                        >
-                           Venue host
-                        </h3>
-                        <div className="flex flex-col items-center gap-4 xs:flex-row">
-                           <Image
-                              src={venue.owner.avatar.url}
-                              alt={venue.owner.avatar.alt}
-                              width={400}
-                              height={400}
-                              className="h-[100px] w-[100px] rounded-full border border-lightGrey object-cover object-center"
-                           />
-
-                           <div className="flex flex-col">
-                              <p className="text-xl">{venue.owner.name}</p>
-
-                              <hr className="my-2 text-lightGrey" />
-
-                              {user ? (
-                                 <Link
-                                    href={`/user/${venue.owner.name}`}
-                                    className="w-fit bg-brown px-4 py-2 font-extralight uppercase tracking-widest text-white transition hover:bg-darkBrown"
-                                 >
-                                    profile
-                                 </Link>
-                              ) : (
-                                 <button
-                                    className="w-fit bg-lightGrey px-4 py-2 font-extralight uppercase tracking-widest text-white"
-                                    disabled
-                                 >
-                                    profile
-                                 </button>
-                              )}
-                           </div>
-                        </div>
-                        {user ? (
-                           ""
-                        ) : (
-                           <p className="mt-4 flex justify-center tracking-wider text-red">
-                              <Link
-                                 href="/user/login"
-                                 className="hover:text-body me-2 underline"
-                              >
-                                 Log in
-                              </Link>{" "}
-                              to view profile
-                           </p>
-                        )}
-                     </div>
-                  </div>
+                  <VenueHost owner={venue.owner} />
                   <div className="w-full bg-white p-6 shadow">
                      <h4 className={`${elMessiri.className} mb-4 text-3xl`}>
                         Book this venue
@@ -232,7 +182,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                         <p className="text-center text-red">
                            <Link
                               href="/user/login"
-                              className="hover:text-body underline"
+                              className="underline hover:text-body"
                            >
                               Log in
                            </Link>{" "}
