@@ -190,7 +190,11 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
                      Bookings for this venue
                   </h3>
-                  <BookingsTable data={sortedBookings} />
+                  {sortedBookings.length === 0 ? (
+                     <p>No bookings for this venue yet</p>
+                  ) : (
+                     <BookingsTable data={sortedBookings} />
+                  )}
                </div>
             </>
          )}
