@@ -71,6 +71,21 @@ export interface ManagerVenueListProps {
    name: string;
 }
 
+export interface BookingsTableProps {
+   id: string;
+   name: string;
+   guests: string;
+   dateFrom: string;
+   dateTo: string;
+}
+
+export interface ThProps {
+   children: React.ReactNode;
+   reversed: boolean;
+   sorted: boolean;
+   onSort(): void;
+}
+
 export interface VenueListProps {
    listLimit?: number;
    venuePage?: boolean;

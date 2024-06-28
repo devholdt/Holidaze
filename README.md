@@ -33,17 +33,18 @@
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/)
+-  [Node.js](https://nodejs.org/en/)
+-  [npm](https://www.npmjs.com/)
 
 ### Installation
 
 1. **Clone repository:**
 
-```bash
-git clone https://github.com/devholdt/holidaze-pe2.git
-cd holidaze-pe2
-```
+   ```bash
+   git clone https://github.com/devholdt/holidaze.git
+
+   cd holidaze
+   ```
 
 2. **Install the dependencies:**
 

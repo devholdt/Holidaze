@@ -1,9 +1,12 @@
 import "@/app/ui/globals.css";
+import "@mantine/core/styles.css";
+
+import Footer from "@/app/ui/FooterComponent";
+import Header from "@/app/ui/HeaderComponent";
+
 import { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
 import { ScrollButton } from "@/app/ui/ButtonComponents";
-import Footer from "@/app/ui/FooterComponent";
-import Header from "@/app/ui/HeaderComponent";
 
 export const metadata: Metadata = {
    title: {

@@ -1,0 +1,214 @@
+import { useState } from "react";
+import { formatDate } from "@/app/lib/utils";
+import Link from "next/link";
+import {
+   Table,
+   ScrollArea,
+   Group,
+   Text,
+   Center,
+   TextInput,
+   rem,
+   keys,
+   MantineProvider,
+} from "@mantine/core";
+import {
+   IconSelector,
+   IconChevronDown,
+   IconChevronUp,
+   IconSearch,
+} from "@tabler/icons-react";
+
+import { BookingsTableProps, ThProps } from "@/app/lib/definitions";
+
+function Th({ children, reversed, sorted, onSort }: ThProps) {
+   const Icon = sorted
+      ? reversed
+         ? IconChevronUp
+         : IconChevronDown
+      : IconSelector;
+
+   return (
+      <th className="p-0">
+         <button
+            onClick={onSort}
+            className="w-full px-4 py-2 hover:bg-lighterGrey"
+         >
+            <Group className="flex justify-between">
+               <p className="text-sm font-[500]">{children}</p>
+               <Center className="h-[21px] w-[21px] rounded-[21px]">
+                  <Icon
+                     style={{ width: rem(16), height: rem(16) }}
+                     stroke={1.5}
+                  />
+               </Center>
+            </Group>
+         </button>
+      </th>
+   );
+}
+
+function filterData(data: BookingsTableProps[], search: string) {
+   const query = search.toLowerCase().trim();
+
+   return data.filter((item) =>
+      keys(data[0]).some((key) => {
+         if (key === "guests") {
+            return item[key as keyof BookingsTableProps]
+               .toLowerCase()
+               .includes(query);
+         }
+         if (key === "dateFrom" || key === "dateTo") {
+            return formatDate(item[key as keyof BookingsTableProps])
+               .toLowerCase()
+               .includes(query);
+         }
+         return item[key as keyof BookingsTableProps]
+            .toLowerCase()
+            .includes(query);
+      })
+   );
+}
+
+function sortData(
+   data: BookingsTableProps[],
+   payload: {
+      sortBy: keyof BookingsTableProps | null;
+      reversed: boolean;
+      search: string;
+   }
+) {
+   const { sortBy } = payload;
+
+   if (!sortBy) {
+      return filterData(data, payload.search);
+   }
+
+   return filterData(
+      [...data].sort((a, b) => {
+         if (payload.reversed) {
+            return b[sortBy].localeCompare(a[sortBy]);
+         }
+         return a[sortBy].localeCompare(b[sortBy]);
+      }),
+      payload.search
+   );
+}
+
+export function BookingsTable({ data }: { data: BookingsTableProps[] }) {
+   const [search, setSearch] = useState("");
+   const [sortedData, setSortedData] = useState(data);
+   const [sortBy, setSortBy] = useState<keyof BookingsTableProps | null>(null);
+   const [reverseSortDirection, setReverseSortDirection] = useState(false);
+
+   const setSorting = (field: keyof BookingsTableProps) => {
+      const reversed = field === sortBy ? !reverseSortDirection : false;
+      setReverseSortDirection(reversed);
+      setSortBy(field);
+      setSortedData(sortData(data, { sortBy: field, reversed, search }));
+   };
+
+   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.currentTarget;
+      setSearch(value);
+      setSortedData(
+         sortData(data, {
+            sortBy,
+            reversed: reverseSortDirection,
+            search: value,
+         })
+      );
+   };
+
+   const rows = sortedData.map((row) => (
+      <Table.Tr key={row.id} className="hover:bg-lighterGrey">
+         <Table.Td>{row.name}</Table.Td>
+         <Table.Td>{row.guests}</Table.Td>
+         <Table.Td>{formatDate(row.dateFrom)}</Table.Td>
+         <Table.Td>{formatDate(row.dateTo)}</Table.Td>
+         <Table.Td>
+            <Link href={`/user/${row.name}`} className="hover:underline">
+               View profile
+            </Link>
+         </Table.Td>
+      </Table.Tr>
+   ));
+
+   return (
+      <MantineProvider>
+         <ScrollArea>
+            <TextInput
+               placeholder="Search by name or date"
+               mb="md"
+               leftSection={
+                  <IconSearch
+                     style={{ width: rem(16), height: rem(16) }}
+                     stroke={1.5}
+                  />
+               }
+               value={search}
+               onChange={handleSearchChange}
+            />
+            <Table
+               horizontalSpacing="md"
+               verticalSpacing="xs"
+               miw={700}
+               layout="fixed"
+            >
+               <Table.Thead>
+                  <Table.Tr>
+                     <Th
+                        sorted={sortBy === "name"}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting("name")}
+                     >
+                        Name
+                     </Th>
+                     <Th
+                        sorted={sortBy === "guests"}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting("guests")}
+                     >
+                        Guests
+                     </Th>
+                     <Th
+                        sorted={sortBy === "dateFrom"}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting("dateFrom")}
+                     >
+                        From
+                     </Th>
+                     <Th
+                        sorted={sortBy === "dateTo"}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting("dateTo")}
+                     >
+                        To
+                     </Th>
+                     <Th
+                        sorted={sortBy === "name"}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting("name")}
+                     >
+                        Actions
+                     </Th>
+                  </Table.Tr>
+               </Table.Thead>
+               <Table.Tbody>
+                  {rows.length > 0 ? (
+                     rows
+                  ) : (
+                     <Table.Tr>
+                        <Table.Td colSpan={Object.keys(data[0]).length + 1}>
+                           <Text fw={500} ta="center">
+                              Nothing found
+                           </Text>
+                        </Table.Td>
+                     </Table.Tr>
+                  )}
+               </Table.Tbody>
+            </Table>
+         </ScrollArea>
+      </MantineProvider>
+   );
+}
