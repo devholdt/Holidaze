@@ -52,9 +52,21 @@ function filterData(data: BookingsTableProps[], search: string) {
    const query = search.toLowerCase().trim();
 
    return data.filter((item) =>
-      keys(data[0]).some((key) =>
-         item[key as keyof BookingsTableProps].toLowerCase().includes(query)
-      )
+      keys(data[0]).some((key) => {
+         if (key === "guests") {
+            return item[key as keyof BookingsTableProps]
+               .toLowerCase()
+               .includes(query);
+         }
+         if (key === "dateFrom" || key === "dateTo") {
+            return formatDate(item[key as keyof BookingsTableProps])
+               .toLowerCase()
+               .includes(query);
+         }
+         return item[key as keyof BookingsTableProps]
+            .toLowerCase()
+            .includes(query);
+      })
    );
 }
 
@@ -126,7 +138,7 @@ export function BookingsTable({ data }: { data: BookingsTableProps[] }) {
       <MantineProvider>
          <ScrollArea>
             <TextInput
-               placeholder="Search by any field"
+               placeholder="Search by name or date"
                mb="md"
                leftSection={
                   <IconSearch
