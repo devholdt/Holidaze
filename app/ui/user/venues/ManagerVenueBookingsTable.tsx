@@ -10,7 +10,6 @@ import {
    TextInput,
    rem,
    keys,
-   MantineProvider,
 } from "@mantine/core";
 import {
    IconSelector,
@@ -135,80 +134,78 @@ export function BookingsTable({ data }: { data: BookingsTableProps[] }) {
    ));
 
    return (
-      <MantineProvider>
-         <ScrollArea>
-            <TextInput
-               placeholder="Search by name or date"
-               mb="md"
-               leftSection={
-                  <IconSearch
-                     style={{ width: rem(16), height: rem(16) }}
-                     stroke={1.5}
-                  />
-               }
-               value={search}
-               onChange={handleSearchChange}
-            />
-            <Table
-               horizontalSpacing="md"
-               verticalSpacing="xs"
-               miw={700}
-               layout="fixed"
-            >
-               <Table.Thead>
+      <ScrollArea>
+         <TextInput
+            placeholder="Search by name or date"
+            mb="md"
+            leftSection={
+               <IconSearch
+                  style={{ width: rem(16), height: rem(16) }}
+                  stroke={1.5}
+               />
+            }
+            value={search}
+            onChange={handleSearchChange}
+         />
+         <Table
+            horizontalSpacing="md"
+            verticalSpacing="xs"
+            miw={700}
+            layout="fixed"
+         >
+            <Table.Thead>
+               <Table.Tr>
+                  <Th
+                     sorted={sortBy === "name"}
+                     reversed={reverseSortDirection}
+                     onSort={() => setSorting("name")}
+                  >
+                     Name
+                  </Th>
+                  <Th
+                     sorted={sortBy === "guests"}
+                     reversed={reverseSortDirection}
+                     onSort={() => setSorting("guests")}
+                  >
+                     Guests
+                  </Th>
+                  <Th
+                     sorted={sortBy === "dateFrom"}
+                     reversed={reverseSortDirection}
+                     onSort={() => setSorting("dateFrom")}
+                  >
+                     From
+                  </Th>
+                  <Th
+                     sorted={sortBy === "dateTo"}
+                     reversed={reverseSortDirection}
+                     onSort={() => setSorting("dateTo")}
+                  >
+                     To
+                  </Th>
+                  <Th
+                     sorted={sortBy === "name"}
+                     reversed={reverseSortDirection}
+                     onSort={() => setSorting("name")}
+                  >
+                     Actions
+                  </Th>
+               </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+               {rows.length > 0 ? (
+                  rows
+               ) : (
                   <Table.Tr>
-                     <Th
-                        sorted={sortBy === "name"}
-                        reversed={reverseSortDirection}
-                        onSort={() => setSorting("name")}
-                     >
-                        Name
-                     </Th>
-                     <Th
-                        sorted={sortBy === "guests"}
-                        reversed={reverseSortDirection}
-                        onSort={() => setSorting("guests")}
-                     >
-                        Guests
-                     </Th>
-                     <Th
-                        sorted={sortBy === "dateFrom"}
-                        reversed={reverseSortDirection}
-                        onSort={() => setSorting("dateFrom")}
-                     >
-                        From
-                     </Th>
-                     <Th
-                        sorted={sortBy === "dateTo"}
-                        reversed={reverseSortDirection}
-                        onSort={() => setSorting("dateTo")}
-                     >
-                        To
-                     </Th>
-                     <Th
-                        sorted={sortBy === "name"}
-                        reversed={reverseSortDirection}
-                        onSort={() => setSorting("name")}
-                     >
-                        Actions
-                     </Th>
+                     <Table.Td colSpan={Object.keys(data[0]).length + 1}>
+                        <Text fw={500} ta="center">
+                           Nothing found
+                        </Text>
+                     </Table.Td>
                   </Table.Tr>
-               </Table.Thead>
-               <Table.Tbody>
-                  {rows.length > 0 ? (
-                     rows
-                  ) : (
-                     <Table.Tr>
-                        <Table.Td colSpan={Object.keys(data[0]).length + 1}>
-                           <Text fw={500} ta="center">
-                              Nothing found
-                           </Text>
-                        </Table.Td>
-                     </Table.Tr>
-                  )}
-               </Table.Tbody>
-            </Table>
-         </ScrollArea>
-      </MantineProvider>
+               )}
+            </Table.Tbody>
+         </Table>
+      </ScrollArea>
    );
 }

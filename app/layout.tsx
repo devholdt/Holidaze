@@ -8,6 +8,8 @@ import { Metadata } from "next";
 import { robotoFlex } from "@/app/ui/fonts";
 import { ScrollButton } from "@/app/ui/ButtonComponents";
 
+import { MantineProvider } from "@mantine/core";
+
 export const metadata: Metadata = {
    title: {
       template: "%s | Holidaze Resorts",
@@ -25,7 +27,7 @@ export default function RootLayout({
       <html lang="en">
          <body className={`${robotoFlex.className} bg-lighterGrey antialiased`}>
             <Header />
-            {children}
+            <MantineProvider>{children}</MantineProvider>
             <ScrollButton />
             <Footer />
          </body>

@@ -60,6 +60,7 @@ export interface VenueOwnerProps {
    bio: string;
    avatar: { url: string; alt: string };
    banner: { url: string; alt: string };
+   _count: { venues: number; bookings: number };
 }
 
 export interface ManagerVenueCardProps {
