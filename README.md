@@ -21,9 +21,9 @@
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/devholdt/holidaze-pe2.git
+   git clone https://github.com/devholdt/holidaze.git
 
-   cd holidaze-pe2
+   cd holidaze
    ```
 
 2. **Install dependencies**
