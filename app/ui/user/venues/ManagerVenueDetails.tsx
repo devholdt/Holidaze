@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate } from "@/app/lib/utils";
 import { BookingProps } from "@/app/lib/definitions";
@@ -13,6 +13,24 @@ import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 import backgroundReflection from "@/public/background-reflection.avif";
+
+import {
+   Table,
+   ScrollArea,
+   UnstyledButton,
+   Group,
+   Text,
+   Center,
+   TextInput,
+   rem,
+   keys,
+} from "@mantine/core";
+import {
+   IconSelector,
+   IconChevronDown,
+   IconChevronUp,
+   IconSearch,
+} from "@tabler/icons-react";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
