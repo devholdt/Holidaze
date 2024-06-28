@@ -1,4 +1,5 @@
 import "@/app/ui/globals.css";
+import "@mantine/core/styles.css";
 
 import Footer from "@/app/ui/FooterComponent";
 import Header from "@/app/ui/HeaderComponent";

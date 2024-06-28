@@ -1,36 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { elMessiri } from "@/app/ui/fonts";
-import { formatDate } from "@/app/lib/utils";
-import { BookingProps } from "@/app/lib/definitions";
+import { BookingsTableProps } from "@/app/lib/definitions";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
+import { BookingsTable } from "@/app/ui/user/venues/ManagerVenueBookingsTable";
+
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import Image from "next/image";
 import Subheading from "@/app/ui/subheading";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
 import useFetchVenueById from "@/app/lib/hooks/useFetchVenueById";
 import backgroundReflection from "@/public/background-reflection.avif";
-
-import {
-   Table,
-   ScrollArea,
-   UnstyledButton,
-   Group,
-   Text,
-   Center,
-   TextInput,
-   rem,
-   keys,
-} from "@mantine/core";
-import {
-   IconSelector,
-   IconChevronDown,
-   IconChevronUp,
-   IconSearch,
-} from "@tabler/icons-react";
 
 const Modal = dynamic(() => import("@/app/ui/Modal"));
 
@@ -51,10 +33,18 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
       );
    }
 
-   const sortedBookings = [...venue.bookings].sort(
-      (a: BookingProps, b: BookingProps) =>
-         new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime()
-   );
+   const sortedBookings: BookingsTableProps[] = [...venue.bookings]
+      .sort(
+         (a, b) =>
+            new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime()
+      )
+      .map((booking) => ({
+         id: booking.id,
+         name: booking.customer.name,
+         guests: booking.guests.toString(),
+         dateFrom: booking.dateFrom,
+         dateTo: booking.dateTo,
+      }));
 
    return (
       <div className="mx-1 mb-4 xs:mx-4">
@@ -200,57 +190,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   <h3 className={`${elMessiri.className} mb-2 text-3xl`}>
                      Bookings for this venue
                   </h3>
-                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                     {sortedBookings.length === 0 ? (
-                        <p>No bookings for this venue yet</p>
-                     ) : (
-                        sortedBookings.map((booking: BookingProps) => (
-                           <div
-                              key={booking.id}
-                              className="flex flex-col items-center justify-center gap-4 rounded bg-white p-4 text-center font-extralight shadow-md sm:flex-row sm:text-left"
-                           >
-                              <Image
-                                 src={booking.customer.avatar.url}
-                                 alt={booking.customer.avatar.alt}
-                                 width={400}
-                                 height={400}
-                                 className="h-[100px] w-[100px] rounded-full border border-lightGrey object-cover object-center"
-                                 priority={true}
-                              />
-                              <div className="w-full">
-                                 <div className="flex items-center justify-between gap-2">
-                                    <h4 className="text-xl">
-                                       {booking.customer.name}
-                                    </h4>
-                                    <Link
-                                       href={`/user/${booking.customer.name}`}
-                                       className="bg-brown px-2 py-1 font-light uppercase tracking-widest text-white transition hover:bg-darkBrown"
-                                    >
-                                       visit
-                                    </Link>
-                                 </div>
-                                 <hr className="my-2 text-lightGrey" />
-                                 <p>
-                                    <span className="font-medium">
-                                       {booking.guests} guests
-                                    </span>{" "}
-                                    from{" "}
-                                    <span className="font-medium">
-                                       {formatDate(booking.dateFrom)}
-                                    </span>{" "}
-                                    to{" "}
-                                    <span className="font-medium">
-                                       {formatDate(booking.dateTo)}
-                                    </span>
-                                 </p>
-                                 <p className="italic">
-                                    Booked on {formatDate(booking.created)}
-                                 </p>
-                              </div>
-                           </div>
-                        ))
-                     )}
-                  </div>
+                  <BookingsTable data={sortedBookings} />
                </div>
             </>
          )}
