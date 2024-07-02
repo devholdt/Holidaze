@@ -37,14 +37,14 @@ const VenueDetails = ({ id }: { id: string }) => {
    return (
       <Suspense fallback={<div>Loading...</div>}>
          <div className="mx-1 mb-4 xs:mx-4">
-            <div className="relative mb-4">
+            <div className="relative mb-4 h-[240px] w-full drop-shadow xs:h-[300px] md:h-[400px]">
                <Image
                   src={imgSrc}
                   alt={venue.media?.[0]?.alt || "Venue image"}
                   onError={() => setImgSrc(backgroundReflection)}
-                  width={1000}
-                  height={1000}
-                  className="h-80 w-full object-cover object-center drop-shadow"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
                   priority={true}
                />
             </div>

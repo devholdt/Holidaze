@@ -27,8 +27,10 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
             }
             onError={() => setImgSrc(backgroundReflection)}
             width={800}
-            height={600}
-            className="h-[240px] rounded-t-xl object-cover object-center"
+            height={400}
+            objectFit="cover"
+            objectPosition="center"
+            className="rounded-t-xl"
          />
          <div className="rounded-b-xl bg-white px-6 py-4">
             <h3

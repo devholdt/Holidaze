@@ -26,11 +26,13 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
             src={imgSrc}
             alt={venue.media?.[0]?.alt || "Venue image"}
             onError={() => setImgSrc(backgroundReflection)}
-            width={800}
-            height={600}
-            className="h-[200px] rounded-t-xl object-cover object-center"
+            width={400}
+            height={300}
+            objectFit="cover"
+            objectPosition="center"
+            className="rounded-t-xl"
          />
-         <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
+         <div className="flex flex-col justify-between px-6 pb-2 text-center">
             <div>
                <h3
                   className={`${elMessiri.className} mt-4 truncate text-3xl font-medium md:text-4xl`}

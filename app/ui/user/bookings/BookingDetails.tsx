@@ -29,14 +29,14 @@ const BookingDetails = ({ id }: { id: string }) => {
    return (
       <div className="mx-1 mb-4 xs:mx-4">
          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="relative md:w-6/12">
+            <div className="relative h-[300px] w-full drop-shadow md:h-[480px] md:w-6/12">
                <Image
                   src={imgSrc}
                   alt={booking?.venue?.media?.[0]?.alt || "Venue image"}
                   onError={() => setImgSrc(backgroundReflection)}
-                  width={1000}
-                  height={1000}
-                  className="h-80 w-full object-cover object-center md:h-[480px]"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
                   priority={true}
                />
             </div>
@@ -186,9 +186,11 @@ const BookingDetails = ({ id }: { id: string }) => {
                      <Image
                         src={booking.venue.owner.avatar.url}
                         alt={booking.venue.owner.avatar.alt}
-                        width={200}
-                        height={200}
-                        className="h-[100px] w-full max-w-[100px] rounded-full border border-lightGrey object-cover object-cover drop-shadow-md"
+                        width={100}
+                        height={100}
+                        objectFit="cover"
+                        objectPosition="center"
+                        className="rounded-full border border-lightGrey drop-shadow-md"
                      />
 
                      <div className="flex flex-col">

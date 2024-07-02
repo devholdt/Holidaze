@@ -20,9 +20,11 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
             <Image
                src={user.avatar?.url ?? BackgroundReflection.src}
                alt={user.avatar?.alt ?? "User avatar"}
-               width={300}
-               height={300}
-               className="h-[72px] w-[72px] rounded-full border border-grey object-cover object-center"
+               width={72}
+               height={72}
+               objectFit="cover"
+               objectPosition="center"
+               className="rounded-full border border-grey"
             />
             <div className="flex flex-col items-center xs:items-start">
                <div className="flex items-start text-3xl font-medium">
@@ -33,7 +35,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
                      <span className="icon-[mdi--check-circle-outline] h-[24px] w-[24px] text-yellow"></span>
                   )}
                </div>
-               <p className="text-body text-sm font-thin xs:text-base">
+               <p className="text-sm font-thin text-body xs:text-base">
                   {user.email}
                </p>
             </div>

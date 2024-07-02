@@ -21,9 +21,11 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             src={imgSrc}
             alt={booking.venue.media[0]?.alt || "Venue image"}
             onError={() => setImgSrc(backgroundReflection)}
-            width={800}
-            height={600}
-            className="h-[200px] rounded-t-xl object-cover object-center"
+            width={380}
+            height={320}
+            objectFit="cover"
+            objectPosition="center"
+            className="rounded-t-xl"
          />
          <div className="flex h-full flex-col justify-between px-6 pb-2 text-center">
             <div>
