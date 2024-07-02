@@ -6,7 +6,6 @@ import { Button } from "@/app/ui/ButtonComponents";
 import { VenueListProps, VenueProps } from "@/app/lib/definitions";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import VenueCard from "@/app/ui/venues/VenueCard";
-import NewVenueCard from "@/app/ui/venues/NewVenueCard";
 import useFetchAllVenues from "@/app/lib/hooks/useFetchAllVenues";
 import VenueFiltering from "@/app/ui/venues/VenueFiltering";
 
@@ -76,12 +75,7 @@ const VenueList: React.FC<VenueListProps> = ({
          <div className="mx-2 flex flex-col items-center md:mx-4">
             <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                {filteredVenues.slice(0, limit).map((venue) => (
-                  // <VenueCard
-                  //    key={venue.id}
-                  //    venue={venue}
-                  //    onClick={() => handleCardClick(`/venues/${venue.id}`)}
-                  // />
-                  <NewVenueCard
+                  <VenueCard
                      key={venue.id}
                      venue={venue}
                      onClick={() => handleCardClick(`/venues/${venue.id}`)}
