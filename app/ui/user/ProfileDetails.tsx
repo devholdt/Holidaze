@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import { elMessiri } from "@/app/ui/fonts";
 import { ProfileDetailsProps } from "@/app/lib/definitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import useFetchUserByName from "@/app/lib/hooks/useFetchUserByName";
 import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
 
@@ -30,19 +30,19 @@ export const ProfileDetails: React.FC<ProfileDetailsProps> = ({ name }) => {
             <Image
                src={user.banner?.url ?? ""}
                alt={user.banner?.alt ?? ""}
-               width={1000}
-               height={1000}
+               width={1280}
+               height={200}
                priority={true}
-               className="h-[200px] w-full object-cover"
+               className="w-full object-cover"
             />
             <div className="flex flex-col items-center justify-center md:flex-row md:justify-between">
                <div className="flex flex-col items-center gap-4 p-4 sm:p-8 md:flex-row">
                   <Image
                      src={user.avatar?.url ?? ""}
                      alt={user.avatar?.alt ?? ""}
-                     width={300}
-                     height={300}
-                     className="h-[160px] w-[160px] rounded-full"
+                     width={120}
+                     height={120}
+                     className="rounded-full"
                   />
 
                   <div className="text-center md:text-left">

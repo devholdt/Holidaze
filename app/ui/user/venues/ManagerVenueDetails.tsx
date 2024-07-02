@@ -7,7 +7,7 @@ import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import { BookingsTable } from "@/app/ui/user/venues/ManagerVenueBookingsTable";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Subheading from "@/app/ui/subheading";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";
@@ -49,14 +49,14 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
    return (
       <div className="mx-1 mb-4 xs:mx-4">
          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="relative md:w-6/12">
+            <div className="relative h-[300px] w-full drop-shadow md:h-[480px] md:w-6/12">
                <Image
                   src={imgSrc}
                   alt={venue?.media?.[0]?.alt || "Venue image"}
                   onError={() => setImgSrc(backgroundReflection)}
-                  width={1000}
-                  height={1000}
-                  className="h-80 w-full object-cover object-center drop-shadow md:h-[480px] "
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
                   priority={true}
                />
             </div>

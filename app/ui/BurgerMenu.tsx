@@ -54,7 +54,7 @@ const BurgerMenu = () => {
             <Link
                href={item.route ?? ""}
                onClick={() => setMenuOpen(false)}
-               className="text-body py-4 text-center font-light hover:bg-lighterGrey"
+               className="py-4 text-center font-light text-body hover:bg-lighterGrey"
             >
                {item.title}
             </Link>
@@ -81,7 +81,7 @@ const BurgerMenu = () => {
          >
             <div className="flex h-full flex-col justify-between">
                <Link onClick={closeMenu} href="/" className="w-fit">
-                  <Logo src={logoWhite} styles="max-w-[160px] border" />
+                  <Logo src={logoWhite} width={160} height={24} />
                </Link>
 
                <div className="flex justify-center">
@@ -100,7 +100,7 @@ const BurgerMenu = () => {
          <Link
             onClick={closeMenu}
             href="/"
-            className="text-body py-4 text-left text-center font-light hover:bg-lighterGrey"
+            className="py-4 text-left text-center font-light text-body hover:bg-lighterGrey"
          >
             Home
          </Link>
