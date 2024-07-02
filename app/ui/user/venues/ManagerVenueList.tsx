@@ -68,7 +68,7 @@ const ManagerVenueList: React.FC<ManagerVenueListProps> = ({ name }) => {
                />
             </div>
          )}
-         <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
+         <div className="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3">
             {venues.map((venue) => (
                <ManagerVenueCard key={venue.id} venue={venue} user={user!} />
             ))}

@@ -1,13 +1,20 @@
 "use client";
 
+import {
+   IconStar,
+   IconWifi,
+   IconParking,
+   IconToolsKitchen2,
+   IconPaw,
+   IconLocation,
+} from "@tabler/icons-react";
+import { Card, Text, Group, Badge, Button, rem } from "@mantine/core";
 import { ManagerVenueCardProps } from "@/app/lib/definitions";
-import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import Image from "next/legacy/image";
 import backgroundReflection from "@/public/background-reflection.avif";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
-import RenderStars from "@/app/ui/venues/RenderStars";
 
 const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
    const [imgSrc, setImgSrc] = useImageSource(venue);
@@ -18,64 +25,147 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
       : `/venues/${venue.id}`;
 
    return (
-      <Link
-         href={redirectLink}
-         className="relative flex flex-col rounded-xl border border-white bg-white shadow transition duration-75 hover:border-grey"
+      <Card
+         withBorder
+         radius="md"
+         padding="md"
+         className="flex bg-white drop-shadow-sm"
       >
-         <Image
-            src={imgSrc}
-            alt={venue.media?.[0]?.alt || "Venue image"}
-            onError={() => setImgSrc(backgroundReflection)}
-            width={400}
-            height={300}
-            objectFit="cover"
-            objectPosition="center"
-            className="rounded-t-xl"
-         />
-         <div className="flex flex-col justify-between px-6 pb-2 text-center">
-            <div>
-               <h3
-                  className={`${elMessiri.className} mt-4 truncate text-3xl font-medium md:text-4xl`}
-               >
+         <Card.Section>
+            <div className="relative h-[160px]">
+               <Image
+                  src={imgSrc}
+                  alt={
+                     venue.media && venue.media.length > 0
+                        ? venue.media[0].alt
+                        : "Venue image"
+                  }
+                  onError={() => setImgSrc(backgroundReflection)}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+               />
+            </div>
+         </Card.Section>
+
+         <Card.Section
+            className="basis-1/2 border-b border-lightGrey pb-4 pe-4 ps-4"
+            mt="md"
+         >
+            <Group justify="space-between">
+               <Text fz="lg" className="truncate">
                   {venue.name}
-               </h3>
-               <div className="mb-4 flex justify-center gap-1 break-words font-light">
-                  <div className="truncate">
-                     {venue.location.city ? venue.location.city : ""}
-                     {venue.location.city && venue.location.country && (
-                        <span>, </span>
-                     )}
-                  </div>
-                  <div className="truncate">
-                     {venue.location.country ? `${venue.location.country}` : ""}
-                     {!venue.location.city && !venue.location.country && (
-                        <span className="font-light">N/A</span>
-                     )}
-                  </div>
-               </div>
-               <div className="flex items-center justify-center gap-2">
-                  <div className="flex items-center">
-                     {RenderStars(venue.rating)}
-                  </div>
-               </div>
-            </div>
+               </Text>
+               <Group gap={5}>
+                  <IconStar
+                     style={{ width: rem(16), height: rem(16) }}
+                     stroke={1.5}
+                     className="text-dark"
+                  />
+                  <Text fz="sm">{venue.rating}</Text>
+               </Group>
+            </Group>
+            <Text fz="sm" mt="xs">
+               <p className="h-[40px] overflow-y-hidden whitespace-pre-wrap break-words">
+                  {venue.description || "No description available"}
+               </p>
+               <Link
+                  href={redirectLink}
+                  className="flex justify-end text-blue hover:underline"
+               >
+                  ...see more
+               </Link>
+            </Text>
+         </Card.Section>
+
+         <Card.Section className="border-b border-lightGrey pb-4 pe-4 ps-4 pt-3">
+            <Group gap={7} mt={5}>
+               {venue.location.country ? (
+                  <Badge
+                     color="green"
+                     variant="light"
+                     leftSection={
+                        <IconLocation className="p-[4px]" stroke={2} />
+                     }
+                  >
+                     {venue.location.country}
+                  </Badge>
+               ) : (
+                  <Badge
+                     color="green"
+                     variant="light"
+                     leftSection={
+                        <IconLocation className="p-[4px]" stroke={2} />
+                     }
+                  >
+                     Country
+                  </Badge>
+               )}
+
+               {venue.meta.wifi ? (
+                  <Badge
+                     color="green"
+                     variant="light"
+                     leftSection={<IconWifi className="p-[2px]" stroke={2} />}
+                  >
+                     Wifi
+                  </Badge>
+               ) : null}
+
+               {venue.meta.parking ? (
+                  <Badge
+                     color="green"
+                     variant="light"
+                     leftSection={
+                        <IconParking className="p-[2px]" stroke={2} />
+                     }
+                  >
+                     Parking
+                  </Badge>
+               ) : null}
+
+               {venue.meta.breakfast ? (
+                  <Badge
+                     color="green"
+                     variant="light"
+                     leftSection={
+                        <IconToolsKitchen2 className="p-[2px]" stroke={2} />
+                     }
+                  >
+                     Breakfast
+                  </Badge>
+               ) : null}
+
+               {venue.meta.pets ? (
+                  <Badge
+                     color="green"
+                     variant="light"
+                     leftSection={<IconPaw className="p-[2px]" stroke={2} />}
+                  >
+                     Pets allowed
+                  </Badge>
+               ) : null}
+            </Group>
+         </Card.Section>
+
+         <Group mt="md" justify="space-between">
             <div>
-               <hr className="my-4 border-[1px] text-grey" />
-               <div className="mb-4 flex justify-between font-extralight">
-                  <div>
-                     <span className="font-normal">
-                        £{formatNumber(venue.price)}
-                     </span>{" "}
-                     / night
-                  </div>
-                  <div>
-                     max <span className="font-normal">{venue.maxGuests}</span>{" "}
-                     guests
-                  </div>
-               </div>
+               <Text fz="xl" span fw={500} className="text-dark">
+                  £{formatNumber(venue.price)}
+               </Text>
+               <Text span fz="sm" c="dimmed">
+                  {" "}
+                  / night
+               </Text>
             </div>
-         </div>
-      </Link>
+
+            <Link href={redirectLink}>
+               <Button color="brown" radius="sm">
+                  Show details
+               </Button>
+            </Link>
+         </Group>
+      </Card>
    );
 };
 

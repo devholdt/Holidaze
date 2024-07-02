@@ -10,6 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { Card, Text, Group, Badge, Button, rem } from "@mantine/core";
 import Image from "next/legacy/image";
+import Link from "next/link";
 import { formatNumber } from "@/app/lib/utils";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import backgroundReflection from "@/public/background-reflection.avif";
@@ -50,7 +51,7 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
             mt="md"
          >
             <Group justify="space-between">
-               <Text fz="lg" fw={500}>
+               <Text fz="lg" className="truncate">
                   {venue.name}
                </Text>
                <Group gap={5}>
@@ -62,8 +63,16 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
                   <Text fz="sm">{venue.rating}</Text>
                </Group>
             </Group>
-            <Text fz="sm" mt="xs" className="h-[64px] overflow-y-hidden">
-               {venue.description}
+            <Text fz="sm" mt="xs">
+               <p className="h-[40px] overflow-y-hidden whitespace-pre-wrap break-words">
+                  {venue.description || "No description available"}
+               </p>
+               <Link
+                  href={`/venues/${venue.id}`}
+                  className="flex justify-end text-blue hover:underline"
+               >
+                  ...see more
+               </Link>
             </Text>
          </Card.Section>
 
