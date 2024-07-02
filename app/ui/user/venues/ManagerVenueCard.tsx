@@ -53,11 +53,11 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
                      )}
                   </p>
                </div>
-               <p className="flex items-center justify-center gap-2">
-                  <div className="flex items-center">
+               <div className="flex items-center justify-center gap-2">
+                  <p className="flex items-center">
                      {RenderStars(venue.rating)}
-                  </div>
-               </p>
+                  </p>
+               </div>
             </div>
             <div>
                <hr className="my-4 border-[1px] text-grey" />
