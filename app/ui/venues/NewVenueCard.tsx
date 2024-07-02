@@ -23,7 +23,7 @@ const NewVenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
       <Card
          withBorder
          radius="md"
-         p="md"
+         padding="md"
          className="flex bg-white drop-shadow-sm"
       >
          <Card.Section>

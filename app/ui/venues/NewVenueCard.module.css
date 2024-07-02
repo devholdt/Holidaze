@@ -1,0 +1,40 @@
+.price {
+   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}
+
+.carousel {
+   position: relative;
+   overflow: hidden;
+}
+
+.carouselControls {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   pointer-events: none;
+   transition: opacity 150ms ease;
+   opacity: 0;
+}
+
+.carousel:hover .carouselControls {
+   opacity: 1;
+}
+
+.carouselControls > * {
+   pointer-events: all;
+}
+
+.carouselIndicator {
+   width: 4px;
+   height: 4px;
+   transition: width 250ms ease;
+   background-color: var(--mantine-color-dark);
+   margin-right: 8px;
+}
+
+.carouselIndicator[data-active] {
+   width: 16px;
+}
