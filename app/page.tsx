@@ -56,7 +56,7 @@ const Page = () => {
                </div>
             </div>
             <div className="mb-36 flex flex-col items-center">
-               <VenueList listLimit={4} />
+               <VenueList listLimit={3} />
                <LinkButton targetHref="/venues" text="View all" styles="mt-8" />
             </div>
          </div>

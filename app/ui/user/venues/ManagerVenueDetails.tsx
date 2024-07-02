@@ -79,20 +79,20 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                         {venue.name}
                      </h1>
                      <div className="flex gap-1 font-light">
-                        <p className="truncate">
+                        <div className="truncate">
                            {venue.location.city ? venue.location.city : ""}
                            {venue.location.city && venue.location.country && (
                               <span>, </span>
                            )}
-                        </p>
-                        <p className="truncate">
+                        </div>
+                        <div className="truncate">
                            {venue.location.country
                               ? `${venue.location.country}`
                               : ""}
                            {!venue.location.city && !venue.location.country && (
                               <span className="font-light">N/A</span>
                            )}
-                        </p>
+                        </div>
                      </div>
                   </div>
                   {user?.name === venue.owner.name && (
@@ -108,14 +108,14 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                <hr className="my-4" />
 
                <div className="mb-4 flex gap-2 font-extralight">
-                  <p>
+                  <div>
                      <span className="font-normal">£{venue.price}</span> / night
-                  </p>
+                  </div>
                   |
-                  <p>
+                  <div>
                      max <span className="font-normal">{venue.maxGuests}</span>{" "}
                      guests
-                  </p>
+                  </div>
                </div>
 
                <p className="whitespace-pre-wrap break-words font-extralight">
@@ -128,7 +128,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                   Amenities
                </h2>
                <div className="flex flex-col gap-4">
-                  <p className="flex gap-2">
+                  <div className="flex gap-2">
                      {venue.meta.wifi ? (
                         <>
                            <span className="icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
@@ -140,8 +140,8 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                            No Wifi
                         </>
                      )}
-                  </p>
-                  <p className="flex gap-2">
+                  </div>
+                  <div className="flex gap-2">
                      {venue.meta.parking ? (
                         <>
                            <span className="icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
@@ -153,8 +153,8 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                            No parking
                         </>
                      )}
-                  </p>
-                  <p className="flex gap-2">
+                  </div>
+                  <div className="flex gap-2">
                      {venue.meta.breakfast ? (
                         <>
                            <span className="icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
@@ -166,8 +166,8 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                            No breakfast
                         </>
                      )}
-                  </p>
-                  <p className="flex gap-2">
+                  </div>
+                  <div className="flex gap-2">
                      {venue.meta.pets ? (
                         <>
                            <span className="icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
@@ -179,7 +179,7 @@ const ManagerVenueDetails = ({ id }: { id: string }) => {
                            No pets allowed
                         </>
                      )}
-                  </p>
+                  </div>
                </div>
             </div>
          </div>

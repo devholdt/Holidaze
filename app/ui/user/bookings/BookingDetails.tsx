@@ -55,14 +55,14 @@ const BookingDetails = ({ id }: { id: string }) => {
                         {booking.venue.name}
                      </h1>
                      <div className="mb-4 flex gap-1 break-words font-light">
-                        <p className="truncate">
+                        <div className="truncate">
                            {booking.venue.location.city
                               ? booking.venue.location.city
                               : ""}
                            {booking.venue.location.city &&
                               booking.venue.location.country && <span>, </span>}
-                        </p>
-                        <p className="truncate">
+                        </div>
+                        <div className="truncate">
                            {booking.venue.location.country
                               ? `${booking.venue.location.country}`
                               : ""}
@@ -70,9 +70,9 @@ const BookingDetails = ({ id }: { id: string }) => {
                               !booking.venue.location.country && (
                                  <span className="font-light">N/A</span>
                               )}
-                        </p>
+                        </div>
                      </div>
-                     <p className="font-extralight">
+                     <div className="font-extralight">
                         <span className="font-normal">
                            {formatDate(booking.dateFrom)}
                         </span>
@@ -80,7 +80,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                         <span className="font-normal">
                            {formatDate(booking.dateTo)}
                         </span>
-                     </p>
+                     </div>
                   </div>
                   <Modal
                      modal="Edit booking"
@@ -93,17 +93,17 @@ const BookingDetails = ({ id }: { id: string }) => {
                <hr className="my-4" />
 
                <div className="mb-4 flex gap-2 font-extralight">
-                  <p>
+                  <div>
                      <span className="font-normal">
                         £{formatNumber(booking.venue.price)}
                      </span>{" "}
                      / night
-                  </p>
+                  </div>
                   |
-                  <p>
+                  <div>
                      <span className="font-normal">{booking.guests}</span>{" "}
                      guests
-                  </p>
+                  </div>
                </div>
 
                <p className="whitespace-pre-wrap break-words font-extralight">
@@ -118,7 +118,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                   Amenities
                </h2>
                <div className="flex flex-col gap-4">
-                  <p className="flex gap-2">
+                  <div className="flex gap-2">
                      {booking.venue.meta.wifi ? (
                         <>
                            <span className="icon-[mdi--wifi] h-6 w-6 text-body text-dark"></span>{" "}
@@ -130,8 +130,8 @@ const BookingDetails = ({ id }: { id: string }) => {
                            No Wifi
                         </>
                      )}
-                  </p>
-                  <p className="flex gap-2">
+                  </div>
+                  <div className="flex gap-2">
                      {booking.venue.meta.parking ? (
                         <>
                            <span className="icon-[mdi--car] h-6 w-6 text-body text-dark"></span>{" "}
@@ -143,8 +143,8 @@ const BookingDetails = ({ id }: { id: string }) => {
                            No Parking
                         </>
                      )}
-                  </p>
-                  <p className="flex gap-2">
+                  </div>
+                  <div className="flex gap-2">
                      {booking.venue.meta.breakfast ? (
                         <>
                            <span className="icon-[mdi--free-breakfast] h-6 w-6 text-body text-dark"></span>{" "}
@@ -156,8 +156,8 @@ const BookingDetails = ({ id }: { id: string }) => {
                            No breakfast
                         </>
                      )}
-                  </p>
-                  <p className="flex gap-2">
+                  </div>
+                  <div className="flex gap-2">
                      {booking.venue.meta.pets ? (
                         <>
                            <span className="icon-[mdi--dog-side] h-6 w-6 text-body text-dark"></span>{" "}
@@ -169,7 +169,7 @@ const BookingDetails = ({ id }: { id: string }) => {
                            No pets allowed
                         </>
                      )}
-                  </p>
+                  </div>
                </div>
             </div>
          </div>

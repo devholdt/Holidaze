@@ -63,36 +63,36 @@ const VenueDetails = ({ id }: { id: string }) => {
                      </p>
                   </div>
                   <div className="mb-4 flex gap-1 font-light">
-                     <p className="truncate">
+                     <div className="truncate">
                         {venue.location.city ? venue.location.city : ""}
                         {venue.location.city && venue.location.country && (
                            <span>, </span>
                         )}
-                     </p>
-                     <p className="truncate">
+                     </div>
+                     <div className="truncate">
                         {venue.location.country
                            ? `${venue.location.country}`
                            : ""}
                         {!venue.location.city && !venue.location.country && (
                            <span className="font-light">N/A</span>
                         )}
-                     </p>
+                     </div>
                   </div>
                   <div className="mb-4 flex gap-2 font-extralight xs:gap-4">
-                     <p>
+                     <div>
                         <span className="font-normal">
                            £{formatNumber(venue.price)}
                         </span>{" "}
                         / night
-                     </p>
+                     </div>
                      <span className="font-medium">|</span>
-                     <p>
+                     <div>
                         max{" "}
                         <span className="font-normal">{venue.maxGuests}</span>{" "}
                         guests
-                     </p>
+                     </div>
                      <span className="font-medium">|</span>
-                     <p className="flex items-center gap-2">
+                     <div className="flex items-center gap-2">
                         rating:{" "}
                         <span className="hidden xs:block">
                            <div className="flex items-center">
@@ -102,7 +102,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                         <span className="block font-normal xs:hidden ">
                            {venue.rating}/5
                         </span>
-                     </p>
+                     </div>
                   </div>
                   <p className="max-w-[500px] whitespace-pre-wrap break-words font-extralight">
                      {venue.description}
@@ -112,7 +112,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                      Amenities
                   </h2>
                   <div className="mb-8 mt-4 flex flex-col gap-4">
-                     <p className="flex gap-3">
+                     <div className="flex gap-3">
                         {venue.meta.wifi ? (
                            <>
                               <span className="icon-[mdi--wifi] h-6 w-6 text-dark"></span>{" "}
@@ -124,8 +124,8 @@ const VenueDetails = ({ id }: { id: string }) => {
                               No Wifi
                            </>
                         )}
-                     </p>
-                     <p className="flex gap-3">
+                     </div>
+                     <div className="flex gap-3">
                         {venue.meta.parking ? (
                            <>
                               <span className="icon-[mdi--car] h-6 w-6 text-dark"></span>{" "}
@@ -137,8 +137,8 @@ const VenueDetails = ({ id }: { id: string }) => {
                               No Parking
                            </>
                         )}
-                     </p>
-                     <p className="flex gap-3">
+                     </div>
+                     <div className="flex gap-3">
                         {venue.meta.breakfast ? (
                            <>
                               <span className="icon-[mdi--free-breakfast] h-6 w-6 text-dark"></span>{" "}
@@ -150,8 +150,8 @@ const VenueDetails = ({ id }: { id: string }) => {
                               No breakfast
                            </>
                         )}
-                     </p>
-                     <p className="flex gap-3">
+                     </div>
+                     <div className="flex gap-3">
                         {venue.meta.pets ? (
                            <>
                               <span className="icon-[mdi--dog-side] h-6 w-6 text-dark"></span>{" "}
@@ -163,7 +163,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                               No pets allowed
                            </>
                         )}
-                     </p>
+                     </div>
                   </div>
                </div>
                <div className="flex flex-col gap-4">
@@ -179,7 +179,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                            bookedDates={bookedDates}
                         />
                      ) : (
-                        <p className="text-center text-red">
+                        <div className="text-center text-red">
                            <Link
                               href="/user/login"
                               className="underline hover:text-body"
@@ -187,7 +187,7 @@ const VenueDetails = ({ id }: { id: string }) => {
                               Log in
                            </Link>{" "}
                            to book this venue
-                        </p>
+                        </div>
                      )}
                   </div>
                </div>

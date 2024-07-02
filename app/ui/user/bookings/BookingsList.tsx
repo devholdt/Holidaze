@@ -49,7 +49,7 @@ const BookingsList: React.FC<BookingListProps> = ({ name }) => {
             </h2>
             <LinkButton text="Venues" targetHref="/venues" />
          </div>
-         <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
+         <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
             {bookings.map((booking) => (
                <BookingCard key={booking.id} booking={booking} user={user!} />
             ))}
