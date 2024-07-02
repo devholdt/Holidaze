@@ -2,7 +2,7 @@
 
 import { UserDetailsProps } from "@/app/lib/definitions";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import BackgroundReflection from "@/public/background-reflection.avif";
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {

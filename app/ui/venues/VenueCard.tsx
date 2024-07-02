@@ -3,7 +3,7 @@
 import { elMessiri } from "@/app/ui/fonts";
 import { formatNumber } from "@/app/lib/utils";
 import { VenueProps } from "@/app/lib/definitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import backgroundReflection from "@/public/background-reflection.avif";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 

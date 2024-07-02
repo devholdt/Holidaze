@@ -1,5 +1,5 @@
 import { iconCheck, iconXmark } from "@/public/icons";
-import { StaticImageData } from "next/image";
+import { StaticImageData } from "next/legacy/image";
 import { BookingProps, VenueProps } from "@/app/lib/definitions";
 import { z } from "zod";
 import backgroundReflection from "@/public/background-reflection.avif";

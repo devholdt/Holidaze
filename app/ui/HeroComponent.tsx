@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { HeroProps } from "@/app/lib/definitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Subheading from "@/app/ui/subheading";
 import backgroundImage from "@/public/background-beach.avif";
 

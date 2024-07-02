@@ -3,7 +3,7 @@
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import backgroundReflection from "@/public/background-reflection.avif";
 import Subheading from "@/app/ui/subheading";
 import Link from "next/link";

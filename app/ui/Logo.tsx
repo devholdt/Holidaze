@@ -1,16 +1,15 @@
 "use client";
 
 import { LogoProps } from "@/app/lib/definitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
-const Logo: React.FC<LogoProps> = ({ src, styles }) => {
+const Logo: React.FC<LogoProps> = ({ src, width, height }) => {
    return (
       <Image
          src={src}
-         width={400}
-         height={400}
+         width={width}
+         height={height}
          alt="Holidaze logo"
-         className={styles}
       />
    );
 };

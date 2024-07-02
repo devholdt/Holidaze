@@ -3,7 +3,7 @@
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import { BookingCardProps } from "@/app/lib/definitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import RenderStars from "@/app/ui/venues/RenderStars";

@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image";
+import { StaticImageData } from "next/legacy/image";
 export interface VenueProps {
    id: string;
    name: string;
@@ -180,7 +180,8 @@ export type LinkButtonProps = {
 
 export type LogoProps = {
    src: string;
-   styles: string;
+   width: number;
+   height: number;
 };
 
 export type ImageSourceProps<T> = (

@@ -19,7 +19,7 @@ export default function Page() {
    return (
       <main className="m-auto flex min-h-screen max-w-7xl flex-col items-center border-x border-lightGrey bg-background">
          <div className="mt-24 flex w-2/6 min-w-[300px] flex-col items-center bg-white px-6 py-10">
-            <Logo src={logoBlack} styles="max-w-[250px]" />
+            <Logo src={logoBlack} width={250} height={40} />
             <h1 className="my-8 text-center text-2xl font-extralight uppercase tracking-widest">
                Login
             </h1>

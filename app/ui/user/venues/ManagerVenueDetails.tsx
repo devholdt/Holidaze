@@ -7,7 +7,7 @@ import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import { BookingsTable } from "@/app/ui/user/venues/ManagerVenueBookingsTable";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Subheading from "@/app/ui/subheading";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import useFetchLoggedInUser from "@/app/lib/hooks/useFetchLoggedInUser";

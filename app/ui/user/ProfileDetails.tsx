@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
 import { elMessiri } from "@/app/ui/fonts";
 import { ProfileDetailsProps } from "@/app/lib/definitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import useFetchUserByName from "@/app/lib/hooks/useFetchUserByName";
 import ManagerVenueList from "@/app/ui/user/venues/ManagerVenueList";
 

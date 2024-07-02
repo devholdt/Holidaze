@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import { LoadingSpinner } from "@/app/ui/LoadingSkeleton";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Form from "@/app/ui/venues/BookingForm";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";

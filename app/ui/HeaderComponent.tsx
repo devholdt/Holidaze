@@ -18,7 +18,7 @@ const Header = () => {
       >
          <div className="m-auto flex max-w-7xl items-center justify-between">
             <Link href="/">
-               <Logo src={logoWhite} styles="max-w-[160px]" />
+               <Logo src={logoWhite} width={160} height={24} />
             </Link>
             <nav>
                <ul className="hidden items-center gap-8 md:flex">

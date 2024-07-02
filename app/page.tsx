@@ -25,9 +25,9 @@ const Page = () => {
                backgroundImage: `url(${waterImg.src})`,
                backgroundSize: "cover",
             }}
-            className="flex h-[240px] items-center justify-center xs:h-[320px] md:h-[400px]"
+            className="flex h-[240px] items-center justify-center px-8 xs:h-[320px] md:h-[400px]"
          >
-            <Logo src={logoWhiteSubtitle} styles="w-[480px] px-8" />
+            <Logo src={logoWhiteSubtitle} width={400} height={400} />
          </div>
 
          <div className="border-x border-lightGrey">
