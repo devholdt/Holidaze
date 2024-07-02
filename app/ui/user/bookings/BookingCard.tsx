@@ -35,14 +35,14 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                   {booking.venue.name}
                </h3>
                <div className="mb-4 flex justify-center gap-1 break-words font-light">
-                  <p className="truncate">
+                  <div className="truncate">
                      {booking.venue.location.city
                         ? booking.venue?.location.city
                         : ""}
                      {booking.venue.location.city &&
                         booking.venue.location.country && <span>, </span>}
-                  </p>
-                  <p className="truncate">
+                  </div>
+                  <div className="truncate">
                      {booking.venue.location.country
                         ? booking.venue?.location.country
                         : ""}
@@ -50,13 +50,13 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                         !booking.venue.location.country && (
                            <span className="font-light">N/A</span>
                         )}
-                  </p>
+                  </div>
                </div>
-               <p className="mb-4 flex items-center justify-center gap-2">
+               <div className="mb-4 flex items-center justify-center gap-2">
                   <div className="flex items-center">
                      {RenderStars(booking.venue.rating)}
                   </div>
-               </p>
+               </div>
                <div className="mb-4 font-extralight">
                   <span className="font-normal">
                      {formatDate(booking.dateFrom)}
@@ -70,16 +70,16 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             <div>
                <hr className="mb-4 border-[1px] text-grey" />
                <div className="mb-4 flex justify-between font-extralight">
-                  <p>
+                  <div>
                      <span className="font-normal">
                         £{formatNumber(booking.venue.price)}
                      </span>{" "}
                      / night
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                      <span className="font-normal">{booking.guests}</span>{" "}
                      guest(s)
-                  </p>
+                  </div>
                </div>
             </div>
          </div>

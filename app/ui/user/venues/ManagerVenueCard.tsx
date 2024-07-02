@@ -40,38 +40,38 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
                   {venue.name}
                </h3>
                <div className="mb-4 flex justify-center gap-1 break-words font-light">
-                  <p className="truncate">
+                  <div className="truncate">
                      {venue.location.city ? venue.location.city : ""}
                      {venue.location.city && venue.location.country && (
                         <span>, </span>
                      )}
-                  </p>
-                  <p className="truncate">
+                  </div>
+                  <div className="truncate">
                      {venue.location.country ? `${venue.location.country}` : ""}
                      {!venue.location.city && !venue.location.country && (
                         <span className="font-light">N/A</span>
                      )}
-                  </p>
+                  </div>
                </div>
                <div className="flex items-center justify-center gap-2">
-                  <p className="flex items-center">
+                  <div className="flex items-center">
                      {RenderStars(venue.rating)}
-                  </p>
+                  </div>
                </div>
             </div>
             <div>
                <hr className="my-4 border-[1px] text-grey" />
                <div className="mb-4 flex justify-between font-extralight">
-                  <p>
+                  <div>
                      <span className="font-normal">
                         £{formatNumber(venue.price)}
                      </span>{" "}
                      / night
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                      max <span className="font-normal">{venue.maxGuests}</span>{" "}
                      guests
-                  </p>
+                  </div>
                </div>
             </div>
          </div>
