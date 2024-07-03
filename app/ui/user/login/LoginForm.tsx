@@ -1,55 +1,84 @@
 "use client";
 
+import {
+   Paper,
+   Center,
+   TextInput,
+   PasswordInput,
+   Button,
+   Title,
+   Text,
+} from "@mantine/core";
 import { handleLoginSubmit } from "@/app/lib/actions";
 import Link from "next/link";
+import Logo from "@/app/ui/Logo";
+import logoBlack from "@/public/logo-black.svg";
 
 export default function LoginForm() {
    return (
-      <form className="w-full max-w-[320px]" onSubmit={handleLoginSubmit}>
-         <div className="mb-4">
-            <label className="text-body" htmlFor="email">
-               Email
-            </label>
-            <div className="relative">
-               <input
-                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Enter email"
-               />
-            </div>
-         </div>
-         <div className="mb-8">
-            <label className="text-body" htmlFor="password">
-               Password
-            </label>
-            <div className="relative">
-               <input
-                  className="w-full rounded bg-background px-4 py-3 outline-green placeholder:text-grey"
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-               />
-            </div>
-         </div>
-         <button
-            className="w-full bg-green px-6 py-3 text-lg font-extralight uppercase tracking-widest text-white transition hover:bg-lightGreen"
-            type="submit"
+      <form onSubmit={handleLoginSubmit}>
+         <div
+            className={`min-h-[900px] bg-[url('../../public/background-beach.avif')] bg-cover bg-top`}
          >
-            Login
-         </button>
-         <div className="mt-4 w-full font-extralight tracking-wider">
-            Don&apos;t have an account? Register{" "}
-            <Link
-               href="/user/register"
-               className="text-blue underline hover:font-medium"
+            <Paper
+               className="min-h-[900px] max-w-full border-r border-lightGrey pt-[80px] sm:max-w-[450px]"
+               radius={0}
+               p={30}
             >
-               here
-            </Link>
+               <Center mt="lg" mb={48}>
+                  <Logo src={logoBlack} width={250} height={40} />
+               </Center>
+
+               <Title
+                  order={1}
+                  ta="center"
+                  mb={24}
+                  fw={200}
+                  fz={28}
+                  className="uppercase tracking-widest"
+               >
+                  Login
+               </Title>
+               <TextInput
+                  label="Email address"
+                  placeholder="Enter email"
+                  size="md"
+                  id="email"
+                  name="email"
+               />
+               <PasswordInput
+                  label="Password"
+                  placeholder="Enter password"
+                  mt="md"
+                  size="md"
+                  id="password"
+                  name="password"
+               />
+               <Button
+                  fullWidth
+                  mt="xl"
+                  size="md"
+                  fw={400}
+                  color="green.9"
+                  variant="filled"
+                  type="submit"
+               >
+                  Login
+               </Button>
+
+               <Text ta="center" mt="md">
+                  Don&apos;t have an account? Register{" "}
+                  <Link
+                     href="/user/register"
+                     className="text-blue underline hover:font-medium"
+                  >
+                     here
+                  </Link>
+               </Text>
+
+               <div className="alert-container"></div>
+            </Paper>
          </div>
-         <div className="alert-container"></div>
       </form>
    );
 }
