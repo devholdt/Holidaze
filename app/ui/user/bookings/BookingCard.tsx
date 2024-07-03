@@ -9,13 +9,11 @@ import {
    IconLocation,
 } from "@tabler/icons-react";
 import { Card, Text, Group, Badge, Button, rem } from "@mantine/core";
-import { elMessiri } from "@/app/ui/fonts";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import { BookingCardProps } from "@/app/lib/definitions";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
-import RenderStars from "@/app/ui/venues/RenderStars";
 import backgroundReflection from "@/public/background-reflection.avif";
 
 const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
