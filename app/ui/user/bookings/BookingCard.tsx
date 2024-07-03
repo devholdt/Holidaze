@@ -133,7 +133,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
 
          <Group mt="md" justify="space-between">
             <div>
-               <Text fz="xl" span fw={500} className="text-dark">
+               <Text fz="md" span fw={500} className="text-dark">
                   £{formatNumber(booking.venue.price)}
                </Text>
                <Text span fz="sm" c="dimmed">

@@ -63,17 +63,21 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
                   <Text fz="sm">{venue.rating}</Text>
                </Group>
             </Group>
-            <Text fz="sm" mt="xs">
-               <p className="h-[40px] overflow-y-hidden whitespace-pre-wrap break-words">
+            <div>
+               <Text
+                  fz="sm"
+                  mt="xs"
+                  className="h-[40px] overflow-y-hidden whitespace-pre-wrap break-words"
+               >
                   {venue.description || "No description available"}
-               </p>
+               </Text>
                <Link
                   href={`/venues/${venue.id}`}
                   className="flex justify-end text-blue hover:underline"
                >
                   ...see more
                </Link>
-            </Text>
+            </div>
          </Card.Section>
 
          <Card.Section className="border-b border-lightGrey pb-4 pe-4 ps-4 pt-3">

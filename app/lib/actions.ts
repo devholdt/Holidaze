@@ -216,6 +216,8 @@ export const handleRegisterSubmit = async (
    event: React.FormEvent<HTMLFormElement>,
    isChecked: boolean
 ) => {
+   event.preventDefault();
+
    const formData = new FormData(event.currentTarget);
    formData.set("venueManager", isChecked ? "true" : "false");
 
