@@ -15,6 +15,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import backgroundReflection from "@/public/background-reflection.avif";
+import VenueCardBadge from "@/app/ui/venues/VenueCardBadge";
 
 const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
    const [imgSrc, setImgSrc] = useImageSource(booking);
@@ -63,70 +64,49 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
 
          <Card.Section className="border-b border-lightGrey pb-4 pe-4 ps-4 pt-3">
             <Group gap={7} mt={5}>
-               {booking.venue.location.country ? (
-                  <Badge
-                     color="green"
-                     variant="light"
-                     leftSection={
-                        <IconLocation className="p-[4px]" stroke={2} />
-                     }
-                  >
-                     {booking.venue.location.country}
-                  </Badge>
-               ) : (
-                  <Badge
-                     color="green"
-                     variant="light"
-                     leftSection={
-                        <IconLocation className="p-[4px]" stroke={2} />
-                     }
-                  >
-                     Country
-                  </Badge>
-               )}
+               {booking.venue.location.city ? (
+                  <VenueCardBadge
+                     text={booking.venue.location.city}
+                     icon={<IconLocation className="p-[4px]" stroke={2} />}
+                  />
+               ) : booking.venue.location.country ? (
+                  <VenueCardBadge
+                     text={booking.venue.location.country}
+                     icon={<IconLocation className="p-[4px]" stroke={2} />}
+                  />
+               ) : booking.venue.location.continent ? (
+                  <VenueCardBadge
+                     text={booking.venue.location.continent}
+                     icon={<IconLocation className="p-[4px]" stroke={2} />}
+                  />
+               ) : null}
 
                {booking.venue.meta.wifi ? (
-                  <Badge
-                     color="green"
-                     variant="light"
-                     leftSection={<IconWifi className="p-[2px]" stroke={2} />}
-                  >
-                     Wifi
-                  </Badge>
+                  <VenueCardBadge
+                     text="Wifi"
+                     icon={<IconWifi className="p-[2px]" stroke={2} />}
+                  />
                ) : null}
 
                {booking.venue.meta.parking ? (
-                  <Badge
-                     color="green"
-                     variant="light"
-                     leftSection={
-                        <IconParking className="p-[2px]" stroke={2} />
-                     }
-                  >
-                     Parking
-                  </Badge>
+                  <VenueCardBadge
+                     text="Parking"
+                     icon={<IconParking className="p-[2px]" stroke={2} />}
+                  />
                ) : null}
 
                {booking.venue.meta.breakfast ? (
-                  <Badge
-                     color="green"
-                     variant="light"
-                     leftSection={
-                        <IconToolsKitchen2 className="p-[2px]" stroke={2} />
-                     }
-                  >
-                     Breakfast
-                  </Badge>
+                  <VenueCardBadge
+                     text="Breakfast"
+                     icon={<IconToolsKitchen2 className="p-[2px]" stroke={2} />}
+                  />
                ) : null}
 
                {booking.venue.meta.pets ? (
-                  <Badge
-                     color="green"
-                     variant="light"
-                     leftSection={<IconPaw className="p-[2px]" stroke={2} />}
-                  >
-                     Pets allowed
-                  </Badge>
+                  <VenueCardBadge
+                     text="Pets allowed"
+                     icon={<IconPaw className="p-[2px]" stroke={2} />}
+                  />
                ) : null}
             </Group>
          </Card.Section>

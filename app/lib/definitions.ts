@@ -157,6 +157,13 @@ export interface BreadcrumbProps {
    active?: boolean;
 }
 
+export interface VenueCardBadgeProps {
+   text: string;
+   color?: string;
+   variant?: string;
+   icon: any;
+}
+
 export type SubheadingProps = {
    text: string;
    left?: string;
