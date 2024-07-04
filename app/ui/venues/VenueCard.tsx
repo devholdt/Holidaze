@@ -8,14 +8,14 @@ import {
    IconPaw,
    IconLocation,
 } from "@tabler/icons-react";
-import { Card, Text, Group, Button, rem } from "@mantine/core";
+import { Card, Text, Group, rem } from "@mantine/core";
+import { formatNumber } from "@/app/lib/utils";
+import { VenueProps } from "@/app/lib/definitions";
+import { LinkButton } from "@/app/ui/ButtonComponents";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { formatNumber } from "@/app/lib/utils";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import backgroundReflection from "@/public/background-reflection.avif";
-import { VenueProps } from "@/app/lib/definitions";
-
 import VenueCardBadge from "@/app/ui/venues/VenueCardBadge";
 
 const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
@@ -142,9 +142,13 @@ const VenueCard: React.FC<{ venue: VenueProps; onClick: () => void }> = ({
                </Text>
             </div>
 
-            <Button color="brown" radius="sm" onClick={onClick}>
-               Show details
-            </Button>
+            <LinkButton
+               targetHref={`/venues/${venue.id}`}
+               styles="px-2 py-1 rounded-sm tracking-wide"
+               fontSize="sm"
+               text="Show details"
+               onClick={onClick}
+            />
          </Group>
       </Card>
    );

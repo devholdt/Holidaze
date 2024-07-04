@@ -179,6 +179,7 @@ export type ButtonProps = {
 
 export type LinkButtonProps = {
    text: string;
+   fontSize?: string;
    styles?: string;
    primary?: boolean;
    targetHref: string;

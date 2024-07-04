@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Avatar, Text, Group, Button } from "@mantine/core";
+import { Card, Avatar, Text, Group } from "@mantine/core";
 import { VenueOwnerProps } from "@/app/lib/definitions";
 
 import Cookies from "js-cookie";

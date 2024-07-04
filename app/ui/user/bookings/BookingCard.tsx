@@ -8,11 +8,11 @@ import {
    IconPaw,
    IconLocation,
 } from "@tabler/icons-react";
-import { Card, Text, Group, Badge, Button, rem } from "@mantine/core";
+import { Card, Text, Group, rem } from "@mantine/core";
 import { formatDate, formatNumber } from "@/app/lib/utils";
 import { BookingCardProps } from "@/app/lib/definitions";
+import { LinkButton } from "@/app/ui/ButtonComponents";
 import Image from "next/legacy/image";
-import Link from "next/link";
 import useImageSource from "@/app/lib/hooks/useImageSource";
 import backgroundReflection from "@/public/background-reflection.avif";
 import VenueCardBadge from "@/app/ui/venues/VenueCardBadge";
@@ -122,11 +122,12 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
                </Text>
             </div>
 
-            <Link href={`/user/bookings/${booking.id}`}>
-               <Button color="brown" radius="sm">
-                  Show details
-               </Button>
-            </Link>
+            <LinkButton
+               targetHref={`/user/bookings/${booking.id}`}
+               styles="px-2 py-1 rounded-sm tracking-wide"
+               fontSize="sm"
+               text="Show details"
+            />
          </Group>
       </Card>
    );

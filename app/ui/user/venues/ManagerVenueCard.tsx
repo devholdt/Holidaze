@@ -8,9 +8,10 @@ import {
    IconPaw,
    IconLocation,
 } from "@tabler/icons-react";
-import { Card, Text, Group, Button, rem } from "@mantine/core";
+import { Card, Text, Group, rem } from "@mantine/core";
 import { ManagerVenueCardProps } from "@/app/lib/definitions";
 import { formatNumber } from "@/app/lib/utils";
+import { LinkButton } from "@/app/ui/ButtonComponents";
 import Image from "next/legacy/image";
 import backgroundReflection from "@/public/background-reflection.avif";
 import Link from "next/link";
@@ -139,11 +140,12 @@ const ManagerVenueCard: React.FC<ManagerVenueCardProps> = ({ venue, user }) => {
                </Text>
             </div>
 
-            <Link href={redirectLink}>
-               <Button color="brown" radius="sm">
-                  Show details
-               </Button>
-            </Link>
+            <LinkButton
+               targetHref={redirectLink}
+               styles="px-2 py-1 rounded-sm tracking-wide"
+               fontSize="sm"
+               text="Show details"
+            />
          </Group>
       </Card>
    );
