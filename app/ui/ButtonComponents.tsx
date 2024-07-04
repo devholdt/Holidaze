@@ -26,7 +26,8 @@ const Button: React.FC<ButtonProps> = ({
 
 const LinkButton: React.FC<LinkButtonProps> = ({
    text,
-   styles,
+   fontSize = "lg",
+   styles = "px-6 py-3",
    primary = true,
    targetHref,
    onClick,
@@ -35,7 +36,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       <Link
          onClick={onClick}
          href={targetHref}
-         className={`mx-2 px-6 py-3 text-center text-lg font-extralight uppercase tracking-widest transition ${styles} ${
+         className={`text-${fontSize} text-center font-extralight transition ${styles} ${
             primary
                ? "bg-brown text-white hover:bg-darkBrown"
                : "bg-yellow text-blue hover:bg-darkYellow"

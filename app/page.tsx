@@ -57,7 +57,11 @@ const Page = () => {
             </div>
             <div className="mb-36 flex flex-col items-center">
                <VenueList listLimit={3} />
-               <LinkButton targetHref="/venues" text="View all" styles="mt-8" />
+               <LinkButton
+                  targetHref="/venues"
+                  text="View all"
+                  styles="px-6 py-3 mt-8 rounded-sm uppercase tracking-widest"
+               />
             </div>
          </div>
       </main>
